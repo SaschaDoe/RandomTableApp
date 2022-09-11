@@ -1,18 +1,26 @@
 <script lang="ts">
 
 </script>
-
-<footer>
+<footer class="fixed-footer">
     <p>Visit <a href="https://github.com/SaschaDoe/RandomTableApp">SaschaDoe's GitHub</a> for source code</p>
 </footer>
 
 <style>
-    footer{
-        background: darkgrey;
-        min-height:23px;
-        height: 42px;
-        margin-top:auto;
+    .fixed-footer{
+        width: 100%;
+        position: fixed;
+        background: #333;
+        padding: 5px 0;
+        color: #fff;
+        bottom: 0;
+    }
+    p{
         text-align: center;
     }
+    a{
+        color: #fff;
+        text-decoration: none;
+        display: inline-block;
 
+    }
 </style>

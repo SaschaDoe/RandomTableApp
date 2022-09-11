@@ -2,36 +2,45 @@
 
 </script>
 
-<header>
+<header class="fixed-header">
     <h1>
-        <button class="random-table-btn">Random Tables</button>
-        <button class="summary-btn">Summary</button>
+        <div class="container">
+            <nav>
+                <button class="random-table-btn">Random Tables</button>
+                <button class="summary-btn">Summary</button>
+            </nav>
+        </div>
     </h1>
 </header>
 
 <style>
-    header{
-        min-height:42px;
-        background: darkgrey;
+    .fixed-header{
+        width: 100%;
+        position: fixed;
+        background: #333;
+        padding: 10px 0;
+        color: #fff;
+        top: 0;
     }
 
     button{
+        color: #fff;
         background-color: transparent;
         background-repeat: no-repeat;
         border: none;
         cursor: pointer;
         overflow: hidden;
         outline: none;
-        font-weight: bold;
+        font-size: large;
     }
     .random-table-btn{
         position: absolute;
-        left: 30%;
-        top: 20px;
+        left: 27%;
+        top: 10px;
     }
     .summary-btn{
         position: absolute;
         left: 60%;
-        top: 20px;
+        top: 10px;
     }
 </style>
