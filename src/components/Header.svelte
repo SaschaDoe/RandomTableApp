@@ -11,9 +11,10 @@
 
 <style>
     header{
+        min-height:32px;
         background: darkgrey;
-        padding: 5px;
     }
+
     button{
         background-color: transparent;
         background-repeat: no-repeat;

@@ -1,15 +1,22 @@
 <script>
     import Header from '../components/Header.svelte'
+    import Footer from "../components/Footer.svelte";
 </script>
 
-<Header></Header>
+
 <main>
-    <h1>Random Tables</h1>
-    <p>Visit <a href="https://github.com/SaschaDoe/RandomTableApp">SaschaDoe's github</a> for the source code</p>
+    <Header contentEditable>Header</Header>
+    <article contentEditable>Content</article>
+    <Footer contentEditable>Footer</Footer>
 </main>
+
 
 <style>
     main{
-        max-width: 960px;
+        display:flex;
+        flex-direction:column;
+        height:100vh;
+        margin:0;
     }
+
 </style>
