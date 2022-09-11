@@ -11,7 +11,7 @@
 
 <style>
     header{
-        min-height:32px;
+        min-height:42px;
         background: darkgrey;
     }
 
@@ -27,11 +27,11 @@
     .random-table-btn{
         position: absolute;
         left: 30%;
-        top: 15px;
+        top: 20px;
     }
     .summary-btn{
         position: absolute;
         left: 60%;
-        top: 15px;
+        top: 20px;
     }
 </style>

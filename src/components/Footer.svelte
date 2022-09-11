@@ -10,6 +10,7 @@
     footer{
         background: darkgrey;
         min-height:23px;
+        height: 42px;
         margin-top:auto;
         text-align: center;
     }
