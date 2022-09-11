@@ -1,2 +1,2 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>Random Tables</h1>
+<p>Visit <a href="https://github.com/SaschaDoe/RandomTableApp">SaschaDoe's github</a> for the source code</p>
