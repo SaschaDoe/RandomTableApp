@@ -2,9 +2,21 @@
     import {Table} from "./table.ts";
     import {Character} from "../world/character.js";
     import {isModalVisible} from "../menue/modalStore.js";
-    import TableModal from "./TableModal.svelte";
+    import {characters} from "../world/worldStore";
+    import Modal from "../components/Modal.svelte";
+    import CharacterView from "../summary/CharacterView.svelte";
 
     export let table : Table;
+
+    function handleCloseModal() {
+        $isModalVisible = false;
+
+    }
+
+    const handleAdd = () => {
+        $characters.push(character)
+        $isModalVisible = false;
+    };
 
     function handleRole(){
         $isModalVisible = true;
@@ -16,7 +28,10 @@
 <h2>{table.title}</h2>
 <button on:click="{handleRole}">{table.diceRole.toString()}</button>
 {#if $isModalVisible}
-    <TableModal character={character} />
+    <Modal on:close="{handleCloseModal}">
+        <CharacterView character={character}/>
+        <button on:click={handleAdd}>Add</button>
+    </Modal>
 {/if}
 
 <table>

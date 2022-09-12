@@ -18,9 +18,5 @@
     export let character = new Character();
 </script>
 
-<Modal on:close="{handleCloseModal}">
-    <CharacterView
-            character={character}
-    />
-    <button on:click={handleAdd}>Add</button>
+
 </Modal>
