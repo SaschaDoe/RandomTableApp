@@ -1,7 +1,11 @@
+import type {AnimalTable} from "./charTables/animalTable";
+import type {Table} from "./table";
+
 export class TableEntry{
     minRole: number;
     maxRole: number;
     text: string;
+    cascadingRoles = [] as Table[];
 
     constructor(text = "-", singleRoleValue = 0){
         if(singleRoleValue == 0){
@@ -30,5 +34,10 @@ export class TableEntry{
             return `${this.minRole}`;
         }
         return `${this.minRole}-${this.maxRole}`;
+    }
+
+    withCascadingRole(table: Table) {
+        this.cascadingRoles.push(table)
+        return this;
     }
 }

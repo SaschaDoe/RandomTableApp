@@ -2,6 +2,7 @@ import { describe, expect, test } from "vitest";
 import {TableEntry} from './tableEntry'
 import {DiceRole} from "./diceRole";
 import {DiceTypes} from "./diceTypes";
+import {AnimalTable} from "./charTables/animalTable";
 
 describe("RandomTableEntry", () => {
     test("should min 1 max role 6 when default", () =>{
@@ -40,6 +41,12 @@ describe("RandomTableEntry", () => {
         expect(randomTableEntry.minRole).toBe(1);
         expect(randomTableEntry.maxRole).toBe(6);
         expect(randomTableEntry.text).toBe("Hello");
+    })
+
+    test("should have cascading Role", () =>{
+        let randomTableEntry = new TableEntry("Hello").withCascadingRole(new AnimalTable());
+
+        expect(randomTableEntry.cascadingRoles.length).toBe(1);
     })
 
     test.each([

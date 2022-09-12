@@ -23,7 +23,10 @@
 <button on:click="{handleRole}">{table.diceRole.toString()}</button>
 {#if showModal}
     <Modal on:close="{handleCloseModal}">
-        <CharacterView race={entry.text}></CharacterView>
+        <CharacterView
+                race={entry.text}
+                cascadingTables="{entry.cascadingRoles}"
+        />
     </Modal>
     {/if}
 

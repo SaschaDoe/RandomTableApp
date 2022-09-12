@@ -1,22 +1,19 @@
 <script lang="ts">
     import RandomTable from "./RandomTable.svelte";
-    import {Table} from "./table";
     import {RaceTable} from "./charTables/raceTable";
+    import {AnimalTable} from "./charTables/animalTable";
 
-    let tables = [new RaceTable()];
+    let tables = [new RaceTable(), new AnimalTable()];
 </script>
 
-<div class="container">
-    <ul>
-        {#each tables as table}
-            <RandomTable table="{table}"></RandomTable>
-        {/each}
-    </ul>
-</div>
+
+<ul>
+    {#each tables as table}
+        <RandomTable table="{table}"></RandomTable>
+    {/each}
+</ul>
+
 
 <style>
-    .container{
-        width: 80%;
-        margin: 0 auto; /* Center the DIV horizontally */
-    }
+
 </style>

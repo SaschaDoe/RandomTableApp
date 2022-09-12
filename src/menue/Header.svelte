@@ -1,13 +1,14 @@
 <script lang="ts">
-
+    import {currentPage} from './navigationStore'
+    import {Pages} from "./navigationStore.js";
 </script>
 
 <header class="fixed-header">
     <h1>
         <div class="container">
             <nav>
-                <button class="random-table-btn">Random Tables</button>
-                <button class="summary-btn">Summary</button>
+                <button class="random-table-btn" on:click={() => $currentPage = Pages.RandomTablePage}>Random Tables</button>
+                <button class="summary-btn" on:click={() => $currentPage = Pages.SummaryPage}>Summary</button>
             </nav>
         </div>
     </h1>
