@@ -2,10 +2,13 @@ import {Races} from "../tables/charTables/races";
 import {Dice} from "../utils/dice";
 import {DiceRole} from "../tables/diceRole";
 import {GermanMaleNameTable} from "../tables/charTables/germanMaleNameTable";
+import {GenderTable} from "../tables/charTables/genderTable";
+import {GermanFemaleNameTable} from "../tables/charTables/germanFemaleNameTable";
 
 export class Character{
     name : string;
     race : string;
+    gender : string;
 
     courage = 0;
     charisma = 0;
@@ -17,8 +20,12 @@ export class Character{
     strength = 0;
 
     constructor(race = Races.Human, dice = new Dice()) {
-        let nameTable = new GermanMaleNameTable();
-        this.name = nameTable.role(dice).text;
+        this.gender = new GenderTable().role(dice).text
+        if(this.gender === "Female"){
+            this.name = new GermanFemaleNameTable().role(dice).text;
+        }else{
+            this.name = new GermanMaleNameTable().role(dice).text;
+        }
         this.race = race;
         this.roleForAttributes(dice);
     }

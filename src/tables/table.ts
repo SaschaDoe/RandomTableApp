@@ -20,19 +20,6 @@ export class Table {
             throw RangeError('Entries should not contain overlapping roles and should be descendent');
         }
 
-        /*TODO Not easy to implement with number of roles 2x1w6 etc...
-        if (!this.isEntriesCoverMin(entries)) {
-            throw RangeError('Entries should cover minimum');
-        }
-        if (!this.isEntriesCoverMax(entries)) {
-            throw RangeError('Entries should cover maximum');
-        }
-        if (!this.isEntriesWithoutGaps(entries)) {
-            throw RangeError('Entries should have no gaps');
-        }
-        */
-
-
         this.title = title;
         this.entries = entries;
     }
@@ -75,31 +62,5 @@ export class Table {
         }
         
         return false;
-    }
-
-    private isEntriesWithoutGaps(entries: TableEntry[]) {
-        for(let i = 1; i < entries.length; i++){
-            let lastTableEntry = entries[i-1];
-            let currentTableEntry = entries[i];
-            
-            let gap = currentTableEntry.minRole - lastTableEntry.maxRole;
-
-            if(gap != 1){
-                return false; 
-            }
-        }
-        return true;
-    }
-
-    private isEntriesCoverMin(entries : TableEntry[]){
-        let min = getMinDiceResult(entries);
-
-        return this.diceRole.minResult() == min;
-    }
-
-    private isEntriesCoverMax(entries : TableEntry[]){
-        let max = getMaxDiceResult(entries);
-
-        return this.diceRole.maxResult() == max;
     }
 }

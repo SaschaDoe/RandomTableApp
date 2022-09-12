@@ -19,6 +19,7 @@
 
     function handleRole(){
         $isModalVisible = true;
+        //TODO table.function but only to the "ADD" button. In the modal there shall be only the entry
         character.race = table.roleWithCascade();
     }
     let character = new Character()

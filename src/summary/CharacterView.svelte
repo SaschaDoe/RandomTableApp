@@ -6,6 +6,7 @@
 </script>
 
 <h1>{character.name}</h1>
+<p>{character.gender}</p>
 <p>{character.race}</p>
 <ul>
     <li>Courage: {character.courage}</li>
