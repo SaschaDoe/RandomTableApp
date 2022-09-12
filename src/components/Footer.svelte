@@ -10,7 +10,7 @@
         width: 100%;
         position: fixed;
         background: #333;
-        padding: 5px 0;
+        padding: 0px 0;
         color: #fff;
         bottom: 0;
     }
@@ -18,7 +18,7 @@
         text-align: center;
     }
     a{
-        color: #fff;
+        color: cornflowerblue;
         text-decoration: none;
         display: inline-block;
 
