@@ -11,10 +11,8 @@ export function getMinDiceResult(entries : TableEntry[]){
     return Math.min(...mins);
 }
 
-export function isInbetween(number : number, min : number, max : number){
-    if ((number >= min) && (number <= max)){
-        return true;
-    }
+export function isBetween(number : number, min : number, max : number){
+    return (number >= min) && (number <= max);
     
-    return false;
+
 }

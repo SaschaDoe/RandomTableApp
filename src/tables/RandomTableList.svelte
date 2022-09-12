@@ -1,16 +1,15 @@
 <script lang="ts">
     import RandomTable from "./RandomTable.svelte";
     import {Table} from "./table";
+    import {RaceTable} from "./charTables/raceTable";
 
-    let list = [new Table(), new Table()];
+    let tables = [new RaceTable()];
 </script>
 
 <div class="container">
     <ul>
-        {#each list as entry}
-            <RandomTable
-                entries=entry
-            />
+        {#each tables as table}
+            <RandomTable table="{table}"></RandomTable>
         {/each}
     </ul>
 </div>

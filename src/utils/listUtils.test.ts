@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { getMaxDiceResult, getMinDiceResult, isInbetween } from "./listUtils";
+import { getMaxDiceResult, getMinDiceResult, isBetween } from "./listUtils";
 import {TableEntry} from "../tables/tableEntry";
 
 describe("listUtils", () =>{
@@ -18,12 +18,12 @@ describe("listUtils", () =>{
     })
 
     test("should return true if number is between", () => {
-        expect(isInbetween(1,1,1)).toBe(true);
-        expect(isInbetween(1,1,2)).toBe(true);
+        expect(isBetween(1,1,1)).toBe(true);
+        expect(isBetween(1,1,2)).toBe(true);
     })
 
     test("should return false if number is not between", () => {
-        expect(isInbetween(1,2,2)).toBe(false);
-        expect(isInbetween(1,0,0)).toBe(false);
+        expect(isBetween(1,2,2)).toBe(false);
+        expect(isBetween(1,0,0)).toBe(false);
     })
 })

@@ -1,7 +1,7 @@
 
 import { DiceRole } from "./diceRole";
-import { getMaxDiceResult, getMinDiceResult, isInbetween } from "../utils/listUtils";
-import type { Dice } from "../utils/dice";
+import { getMaxDiceResult, getMinDiceResult, isBetween } from "../utils/listUtils";
+import { Dice } from "../utils/dice";
 import {TableTitles} from "./tableTitles";
 import {TableEntry} from "./tableEntry";
 
@@ -33,12 +33,12 @@ export class Table {
         this.entries = entries;
     }
 
-    role(dice : Dice){
+    role(dice = new Dice()){
         let randomNumber = dice.role(this.diceRole);
         for (let i = 0; i < this.entries.length; i++) {
             const entry = this.entries[i];
 
-            if(isInbetween(randomNumber,entry.minRole, entry.maxRole)){
+            if(isBetween(randomNumber, entry.minRole, entry.maxRole)){
                 return entry;
             }
         }

@@ -1,7 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { DiceRole } from "./diceRole";
 import { DiceTypes } from "./diceTypes";
-import {Dice} from "../utils/dice";
 
 describe("DiceRole", () =>{
     test("should 1w6 when default", () => {
