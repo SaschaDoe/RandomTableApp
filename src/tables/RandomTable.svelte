@@ -10,7 +10,6 @@
 
     function handleCloseModal() {
         $isModalVisible = false;
-
     }
 
     const handleAdd = () => {

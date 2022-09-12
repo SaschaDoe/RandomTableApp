@@ -4,22 +4,30 @@ export class DiceRole{
   multiplier: number;
   diceType: DiceTypes;
   summand: number;
+  numberOfRoles: number;
 
   constructor(){
+    this.numberOfRoles = 1;
     this.multiplier = 1;
     this.diceType = DiceTypes.w6;
     this.summand = 0;
   }
 
   minResult(){
-    return this.multiplier + this.summand;
+    let minResult = (this.multiplier + this.summand).toString();
+    let result = minResult;
+    for(let i = 1; i < this.numberOfRoles; i++){
+      result = `${result}${minResult}`;
+    }
+
+    return parseInt(result);
   }
 
   maxResult(){
     return this.multiplier * this.diceType.valueOf() + this.summand;
   }
 
-  withMultiplier(multiplier: number) {
+  numberOfDice(multiplier: number) {
     this.multiplier = multiplier;
     return this;
   }
@@ -42,6 +50,15 @@ export class DiceRole{
     if(this.summand < 0){
       additionOperator = `${ this.summand }`;
     }
-    return `${this.multiplier}w${this.diceType.toString()}${additionOperator}`;
+    let multiplierOperator = '';
+    if(this.numberOfRoles > 1){
+      multiplierOperator = `${ this.numberOfRoles }x`;
+    }
+    return `${multiplierOperator}${this.multiplier}w${this.diceType.toString()}${additionOperator}`;
+  }
+
+  withNumberOfRoles(number: number) {
+    this.numberOfRoles = number;
+    return this;
   }
 }

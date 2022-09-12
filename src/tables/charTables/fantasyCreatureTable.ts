@@ -1,6 +1,5 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
-import {Animals} from "./animals";
 import {TableTitles} from "../tableTitles";
 import {FantasyCreatures} from "./fantasyCreatures";
 

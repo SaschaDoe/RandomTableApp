@@ -4,7 +4,6 @@ import { getMaxDiceResult, getMinDiceResult, isBetween } from "../utils/listUtil
 import { Dice } from "../utils/dice";
 import {TableTitles} from "./tableTitles";
 import {TableEntry} from "./tableEntry";
-import {Character} from "../world/character";
 
 export class Table {
     title: TableTitles;

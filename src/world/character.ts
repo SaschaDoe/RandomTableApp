@@ -1,6 +1,7 @@
 import {Races} from "../tables/charTables/races";
 import {Dice} from "../utils/dice";
 import {DiceRole} from "../tables/diceRole";
+import {GermanMaleNameTable} from "../tables/charTables/germanMaleNameTable";
 
 export class Character{
     name : string;
@@ -15,14 +16,15 @@ export class Character{
     constitution = 0;
     strength = 0;
 
-    constructor(race = Races.Human, name = "no name", dice = new Dice()) {
-        this.name = name;
+    constructor(race = Races.Human, dice = new Dice()) {
+        let nameTable = new GermanMaleNameTable();
+        this.name = nameTable.role(dice).text;
         this.race = race;
         this.roleForAttributes(dice);
     }
 
     private roleForAttributes(dice: Dice) {
-        let attributeDiceRole = new DiceRole().withMultiplier(3);
+        let attributeDiceRole = new DiceRole().numberOfDice(3);
 
         this.courage = dice.role(attributeDiceRole);
         this.charisma = dice.role(attributeDiceRole);

@@ -14,10 +14,7 @@ export class FakeDice extends Dice{
         return this;
     }
 
-    role(diceRole : DiceRole){
-        if(this.diceResults.length < 1){
-            throw Error("Not enough dice results");
-        }
+    getRandomInt(min: number, max: number): number {
         let diceResult = this.diceResults.shift();
         if(diceResult === undefined) {
             return 0;

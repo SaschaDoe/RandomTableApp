@@ -4,14 +4,20 @@ import type {DiceRole} from "../tables/diceRole";
 export class Dice{
 
     role(diceRole : DiceRole){
-        let randomRoleResult = 0;
-        for (let i = 0; i < diceRole.multiplier; i++) {
-            const randomNumber = this.getRandomInt(0, diceRole.diceType);
-            randomRoleResult += randomNumber;
-        }
+        let result = ""
+        for(let n = 0; n < diceRole.numberOfRoles; n++){
+            let randomRoleResult = 0;
+            for (let i = 0; i < diceRole.multiplier; i++) {
+                const randomNumber = this.getRandomInt(0, diceRole.diceType);
+                randomRoleResult += randomNumber;
+            }
 
-        randomRoleResult += diceRole.summand;
-        return randomRoleResult;
+            randomRoleResult += diceRole.summand;
+            result += randomRoleResult;
+
+
+        }
+        return parseInt(result);
     }
 
     // The maximum is exclusive and the minimum is inclusive

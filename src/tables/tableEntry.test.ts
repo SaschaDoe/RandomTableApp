@@ -1,7 +1,5 @@
 import { describe, expect, test } from "vitest";
 import {TableEntry} from './tableEntry'
-import {DiceRole} from "./diceRole";
-import {DiceTypes} from "./diceTypes";
 import {AnimalTable} from "./charTables/animalTable";
 
 describe("RandomTableEntry", () => {
