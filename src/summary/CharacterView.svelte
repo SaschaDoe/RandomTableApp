@@ -1,13 +1,8 @@
 <script lang="ts">
-    import {Table} from "../tables/table";
-    import RandomTable from "../tables/RandomTable.svelte";
+    import {Character} from "../world/character";
 
-    export let race = "Hobbit";
-    export let cascadingTables = [] as Table[]
+    export let character = new Character();
 </script>
 
-<h1>Character Name</h1>
-<p>{race}</p>
-{#each cascadingTables as table}
-    <RandomTable table="{table}"></RandomTable>
-{/each}
+<h1>{character.name}</h1>
+<p>{character.race}</p>

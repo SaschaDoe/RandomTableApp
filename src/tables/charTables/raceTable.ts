@@ -19,4 +19,6 @@ export class RaceTable extends Table{
             .withCascadingRole(new FantasyCreatureTable()));
         super(entries, TableTitles.Race);
     }
+
+
 }

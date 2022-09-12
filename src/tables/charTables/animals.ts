@@ -1,4 +1,4 @@
 export enum Animals{
-    Goat = "Goat",
+    Goat = "goat",
 
 }

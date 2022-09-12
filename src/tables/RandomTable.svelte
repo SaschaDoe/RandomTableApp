@@ -3,6 +3,7 @@
     import Modal from '../components/Modal.svelte';
     import CharacterView from "../summary/CharacterView.svelte";
     import {TableEntry} from "./tableEntry";
+    import {Character} from "../world/character.js";
 
     export let table : Table;
 
@@ -14,9 +15,10 @@
 
     function handleRole(){
         showModal = true;
-        entry = table.role();
+        let textAfterCascade = table.roleWithCascade();
+        character.race = textAfterCascade;
     }
-    let entry : TableEntry;
+    let character = new Character()
 </script>
 
 <h2>{table.title}</h2>
@@ -24,11 +26,10 @@
 {#if showModal}
     <Modal on:close="{handleCloseModal}">
         <CharacterView
-                race={entry.text}
-                cascadingTables="{entry.cascadingRoles}"
+                character={character}
         />
     </Modal>
-    {/if}
+{/if}
 
 <table>
     {#each table.entries as entry}

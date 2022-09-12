@@ -2,6 +2,7 @@ import { describe, expect, test } from "vitest";
 import { FakeDice } from "../utils/fakeDice";
 import { Table } from "./table";
 import { TableEntry } from "./tableEntry";
+import {RaceTable} from "./charTables/raceTable";
 
 describe("RandomTable", () => {
     test("default", () =>{
@@ -79,6 +80,15 @@ describe("RandomTable", () => {
 
         let actualEntry = randomTable.role(fakeDice);
         expect(actualEntry).toBe(secondEntry);
+    })
+
+    test("should cascade role", () => {
+        let fakeDice = new FakeDice().with([4,1]);
+        let raceTable = new RaceTable();
+
+        let text = raceTable.roleWithCascade(fakeDice)
+
+        expect(text).toBe("half human half goat");
     })
 
 })

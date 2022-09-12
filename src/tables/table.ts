@@ -4,6 +4,7 @@ import { getMaxDiceResult, getMinDiceResult, isBetween } from "../utils/listUtil
 import { Dice } from "../utils/dice";
 import {TableTitles} from "./tableTitles";
 import {TableEntry} from "./tableEntry";
+import {Character} from "../world/character";
 
 export class Table {
     title: TableTitles;
@@ -44,6 +45,16 @@ export class Table {
         }
 
         return this.entries[0];
+    }
+
+    roleWithCascade(dice = new Dice()) {
+        let entry = this.role(dice);
+        let fullText = entry.text;
+        for(let i=0; i < entry.cascadingRoles.length; i++){
+            let table = entry.cascadingRoles[i];
+            fullText += table.role(dice).text+" ";
+        }
+        return fullText.slice(0, -1);
     }
 
     private isEntriesOverlapping(entries : TableEntry[]){
