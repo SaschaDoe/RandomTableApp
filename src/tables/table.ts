@@ -19,6 +19,8 @@ export class Table {
         if (this.isEntriesOverlapping(entries)){
             throw RangeError('Entries should not contain overlapping roles and should be descendent');
         }
+
+        /*TODO Not easy to implement with number of roles 2x1w6 etc...
         if (!this.isEntriesCoverMin(entries)) {
             throw RangeError('Entries should cover minimum');
         }
@@ -28,6 +30,8 @@ export class Table {
         if (!this.isEntriesWithoutGaps(entries)) {
             throw RangeError('Entries should have no gaps');
         }
+        */
+
 
         this.title = title;
         this.entries = entries;

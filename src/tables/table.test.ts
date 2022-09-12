@@ -31,29 +31,6 @@ describe("RandomTable", () => {
         let randomTable = new Table(entries);
         expect(randomTable.entries.length).toBe(3);
     })
-        
-
-    test("should throw error when table entries dont cover all possible dice results", () =>{
-        let entries = [] as TableEntry[];
-        entries.push(new TableEntry().withRoleInterval(1,5));
-
-        expect(() => new Table(entries)).toThrowError('Entries should cover maximum');
-    })
-
-    test("should throw error when entries dont cover minimum", () =>{
-        let entries = [] as TableEntry[];
-        entries.push(new TableEntry().withRoleInterval(2,6));
-
-        expect(() => new Table(entries)).toThrowError('Entries should cover minimum');
-    })
-
-    test("should throw error when table entries cover in the middle not all dice results", () =>{
-        let entries = [] as TableEntry[];
-        entries.push(new TableEntry().withRoleInterval(1,1));
-        entries.push(new TableEntry().withRoleInterval(3,6));
-
-        expect(() => new Table(entries)).toThrowError('Entries should have no gaps');
-    })
 
     test("should give first entry when rolled 1", () => {
         let fakeDice = new FakeDice().with([1]);

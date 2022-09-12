@@ -1,10 +1,6 @@
 <script lang="ts">
     import Header from '../menue/Header.svelte'
     import Footer from "../components/Footer.svelte";
-    import RandomTables from "../tables/RandomTableList.svelte";
-    import RandomTableList from "../tables/RandomTableList.svelte";
-    import {currentPage, Pages} from "../menue/navigationStore.js";
-    import SummaryView from "../summary/SummaryView.svelte";
     import Content from "../components/Content.svelte";
 </script>
 

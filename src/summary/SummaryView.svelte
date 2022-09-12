@@ -1,5 +1,4 @@
 <script lang="ts">
-
 import {characters} from "../world/worldStore.js";
 import CharacterView from "./CharacterView.svelte";
 </script>

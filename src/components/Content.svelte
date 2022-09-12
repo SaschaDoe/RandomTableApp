@@ -1,5 +1,4 @@
 <script lang="ts">
-
     import {currentPage, Pages} from "../menue/navigationStore.js";
     import RandomTableList from "../tables/RandomTableList.svelte";
     import SummaryView from "../summary/SummaryView.svelte";

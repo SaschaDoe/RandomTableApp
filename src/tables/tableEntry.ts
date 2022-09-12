@@ -1,4 +1,3 @@
-import type {AnimalTable} from "./charTables/animalTable";
 import type {Table} from "./table";
 
 export class TableEntry{
