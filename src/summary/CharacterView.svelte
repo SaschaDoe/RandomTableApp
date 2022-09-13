@@ -1,11 +1,11 @@
 <script lang="ts">
     import {Character} from "../world/character";
 
-    export let character = new Character();
+    export let character: Character;
 
 </script>
 
-<h1>{character.name}</h1>
+<h1>{character.getUniqueName()}</h1>
 <p>{character.gender}</p>
 <p>{character.race}</p>
 <ul>

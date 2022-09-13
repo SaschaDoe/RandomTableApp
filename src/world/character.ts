@@ -4,11 +4,13 @@ import {DiceRole} from "../tables/diceRole";
 import {GermanMaleNameTable} from "../tables/charTables/germanMaleNameTable";
 import {GenderTable} from "../tables/charTables/genderTable";
 import {GermanFemaleNameTable} from "../tables/charTables/germanFemaleNameTable";
+import {GetId} from "./idGetter";
 
 export class Character{
     name : string;
     race : string;
     gender : string;
+    id: number;
 
     courage = 0;
     charisma = 0;
@@ -20,6 +22,7 @@ export class Character{
     strength = 0;
 
     constructor(race = Races.Human, dice = new Dice()) {
+        this.id = GetId();
         this.gender = new GenderTable().role(dice).text
         if(this.gender === "Female"){
             this.name = new GermanFemaleNameTable().role(dice).text;
@@ -28,6 +31,10 @@ export class Character{
         }
         this.race = race;
         this.roleForAttributes(dice);
+    }
+
+    getUniqueName(){
+        return this.id+" "+this.name;
     }
 
     private roleForAttributes(dice: Dice) {
@@ -42,4 +49,5 @@ export class Character{
         this.constitution = dice.role(attributeDiceRole);
         this.strength = dice.role(attributeDiceRole);
     }
+
 }
