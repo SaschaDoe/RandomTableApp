@@ -4,6 +4,7 @@
     import {characters, currentChar} from "../world/worldStore";
     import Modal from "../components/Modal.svelte";
     import Result from "./Result.svelte";
+    import {TableEntry} from "./tableEntry";
 
     export let table : Table;
 
@@ -15,7 +16,12 @@
         $currentChar = new Character();
         for(let i = 0; i < table.functions.length; i++){
             let func = table.functions[i];
-            func($currentChar,modalText);
+            func($currentChar,entry);
+        }
+
+        for(let i = 0; i < entry.functions.length; i++){
+            let func = entry.functions[i];
+            func($currentChar);
         }
         $characters.push($currentChar)
         isModalVisible = false;
@@ -27,11 +33,11 @@
     }
 
     function handleRole(){
-        modalText = table.roleWithCascade();
+        entry = table.roleWithCascade();
         lastRolled = table.getAndResetPreviouslyRolled()
     }
     let lastRolled = "";
-    let modalText = "";
+    let entry = new TableEntry();
     let isModalVisible = false;
 </script>
 
@@ -40,7 +46,7 @@
 {#if isModalVisible}
     <Modal on:close="{handleCloseModal}">
         <Result result={lastRolled}></Result>
-        <Result result={modalText}/>
+        <Result result={entry.text}/>
         <button on:click={handleRole}>Role again</button>
         <button on:click={handleAdd}>Add as character</button>
     </Modal>

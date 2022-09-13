@@ -4,8 +4,13 @@
     import {AnimalTable} from "./charTables/animalTable";
     import {GermanMaleNameTable} from "./charTables/germanMaleNameTable";
     import {GenderTable} from "./charTables/genderTable";
+    import {DisadvantageTable} from "./charTables/disadvantageTable";
 
-    let tables = [new RaceTable(), new AnimalTable(), new GermanMaleNameTable(), new GenderTable()];
+    let tables = [new RaceTable(),
+        new GenderTable(),
+        new AnimalTable(),
+        new DisadvantageTable(),
+        new GermanMaleNameTable(), ];
 </script>
 
 

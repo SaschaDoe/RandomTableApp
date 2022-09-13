@@ -6,18 +6,20 @@ import {TableTitles} from "./tableTitles";
 import {TableEntry} from "./tableEntry";
 
 export class Table {
+    probability: number;
     title: TableTitles;
     diceRole: DiceRole;
     entries: TableEntry[];
-    functions: ((entity: any, content: any) => any)[] = [];
+    functions: ((entity: any, content: TableEntry) => any)[] = [];
     private previouslyRolled: string;
 
     constructor( entries : TableEntry[] = [new TableEntry().withRoleInterval(1,6)],
                  title = TableTitles.Default,
-                 diceRole = new DiceRole())
+                 diceRole = new DiceRole(),
+                 probability = 100)
     {
         this.diceRole = diceRole;
-
+        this.probability = probability;
         if (this.isEntriesOverlapping(entries)){
             throw RangeError('Entries should not contain overlapping roles and should be descendent');
         }
@@ -47,20 +49,29 @@ export class Table {
 
     roleWithCascade(dice = new Dice()) {
         let entry = this.role(dice);
-        let fullText = entry.text;
-        for(let i=0; i < entry.cascadingRoles.length; i++){
-            let table = entry.cascadingRoles[i];
-            fullText += table.role(dice).text+" ";
-        }
-        let result = fullText;
-        if(entry.cascadingRoles.length != 0){
-            result = fullText.slice(0, -1);
-        }
+        let result = this.cascade(entry, dice);
         if(result === undefined){
             throw Error("Entry too small")
         }else{
-            return result;
+            let cascadedEntry = entry;
+            cascadedEntry.text = result;
+            return cascadedEntry;
         }
+    }
+
+
+
+    private cascade(entry: TableEntry, dice: Dice) {
+        let fullText = entry.text;
+        for (let i = 0; i < entry.cascadingRoles.length; i++) {
+            let table = entry.cascadingRoles[i];
+            fullText += table.role(dice).text + " ";
+        }
+        let result = fullText;
+        if (entry.cascadingRoles.length != 0) {
+            result = fullText.slice(0, -1);
+        }
+        return result;
     }
 
     private isEntriesOverlapping(entries : TableEntry[]){

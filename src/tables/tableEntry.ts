@@ -5,6 +5,7 @@ export class TableEntry{
     maxRole: number;
     text: string;
     cascadingRoles = [] as Table[];
+    functions: ((entity: any) => any)[];
 
     constructor(text: string = "-", singleRoleValue: number = 0){
         if(singleRoleValue == 0){
@@ -15,6 +16,7 @@ export class TableEntry{
             this.maxRole = singleRoleValue;
         }
         this.text = text;
+        this.functions = [];
     }
 
     withRoleInterval(minRole : number, maxRole : number){
@@ -25,6 +27,11 @@ export class TableEntry{
         this.minRole = minRole;
         this.maxRole = maxRole;
 
+        return this;
+    }
+
+    withFunction(func: ((entity: any) => any)){
+        this.functions.push(func);
         return this;
     }
 

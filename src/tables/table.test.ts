@@ -4,7 +4,7 @@ import { Table } from "./table";
 import { TableEntry } from "./tableEntry";
 import {RaceTable} from "./charTables/raceTable";
 
-describe("RandomTable", () => {
+describe("Table", () => {
     test("default", () =>{
         let randomTable= new Table([new TableEntry().withRoleInterval(1,6)]);
 
@@ -63,9 +63,9 @@ describe("RandomTable", () => {
         let fakeDice = new FakeDice().with([4,1]);
         let raceTable = new RaceTable();
 
-        let text = raceTable.roleWithCascade(fakeDice)
+        let entry = raceTable.roleWithCascade(fakeDice)
 
-        expect(text).toBe("half human half goat");
+        expect(entry.text).toBe("half human half goat");
     })
 
     test("should reset previously rolled", () => {

@@ -18,3 +18,9 @@
     <li>Constitution: {character.constitution}</li>
     <li>Strength: {character.strength}</li>
 </ul>
+{#each character.disadvantages as advantage}
+    <div>{advantage+" "}</div>
+{/each}
+{#each character.relationships as relationship}
+    <p>{"Relationship: "+relationship.getRelationshipTypeToOtherChar(character).valueOf()+" with "+relationship.getOtherChar(character).name}</p>
+{/each}

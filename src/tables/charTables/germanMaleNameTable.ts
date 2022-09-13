@@ -54,7 +54,7 @@ export class GermanMaleNameTable extends Table {
     }
 }
 
-export function AlterName(char: Character, content: string){
-    char.name = content;
+export function AlterName(char: Character, entry: TableEntry){
+    char.name = entry.text;
     return char;
 }

@@ -7,9 +7,6 @@ import {FantasyCreatureTable} from "./fantasyCreatureTable";
 import type {Character} from "../../world/character";
 
 
-
-
-
 export class RaceTable extends Table{
     constructor(){
         let entries = [] as TableEntry[];
@@ -24,11 +21,9 @@ export class RaceTable extends Table{
         super(entries, TableTitles.Race);
         this.functions.push(AlterRace)
     }
-
-
 }
 
-export function AlterRace(char: Character, content: string){
-    char.race = content;
+export function AlterRace(char: Character, entry: TableEntry){
+    char.race = entry.text;
     return char;
 }

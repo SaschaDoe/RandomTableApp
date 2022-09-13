@@ -17,7 +17,7 @@ export class GenderTable extends Table {
     }
 }
 
-function AlterGender(char: Character, content: string){
-    char.gender = content;
+function AlterGender(char: Character, entry: TableEntry){
+    char.gender = entry.text;
     return char;
 }
