@@ -4,8 +4,10 @@ import { isBetween } from "../utils/listUtils";
 import { Dice } from "../utils/dice";
 import {TableTitles} from "./tableTitles";
 import {TableEntry} from "./tableEntry";
+import {randomIntFromInterval} from "../utils/randomUtils";
 
 export class Table {
+    moreThanOnce: boolean;
     probability: number;
     title: TableTitles;
     diceRole: DiceRole;
@@ -16,8 +18,10 @@ export class Table {
     constructor( entries : TableEntry[] = [new TableEntry().withRoleInterval(1,6)],
                  title = TableTitles.Default,
                  diceRole = new DiceRole(),
-                 probability = 100)
+                 probability = 100,
+                 moreThanOnce = false)
     {
+        this.moreThanOnce = moreThanOnce;
         this.diceRole = diceRole;
         this.probability = probability;
         if (this.isEntriesOverlapping(entries)){
@@ -35,6 +39,11 @@ export class Table {
     }
 
     role(dice = new Dice()){
+
+        let randomNumber = randomIntFromInterval(0,this.entries.length-1);
+        return this.entries[randomNumber];
+
+        /*TODO: old way isn't suitable but is good for "real life dice roles"
         let randomNumber = dice.role(this.diceRole);
         this.previouslyRolled = `${randomNumber} `;
         for (let i = 0; i < this.entries.length; i++) {
@@ -44,7 +53,7 @@ export class Table {
                 return entry;
             }
         }
-        return this.entries[0];
+        return this.entries[0];*/
     }
 
     roleWithCascade(dice = new Dice()) {
@@ -59,8 +68,6 @@ export class Table {
         }
     }
 
-
-
     private cascade(entry: TableEntry, dice: Dice) {
         let fullText = entry.text;
         for (let i = 0; i < entry.cascadingRoles.length; i++) {
@@ -71,6 +78,7 @@ export class Table {
         if (entry.cascadingRoles.length != 0) {
             result = fullText.slice(0, -1);
         }
+
         return result;
     }
 

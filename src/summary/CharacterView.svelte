@@ -8,6 +8,7 @@
 <h1>{character.getUniqueName()}</h1>
 <p>{character.gender}</p>
 <p>{character.race}</p>
+<p>Motivation: {character.motivation}</p>
 <ul>
     <li>Courage: {character.courage}</li>
     <li>Charisma: {character.charisma}</li>
@@ -18,9 +19,11 @@
     <li>Constitution: {character.constitution}</li>
     <li>Strength: {character.strength}</li>
 </ul>
+<div>Disadvantages:</div>
 {#each character.disadvantages as advantage}
     <div>{advantage+" "}</div>
 {/each}
+<div>Relationships:</div>
 {#each character.relationships as relationship}
-    <p>{"Relationship: "+relationship.getRelationshipTypeToOtherChar(character).valueOf()+" with "+relationship.getOtherChar(character).name}</p>
+    <div>{relationship.getRelationshipTypeToOtherChar(character).valueOf()+" with "+relationship.getOtherChar(character).name}</div>
 {/each}

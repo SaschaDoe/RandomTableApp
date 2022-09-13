@@ -9,7 +9,7 @@ import {Gender} from "../tables/charTables/gender";
 import type {Relationship} from "./relationship";
 import {Table} from "../tables/table";
 import {isInProbability} from "../utils/randomUtils";
-import {DisadvantageTable} from "../tables/charTables/disadvantageTable";
+import {MotivationTable} from "../tables/charTables/motivationTable";
 
 export class Character{
     name : string;
@@ -17,6 +17,7 @@ export class Character{
     gender : string;
     disadvantages : string[];
     id: number;
+    motivation : string;
 
     courage = 0;
     charisma = 0;
@@ -29,11 +30,9 @@ export class Character{
 
     relationships: Relationship[];
 
-    notMandatoryTables: any[];
-
     constructor(race = Races.Human, dice = new Dice()) {
         this.id = GetId();
-        this.notMandatoryTables = [];
+        this.motivation = new MotivationTable().roleWithCascade().text;
         this.disadvantages = [];
         this.relationships = [];
         this.gender = new GenderTable().role(dice).text
@@ -44,21 +43,8 @@ export class Character{
         }
         this.race = race;
         this.roleForAttributes(dice);
-        this.applyNotMandatoryTables();
     }
 
-    private applyNotMandatoryTables() {
-        for (let t = 0; t < this.notMandatoryTables.length; t++) {
-            let table = this.notMandatoryTables[t];
-            for (let i = 0; i < table.functions.length; i++) {
-                if (isInProbability(table.probability)) {
-                    let entry = table.role();
-                    let func = table.functions[i];
-                    func(this, entry)
-                }
-            }
-        }
-    }
 
     getUniqueName(){
         return this.id+" "+this.name;

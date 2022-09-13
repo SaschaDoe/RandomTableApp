@@ -4,10 +4,8 @@ export function randomIntFromInterval(min : number, max : number) { // min and m
 
 export function isInProbability(probability : number) {
     let randomNumber = randomIntFromInterval(0, 100);
-    throw Error(randomNumber.toString())
     if (randomNumber > 0 && randomNumber < probability) {
         return true;
     }
-
     return false;
 }

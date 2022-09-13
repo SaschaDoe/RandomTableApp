@@ -14,6 +14,8 @@ export class DisadvantageTable extends Table{
         entries.push(new TableEntry(Disadvantages.Power).withRoleInterval(2,6).withFunction(AddCharForPower));
         super(entries, TableTitles.Disadvantages);
         this.functions.push(AddDisadvantage)
+        this.probability = 50;
+        this.moreThanOnce = true;
     }
 }
 export function AddDisadvantage(char: Character, entry: TableEntry){
