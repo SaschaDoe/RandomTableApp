@@ -36,7 +36,7 @@
     }
     .random-table-btn{
         position: absolute;
-        left: 27%;
+        left: 20%;
         top: 10px;
     }
     .summary-btn{

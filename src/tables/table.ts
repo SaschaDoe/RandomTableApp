@@ -10,6 +10,7 @@ export class Table {
     diceRole: DiceRole;
     entries: TableEntry[];
     functions: ((entity: any, content: any) => any)[] = [];
+    private previouslyRolled: string;
 
     constructor( entries : TableEntry[] = [new TableEntry().withRoleInterval(1,6)],
                  title = TableTitles.Default,
@@ -20,13 +21,20 @@ export class Table {
         if (this.isEntriesOverlapping(entries)){
             throw RangeError('Entries should not contain overlapping roles and should be descendent');
         }
-
+        this.previouslyRolled = "";
         this.title = title;
         this.entries = entries;
     }
 
+    getAndResetPreviouslyRolled(){
+        let previouslyRolled = this.previouslyRolled;
+        this.previouslyRolled = "";
+        return previouslyRolled;
+    }
+
     role(dice = new Dice()){
         let randomNumber = dice.role(this.diceRole);
+        this.previouslyRolled = `${randomNumber} `;
         for (let i = 0; i < this.entries.length; i++) {
             const entry = this.entries[i];
 
@@ -34,7 +42,6 @@ export class Table {
                 return entry;
             }
         }
-
         return this.entries[0];
     }
 

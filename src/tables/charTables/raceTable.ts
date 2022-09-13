@@ -7,10 +7,7 @@ import {FantasyCreatureTable} from "./fantasyCreatureTable";
 import type {Character} from "../../world/character";
 
 
-function AlterRace(char: Character, content: string){
-    char.race = content;
-    return char;
-}
+
 
 
 export class RaceTable extends Table{
@@ -29,4 +26,9 @@ export class RaceTable extends Table{
     }
 
 
+}
+
+export function AlterRace(char: Character, content: string){
+    char.race = content;
+    return char;
 }

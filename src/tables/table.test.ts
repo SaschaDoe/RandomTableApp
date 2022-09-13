@@ -68,4 +68,14 @@ describe("RandomTable", () => {
         expect(text).toBe("half human half goat");
     })
 
+    test("should reset previously rolled", () => {
+        let fakeDice = new FakeDice().with([4,1]);
+        let raceTable = new RaceTable();
+
+        let text = raceTable.roleWithCascade(fakeDice)
+
+        expect(raceTable.getAndResetPreviouslyRolled()).toBe("4 ");
+        expect(raceTable.getAndResetPreviouslyRolled()).toBe("");
+    })
+
 })

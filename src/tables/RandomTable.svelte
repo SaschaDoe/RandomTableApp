@@ -4,7 +4,6 @@
     import {characters, currentChar} from "../world/worldStore";
     import Modal from "../components/Modal.svelte";
     import Result from "./Result.svelte";
-    import {GetId} from "../world/idGetter.js";
 
     export let table : Table;
 
@@ -22,21 +21,28 @@
         isModalVisible = false;
     }
 
+    function handleRoleWithModal(){
+        handleRole();
+        isModalVisible = true;
+    }
+
     function handleRole(){
         modalText = table.roleWithCascade();
-        isModalVisible = true;
-        //TODO table.function but only to the "ADD" button. In the modal there shall be only the entry
+        lastRolled = table.getAndResetPreviouslyRolled()
     }
+    let lastRolled = "";
     let modalText = "";
     let isModalVisible = false;
 </script>
 
 <h2>{table.title}</h2>
-<button on:click="{handleRole}">{table.diceRole.toString()}</button>
+<button on:click="{handleRoleWithModal}">{table.diceRole.toString()}</button>
 {#if isModalVisible}
     <Modal on:close="{handleCloseModal}">
+        <Result result={lastRolled}></Result>
         <Result result={modalText}/>
-        <button on:click={handleAdd}>Add</button>
+        <button on:click={handleRole}>Role again</button>
+        <button on:click={handleAdd}>Add as character</button>
     </Modal>
 {/if}
 

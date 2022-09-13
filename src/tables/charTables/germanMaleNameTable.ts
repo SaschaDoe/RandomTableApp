@@ -2,6 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {DiceRole} from "../diceRole";
+import type {Character} from "../../world/character";
 
 export class GermanMaleNameTable extends Table {
     constructor() {
@@ -49,5 +50,11 @@ export class GermanMaleNameTable extends Table {
         entries.push(new TableEntry("Winfried", 66));
         super(entries, TableTitles.GermanMaleName);
         this.diceRole = new DiceRole().withNumberOfRoles(2);
+        this.functions.push(AlterName)
     }
+}
+
+export function AlterName(char: Character, content: string){
+    char.name = content;
+    return char;
 }
