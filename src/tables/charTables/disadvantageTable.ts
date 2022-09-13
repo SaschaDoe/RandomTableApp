@@ -3,7 +3,6 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {Disadvantages} from "./disadvantages";
 import {Character} from "../../world/character";
-import {characters} from "../../world/worldStore";
 import {Relationship} from "../../world/relationship";
 import {RelationshipType} from "../../world/relationshipType";
 
@@ -24,9 +23,8 @@ export function AddDisadvantage(char: Character, entry: TableEntry){
 }
 export function AddCharForPower(char: Character){
     let newChar = new Character();
-    characters.update(val => [...val, newChar]);
     let relationship = new Relationship(char, newChar, RelationshipType.Obedient, RelationshipType.Acquaintanceship);
     newChar.relationships.push(relationship);
     char.relationships.push(relationship);
-    return char;
+    return newChar;
 }

@@ -7,8 +7,6 @@ import {GermanFemaleNameTable} from "../tables/charTables/germanFemaleNameTable"
 import {GetId} from "./idGetter";
 import {Gender} from "../tables/charTables/gender";
 import type {Relationship} from "./relationship";
-import {Table} from "../tables/table";
-import {isInProbability} from "../utils/randomUtils";
 import {MotivationTable} from "../tables/charTables/motivationTable";
 
 export class Character{

@@ -1,16 +1,15 @@
 import type {Character} from "./character";
-import type {RelationshipType} from "./relationshipType";
 
 export class Relationship{
     firstCharacter : Character
     secondCharacter : Character
-    firstToSecondType : RelationshipType
-    secondToFirstType : RelationshipType
+    firstToSecondType : string
+    secondToFirstType : string
 
     constructor(first: Character,
                 second: Character,
-                firstToSecondType: RelationshipType,
-                secondToFirstType: RelationshipType) {
+                firstToSecondType: string,
+                secondToFirstType: string) {
         this.firstCharacter = first;
         this.secondCharacter = second;
         this.firstToSecondType = firstToSecondType;

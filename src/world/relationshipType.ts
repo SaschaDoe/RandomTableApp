@@ -3,5 +3,6 @@ export enum RelationshipType{
     Obedient = "obedient",
     Friendship = "friendship",
     Acquaintanceship= "acquaintanceship",
-    Hatred = "hatred"
+    Hatred = "hatred",
+    ArchEnemy = "arch enemy",
 }

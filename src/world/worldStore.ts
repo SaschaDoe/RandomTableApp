@@ -1,12 +1,15 @@
 import {Character} from "./character";
 import {writable} from "svelte/store";
-import {DisadvantageTable} from "../tables/charTables/disadvantageTable";
 import {isInProbability} from "../utils/randomUtils";
 import type {TableEntry} from "../tables/tableEntry";
-import {MotivationTable} from "../tables/charTables/motivationTable";
-
+import {DisadvantageTable} from "../tables/charTables/disadvantageTable";
+import type {Table} from "../tables/table";
+import {Relationship} from "./relationship";
+import {RelationshipTypeTable} from "../tables/charTables/relationshipTypeTable";
 export let characters = writable([] as Character[]);
 export let currentChar = writable(Character);
+
+
 
 export function addParty(sizeOfParty : number){
 
@@ -16,15 +19,15 @@ export function addParty(sizeOfParty : number){
         applyNotMandatoryTables(newChar);
         newChars.push(newChar);
     }
+    connectChars(newChars);
 
     characters.update((chars) =>{
         return chars.concat(newChars)
     })
 }
 
-
-function applyNotMandatoryTables(char : Character) {
-    let notMandatoryTables = [new DisadvantageTable()]
+export function applyNotMandatoryTables(char : Character) {
+    let notMandatoryTables = [new DisadvantageTable()];
 
     for (let t = 0; t < notMandatoryTables.length; t++) {
         let table = notMandatoryTables[t];
@@ -35,17 +38,52 @@ function applyNotMandatoryTables(char : Character) {
                 continue;
             }
             rolledEntries.push(entry);
-            for (let i = 0; i < table.functions.length; i++) {
-                let func = table.functions[i];
-                func(char, entry);
+            applyTableFunctions(entry, table, char);
+            applyEntryFunctions(entry, char);
+        }
+    }
+}
+
+export function applyEntryFunctions(entry: TableEntry, char: Character){
+    for (let i = 0; i < entry.functions.length; i++) {
+
+        let func = entry.functions[i];
+        let newChar = func(char);
+
+        characters.update(val => [...val, newChar])
+
+    }
+}
+
+export function applyTableFunctions(entry: TableEntry, table: Table, char: Character){
+    for (let i = 0; i < table.functions.length; i++) {
+        let func = table.functions[i];
+        func(char, entry);
+    }
+}
+
+export function connectChars(newChars: Character[]) {
+    for (let i = 0; i < newChars.length; i++) {
+        for (let n = 0; n < newChars.length; n++) {
+            let outerChar = newChars[i];
+            let innerChar = newChars[n];
+            if(outerChar != innerChar) {
+                let found = false;
+                for (let r = 0; r < outerChar.relationships.length; r++) {
+                    let relationship = outerChar.relationships[r];
+                    if (relationship.getOtherChar(outerChar) === innerChar) {
+                        found = true;
+                    }
+                }
+                if (found === false) {
+                    let firstRelationshipType = new RelationshipTypeTable().role().text;
+                    let secondRelationshipType = new RelationshipTypeTable().role().text;
+                    let relationship = new Relationship(outerChar, innerChar, firstRelationshipType, secondRelationshipType);
+                    outerChar.relationships.push(relationship);
+                    innerChar.relationships.push(relationship);
+                }
             }
 
-            for (let i = 0; i < entry.functions.length; i++) {
-
-                let func = entry.functions[i];
-                func(char)
-
-            }
         }
     }
 }

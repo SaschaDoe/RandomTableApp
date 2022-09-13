@@ -7,5 +7,6 @@ export enum TableTitles{
     FantasyCreatures = "FantasyCreatures",
     GermanMaleName = "German Male Names",
     Gender = "Gender",
-    Motivation = "Motivation"
+    Motivation = "Motivation",
+    RelationshipType = "Relationship Type",
 }

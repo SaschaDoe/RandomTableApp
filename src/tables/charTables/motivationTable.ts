@@ -1,12 +1,9 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
-import {Races} from "./races";
-import {TableTitles} from "../tableTitles";
-import {AnimalTable} from "./animalTable";
-import {FantasyCreatureTable} from "./fantasyCreatureTable";
 import type {Character} from "../../world/character";
 import {DiceRole} from "../diceRole";
-import {AddDisadvantage} from "./disadvantageTable";
+import {TableTitles} from "../tableTitles";
+import {DisadvantageTable} from "./disadvantageTable";
 
 
 export class MotivationTable extends Table{
@@ -62,7 +59,7 @@ export class MotivationTable extends Table{
         entries.push(new TableEntry("peer pressure",226));
         entries.push(new TableEntry("no motivation in something anymore",231));
         entries.push(new TableEntry("boring",232));
-        entries.push(new TableEntry("get rid of disadvantage",233));
+        entries.push(new TableEntry("get rid of disadvantage ",233).withCascadingRole(new DisadvantageTable()));
         super(entries, TableTitles.Motivation,new DiceRole().withNumberOfRoles(3));
         this.functions.push(AlterMotivation)
     }

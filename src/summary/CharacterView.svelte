@@ -25,5 +25,5 @@
 {/each}
 <div>Relationships:</div>
 {#each character.relationships as relationship}
-    <div>{relationship.getRelationshipTypeToOtherChar(character).valueOf()+" with "+relationship.getOtherChar(character).name}</div>
+    <div>{relationship.getRelationshipTypeToOtherChar(character).valueOf()+" with \""+relationship.getOtherChar(character).getUniqueName()+"\""}</div>
 {/each}

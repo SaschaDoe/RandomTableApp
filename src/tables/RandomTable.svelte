@@ -1,7 +1,12 @@
 <script lang="ts">
     import {Table} from "./table.ts";
     import {Character} from "../world/character.js";
-    import {characters, currentChar} from "../world/worldStore";
+    import {
+        applyEntryFunctions,
+        applyTableFunctions,
+        characters,
+        currentChar
+    } from "../world/worldStore";
     import Modal from "../components/Modal.svelte";
     import Result from "./Result.svelte";
     import {TableEntry} from "./tableEntry";
@@ -14,6 +19,9 @@
 
     const handleAdd = () => {
         $currentChar = new Character();
+        applyTableFunctions(entry,table,$currentChar);
+        applyEntryFunctions(entry,$currentChar);
+/*
         for(let i = 0; i < table.functions.length; i++){
             let func = table.functions[i];
             func($currentChar,entry);
@@ -23,6 +31,7 @@
             let func = entry.functions[i];
             func($currentChar);
         }
+*/
         $characters.push($currentChar)
         isModalVisible = false;
     }
@@ -34,9 +43,7 @@
 
     function handleRole(){
         entry = table.roleWithCascade();
-        lastRolled = table.getAndResetPreviouslyRolled()
     }
-    let lastRolled = "";
     let entry = new TableEntry();
     let isModalVisible = false;
 </script>
@@ -45,7 +52,6 @@
 <button on:click="{handleRoleWithModal}">{table.diceRole.toString()}</button>
 {#if isModalVisible}
     <Modal on:close="{handleCloseModal}">
-        <Result result={lastRolled}></Result>
         <Result result={entry.text}/>
         <button on:click={handleRole}>Role again</button>
         <button on:click={handleAdd}>Add as character</button>
