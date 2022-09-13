@@ -1,6 +1,6 @@
 
 import { DiceRole } from "./diceRole";
-import { getMaxDiceResult, getMinDiceResult, isBetween } from "../utils/listUtils";
+import { isBetween } from "../utils/listUtils";
 import { Dice } from "../utils/dice";
 import {TableTitles} from "./tableTitles";
 import {TableEntry} from "./tableEntry";
@@ -9,6 +9,7 @@ export class Table {
     title: TableTitles;
     diceRole: DiceRole;
     entries: TableEntry[];
+    functions: ((entity: any, content: any) => any)[] = [];
 
     constructor( entries : TableEntry[] = [new TableEntry().withRoleInterval(1,6)],
                  title = TableTitles.Default,
@@ -44,7 +45,15 @@ export class Table {
             let table = entry.cascadingRoles[i];
             fullText += table.role(dice).text+" ";
         }
-        return fullText.slice(0, -1);
+        let result = fullText;
+        if(entry.cascadingRoles.length != 0){
+            result = fullText.slice(0, -1);
+        }
+        if(result === undefined){
+            throw Error("Entry too small")
+        }else{
+            return result;
+        }
     }
 
     private isEntriesOverlapping(entries : TableEntry[]){

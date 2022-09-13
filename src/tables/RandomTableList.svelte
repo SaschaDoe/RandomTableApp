@@ -11,7 +11,7 @@
 
 <ul>
     {#each tables as table}
-        <RandomTable table="{table}"></RandomTable>
+        <RandomTable table={table}></RandomTable>
     {/each}
 </ul>
 

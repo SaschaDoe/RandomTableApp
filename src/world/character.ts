@@ -5,6 +5,7 @@ import {GermanMaleNameTable} from "../tables/charTables/germanMaleNameTable";
 import {GenderTable} from "../tables/charTables/genderTable";
 import {GermanFemaleNameTable} from "../tables/charTables/germanFemaleNameTable";
 import {GetId} from "./idGetter";
+import {Gender} from "../tables/charTables/gender";
 
 export class Character{
     name : string;
@@ -24,7 +25,7 @@ export class Character{
     constructor(race = Races.Human, dice = new Dice()) {
         this.id = GetId();
         this.gender = new GenderTable().role(dice).text
-        if(this.gender === "Female"){
+        if(this.gender === Gender.Female){
             this.name = new GermanFemaleNameTable().role(dice).text;
         }else{
             this.name = new GermanMaleNameTable().role(dice).text;

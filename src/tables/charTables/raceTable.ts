@@ -4,6 +4,13 @@ import {Races} from "./races";
 import {TableTitles} from "../tableTitles";
 import {AnimalTable} from "./animalTable";
 import {FantasyCreatureTable} from "./fantasyCreatureTable";
+import type {Character} from "../../world/character";
+
+
+function AlterRace(char: Character, content: string){
+    char.race = content;
+    return char;
+}
 
 
 export class RaceTable extends Table{
@@ -18,6 +25,7 @@ export class RaceTable extends Table{
             .withRoleInterval(6,6)
             .withCascadingRole(new FantasyCreatureTable()));
         super(entries, TableTitles.Race);
+        this.functions.push(AlterRace)
     }
 
 
