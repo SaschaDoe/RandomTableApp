@@ -1,6 +1,5 @@
 
 import { DiceRole } from "./diceRole";
-import { Dice } from "../utils/dice";
 import {TableTitles} from "./tableTitles";
 import {TableEntry} from "./tableEntry";
 import {randomIntFromInterval} from "../utils/randomUtils";
@@ -34,9 +33,9 @@ export class Table {
         return this.entries[randomNumber];
     }
 
-    roleWithCascade(dice = new Dice()) {
-        let entry = this.role(dice);
-        let result = this.cascade(entry, dice);
+    roleWithCascade() {
+        let entry = this.role();
+        let result = this.cascade(entry);
         if(result === undefined){
             throw Error("Entry too small")
         }else{
@@ -46,11 +45,11 @@ export class Table {
         }
     }
 
-    private cascade(entry: TableEntry, dice: Dice) {
+    private cascade(entry: TableEntry) {
         let fullText = entry.text;
         for (let i = 0; i < entry.cascadingRoles.length; i++) {
             let table = entry.cascadingRoles[i];
-            fullText += table.role(dice).text + " ";
+            fullText += table.role().text + " ";
         }
         let result = fullText;
         if (entry.cascadingRoles.length != 0) {

@@ -1,19 +1,10 @@
 import { describe, expect, test } from "vitest";
-import {addParty, characters, connectChars} from "./worldStore";
+import {connectChars} from "./worldStore";
 import {Character} from "./character";
 import {Relationship} from "./relationship";
 import {RelationshipType} from "./relationshipType";
 
 describe("WorldStore", () => {
-    test("should add 5 characters when add party with 5", () => {
-        addParty(5);
-        let chars = [];
-        characters.subscribe((characters) => {
-            chars = characters;
-        })
-
-        expect(chars.length).toBe(5);
-    })
 
     test("should do nothing when no char or 1 char is given to connectChars", () => {
         connectChars([]);

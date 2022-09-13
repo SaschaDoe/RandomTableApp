@@ -8,11 +8,13 @@
     import {MotivationTable} from "./charTables/motivationTable";
     import {GermanFemaleNameTable} from "./charTables/germanFemaleNameTable";
     import {RelationshipTypeTable} from "./charTables/relationshipTypeTable";
+    import {CurseTable} from "./charTables/curseTable";
 
     let tables = [new RaceTable(),
         new GenderTable(),
         new AnimalTable(),
         new DisadvantageTable(),
+        new CurseTable(),
         new MotivationTable(),
         new GermanMaleNameTable(),
         new GermanFemaleNameTable(),

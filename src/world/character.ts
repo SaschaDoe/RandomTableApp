@@ -27,17 +27,19 @@ export class Character{
     strength = 0;
 
     relationships: Relationship[];
+    curses: string[];
 
     constructor(race = Races.Human, dice = new Dice()) {
         this.id = GetId();
         this.motivation = new MotivationTable().roleWithCascade().text;
         this.disadvantages = [];
         this.relationships = [];
-        this.gender = new GenderTable().role(dice).text
+        this.curses = [];
+        this.gender = new GenderTable().role().text
         if(this.gender === Gender.Female){
-            this.name = new GermanFemaleNameTable().role(dice).text;
+            this.name = new GermanFemaleNameTable().role().text;
         }else{
-            this.name = new GermanMaleNameTable().role(dice).text;
+            this.name = new GermanMaleNameTable().role().text;
         }
         this.race = race;
         this.roleForAttributes(dice);

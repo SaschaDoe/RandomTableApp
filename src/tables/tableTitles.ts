@@ -9,4 +9,5 @@ export enum TableTitles{
     Gender = "Gender",
     Motivation = "Motivation",
     RelationshipType = "Relationship Type",
+    Curse="Curse"
 }

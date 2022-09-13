@@ -19,6 +19,13 @@
     <li>Constitution: {character.constitution}</li>
     <li>Strength: {character.strength}</li>
 </ul>
+<div style="display:inline;">Curses: </div>
+<ul style="display: inline">
+    {#each character.curses as curse}
+        <li style="list-style-type: none">{curse}</li>
+    {/each}
+</ul>
+
 <div>Disadvantages:</div>
 {#each character.disadvantages as advantage}
     <div>{advantage+" "}</div>
