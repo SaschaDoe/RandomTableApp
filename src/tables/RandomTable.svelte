@@ -21,17 +21,7 @@
         $currentChar = new Character();
         applyTableFunctions(entry,table,$currentChar);
         applyEntryFunctions(entry,$currentChar);
-/*
-        for(let i = 0; i < table.functions.length; i++){
-            let func = table.functions[i];
-            func($currentChar,entry);
-        }
 
-        for(let i = 0; i < entry.functions.length; i++){
-            let func = entry.functions[i];
-            func($currentChar);
-        }
-*/
         $characters.push($currentChar)
         isModalVisible = false;
     }
@@ -58,17 +48,63 @@
     </Modal>
 {/if}
 
-<table>
-    {#each table.entries as entry}
-        <tr>
-            <td>{entry.toString()}</td>
-            <td>{entry.text}</td>
-        </tr>
-    {/each}
-</table>
-
+{#if table.entries.length > 19}
+<div class="row">
+    <div class="column">
+        <table>
+            {#each table.entries.slice(0,table.entries.length/2) as entry}
+                <tr>
+                    <td>{entry.toString()}</td>
+                    <td>{entry.text}</td>
+                </tr>
+            {/each}
+        </table>
+    </div>
+    <div class="column">
+        <table>
+            {#each table.entries.slice(table.entries.length/2) as entry}
+                <tr>
+                    <td>{entry.toString()}</td>
+                    <td>{entry.text}</td>
+                </tr>
+            {/each}
+        </table>
+    </div>
+</div>
+    {:else}
+    <table>
+        {#each table.entries as entry}
+            <tr>
+                <td>{entry.toString()}</td>
+                <td>{entry.text}</td>
+            </tr>
+        {/each}
+    </table>
+    {/if}
 <style>
     table, th, td{
         border: 1px solid;
     }
+
+    .row {
+        margin-left:-5px;
+        margin-right:-5px;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+        padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    * {
+        box-sizing: border-box;
+    }
+
 </style>
