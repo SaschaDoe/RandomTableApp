@@ -8,7 +8,7 @@
         currentChar
     } from "../world/worldStore";
     import {TableEntry} from "./tableEntry";
-    import ModalTwo from "../components/Modal.svelte";
+    import Modal from "../components/Modal.svelte";
 
     export let table : Table;
 
@@ -35,7 +35,11 @@
 
 <h2>{table.title}</h2>
 <button on:click="{handleRoleWithModal}">{table.diceRole.toString()}</button>
-<ModalTwo bind:isVisible={isModalVisible} bind:text={entry.fullText} handleAdd={handleAdd}></ModalTwo>
+<Modal bind:isVisible={isModalVisible}
+       bind:title={table.title}
+       bind:text={entry.fullText}
+       handleAdd={handleAdd}
+       handleRole={handleRole}/>
 
 {#if table.entries.length > 19}
 <div class="row">

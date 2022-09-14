@@ -1,4 +1,5 @@
 <script lang="ts">
+    export let title = "Title";
     export let text = "Hello";
     export let isVisible = false;
     const handleClose = () => {
@@ -6,6 +7,10 @@
     };
 
     export let handleAdd = () =>{
+
+    }
+
+    export let handleRole = () =>{
 
     }
 
@@ -37,20 +42,23 @@
 <svelte:window on:keydown={handle_keydown}/>
 
 {#if isVisible}
-    <div class="modal-background" on:click={handleClose}>
+    <div class="modal-background" on:click={handleClose}></div>
     <div class="fixed">
         <div class="modal">
+            <div class="title">{title}</div>
             <div class="modal-text">{text}</div>
-            <button class="modal-btn" on:click={handleClose}>X</button>
+            <button class="close-btn" on:click={handleClose}>X</button>
+            <button class="role-again-btn" on:click={handleRole}>Role again</button>
             <button class="add-btn" on:click={handleAdd}>Add entity</button>
         </div>
     </div>
-    </div>
+
 {/if}
 
 <style>
     .modal-background {
         position: fixed;
+        z-index: 7;
         top: 0;
         left: 0;
         width: 100%;
@@ -80,15 +88,26 @@
     top: 30%;
 }
 
-    .modal-btn{
-    position: relative;
+    .title{
+        font-size: larger;
+        padding: 5px;
+    }
+
+    .close-btn{
+    position: absolute;
     left: 300px;
-    top: -18px;
+    top: 0;
     background-color: transparent;
 }
     .add-btn{
-        position: relative;
-        left: 30%;
-        top: 77%;
+        position: absolute;
+        left: 60%;
+        top: 85%;
+    }
+
+    .role-again-btn{
+        position: absolute;
+        left: 20%;
+        top: 85%;
     }
 </style>
