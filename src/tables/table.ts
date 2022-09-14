@@ -3,6 +3,10 @@ import { DiceRole } from "./diceRole";
 import {TableTitles} from "./tableTitles";
 import {TableEntry} from "./tableEntry";
 import {randomIntFromInterval} from "../utils/randomUtils";
+import {Dice} from "../utils/dice";
+import {isBetween} from "../utils/listUtils";
+
+
 
 export class Table {
     moreThanOnce: boolean;
@@ -31,10 +35,23 @@ export class Table {
         this.title = title;
     }
 
-    role(){
-        let randomNumber = randomIntFromInterval(0,this.entries.length-1);
-        return this.entries[randomNumber];
+    role(dice = new Dice()){
+        if(this.isIncreasingDiceResult()){
+            let randomNumber = randomIntFromInterval(0,this.entries.length-1);
+            return this.entries[randomNumber];
+        }
+        let randomNumber = dice.role(this.diceRole);
+        for(let i = 0; i < this.entries.length; i++){
+            let entry = this.entries[i];
+            if(isBetween(randomNumber,entry.getMin(), entry.getMax())){
+                return entry;
+            }
+        }
+
+        return new TableEntry();
     }
+
+
 
     roleWithCascade() {
         let entry = this.role();
@@ -84,5 +101,31 @@ export class Table {
             let entry = this.entries[i];
             entry.setMinMax(i,i);
         }
+    }
+
+    private isIncreasingDiceResult() {
+        if(this.entries.length == 0){
+            throw Error("No entries for role")
+        }else{
+            let firstEntry = this.entries[0];
+            if(firstEntry.getMin() !== firstEntry.getMax() || firstEntry.getMax() !== 0){
+                return false;
+            }
+            if(this.entries.length === 1){
+                return true;
+            }
+            for(let i = 1; i < this.entries.length; i++){
+                let entry = this.entries[i];
+                let lastEntry = this.entries[i-1];
+                if(lastEntry.getMin() !== lastEntry.getMin() || entry.getMin() !== entry.getMin()){
+                    return false;
+                }
+                let step = entry.getMin() - lastEntry.getMin();
+                if(step !== 1){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
