@@ -36,7 +36,7 @@
         <ul>
             {#each tables as table}
                 <li>
-                    <a href={"#"+table.title}>{table.title}</a>
+                    <a class="index-overlap-element" href={"#"+table.title}>{table.title}</a>
                 </li>
             {/each}
         </ul>
@@ -102,7 +102,12 @@
         visibility: visible;
         max-height: 90%;
         overflow: scroll;
-        background-color: rgba(0,0,0, 0.4);
+        color: white;
+        background-color: rgba(0,0,0, 0.9);
+    }
+
+    .index-overlap-element{
+        color: white;
     }
 
     .index-dropdown{
@@ -111,18 +116,18 @@
         left: 0;
         visibility: visible;
         font-size: x-large;
-        background-color: rgba(0,0,0, 0.4);
+        background-color: rgba(0,0,0, 0.9);
         color: white;
     }
 
     .index-dropdown-close{
         position: fixed;
         top: 50%;
-        left: 90px;
+        left: 110px;
         visibility: visible;
         font-size: x-large;
         color: white;
-        background-color: rgba(0,0,0, 0.4);
+        background-color: rgba(0,0,0, 0.9);
     }
 
     .index-dropdown:hover{

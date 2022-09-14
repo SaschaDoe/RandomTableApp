@@ -102,7 +102,7 @@ const addPartyHandler = ()=>{
     .index-dropdown-close{
         position: fixed;
         top: 50%;
-        left: 90px;
+        left: 110px;
         visibility: visible;
         font-size: x-large;
         color: white;
