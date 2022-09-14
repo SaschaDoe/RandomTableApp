@@ -63,6 +63,11 @@ const addPartyHandler = ()=>{
         top: 10%;
         left: 95%;
         z-index: 100;
+        background-color: rgba(0,0,0, 0.9);
+    }
+
+    .back-btn > a{
+        color: white;
     }
 
     .index{
