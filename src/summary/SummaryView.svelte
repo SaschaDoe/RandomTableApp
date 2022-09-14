@@ -11,6 +11,10 @@ const addPartyHandler = ()=>{
         showIndex = !showIndex;
     };
     let showIndex = false;
+    let handleShowChars = () =>{
+        showChars = !showChars;
+    };
+    let showChars = false
 </script>
 
 {#if showIndex === false}
@@ -18,24 +22,30 @@ const addPartyHandler = ()=>{
 {:else}
     <div class="index-overlap">
         <div class="index-dropdown-close" on:click={handleShowIndex} >&lt;-</div>
-        <ul>
-            {#each $characters as char}
-                <li>
-                    <a class="overlap-list" href={"#"+char.getUniqueName()}>{char.getUniqueName()}</a>
-                </li>
-            {/each}
-        </ul>
+        <div class="char-btn" on:click={handleShowChars}>{"Characters ("+$characters.length+")"}</div>
+        {#if showChars}
+            <ul>
+                {#each $characters as char}
+                    <li>
+                        <a class="overlap-list" href={"#"+char.getUniqueName()}>{char.getUniqueName()}</a>
+                    </li>
+                {/each}
+            </ul>
+        {/if}
     </div>
 {/if}
 
 <div id="#top" class="index">
-    <ul>
-        {#each $characters as char}
-            <li>
-                <a href={"#"+char.getUniqueName()}>{char.getUniqueName()}</a>
-            </li>
-        {/each}
-    </ul>
+    <div class="char-btn" on:click={handleShowChars}>{"Characters ("+$characters.length+")"}</div>
+    {#if showChars}
+        <ul>
+            {#each $characters as char}
+                <li>
+                    <a href={"#"+char.getUniqueName()}>{char.getUniqueName()}</a>
+                </li>
+            {/each}
+        </ul>
+    {/if}
 </div>
 
 <button on:click={addPartyHandler}>Add party</button>
@@ -77,6 +87,17 @@ const addPartyHandler = ()=>{
         visibility: hidden;
         max-height: 90%;
         overflow: scroll;
+    }
+
+    .char-btn{
+        position: fixed;
+        left: 2px;
+        color: white;
+        background-color: rgba(0,0,0, 0.9);
+    }
+
+    .char-btn:hover{
+        cursor: pointer;
     }
 
     .index-overlap{
