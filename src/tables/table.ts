@@ -66,7 +66,7 @@ export class Table {
     }
 
     private cascade(entry: TableEntry) {
-        let fullText = entry.text;
+        let fullText = entry.text+" ";
         for (let i = 0; i < entry.cascadingRoles.length; i++) {
             let table = entry.cascadingRoles[i];
             fullText += table.role().text + " ";

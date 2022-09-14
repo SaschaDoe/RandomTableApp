@@ -8,6 +8,7 @@ import {GetId} from "./idGetter";
 import {Gender} from "../tables/charTables/gender";
 import type {Relationship} from "./relationship";
 import {MotivationTable} from "../tables/charTables/motivationTable";
+import {RaceTable} from "../tables/charTables/raceTable";
 
 export class Character{
     name : string;
@@ -41,7 +42,7 @@ export class Character{
         }else{
             this.name = new GermanMaleNameTable().role().text;
         }
-        this.race = race;
+        this.race = new RaceTable().roleWithCascade().text
         this.roleForAttributes(dice);
     }
 

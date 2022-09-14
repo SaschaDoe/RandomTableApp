@@ -6,8 +6,7 @@
 </script>
 
 <h1>{character.getUniqueName()}</h1>
-<p>{character.gender}</p>
-<p>{character.race}</p>
+<p>{character.race +" "+character.gender}</p>
 <p>Motivation: {character.motivation}</p>
 <ul>
     <li>Courage: {character.courage}</li>
@@ -32,5 +31,7 @@
 {/each}
 <div>Relationships:</div>
 {#each character.relationships as relationship}
-    <div>{relationship.getRelationshipTypeToOtherChar(character).valueOf()+" with \""+relationship.getOtherChar(character).getUniqueName()+"\""}</div>
+    <div>{relationship.getRelationshipTypeToOtherChar(character).valueOf()+" with \""}
+        <a href={"#"+relationship.getOtherChar(character).getUniqueName()}>{relationship.getOtherChar(character).getUniqueName()+"\""}</a>
+    </div>
 {/each}
