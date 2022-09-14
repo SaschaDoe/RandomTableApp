@@ -1,9 +1,10 @@
 import type {Table} from "./table";
 
 export class TableEntry{
-    minRole: number;
-    maxRole: number;
+    private minRole: number;
+    private maxRole: number;
     text: string;
+    fullText = "";
     cascadingRoles = [] as Table[];
     functions: ((entity: any) => any)[];
 
@@ -12,15 +13,14 @@ export class TableEntry{
         this.maxRole = singleRoleValue;
         this.text = text;
         this.functions = [];
+        this.setFullText();
     }
 
     withRoleInterval(minRole : number, maxRole : number){
         if(minRole > maxRole){
             throw new RangeError("Max should be equal or bigger than min");
         }
-        
-        this.minRole = minRole;
-        this.maxRole = maxRole;
+        this.setMinMax(minRole, maxRole);
 
         return this;
     }
@@ -40,5 +40,23 @@ export class TableEntry{
     withCascadingRole(table: Table) {
         this.cascadingRoles.push(table)
         return this;
+    }
+
+    getMin() {
+        return this.minRole;
+    }
+
+    getMax() {
+        return this.maxRole;
+    }
+
+    setMinMax(min: number, max: number) {
+        this.minRole = min;
+        this.maxRole = max;
+        this.setFullText();
+    }
+
+    setFullText(){
+        this.fullText = `${this.toString()}: ${this.text}`;
     }
 }

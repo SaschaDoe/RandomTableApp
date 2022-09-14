@@ -22,7 +22,7 @@ export class Table {
         this.moreThanOnce = moreThanOnce;
         this.diceRole = diceRole;
         this.probability = probability;
-        if (entries.length > 0 && entries[0].minRole === -1){
+        if (entries.length > 0 && entries[0].getMin() === -1){
             this.increaseDiceResults();
         }
         if (this.isEntriesOverlapping(entries)){
@@ -71,7 +71,7 @@ export class Table {
             let lastTableEntry = entries[i-1];
             let currentTableEntry = entries[i];
             
-            if(lastTableEntry.maxRole >= currentTableEntry.minRole){
+            if(lastTableEntry.getMax() >= currentTableEntry.getMin()){
                 return true; 
             }
         }
@@ -82,8 +82,7 @@ export class Table {
     private increaseDiceResults() {
         for(let i = 0; i < this.entries.length; i++){
             let entry = this.entries[i];
-            entry.minRole = i;
-            entry.maxRole = i;
+            entry.setMinMax(i,i);
         }
     }
 }

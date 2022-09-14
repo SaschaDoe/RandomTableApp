@@ -1,10 +1,13 @@
-<script>
-    import { createEventDispatcher, onDestroy } from 'svelte';
+<script lang="ts">
+    export let text = "Hello";
+    export let isVisible = false;
+    const handleClose = () => {
+        isVisible = false;
+    };
 
-    const dispatch = createEventDispatcher();
-    const close = () => dispatch('close');
+    export let handleAdd = () =>{
 
-    let modal;
+    }
 
     const handle_keydown = e => {
         if (e.key === 'Escape') {
@@ -28,28 +31,22 @@
         }
     };
 
-    const previously_focused = typeof document !== 'undefined' && document.activeElement;
-
-    if (previously_focused) {
-        onDestroy(() => {
-            previously_focused.focus();
-        });
-    }
+    let modal;
 </script>
 
 <svelte:window on:keydown={handle_keydown}/>
 
-<div class="modal-background" on:click={close}></div>
-
-<div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-    <slot name="header"></slot>
-    <hr>
-    <slot></slot>
-    <hr>
-
-    <!-- svelte-ignore a11y-autofocus -->
-    <button autofocus on:click={close}>close modal</button>
-</div>
+{#if isVisible}
+    <div class="modal-background" on:click={handleClose}>
+    <div class="fixed">
+        <div class="modal">
+            <div class="modal-text">{text}</div>
+            <button class="modal-btn" on:click={handleClose}>X</button>
+            <button class="add-btn" on:click={handleAdd}>Add entity</button>
+        </div>
+    </div>
+    </div>
+{/if}
 
 <style>
     .modal-background {
@@ -61,21 +58,37 @@
         background: rgba(0,0,0,0.3);
     }
 
-    .modal {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: calc(100vw - 4em);
-        max-width: 32em;
-        max-height: calc(100vh - 4em);
-        overflow: auto;
-        transform: translate(-50%,-50%);
-        padding: 1em;
-        border-radius: 0.2em;
-        background: white;
-    }
+    .fixed{
+    border: 2px solid black;
+    position: fixed;
+    z-index: 10;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
 
-    button {
-        display: block;
+    .modal{
+    width: 320px;
+    height: 200px;
+    background: grey;
+}
+
+    .modal-text{
+    position: relative;
+    left: 10%;
+    top: 30%;
+}
+
+    .modal-btn{
+    position: relative;
+    left: 300px;
+    top: -18px;
+    background-color: transparent;
+}
+    .add-btn{
+        position: relative;
+        left: 30%;
+        top: 77%;
     }
 </style>

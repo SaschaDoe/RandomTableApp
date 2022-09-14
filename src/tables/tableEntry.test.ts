@@ -7,16 +7,16 @@ describe("RandomTableEntry", () => {
     test("should min role 1 when with min role 1", () =>{
         let randomTableEntry = new TableEntry().withRoleInterval(1,1);
 
-        expect(randomTableEntry.minRole).toBe(1);
-        expect(randomTableEntry.maxRole).toBe(1);
+        expect(randomTableEntry.getMin()).toBe(1);
+        expect(randomTableEntry.getMax()).toBe(1);
         expect(randomTableEntry.text).toBe("-");
     })
 
     test("should max role 1 when with max role 1", () =>{
         let randomTableEntry = new TableEntry().withRoleInterval(0,1);
 
-        expect(randomTableEntry.minRole).toBe(0);
-        expect(randomTableEntry.maxRole).toBe(1);
+        expect(randomTableEntry.getMin()).toBe(0);
+        expect(randomTableEntry.getMax()).toBe(1);
         expect(randomTableEntry.text).toBe("-");
     })
 

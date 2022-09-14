@@ -7,15 +7,10 @@
         characters,
         currentChar
     } from "../world/worldStore";
-    import Modal from "../components/Modal.svelte";
-    import Result from "./Result.svelte";
     import {TableEntry} from "./tableEntry";
+    import ModalTwo from "../components/Modal.svelte";
 
     export let table : Table;
-
-    function handleCloseModal() {
-        isModalVisible = false;
-    }
 
     const handleAdd = () => {
         $currentChar = new Character();
@@ -40,13 +35,7 @@
 
 <h2>{table.title}</h2>
 <button on:click="{handleRoleWithModal}">{table.diceRole.toString()}</button>
-{#if isModalVisible}
-    <Modal on:close="{handleCloseModal}">
-        <Result result={entry.text}/>
-        <button on:click={handleRole}>Role again</button>
-        <button on:click={handleAdd}>Add as character</button>
-    </Modal>
-{/if}
+<ModalTwo bind:isVisible={isModalVisible} bind:text={entry.fullText} handleAdd={handleAdd}></ModalTwo>
 
 {#if table.entries.length > 19}
 <div class="row">
