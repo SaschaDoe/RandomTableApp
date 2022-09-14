@@ -7,14 +7,140 @@ let sizeOfParty = 1;
 const addPartyHandler = ()=>{
     addParty(sizeOfParty);
 }
+    let handleShowIndex = () => {
+        showIndex = !showIndex;
+    };
+    let showIndex = false;
 </script>
+
+{#if showIndex === false}
+    <div class="index-dropdown" on:click={handleShowIndex}>-></div>
+{:else}
+    <div class="index-overlap">
+        <div class="index-dropdown-close" on:click={handleShowIndex} >&lt;-</div>
+        <ul>
+            {#each $characters as char}
+                <li>
+                    <a class="overlap-list" href={"#"+char.getUniqueName()}>{char.getUniqueName()}</a>
+                </li>
+            {/each}
+        </ul>
+    </div>
+{/if}
+
+<div id="#top" class="index">
+    <ul>
+        {#each $characters as char}
+            <li>
+                <a href={"#"+char.getUniqueName()}>{char.getUniqueName()}</a>
+            </li>
+        {/each}
+    </ul>
+</div>
 
 <button on:click={addPartyHandler}>Add party</button>
 <input type="number" bind:value={sizeOfParty}/>
 {#each $characters as character}
-    <CharacterView character={character} />
+    <div id={character.getUniqueName()}>
+        <CharacterView character={character} />
+    </div>
+
 {/each}
+<div class="back-btn">
+    <a href="#top">/|\</a>
+</div>
 
 <style>
+    li{
+        list-style: none;
+    }
 
+    html {
+        scroll-behavior: smooth;
+    }
+    .back-btn{
+        position: fixed;
+        top: 10%;
+        left: 95%;
+        z-index: 100;
+    }
+
+    .index{
+        position: fixed;
+        top: 5%;
+        left: -30px;
+        visibility: hidden;
+        max-height: 90%;
+        overflow: scroll;
+    }
+
+    .index-overlap{
+        position: fixed;
+        top: 5%;
+        left: -30px;
+        visibility: visible;
+        max-height: 90%;
+        overflow: scroll;
+        color: white;
+        background-color: rgba(0,0,0, 0.9);
+    }
+
+    .index-dropdown{
+        position: fixed;
+        top: 50%;
+        left: 0;
+        visibility: visible;
+        font-size: x-large;
+        color: white;
+        background-color: rgba(0,0,0, 0.9);
+    }
+
+    .overlap-list{
+        color: white;
+    }
+
+    .index-dropdown-close{
+        position: fixed;
+        top: 50%;
+        left: 90px;
+        visibility: visible;
+        font-size: x-large;
+        color: white;
+        background-color: rgba(0,0,0, 0.9);
+    }
+
+    .index-dropdown:hover{
+        cursor: pointer;
+    }
+
+    .index-dropdown-close:hover{
+        cursor: pointer;
+    }
+
+    a{
+        text-decoration: none;
+        color: black;
+    }
+
+    a:hover{
+        color: blueviolet;
+    }
+
+    @media screen and (min-width: 720px) {
+        .index{
+            visibility: visible;
+        }
+
+        .index-overlap{
+            visibility: hidden;
+        }
+
+        .index-dropdown{
+            visibility: hidden;
+        }
+
+        .index-dropdown-close{
+            visibility: hidden;
+        }
+    }
 </style>
