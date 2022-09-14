@@ -9,16 +9,19 @@
     import {GermanFemaleNameTable} from "./charTables/germanFemaleNameTable";
     import {RelationshipTypeTable} from "./charTables/relationshipTypeTable";
     import {CurseTable} from "./charTables/curseTable";
+    import {FantasyCreatureTable} from "./charTables/fantasyCreatureTable";
 
     let tables = [new RaceTable(),
         new GenderTable(),
         new AnimalTable(),
+        new FantasyCreatureTable(),
         new DisadvantageTable(),
         new CurseTable(),
         new MotivationTable(),
         new GermanMaleNameTable(),
         new GermanFemaleNameTable(),
-        new RelationshipTypeTable(),];
+        new RelationshipTypeTable(),
+        ];
 </script>
 
 

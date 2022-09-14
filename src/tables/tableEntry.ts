@@ -7,14 +7,9 @@ export class TableEntry{
     cascadingRoles = [] as Table[];
     functions: ((entity: any) => any)[];
 
-    constructor(text: string = "-", singleRoleValue: number = 0){
-        if(singleRoleValue == 0){
-            this.minRole = 1;
-            this.maxRole = 6;
-        }else{
-            this.minRole = singleRoleValue;
-            this.maxRole = singleRoleValue;
-        }
+    constructor(text: string = "-", singleRoleValue = -1){
+        this.minRole = singleRoleValue;
+        this.maxRole = singleRoleValue;
         this.text = text;
         this.functions = [];
     }

@@ -18,14 +18,17 @@ export class Table {
                  probability = 100,
                  moreThanOnce = false)
     {
+        this.entries = entries;
         this.moreThanOnce = moreThanOnce;
         this.diceRole = diceRole;
         this.probability = probability;
+        if (entries.length > 0 && entries[0].minRole === -1){
+            this.increaseDiceResults();
+        }
         if (this.isEntriesOverlapping(entries)){
             throw RangeError('Entries should not contain overlapping roles and should be descendent');
         }
         this.title = title;
-        this.entries = entries;
     }
 
     role(){
@@ -74,5 +77,13 @@ export class Table {
         }
         
         return false;
+    }
+
+    private increaseDiceResults() {
+        for(let i = 0; i < this.entries.length; i++){
+            let entry = this.entries[i];
+            entry.minRole = i;
+            entry.maxRole = i;
+        }
     }
 }

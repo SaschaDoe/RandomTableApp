@@ -30,4 +30,19 @@ describe("Table", () => {
         expect(randomTable.entries.length).toBe(3);
     })
 
+    test("should increase dice result automatically when table entries are -1", () =>{
+        let entries = [] as TableEntry[];
+        entries.push(new TableEntry());
+        entries.push(new TableEntry());
+        entries.push(new TableEntry());
+
+        let randomTable = new Table(entries);
+        expect(randomTable.entries[0].minRole).toBe(0);
+        expect(randomTable.entries[0].maxRole).toBe(0);
+        expect(randomTable.entries[1].minRole).toBe(1);
+        expect(randomTable.entries[1].maxRole).toBe(1);
+        expect(randomTable.entries[2].minRole).toBe(2);
+        expect(randomTable.entries[2].maxRole).toBe(2);
+    })
+
 })

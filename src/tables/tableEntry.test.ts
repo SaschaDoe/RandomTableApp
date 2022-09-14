@@ -3,13 +3,6 @@ import {TableEntry} from './tableEntry'
 import {AnimalTable} from "./charTables/animalTable";
 
 describe("RandomTableEntry", () => {
-    test("should min 1 max role 6 when default", () =>{
-        let randomTableEntry = new TableEntry();
-
-        expect(randomTableEntry.minRole).toBe(1);
-        expect(randomTableEntry.maxRole).toBe(6);
-        expect(randomTableEntry.text).toBe("-");
-    })
 
     test("should min role 1 when with min role 1", () =>{
         let randomTableEntry = new TableEntry().withRoleInterval(1,1);
@@ -36,8 +29,6 @@ describe("RandomTableEntry", () => {
     test("should alter contentText when calling withContentText", () =>{
         let randomTableEntry = new TableEntry("Hello");
 
-        expect(randomTableEntry.minRole).toBe(1);
-        expect(randomTableEntry.maxRole).toBe(6);
         expect(randomTableEntry.text).toBe("Hello");
     })
 
@@ -48,7 +39,7 @@ describe("RandomTableEntry", () => {
     })
 
     test.each([
-        ["1-6", new TableEntry()],
+        ["-1", new TableEntry()],
         ["1-2", new TableEntry().withRoleInterval(1,2)],
         ["1", new TableEntry().withRoleInterval(1,1)],
     ])
