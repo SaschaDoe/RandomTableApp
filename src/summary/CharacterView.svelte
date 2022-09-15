@@ -7,7 +7,10 @@
 
 <h1>{character.getUniqueName()}</h1>
 <p>{character.alignment +" and "+ character.nobility+" "+character.race +" "+character.gender+" "+ character.profession}</p>
-<p>Motivation: {character.motivation}</p>
+<ul class="fix-list-left">
+    <li class="inline bold no-list-style">Motivation: </li>
+    <li class="inline no-list-style">{character.motivation}</li>
+</ul>
 <ul>
     <li>Courage: {character.courage}</li>
     <li>Charisma: {character.charisma}</li>
@@ -18,28 +21,55 @@
     <li>Constitution: {character.constitution}</li>
     <li>Strength: {character.strength}</li>
 </ul>
-<div style="display:inline;">Curses: </div>
-<ul style="display: inline">
+
+<ul class="fix-list-left">
+        <li class="bold inline no-list-style">Curses: </li>
     {#each character.curses as curse}
-        <li style="list-style-type: none">{curse}</li>
+        <li class="inline no-list-style">{curse}</li>
+    {/each}
+    <li class="no-list-style"></li>
+</ul>
+
+<ul class="fix-list-left">
+    <li class="bold inline no-list-style">Advantages: </li>
+    {#each character.advantages as advantage}
+        <li class="inline no-list-style">{advantage+" "}</li>
+    {/each}
+    <li class="no-list-style"></li>
+</ul>
+
+<ul class="fix-list-left">
+    <li class="bold inline no-list-style">Disadvantages: </li>
+    {#each character.disadvantages as disadvantage}
+        <li class="inline no-list-style">{disadvantage+" "}</li>
+    {/each}
+    <li class="no-list-style"></li>
+</ul>
+
+<div class="bold">Relationships:</div>
+<ul>
+    {#each character.relationships as relationship}
+        <li>{relationship.getRelationshipTypeToOtherChar(character).valueOf()+" with \""}
+            <a href={"#"+relationship.getOtherChar(character).getUniqueName()}>{relationship.getOtherChar(character).getUniqueName()+"\""}</a>
+        </li>
     {/each}
 </ul>
 
-<div>Advantages:
-    {#each character.advantages as advantage}
-        <div>{advantage+" "}</div>
-    {/each}
-</div>
+<style>
+    .inline{
+        display: inline;
+    }
 
-<div>Disadvantages:
-{#each character.disadvantages as advantage}
-    <div>{advantage+" "}</div>
-{/each}
-</div>
+    .no-list-style{
+        list-style-type: none;
+    }
 
-<div>Relationships:</div>
-{#each character.relationships as relationship}
-    <div>{relationship.getRelationshipTypeToOtherChar(character).valueOf()+" with \""}
-        <a href={"#"+relationship.getOtherChar(character).getUniqueName()}>{relationship.getOtherChar(character).getUniqueName()+"\""}</a>
-    </div>
-{/each}
+    .bold{
+        font-weight: bold;
+    }
+
+    .fix-list-left{
+        position: relative;
+        left: -40px;
+    }
+</style>
