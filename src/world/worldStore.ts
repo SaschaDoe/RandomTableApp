@@ -7,6 +7,7 @@ import type {Table} from "../tables/table";
 import {Relationship} from "./relationship";
 import {RelationshipTypeTable} from "../tables/charTables/relationshipTypeTable";
 import {CurseTable} from "../tables/charTables/curseTable";
+import {AdvantageTable} from "../tables/charTables/advantageTable";
 export let characters = writable([] as Character[]);
 export let currentChar = writable(Character);
 
@@ -28,7 +29,7 @@ export function addParty(sizeOfParty : number){
 }
 
 export function applyNotMandatoryTables(char : Character) {
-    let notMandatoryTables = [new DisadvantageTable(), new CurseTable()];
+    let notMandatoryTables = [new AdvantageTable(), new DisadvantageTable(), new CurseTable()];
 
     for (let t = 0; t < notMandatoryTables.length; t++) {
         let table = notMandatoryTables[t];

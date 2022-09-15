@@ -25,10 +25,18 @@
     {/each}
 </ul>
 
-<div>Disadvantages:</div>
+<div>Advantages:
+    {#each character.advantages as advantage}
+        <div>{advantage+" "}</div>
+    {/each}
+</div>
+
+<div>Disadvantages:
 {#each character.disadvantages as advantage}
     <div>{advantage+" "}</div>
 {/each}
+</div>
+
 <div>Relationships:</div>
 {#each character.relationships as relationship}
     <div>{relationship.getRelationshipTypeToOtherChar(character).valueOf()+" with \""}

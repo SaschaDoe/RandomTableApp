@@ -13,6 +13,8 @@
     import {NobilityTable} from "./charTables/nobilityTable";
     import {ProfessionTable} from "./charTables/professionTable";
     import {AttributeTable} from "./charTables/attributeTable";
+    import {SenseTable} from "./charTables/senseTable";
+    import {AdvantageTable} from "./charTables/advantageTable";
 
     let tables = [
         //Character Tables
@@ -21,6 +23,7 @@
         new AnimalTable(),
         new FantasyCreatureTable(),
         new NobilityTable(),
+        new AdvantageTable(),
         new DisadvantageTable(),
         new CurseTable(),
         new ProfessionTable(),
@@ -31,6 +34,7 @@
 
         //Other
         new AttributeTable(),
+        new SenseTable(),
         ];
     let handleShowIndex = () => {
         showIndex = !showIndex;

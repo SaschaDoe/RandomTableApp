@@ -33,6 +33,7 @@ export class Character{
     curses: string[];
     nobility: string;
     profession: string;
+    advantages: string[];
 
     constructor(race = Races.Human, dice = new Dice()) {
         this.id = GetId();
@@ -40,6 +41,7 @@ export class Character{
         this.nobility = new NobilityTable().role().text;
         this.profession = new ProfessionTable().roleWithCascade().text;
         this.disadvantages = [];
+        this.advantages = [];
         this.relationships = [];
         this.curses = [];
         this.gender = new GenderTable().role().text

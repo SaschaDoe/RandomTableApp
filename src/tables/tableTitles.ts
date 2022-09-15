@@ -13,4 +13,6 @@ export enum TableTitles{
     Nobility = "Nobility",
     Profession = "Profession",
     Attributes = "Attributes",
+    Senses = "Senses",
+    Advantages = "Advantages",
 }
