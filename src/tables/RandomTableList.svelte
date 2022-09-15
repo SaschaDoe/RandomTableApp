@@ -21,11 +21,9 @@
     import {LocationTable} from "./otherTables/locationTable";
     import {WeatherTable} from "./otherTables/weatherTable";
     import {ContinentTable} from "./locationTables/continentTable";
-    import {applyEntryFunctions, applyTableFunctions, characters, currentChar} from "../world/charStore";
-    import {Character} from "../world/character";
+    import {VocalTable} from "./otherTables/vocalTable";
 
     let charTables = [
-        //Character Tables
         new RaceTable(),
         new GenderTable(),
         new AnimalTable(),
@@ -51,7 +49,11 @@
         new SizeTable(),
         new LocationTable(),
         new WeatherTable(),
+        new VocalTable(),
+        new ContinentTable(),
     ]
+
+    let allTables = charTables.concat(locationTables).concat(otherTables);
     let handleShowIndex = () => {
         showIndex = !showIndex;
     };
@@ -64,7 +66,7 @@
 <div class="index-overlap">
     <div class="index-dropdown-close" on:click={handleShowIndex} >&lt;-</div>
         <ul>
-            {#each charTables as table}
+            {#each allTables as table}
                 <li>
                     <a class="index-overlap-element" href={"#"+table.title}>{table.title}</a>
                 </li>
@@ -77,7 +79,7 @@
 
 <div id="#top" class="index">
     <ul>
-        {#each charTables as table}
+        {#each allTables as table}
             <li>
                 <a href={"#"+table.title}>{table.title}</a>
             </li>
@@ -87,19 +89,9 @@
 
 <div >
     <ul>
-        {#each charTables as table}
+        {#each allTables as table}
             <div id={table.title}>
                 <RandomTable table={table}></RandomTable>
-            </div>
-        {/each}
-        {#each locationTables as locationTable}
-            <div id={locationTable.title}>
-                <RandomTable table={locationTable}></RandomTable>
-            </div>
-        {/each}
-        {#each otherTables as otherTable}
-            <div id={otherTable.title}>
-                <RandomTable table={otherTable}></RandomTable>
             </div>
         {/each}
     </ul>

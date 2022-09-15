@@ -21,4 +21,6 @@ export enum TableTitles{
     Location = "Location",
     Weather = "Weather",
     Continent = "Continent",
+    Vocal = "Vocal",
+    Consonant = "Consonant",
 }
