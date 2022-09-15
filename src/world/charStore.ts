@@ -8,9 +8,10 @@ import {Relationship} from "./relationship";
 import {RelationshipTypeTable} from "../tables/charTables/relationshipTypeTable";
 import {CurseTable} from "../tables/charTables/curseTable";
 import {AdvantageTable} from "../tables/charTables/advantageTable";
+
+
 export let characters = writable([] as Character[]);
 export let currentChar = writable(Character);
-
 
 
 export function addParty(sizeOfParty : number){

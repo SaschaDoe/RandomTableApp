@@ -49,7 +49,7 @@
             <div class="modal-text">{text}</div>
             <button class="close-btn" on:click={handleClose}>X</button>
             <button class="role-again-btn" on:click={handleRole}>Role again</button>
-            <button class="add-btn" on:click={handleAdd}>Add entity</button>
+            <button class="add-btn" on:click={handleAdd}>Add</button>
         </div>
     </div>
 

@@ -4,6 +4,7 @@ export class TableEntry{
     private minRole: number;
     private maxRole: number;
     text: string;
+    textWithCascades: string;
     fullText = "";
     cascadingRoles = [] as Table[];
     functions: ((entity: any) => any)[];
@@ -14,6 +15,7 @@ export class TableEntry{
         this.text = text;
         this.functions = [];
         this.setFullText();
+        this.textWithCascades = text;
     }
 
     withRoleInterval(minRole : number, maxRole : number){
@@ -38,7 +40,8 @@ export class TableEntry{
     }
 
     withCascadingRole(table: Table) {
-        this.cascadingRoles.push(table)
+        this.cascadingRoles.push(table);
+        this.textWithCascades = this.textWithCascades + " ("+table.title+")";
         return this;
     }
 

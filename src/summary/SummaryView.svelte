@@ -1,6 +1,8 @@
 <script lang="ts">
-    import {addParty, characters} from "../world/worldStore.js";
+    import {addParty, characters} from "../world/charStore.js";
 import CharacterView from "./CharacterView.svelte";
+    import {locations} from "../world/locationStore.js";
+    import LocationView from "./LocationView.svelte";
 
 let sizeOfParty = 1;
 
@@ -53,6 +55,12 @@ const addPartyHandler = ()=>{
 {#each $characters as character}
     <div id={character.getUniqueName()}>
         <CharacterView character={character} />
+    </div>
+
+{/each}
+{#each $locations as location}
+    <div>
+        <LocationView location={location} />
     </div>
 
 {/each}

@@ -1,6 +1,7 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
+import {TableType} from "../tableType";
 
 export class SizeTable extends Table{
     constructor(){
@@ -11,5 +12,7 @@ export class SizeTable extends Table{
         entries.push(new TableEntry("small"))
         entries.push(new TableEntry("tiny"))
         super(entries, TableTitles.Size);
+        this.tableType = TableType.Other;
     }
+
 }

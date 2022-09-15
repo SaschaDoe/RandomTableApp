@@ -5,7 +5,7 @@ import {TableEntry} from "./tableEntry";
 import {randomIntFromInterval} from "../utils/randomUtils";
 import {Dice} from "../utils/dice";
 import {isBetween} from "../utils/listUtils";
-
+import {TableType} from "./tableType";
 
 
 export class Table {
@@ -15,16 +15,18 @@ export class Table {
     diceRole: DiceRole;
     entries: TableEntry[];
     functions: ((entity: any, content: TableEntry) => any)[] = [];
+    tableType: TableType;
 
     constructor( entries : TableEntry[] = [new TableEntry().withRoleInterval(1,6)],
                  title = TableTitles.Default,
+                 tableType = TableType.Character,
                  diceRole = new DiceRole(),
                  probability = 100,
                  moreThanOnce = false)
     {
+        this.tableType = tableType;
         this.entries = entries;
         this.moreThanOnce = moreThanOnce;
-
         this.probability = probability;
         if (entries.length > 0 && entries[0].getMin() === -1){
             this.increaseDiceResults();

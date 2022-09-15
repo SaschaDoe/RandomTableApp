@@ -1,10 +1,10 @@
 import { describe, expect, test } from "vitest";
-import {connectChars} from "./worldStore";
+import {connectChars} from "./charStore";
 import {Character} from "./character";
 import {Relationship} from "./relationship";
 import {RelationshipType} from "./relationshipType";
 
-describe("WorldStore", () => {
+describe("CharStore", () => {
 
     test("should do nothing when no char or 1 char is given to connectChars", () => {
         connectChars([]);

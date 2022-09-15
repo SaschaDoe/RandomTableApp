@@ -18,4 +18,7 @@ export enum TableTitles{
     Alignment = "Alignment",
     Attitude = "Attitude",
     Size = "Size",
+    Location = "Location",
+    Weather = "Weather",
+    Continent = "Continent",
 }

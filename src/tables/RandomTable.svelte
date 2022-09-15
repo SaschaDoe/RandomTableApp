@@ -1,24 +1,40 @@
 <script lang="ts">
     import {Table} from "./table.ts";
     import {Character} from "../world/character.js";
-    import {
-        applyEntryFunctions,
-        applyTableFunctions,
-        characters,
-        currentChar
-    } from "../world/worldStore";
+    import {applyEntryFunctions, applyTableFunctions, characters, currentChar} from "../world/charStore";
     import {TableEntry} from "./tableEntry";
     import Modal from "../components/Modal.svelte";
+    import {TableType} from "./tableType";
+    import {
+        applyLocationTableFunctions,
+        applyLocationEntryFunctions,
+        currentLocation,
+        locations
+    } from "../world/locationStore";
+    import {Site} from "../world/site";
+    import Entry from "./Entry.svelte";
 
     export let table : Table;
 
-    const handleAdd = () => {
-        $currentChar = new Character();
-        applyTableFunctions(entry,table,$currentChar);
-        applyEntryFunctions(entry,$currentChar);
+    function handleAdd(){
+        if(table.tableType === TableType.Character){
+            $currentChar = new Character();
+            applyTableFunctions(entry,table,$currentChar);
+            applyEntryFunctions(entry,$currentChar);
 
-        $characters.push($currentChar)
+            $characters.push($currentChar)
+            isModalVisible = false;
+        }
+        if(table.tableType === TableType.Location){
+            $currentLocation = new Site();
+            applyLocationTableFunctions(entry,table,$currentLocation);
+            applyLocationEntryFunctions(entry,$currentLocation);
+
+            $locations.push($currentLocation)
+            isModalVisible = false;
+        }
         isModalVisible = false;
+
     }
 
     function handleRoleWithModal(){
@@ -46,20 +62,14 @@
     <div class="column">
         <table>
             {#each table.entries.slice(0,table.entries.length/2) as entry}
-                <tr>
-                    <td>{entry.toString()}</td>
-                    <td>{entry.text}</td>
-                </tr>
+                <Entry entry={entry}></Entry>
             {/each}
         </table>
     </div>
     <div class="column">
         <table>
             {#each table.entries.slice(table.entries.length/2) as entry}
-                <tr>
-                    <td>{entry.toString()}</td>
-                    <td>{entry.text}</td>
-                </tr>
+                <Entry entry={entry}></Entry>
             {/each}
         </table>
     </div>
@@ -67,15 +77,12 @@
     {:else}
     <table>
         {#each table.entries as entry}
-            <tr>
-                <td>{entry.toString()}</td>
-                <td>{entry.text}</td>
-            </tr>
+            <Entry entry={entry}></Entry>
         {/each}
     </table>
     {/if}
 <style>
-    table, th, td{
+    table, th{
         border: 1px solid;
     }
 

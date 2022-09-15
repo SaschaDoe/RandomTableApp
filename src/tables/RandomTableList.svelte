@@ -18,8 +18,13 @@
     import {AlignmentTable} from "./charTables/alignmentTable";
     import {AttitudeTable} from "./charTables/attitudeTable";
     import {SizeTable} from "./otherTables/sizeTable";
+    import {LocationTable} from "./otherTables/locationTable";
+    import {WeatherTable} from "./otherTables/weatherTable";
+    import {ContinentTable} from "./locationTables/continentTable";
+    import {applyEntryFunctions, applyTableFunctions, characters, currentChar} from "../world/charStore";
+    import {Character} from "../world/character";
 
-    let tables = [
+    let charTables = [
         //Character Tables
         new RaceTable(),
         new GenderTable(),
@@ -36,12 +41,17 @@
         new GermanMaleNameTable(),
         new GermanFemaleNameTable(),
         new RelationshipTypeTable(),
-
-        //Other
+        ];
+    let locationTables = [
+        new ContinentTable(),
+    ]
+    let otherTables = [
         new AttributeTable(),
         new SenseTable(),
         new SizeTable(),
-        ];
+        new LocationTable(),
+        new WeatherTable(),
+    ]
     let handleShowIndex = () => {
         showIndex = !showIndex;
     };
@@ -54,7 +64,7 @@
 <div class="index-overlap">
     <div class="index-dropdown-close" on:click={handleShowIndex} >&lt;-</div>
         <ul>
-            {#each tables as table}
+            {#each charTables as table}
                 <li>
                     <a class="index-overlap-element" href={"#"+table.title}>{table.title}</a>
                 </li>
@@ -67,7 +77,7 @@
 
 <div id="#top" class="index">
     <ul>
-        {#each tables as table}
+        {#each charTables as table}
             <li>
                 <a href={"#"+table.title}>{table.title}</a>
             </li>
@@ -77,9 +87,19 @@
 
 <div >
     <ul>
-        {#each tables as table}
+        {#each charTables as table}
             <div id={table.title}>
                 <RandomTable table={table}></RandomTable>
+            </div>
+        {/each}
+        {#each locationTables as locationTable}
+            <div id={locationTable.title}>
+                <RandomTable table={locationTable}></RandomTable>
+            </div>
+        {/each}
+        {#each otherTables as otherTable}
+            <div id={otherTable.title}>
+                <RandomTable table={otherTable}></RandomTable>
             </div>
         {/each}
     </ul>
