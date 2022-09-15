@@ -15,6 +15,8 @@
     import {AttributeTable} from "./charTables/attributeTable";
     import {SenseTable} from "./charTables/senseTable";
     import {AdvantageTable} from "./charTables/advantageTable";
+    import {AlignmentTable} from "./charTables/alignmentTable";
+    import {AttitudeTable} from "./charTables/attitudeTable";
 
     let tables = [
         //Character Tables
@@ -23,6 +25,8 @@
         new AnimalTable(),
         new FantasyCreatureTable(),
         new NobilityTable(),
+        new AlignmentTable(),
+        new AttitudeTable(),
         new AdvantageTable(),
         new DisadvantageTable(),
         new CurseTable(),

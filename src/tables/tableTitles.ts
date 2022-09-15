@@ -15,4 +15,6 @@ export enum TableTitles{
     Attributes = "Attributes",
     Senses = "Senses",
     Advantages = "Advantages",
+    Alignment = "Alignment",
+    Attitude = "Attitude",
 }

@@ -11,6 +11,7 @@ import {MotivationTable} from "../tables/charTables/motivationTable";
 import {RaceTable} from "../tables/charTables/raceTable";
 import {NobilityTable} from "../tables/charTables/nobilityTable";
 import {ProfessionTable} from "../tables/charTables/professionTable";
+import {AlignmentTable} from "../tables/charTables/alignmentTable";
 
 export class Character{
     name : string;
@@ -34,6 +35,7 @@ export class Character{
     nobility: string;
     profession: string;
     advantages: string[];
+    alignment: string;
 
     constructor(race = Races.Human, dice = new Dice()) {
         this.id = GetId();
@@ -44,6 +46,7 @@ export class Character{
         this.advantages = [];
         this.relationships = [];
         this.curses = [];
+        this.alignment = new AlignmentTable().roleWithCascade().text;
         this.gender = new GenderTable().role().text
         if(this.gender === Gender.Female){
             this.name = new GermanFemaleNameTable().role().text;

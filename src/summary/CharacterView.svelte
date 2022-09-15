@@ -6,7 +6,7 @@
 </script>
 
 <h1>{character.getUniqueName()}</h1>
-<p>{character.nobility+" "+character.race +" "+character.gender+" "+ character.profession}</p>
+<p>{character.alignment +" and "+ character.nobility+" "+character.race +" "+character.gender+" "+ character.profession}</p>
 <p>Motivation: {character.motivation}</p>
 <ul>
     <li>Courage: {character.courage}</li>
