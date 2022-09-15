@@ -7,7 +7,7 @@ export class Dice{
         let result = ""
         for(let n = 0; n < diceRole.numberOfRoles; n++){
             let randomRoleResult = 0;
-            for (let i = 0; i < diceRole.multiplier; i++) {
+            for (let i = 0; i < diceRole.numberOfDice; i++) {
                 const randomNumber = this.getRandomInt(1, diceRole.diceType+1);
                 randomRoleResult += randomNumber;
             }

@@ -1,20 +1,22 @@
 import { DiceTypes } from "./diceTypes";
 
+
+
 export class DiceRole{
-  multiplier: number;
+  numberOfDice: number;
   diceType: DiceTypes;
   summand: number;
   numberOfRoles: number;
 
   constructor(){
     this.numberOfRoles = 1;
-    this.multiplier = 1;
+    this.numberOfDice = 1;
     this.diceType = DiceTypes.w6;
     this.summand = 0;
   }
 
   minResult(){
-    let minResult = (this.multiplier + this.summand).toString();
+    let minResult = (this.numberOfDice + this.summand).toString();
     let result = minResult;
     for(let i = 1; i < this.numberOfRoles; i++){
       result = `${result}${minResult}`;
@@ -24,11 +26,11 @@ export class DiceRole{
   }
 
   maxResult(){
-    return this.multiplier * this.diceType.valueOf() + this.summand;
+    return this.numberOfDice * this.diceType.valueOf() + this.summand;
   }
 
-  numberOfDice(multiplier: number) {
-    this.multiplier = multiplier;
+  withNumberOfDice(numberOfDice: number) {
+    this.numberOfDice = numberOfDice;
     return this;
   }
 
@@ -54,11 +56,19 @@ export class DiceRole{
     if(this.numberOfRoles > 1){
       multiplierOperator = `${ this.numberOfRoles }x`;
     }
-    return `${multiplierOperator}${this.multiplier}w${this.diceType.toString()}${additionOperator}`;
+    return `${multiplierOperator}${this.numberOfDice}w${this.diceType.toString()}${additionOperator}`;
   }
 
   withNumberOfRoles(number: number) {
     this.numberOfRoles = number;
     return this;
+  }
+
+
+}
+
+export class EquallyDistributed extends DiceRole{
+  toString(): string {
+    return "Equally Distributed"
   }
 }

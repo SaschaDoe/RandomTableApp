@@ -10,17 +10,27 @@
     import {RelationshipTypeTable} from "./charTables/relationshipTypeTable";
     import {CurseTable} from "./charTables/curseTable";
     import {FantasyCreatureTable} from "./charTables/fantasyCreatureTable";
+    import {NobilityTable} from "./charTables/nobilityTable";
+    import {ProfessionTable} from "./charTables/professionTable";
+    import {AttributeTable} from "./charTables/attributeTable";
 
-    let tables = [new RaceTable(),
+    let tables = [
+        //Character Tables
+        new RaceTable(),
         new GenderTable(),
         new AnimalTable(),
         new FantasyCreatureTable(),
+        new NobilityTable(),
         new DisadvantageTable(),
         new CurseTable(),
+        new ProfessionTable(),
         new MotivationTable(),
         new GermanMaleNameTable(),
         new GermanFemaleNameTable(),
         new RelationshipTypeTable(),
+
+        //Other
+        new AttributeTable(),
         ];
     let handleShowIndex = () => {
         showIndex = !showIndex;

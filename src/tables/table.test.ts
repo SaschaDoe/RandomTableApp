@@ -6,7 +6,7 @@ describe("Table", () => {
     test("default", () =>{
         let randomTable= new Table([new TableEntry().withRoleInterval(1,6)]);
 
-        expect(randomTable.diceRole.multiplier).toBe(1);
+        expect(randomTable.diceRole.numberOfDice).toBe(1);
         expect(randomTable.entries.length).toBe(1);
         expect(randomTable.title).toBe("default title");
     })
@@ -37,12 +37,12 @@ describe("Table", () => {
         entries.push(new TableEntry());
 
         let randomTable = new Table(entries);
-        expect(randomTable.entries[0].minRole).toBe(0);
-        expect(randomTable.entries[0].maxRole).toBe(0);
-        expect(randomTable.entries[1].minRole).toBe(1);
-        expect(randomTable.entries[1].maxRole).toBe(1);
-        expect(randomTable.entries[2].minRole).toBe(2);
-        expect(randomTable.entries[2].maxRole).toBe(2);
+        expect(randomTable.entries[0].getMin()).toBe(0);
+        expect(randomTable.entries[0].getMax()).toBe(0);
+        expect(randomTable.entries[1].getMin()).toBe(1);
+        expect(randomTable.entries[1].getMax()).toBe(1);
+        expect(randomTable.entries[2].getMin()).toBe(2);
+        expect(randomTable.entries[2].getMax()).toBe(2);
     })
 
 })

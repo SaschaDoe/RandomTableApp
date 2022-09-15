@@ -7,15 +7,15 @@ describe("DiceRole", () =>{
     test("should 1w6 when default", () => {
         let diceRole = new DiceRole();
 
-        expect(diceRole.multiplier).toBe(1)
+        expect(diceRole.numberOfDice).toBe(1)
         expect(diceRole.diceType).toBe(DiceTypes.w6)
         expect(diceRole.summand).toBe(0)
     })
 
     test("should 2w6 when multiplier is 2", () => {
-        let diceRole = new DiceRole().numberOfDice(2);
+        let diceRole = new DiceRole().withNumberOfDice(2);
 
-        expect(diceRole.multiplier).toBe(2)
+        expect(diceRole.numberOfDice).toBe(2)
         expect(diceRole.diceType).toBe(DiceTypes.w6)
         expect(diceRole.summand).toBe(0)
     })
@@ -23,7 +23,7 @@ describe("DiceRole", () =>{
     test("should 1w20 when dice type is w20", () => {
         let diceRole = new DiceRole().withDiceType(DiceTypes.w20);
 
-        expect(diceRole.multiplier).toBe(1)
+        expect(diceRole.numberOfDice).toBe(1)
         expect(diceRole.diceType).toBe(DiceTypes.w20)
         expect(diceRole.summand).toBe(0)
     })
@@ -47,13 +47,13 @@ describe("DiceRole", () =>{
     })
 
     test("should return 12 for max result when 2w6", () => {
-        let diceRole = new DiceRole().numberOfDice(2);
+        let diceRole = new DiceRole().withNumberOfDice(2);
 
         expect(diceRole.maxResult()).toBe(12);
     })
 
     test("should return 2 for min result when 2w6", () => {
-        let diceRole = new DiceRole().numberOfDice(2);
+        let diceRole = new DiceRole().withNumberOfDice(2);
 
         expect(diceRole.minResult()).toBe(2);
     })
@@ -93,7 +93,7 @@ describe("DiceRole", () =>{
         ["1w6", new DiceRole()],
         ["1w6+1", new DiceRole().withSummand(1)],
         ["1w6-1", new DiceRole().withSummand(-1)],
-        ["2w6", new DiceRole().numberOfDice(2)],
+        ["2w6", new DiceRole().withNumberOfDice(2)],
         ["1w20", new DiceRole().withDiceType(DiceTypes.w20)],
         ["3x1w6", new DiceRole().withNumberOfRoles(3)],
     ])

@@ -1,5 +1,5 @@
 
-import { DiceRole } from "./diceRole";
+import {DiceRole, EquallyDistributed} from "./diceRole";
 import {TableTitles} from "./tableTitles";
 import {TableEntry} from "./tableEntry";
 import {randomIntFromInterval} from "../utils/randomUtils";
@@ -24,13 +24,18 @@ export class Table {
     {
         this.entries = entries;
         this.moreThanOnce = moreThanOnce;
-        this.diceRole = diceRole;
+
         this.probability = probability;
         if (entries.length > 0 && entries[0].getMin() === -1){
             this.increaseDiceResults();
         }
         if (this.isEntriesOverlapping(entries)){
             throw RangeError('Entries should not contain overlapping roles and should be descendent');
+        }
+        if(this.isIncreasingDiceResult()) {
+            this.diceRole = new EquallyDistributed();
+        }else{
+            this.diceRole = diceRole;
         }
         this.title = title;
     }

@@ -9,6 +9,8 @@ import {Gender} from "../tables/charTables/gender";
 import type {Relationship} from "./relationship";
 import {MotivationTable} from "../tables/charTables/motivationTable";
 import {RaceTable} from "../tables/charTables/raceTable";
+import {NobilityTable} from "../tables/charTables/nobilityTable";
+import {ProfessionTable} from "../tables/charTables/professionTable";
 
 export class Character{
     name : string;
@@ -29,10 +31,14 @@ export class Character{
 
     relationships: Relationship[];
     curses: string[];
+    nobility: string;
+    profession: string;
 
     constructor(race = Races.Human, dice = new Dice()) {
         this.id = GetId();
         this.motivation = new MotivationTable().roleWithCascade().text;
+        this.nobility = new NobilityTable().role().text;
+        this.profession = new ProfessionTable().roleWithCascade().text;
         this.disadvantages = [];
         this.relationships = [];
         this.curses = [];
@@ -52,7 +58,7 @@ export class Character{
     }
 
     private roleForAttributes(dice: Dice) {
-        let attributeDiceRole = new DiceRole().numberOfDice(3);
+        let attributeDiceRole = new DiceRole().withNumberOfDice(3);
 
         this.courage = dice.role(attributeDiceRole);
         this.charisma = dice.role(attributeDiceRole);

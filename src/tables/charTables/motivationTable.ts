@@ -4,6 +4,7 @@ import type {Character} from "../../world/character";
 import {DiceRole} from "../diceRole";
 import {TableTitles} from "../tableTitles";
 import {DisadvantageTable} from "./disadvantageTable";
+import {AttributeTable} from "./attributeTable";
 
 
 export class MotivationTable extends Table{
@@ -44,7 +45,7 @@ export class MotivationTable extends Table{
         entries.push(new TableEntry("fame"));
         entries.push(new TableEntry("survive"));
         entries.push(new TableEntry("settle"));
-        entries.push(new TableEntry("higher char attribute"));
+        entries.push(new TableEntry("higher char attribute ").withCascadingRole(new AttributeTable()));
         entries.push(new TableEntry("role model"));
         entries.push(new TableEntry("be normal"));
         entries.push(new TableEntry("owe someone"));
