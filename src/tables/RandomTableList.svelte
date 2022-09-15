@@ -17,6 +17,7 @@
     import {AdvantageTable} from "./charTables/advantageTable";
     import {AlignmentTable} from "./charTables/alignmentTable";
     import {AttitudeTable} from "./charTables/attitudeTable";
+    import {SizeTable} from "./otherTables/sizeTable";
 
     let tables = [
         //Character Tables
@@ -39,6 +40,7 @@
         //Other
         new AttributeTable(),
         new SenseTable(),
+        new SizeTable(),
         ];
     let handleShowIndex = () => {
         showIndex = !showIndex;
