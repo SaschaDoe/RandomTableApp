@@ -1,14 +1,13 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
-import {FantasyCreatures} from "./fantasyCreatures";
-import {AlterRace} from "./raceTable";
+import {changeRace} from "./raceTable";
 
 export class FantasyCreatureTable extends Table{
     constructor(){
         let entries = [];
-        entries.push(new TableEntry(FantasyCreatures.Orc));
-        entries.push(new TableEntry(FantasyCreatures.Goblin));
+        entries.push(new TableEntry("orc"));
+        entries.push(new TableEntry("goblin"));
         entries.push(new TableEntry("elf"));
         entries.push(new TableEntry("fey"));
         entries.push(new TableEntry("high elf"));
@@ -33,6 +32,6 @@ export class FantasyCreatureTable extends Table{
         entries.push(new TableEntry("orb"));
         entries.push(new TableEntry("living artefact "));
         super(entries, TableTitles.FantasyCreatures);
-        this.functions.push(AlterRace)
+        this.functions.push(changeRace)
     }
 }

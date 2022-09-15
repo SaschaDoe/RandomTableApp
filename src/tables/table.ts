@@ -6,6 +6,7 @@ import {randomIntFromInterval} from "../utils/randomUtils";
 import {Dice} from "../utils/dice";
 import {isBetween} from "../utils/listUtils";
 import {TableType} from "./tableType";
+import {RoleResult} from "./roleResult";
 
 
 export class Table {
@@ -14,7 +15,7 @@ export class Table {
     title: TableTitles;
     diceRole: DiceRole;
     entries: TableEntry[];
-    functions: ((entity: any, content: TableEntry) => any)[] = [];
+    functions: ((entity: any, roleResult: RoleResult) => any)[] = [];
     tableType: TableType;
 
     constructor( entries : TableEntry[] = [new TableEntry().withRoleInterval(1,6)],
@@ -43,43 +44,44 @@ export class Table {
     }
 
     role(dice = new Dice()){
+        let entry = new TableEntry();
         if(this.isIncreasingDiceResult()){
             let randomNumber = randomIntFromInterval(0,this.entries.length-1);
-            return this.entries[randomNumber];
-        }
-        let randomNumber = dice.role(this.diceRole);
-        for(let i = 0; i < this.entries.length; i++){
-            let entry = this.entries[i];
-            if(isBetween(randomNumber,entry.getMin(), entry.getMax())){
-                return entry;
+            entry = this.entries[randomNumber];
+        }else{
+            let randomNumber = dice.role(this.diceRole);
+            for(let i = 0; i < this.entries.length; i++){
+                entry = this.entries[i];
+                if(isBetween(randomNumber,entry.getMin(), entry.getMax())){
+                    break;
+                }
             }
         }
 
-        return new TableEntry();
+        return new RoleResult(entry.text,entry.toString(),entry.cascadingRoles);
     }
 
 
 
     roleWithCascade() {
-        let entry = this.role();
-        let result = this.cascade(entry);
-        if(result === undefined){
+        let roleResult = this.role();
+        let cascadedString = this.cascade(roleResult);
+        if(cascadedString === undefined){
             throw Error("Entry too small")
         }else{
-            let cascadedEntry = entry;
-            cascadedEntry.text = result;
-            return cascadedEntry;
+            roleResult.setText(cascadedString);
+            return roleResult;
         }
     }
 
-    private cascade(entry: TableEntry) {
-        let fullText = entry.text+" ";
-        for (let i = 0; i < entry.cascadingRoles.length; i++) {
-            let table = entry.cascadingRoles[i];
+    private cascade(roleResult: RoleResult) {
+        let fullText = roleResult.text+" ";
+        for (let i = 0; i < roleResult.cascadingRoles.length; i++) {
+            let table = roleResult.cascadingRoles[i];
             fullText += table.role().text + " ";
         }
         let result = fullText;
-        if (entry.cascadingRoles.length != 0) {
+        if (roleResult.cascadingRoles.length != 0) {
             result = fullText.slice(0, -1);
         }
 

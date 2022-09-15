@@ -4,6 +4,7 @@ import {TableTitles} from "../tableTitles";
 import {AttributeTable} from "./attributeTable";
 import {SenseTable} from "./senseTable";
 import type {Character} from "../../world/character";
+import type {RoleResult} from "../roleResult";
 
 export class AdvantageTable extends Table{
     constructor(){
@@ -29,12 +30,12 @@ export class AdvantageTable extends Table{
         entries.push(new TableEntry("resistant against illness"))
         entries.push(new TableEntry("poison resistant"))
         super(entries, TableTitles.Advantages);
-        this.functions.push(AddAdvantage)
+        this.functions.push(addAdvantage)
         this.probability = 50;
         this.moreThanOnce = true;
     }
 }
-export function AddAdvantage(char: Character, entry: TableEntry){
-    char.advantages.push(entry.text);
+export function addAdvantage(char: Character, roleResult: RoleResult){
+    char.advantages.push(roleResult.text);
     return char;
 }

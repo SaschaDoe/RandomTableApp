@@ -2,7 +2,6 @@
     import {Table} from "./table.ts";
     import {Character} from "../world/character.js";
     import {applyEntryFunctions, applyTableFunctions, characters, currentChar} from "../world/charStore";
-    import {TableEntry} from "./tableEntry";
     import Modal from "../components/Modal.svelte";
     import {TableType} from "./tableType";
     import {
@@ -13,22 +12,23 @@
     } from "../world/locationStore";
     import {Site} from "../world/site";
     import Entry from "./Entry.svelte";
+    import {RoleResult} from "./roleResult";
 
     export let table : Table;
 
     function handleAdd(){
         if(table.tableType === TableType.Character){
             $currentChar = new Character();
-            applyTableFunctions(entry,table,$currentChar);
-            applyEntryFunctions(entry,$currentChar);
+            applyTableFunctions(roleResult,table,$currentChar);
+            applyEntryFunctions(roleResult,$currentChar);
 
             $characters.push($currentChar)
             isModalVisible = false;
         }
         if(table.tableType === TableType.Location){
             $currentLocation = new Site();
-            applyLocationTableFunctions(entry,table,$currentLocation);
-            applyLocationEntryFunctions(entry,$currentLocation);
+            applyLocationTableFunctions(roleResult,table,$currentLocation);
+            applyLocationEntryFunctions(roleResult,$currentLocation);
 
             $locations.push($currentLocation)
             isModalVisible = false;
@@ -43,9 +43,9 @@
     }
 
     function handleRole(){
-        entry = table.roleWithCascade();
+        roleResult = table.roleWithCascade();
     }
-    let entry = new TableEntry();
+    let roleResult = new RoleResult();
     let isModalVisible = false;
 </script>
 
@@ -53,7 +53,7 @@
 <button on:click="{handleRoleWithModal}">{table.diceRole.toString()}</button>
 <Modal bind:isVisible={isModalVisible}
        bind:title={table.title}
-       bind:text={entry.fullText}
+       bind:text={roleResult.fullText}
        handleAdd={handleAdd}
        handleRole={handleRole}/>
 

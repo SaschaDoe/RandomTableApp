@@ -3,6 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import type {Character} from "../../world/character";
 import {AnimalTable} from "./animalTable";
+import type {RoleResult} from "../roleResult";
 
 export class ProfessionTable extends Table{
     constructor(){
@@ -112,11 +113,11 @@ export class ProfessionTable extends Table{
         entries.push(new TableEntry("mine worker"))
         entries.push(new TableEntry("good for nothing"))
         super(entries, TableTitles.Profession);
-        this.functions.push(ChangeProfession)
+        this.functions.push(changeProfession)
     }
 }
 
-export function ChangeProfession(char: Character, entry: TableEntry){
-    char.profession = entry.text;
+export function changeProfession(char: Character, roleResult: RoleResult){
+    char.profession = roleResult.text;
     return char;
 }

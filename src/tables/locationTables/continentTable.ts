@@ -6,6 +6,7 @@ import {LocationTable} from "../otherTables/locationTable";
 import {WeatherTable} from "../otherTables/weatherTable";
 import {TableType} from "../tableType";
 import type {Site} from "../../world/site";
+import type {RoleResult} from "../roleResult";
 
 export class ContinentTable extends Table{
     constructor(){
@@ -23,7 +24,7 @@ export class ContinentTable extends Table{
     }
 }
 
-export function changeDescription(location: Site, entry: TableEntry){
-    location.description = entry.text;
+export function changeDescription(location: Site, roleResult: RoleResult){
+    location.description = roleResult.text;
     return location;
 }

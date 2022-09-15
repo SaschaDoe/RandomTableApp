@@ -1,13 +1,12 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
-import {Animals} from "./animals";
 import {TableTitles} from "../tableTitles";
-import {AlterRace} from "./raceTable";
+import {changeRace} from "./raceTable";
 
 export class AnimalTable extends Table{
     constructor(){
         let entries = [];
-        entries.push(new TableEntry(Animals.Goat));
+        entries.push(new TableEntry("goat"));
         entries.push(new TableEntry("armadillo"));
         entries.push(new TableEntry("buffalo"));
         entries.push(new TableEntry("capybara"));
@@ -163,7 +162,6 @@ export class AnimalTable extends Table{
         entries.push(new TableEntry("mushroom"));
 
         super(entries, TableTitles.Animal);
-        this.functions.push(AlterRace)
-
+        this.functions.push(changeRace)
     }
 }

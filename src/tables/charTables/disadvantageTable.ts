@@ -1,18 +1,18 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
-import {Disadvantages} from "./disadvantages";
 import {Character} from "../../world/character";
 import {Relationship} from "../../world/relationship";
 import {RelationshipType} from "../../world/relationshipType";
 import {AttributeTable} from "./attributeTable";
 import {SenseTable} from "./senseTable";
+import type {RoleResult} from "../roleResult";
 
 export class DisadvantageTable extends Table{
     constructor(){
         let entries = [];
-        entries.push(new TableEntry(Disadvantages.Unlucky));
-        entries.push(new TableEntry(Disadvantages.Power).withFunction(AddCharForPower));
+        entries.push(new TableEntry("unlucky"));
+        entries.push(new TableEntry("obedient to power").withFunction(AddCharForPower));
         entries.push(new TableEntry("fat"))
         entries.push(new TableEntry("rumors"))
         entries.push(new TableEntry("outcast"))
@@ -38,13 +38,13 @@ export class DisadvantageTable extends Table{
         entries.push(new TableEntry("mad"))
         entries.push(new TableEntry("ill"))
         super(entries, TableTitles.Disadvantages);
-        this.functions.push(AddDisadvantage)
+        this.functions.push(addDisadvantage)
         this.probability = 50;
         this.moreThanOnce = true;
     }
 }
-export function AddDisadvantage(char: Character, entry: TableEntry){
-    char.disadvantages.push(entry.text);
+export function addDisadvantage(char: Character, roleResult: RoleResult){
+    char.disadvantages.push(roleResult.text);
     return char;
 }
 export function AddCharForPower(char: Character){

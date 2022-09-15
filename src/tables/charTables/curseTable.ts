@@ -4,6 +4,7 @@ import {TableTitles} from "../tableTitles";
 import {AnimalTable} from "./animalTable";
 import type {Character} from "../../world/character";
 import {DisadvantageTable} from "./disadvantageTable";
+import type {RoleResult} from "../roleResult";
 
 
 export class CurseTable extends Table{
@@ -16,12 +17,12 @@ export class CurseTable extends Table{
         entries.push(new TableEntry("death prophecy", 5));
         entries.push(new TableEntry("disadvantage: ", 6).withCascadingRole(new DisadvantageTable()));
         super(entries, TableTitles.Curse);
-        this.functions.push(AddCurse);
+        this.functions.push(addCurse);
         this.probability = 3;
     }
 }
 
-export function AddCurse(char: Character, entry: TableEntry){
-    char.curses.push(entry.text);
+export function addCurse(char: Character, roleResult: RoleResult){
+    char.curses.push(roleResult.text);
     return char;
 }

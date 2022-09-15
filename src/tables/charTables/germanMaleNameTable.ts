@@ -3,6 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {DiceRole} from "../diceRole";
 import type {Character} from "../../world/character";
+import type {RoleResult} from "../roleResult";
 
 export class GermanMaleNameTable extends Table {
     constructor() {
@@ -50,11 +51,11 @@ export class GermanMaleNameTable extends Table {
         entries.push(new TableEntry("Winfried", 66));
         super(entries, TableTitles.GermanMaleName);
         this.diceRole = new DiceRole().withNumberOfRoles(2);
-        this.functions.push(AlterName)
+        this.functions.push(changeName)
     }
 }
 
-export function AlterName(char: Character, entry: TableEntry){
-    char.name = entry.text;
+export function changeName(char: Character, roleResult: RoleResult){
+    char.name = roleResult.text;
     return char;
 }

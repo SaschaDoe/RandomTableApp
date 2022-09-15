@@ -2,7 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {DiceRole} from "../diceRole";
-import {AlterName} from "./germanMaleNameTable";
+import {changeName} from "./germanMaleNameTable";
 
 export class GermanFemaleNameTable extends Table {
     constructor() {
@@ -50,6 +50,6 @@ export class GermanFemaleNameTable extends Table {
         entries.push(new TableEntry("Wilfriede", 66));
         super(entries, TableTitles.GermanMaleName);
         this.diceRole = new DiceRole().withNumberOfRoles(2);
-        this.functions.push(AlterName);
+        this.functions.push(changeName);
     }
 }
