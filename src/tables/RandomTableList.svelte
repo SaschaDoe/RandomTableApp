@@ -17,9 +17,9 @@
     import {AdvantageTable} from "./charTables/advantageTable";
     import {AlignmentTable} from "./charTables/alignmentTable";
     import {AttitudeTable} from "./charTables/attitudeTable";
-    import {SizeTable} from "./otherTables/sizeTable";
-    import {LocationTable} from "./otherTables/locationTable";
-    import {WeatherTable} from "./otherTables/weatherTable";
+    import {SizeTable} from "./locationTables/sizeTable";
+    import {LocationTable} from "./locationTables/locationTable";
+    import {WeatherTable} from "./locationTables/weatherTable";
     import {ContinentTable} from "./locationTables/continentTable";
     import {VocalTable} from "./otherTables/vocalTable";
 

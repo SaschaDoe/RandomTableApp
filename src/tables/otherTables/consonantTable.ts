@@ -28,7 +28,6 @@ export class ConsonantTable extends Table{
         entries.push(new TableEntry("sch"))
         entries.push(new TableEntry("ch"))
         entries.push(new TableEntry("chr"))
-        entries.push(new TableEntry("\"snap\""))
         super(entries, TableTitles.Consonant);
         this.tableType = TableType.Other;
     }

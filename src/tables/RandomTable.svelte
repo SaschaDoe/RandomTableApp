@@ -8,7 +8,7 @@
         applyLocationTableFunctions,
         applyLocationEntryFunctions,
         currentLocation,
-        locations
+        sites
     } from "../world/locationStore";
     import {Site} from "../world/site";
     import Entry from "./Entry.svelte";
@@ -30,7 +30,7 @@
             applyLocationTableFunctions(roleResult,table,$currentLocation);
             applyLocationEntryFunctions(roleResult,$currentLocation);
 
-            $locations.push($currentLocation)
+            $sites.push($currentLocation)
             isModalVisible = false;
         }
         isModalVisible = false;

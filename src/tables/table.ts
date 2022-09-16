@@ -63,9 +63,9 @@ export class Table {
 
 
 
-    roleWithCascade() {
-        let roleResult = this.role();
-        let cascadedString = this.cascade(roleResult);
+    roleWithCascade(dice = new Dice()) {
+        let roleResult = this.role(dice);
+        let cascadedString = this.cascade(roleResult, dice);
         if(cascadedString === undefined){
             throw Error("Entry too small")
         }else{
@@ -74,11 +74,11 @@ export class Table {
         }
     }
 
-    private cascade(roleResult: RoleResult) {
+    private cascade(roleResult: RoleResult, dice = new Dice()) {
         let fullText = roleResult.text+" ";
         for (let i = 0; i < roleResult.cascadingRoles.length; i++) {
             let table = roleResult.cascadingRoles[i];
-            fullText += table.role().text + " ";
+            fullText += table.role(dice).text + " ";
         }
         let result = fullText;
         if (roleResult.cascadingRoles.length != 0) {

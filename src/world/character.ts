@@ -1,4 +1,3 @@
-import {Races} from "../tables/charTables/races";
 import {Dice} from "../utils/dice";
 import {DiceRole} from "../tables/diceRole";
 import {GermanMaleNameTable} from "../tables/charTables/germanMaleNameTable";
@@ -12,6 +11,9 @@ import {RaceTable} from "../tables/charTables/raceTable";
 import {NobilityTable} from "../tables/charTables/nobilityTable";
 import {ProfessionTable} from "../tables/charTables/professionTable";
 import {AlignmentTable} from "../tables/charTables/alignmentTable";
+import {Site} from "./site";
+import {sites} from "./locationStore";
+
 
 export class Character{
     name : string;
@@ -37,7 +39,9 @@ export class Character{
     advantages: string[];
     alignment: string;
 
-    constructor(race = Races.Human, dice = new Dice()) {
+    homeContinent: Site;
+
+    constructor(dice = new Dice()) {
         this.id = GetId();
         this.motivation = new MotivationTable().roleWithCascade().text;
         this.nobility = new NobilityTable().role().text;
@@ -46,6 +50,9 @@ export class Character{
         this.advantages = [];
         this.relationships = [];
         this.curses = [];
+        let site = mapSiteWithChar(dice);
+        this.homeContinent = site;
+
         this.alignment = new AlignmentTable().roleWithCascade().text;
         this.gender = new GenderTable().role().text
         if(this.gender === Gender.Female){
@@ -75,4 +82,26 @@ export class Character{
         this.strength = dice.role(attributeDiceRole);
     }
 
+}
+
+function mapSiteWithChar(dice: Dice) {
+    let site = new Site();
+    let randomNumber = dice.getRandomInt(0, 10);
+    let numberOfSites = 0
+    sites.subscribe(sites => {
+        numberOfSites = sites.length
+    })
+
+    if (randomNumber === 1 || numberOfSites === 0) {
+        sites.update((s) => {
+            s.push(site);
+            return s;
+        });
+    } else {
+        let randomContinentIndex = dice.getRandomInt(0, numberOfSites-1);
+        sites.subscribe(sites => {
+            site = sites[randomContinentIndex]
+        })
+    }
+    return site;
 }

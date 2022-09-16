@@ -8,7 +8,7 @@ export class Dice{
         for(let n = 0; n < diceRole.numberOfRoles; n++){
             let randomRoleResult = 0;
             for (let i = 0; i < diceRole.numberOfDice; i++) {
-                const randomNumber = this.getRandomInt(1, diceRole.diceType+1);
+                const randomNumber = this.getRandomInt(1, diceRole.diceType);
                 randomRoleResult += randomNumber;
             }
 
@@ -20,11 +20,9 @@ export class Dice{
         return parseInt(result);
     }
 
-    // The maximum is exclusive and the minimum is inclusive
+    // The maximum and minimum are inclusive
     getRandomInt(min : number, max : number) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min) + min); 
+        return Math.floor(Math.random() * (max - min + 1) + min)
       }
       
 }

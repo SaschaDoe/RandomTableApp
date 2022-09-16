@@ -1,12 +1,16 @@
 <script lang="ts">
     import {Character} from "../world/character";
 
-    export let character: Character;
+    export let character = new Character();
 
 </script>
 
 <h1>{character.getUniqueName()}</h1>
 <p>{character.alignment +" and "+ character.nobility+" "+character.race +" "+character.gender+" "+ character.profession}</p>
+<div>
+    <li class="no-list-style bold inline">Homeland:</li>
+    <li class="no-list-style bold inline"><a href={"#"+character.homeContinent.getUniqueName()}>{character.homeContinent.getUniqueName()}</a></li>
+</div>
 <ul class="fix-list-left">
     <li class="inline bold no-list-style">Motivation: </li>
     <li class="inline no-list-style">{character.motivation}</li>

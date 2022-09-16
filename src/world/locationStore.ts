@@ -4,7 +4,7 @@ import type {Table} from "../tables/table";
 import type {RoleResult} from "../tables/roleResult";
 
 
-export let locations = writable([] as Site[]);
+export let sites = writable([] as Site[]);
 export let currentLocation = writable(Site);
 
 
@@ -14,7 +14,7 @@ export function applyLocationEntryFunctions(roleResult: RoleResult, location: Si
         let func = roleResult.functions[i];
         let newLocation = func(location);
 
-        locations.update(val => [...val, newLocation])
+        sites.update(val => [...val, newLocation])
 
     }
 }

@@ -1,5 +1,4 @@
 import { Dice } from "./dice";
-import type {DiceRole} from "../tables/diceRole";
 
 export class FakeDice extends Dice{
     diceResults: number[];
@@ -11,6 +10,15 @@ export class FakeDice extends Dice{
 
     with(diceResults : number[]){
         this.diceResults = diceResults;
+        return this;
+    }
+
+    withNumberOf(numberOfDiceResults: number, diceResult: number){
+        let diceResultArray = [];
+        for(let i = 0; i < numberOfDiceResults; i++){
+            diceResultArray.push(diceResult);
+        }
+        this.diceResults = diceResultArray;
         return this;
     }
 

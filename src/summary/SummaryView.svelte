@@ -1,13 +1,15 @@
 <script lang="ts">
-    import {addParty, characters} from "../world/charStore.js";
+    import {characters} from "../world/charStore.js";
 import CharacterView from "./CharacterView.svelte";
-    import {locations} from "../world/locationStore.js";
+    import {sites} from "../world/locationStore.js";
     import LocationView from "./LocationView.svelte";
+    import {WorldGenerator} from "../world/generators/worldGenerator";
 
 let sizeOfParty = 1;
 
 const addPartyHandler = ()=>{
-    addParty(sizeOfParty);
+    let worldGenerator = new WorldGenerator();
+    worldGenerator.generateWorld(sizeOfParty);
 }
     let handleShowIndex = () => {
         showIndex = !showIndex;
@@ -16,7 +18,11 @@ const addPartyHandler = ()=>{
     let handleShowChars = () =>{
         showChars = !showChars;
     };
-    let showChars = false
+    let showChars = false;
+    let handleShowSites = () =>{
+        showSites = !showSites;
+    };
+    let showSites = false;
 </script>
 
 {#if showIndex === false}
@@ -30,6 +36,16 @@ const addPartyHandler = ()=>{
                 {#each $characters as char}
                     <li>
                         <a class="overlap-list" href={"#"+char.getUniqueName()}>{char.getUniqueName()}</a>
+                    </li>
+                {/each}
+            </ul>
+        {/if}
+        <div class="char-btn" on:click={handleShowSites}>{"Sites ("+$sites.length+")"}</div>
+        {#if showSites}
+            <ul>
+                {#each $sites as site}
+                    <li>
+                        <a class="overlap-list" href={"#"+site.getUniqueName()}>{site.getUniqueName()}</a>
                     </li>
                 {/each}
             </ul>
@@ -48,6 +64,16 @@ const addPartyHandler = ()=>{
             {/each}
         </ul>
     {/if}
+    <div class="char-btn" on:click={handleShowSites}>{"Sites ("+$sites.length+")"}</div>
+    {#if showSites}
+        <ul>
+            {#each $sites as site}
+                <li>
+                    <a class="overlap-list" href={"#"+site.getUniqueName()}>{site.getUniqueName()}</a>
+                </li>
+            {/each}
+        </ul>
+    {/if}
 </div>
 
 <button on:click={addPartyHandler}>Add party</button>
@@ -58,9 +84,9 @@ const addPartyHandler = ()=>{
     </div>
 
 {/each}
-{#each $locations as location}
-    <div>
-        <LocationView location={location} />
+{#each $sites as site}
+    <div id={site.getUniqueName()}>
+        <LocationView location={site} />
     </div>
 
 {/each}
@@ -76,6 +102,7 @@ const addPartyHandler = ()=>{
     html {
         scroll-behavior: smooth;
     }
+
     .back-btn{
         position: fixed;
         top: 10%;
@@ -94,12 +121,14 @@ const addPartyHandler = ()=>{
         left: -30px;
         visibility: hidden;
         max-height: 90%;
-        overflow: scroll;
+        overflow-x: scroll;
+        overflow-y: hidden;
     }
 
     .char-btn{
-        position: fixed;
-        left: 2px;
+        position: relative;
+        left: 31px;
+        width: 140px;
         color: white;
         background-color: rgba(0,0,0, 0.9);
     }
@@ -163,6 +192,7 @@ const addPartyHandler = ()=>{
     @media screen and (min-width: 720px) {
         .index{
             visibility: visible;
+            overflow-y: hidden;
         }
 
         .index-overlap{
