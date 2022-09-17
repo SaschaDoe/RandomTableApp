@@ -22,6 +22,10 @@
     import {WeatherTable} from "./locationTables/weatherTable";
     import {ContinentTable} from "./locationTables/continentTable";
     import {VocalTable} from "./otherTables/vocalTable";
+    import {generateName} from "./otherTables/nameGenerator";
+    import Modal from "../components/Modal.svelte";
+    import {characters, currentChar} from "../world/charStore";
+    import {Character} from "../world/character";
 
     let charTables = [
         new RaceTable(),
@@ -50,7 +54,6 @@
         new LocationTable(),
         new WeatherTable(),
         new VocalTable(),
-        new ContinentTable(),
     ]
 
     let allTables = charTables.concat(locationTables).concat(otherTables);
@@ -58,6 +61,19 @@
         showIndex = !showIndex;
     };
     let showIndex = false;
+    let handleGenerateName = () =>{
+        isModalVisible = true;
+        generatedName = generateName(maxNumberOfSyllabus)
+    };
+    let generatedName = "";
+    let isModalVisible = false;
+    let handleAdd = () =>{
+        $currentChar = new Character();
+
+        $characters.push($currentChar)
+        isModalVisible = false;
+    };
+    let maxNumberOfSyllabus = 7;
 </script>
 
 {#if showIndex === false}
@@ -86,8 +102,14 @@
         {/each}
     </ul>
 </div>
-
+<Modal bind:isVisible={isModalVisible}
+       title={"Name"}
+       bind:text={generatedName}
+       handleAdd={handleAdd}
+       handleRole={handleGenerateName}/>
 <div >
+    <input type="number" bind:value={maxNumberOfSyllabus}/>
+    <button on:click={handleGenerateName}>Generate Name</button>
     <ul>
         {#each allTables as table}
             <div id={table.title}>
@@ -109,6 +131,10 @@
 
     html {
         scroll-behavior: smooth;
+    }
+
+    input{
+        width: 30px;
     }
 
     .back-btn{

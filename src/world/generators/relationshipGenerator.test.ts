@@ -44,4 +44,17 @@ describe("RelationshipGenerator", () => {
         expect(relationship2.firstToSecondType).toBe(RelationshipType.Friendship);
         expect(relationship2.secondToFirstType).toBe(RelationshipType.Acquaintanceship);
     })
+
+    test("should both are just met when one relationship is just met", () => {
+        let fakeDice = new FakeDice().with([6,6,2, 1,1,2]);
+        let relationshipGenerator = new RelationshipGenerator(fakeDice);
+        let character1 = new Character();
+        let character2 = new Character();
+
+        relationshipGenerator.forParty([character1,character2]);
+
+        let relationship1 = character1.relationships[0];
+        expect(relationship1.firstToSecondType).toBe(RelationshipType.JustMet);
+        expect(relationship1.secondToFirstType).toBe(RelationshipType.JustMet);
+    })
 })

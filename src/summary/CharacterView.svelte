@@ -29,7 +29,7 @@
 <ul class="fix-list-left">
         <li class="bold inline no-list-style">Curses: </li>
     {#each character.curses as curse}
-        <li class="inline no-list-style">{curse}</li>
+        <li class="inline no-list-style">{curse+ "/ "}</li>
     {/each}
     <li class="no-list-style"></li>
 </ul>
@@ -37,7 +37,7 @@
 <ul class="fix-list-left">
     <li class="bold inline no-list-style">Advantages: </li>
     {#each character.advantages as advantage}
-        <li class="inline no-list-style">{advantage+" "}</li>
+        <li class="inline no-list-style">{advantage+"/ "}</li>
     {/each}
     <li class="no-list-style"></li>
 </ul>
@@ -45,7 +45,7 @@
 <ul class="fix-list-left">
     <li class="bold inline no-list-style">Disadvantages: </li>
     {#each character.disadvantages as disadvantage}
-        <li class="inline no-list-style">{disadvantage+" "}</li>
+        <li class="inline no-list-style">{disadvantage+"/ "}</li>
     {/each}
     <li class="no-list-style"></li>
 </ul>

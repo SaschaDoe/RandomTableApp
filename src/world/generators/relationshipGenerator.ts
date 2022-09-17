@@ -2,6 +2,7 @@ import type {Character} from "../character";
 import {RelationshipTypeTable} from "../../tables/charTables/relationshipTypeTable";
 import {Relationship} from "../relationship";
 import {Dice} from "../../utils/dice";
+import {RelationshipType} from "../relationshipType";
 
 export class RelationshipGenerator{
     dice : Dice;
@@ -34,6 +35,10 @@ export class RelationshipGenerator{
                         relationshipTypeTable.changeToPartyDistribution();
                         let firstRelationshipType = relationshipTypeTable.role(this.dice).text;
                         let secondRelationshipType = relationshipTypeTable.role(this.dice).text;
+                        if(firstRelationshipType === RelationshipType.JustMet || secondRelationshipType === RelationshipType.JustMet){
+                            firstRelationshipType = RelationshipType.JustMet;
+                            secondRelationshipType = RelationshipType.JustMet;
+                        }
                         let relationship = new Relationship(outerChar, innerChar, firstRelationshipType, secondRelationshipType);
                         outerChar.relationships.push(relationship);
                         innerChar.relationships.push(relationship);

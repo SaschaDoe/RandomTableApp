@@ -48,7 +48,7 @@ export class GermanFemaleNameTable extends Table {
         entries.push(new TableEntry("Saskia", 64));
         entries.push(new TableEntry("Walda", 65));
         entries.push(new TableEntry("Wilfriede", 66));
-        super(entries, TableTitles.GermanMaleName);
+        super(entries, TableTitles.GermanFemaleNames);
         this.diceRole = new DiceRole().withNumberOfRoles(2);
         this.functions.push(changeName);
     }

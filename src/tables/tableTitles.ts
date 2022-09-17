@@ -23,4 +23,5 @@ export enum TableTitles{
     Continent = "Continent",
     Vocal = "Vocal",
     Consonant = "Consonant",
+    GermanFemaleNames = "GermanFemaleNames",
 }
