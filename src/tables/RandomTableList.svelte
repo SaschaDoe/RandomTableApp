@@ -30,6 +30,10 @@
     import {QualityTable} from "./otherTables/qualityTable";
     import {WeaponTable} from "./artefactTables/weaponTable";
     import {ArmorTable} from "./artefactTables/armorTable";
+    import {BodyPartsTable} from "./otherTables/bodyPartsTable";
+    import {JewelryTable} from "./artefactTables/jewelryTable";
+    import {GemstoneTable} from "./artefactTables/gemstoneTable";
+    import {MaterialsTable} from "./artefactTables/materialsTable";
 
     let charTables = [
         new RaceTable(),
@@ -51,9 +55,12 @@
     let locationTables = [
         new ContinentTable(),
     ]
-    let weaponTables = [
+    let artefactsTables = [
         new WeaponTable(),
         new ArmorTable(),
+        new JewelryTable(),
+        new GemstoneTable(),
+        new MaterialsTable(),
     ]
     let otherTables = [
         new AttributeTable(),
@@ -64,9 +71,10 @@
         new VocalTable(),
         new RarityTable(),
         new QualityTable(),
+        new BodyPartsTable(),
     ]
 
-    let allTables = charTables.concat(locationTables).concat(weaponTables).concat(otherTables);
+    let allTables = charTables.concat(locationTables).concat(artefactsTables).concat(otherTables);
     let handleShowIndex = () => {
         showIndex = !showIndex;
     };

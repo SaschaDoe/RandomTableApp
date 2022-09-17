@@ -28,4 +28,8 @@ export enum TableTitles{
     Quality = "Quality",
     Weapon = "Weapon",
     Armor = "Armor",
+    Gemstone = "Gemstone",
+    Jewelry = "Jewelry",
+    BodyParts = "BodyParts",
+    Materials = "Materials",
 }

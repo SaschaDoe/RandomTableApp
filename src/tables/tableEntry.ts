@@ -45,6 +45,12 @@ export class TableEntry{
         return this;
     }
 
+    with(input: string) {
+        this.cascadingRoles.push(input);
+        this.textWithCascades = this.textWithCascades + " " + input;
+        return this;
+    }
+
     withSelfCascade(){
         this.cascadingRoles.push("self");
         this.textWithCascades = this.textWithCascades + " (self)";
@@ -68,4 +74,6 @@ export class TableEntry{
     setFullText(){
         this.fullText = `${this.toString()}: ${this.text}`;
     }
+
+
 }
