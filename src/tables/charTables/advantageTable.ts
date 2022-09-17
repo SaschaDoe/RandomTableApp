@@ -5,6 +5,7 @@ import {AttributeTable} from "./attributeTable";
 import {SenseTable} from "./senseTable";
 import type {Character} from "../../world/character";
 import type {RoleResult} from "../roleResult";
+import {ElementTable} from "../otherTables/elementTable";
 
 export class AdvantageTable extends Table{
     constructor(){
@@ -29,6 +30,7 @@ export class AdvantageTable extends Table{
         entries.push(new TableEntry("can remember much"))
         entries.push(new TableEntry("resistant against illness"))
         entries.push(new TableEntry("poison resistant"))
+        entries.push(new TableEntry("resistant to").withCascadingRole(new ElementTable()))
         super(entries, TableTitles.Advantages);
         this.functions.push(addAdvantage)
         this.probability = 50;

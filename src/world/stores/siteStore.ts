@@ -1,11 +1,12 @@
 import {writable} from "svelte/store";
-import {Site} from "./site";
-import type {Table} from "../tables/table";
-import type {RoleResult} from "../tables/roleResult";
+import {Site} from "../site";
+import type {Table} from "../../tables/table";
+import type {RoleResult} from "../../tables/roleResult";
 
 
 export let sites = writable([] as Site[]);
 export let currentLocation = writable(Site);
+export let spheres = writable([] as Site[]);
 
 
 export function applyLocationEntryFunctions(roleResult: RoleResult, location: Site){

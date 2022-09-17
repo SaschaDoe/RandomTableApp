@@ -1,10 +1,10 @@
 import {beforeEach, describe, expect, test} from "vitest";
 import {WorldGenerator} from "./worldGenerator";
-import {characters} from "../charStore";
+import {characters} from "../stores/charStore";
 import type {Character} from "../character";
 import {FakeDice} from "../../utils/fakeDice";
 import type {Site} from "../site";
-import {sites} from "../locationStore";
+import {sites} from "../stores/siteStore";
 
 describe("WorldGenerator", () => {
     let fakeDice = new FakeDice().withNumberOf(10000,1);

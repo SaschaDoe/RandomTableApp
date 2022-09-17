@@ -7,6 +7,7 @@ import {RelationshipType} from "../../world/relationshipType";
 import {AttributeTable} from "./attributeTable";
 import {SenseTable} from "./senseTable";
 import type {RoleResult} from "../roleResult";
+import {ElementTable} from "../otherTables/elementTable";
 
 export class DisadvantageTable extends Table{
     constructor(){
@@ -37,6 +38,7 @@ export class DisadvantageTable extends Table{
         entries.push(new TableEntry("wanted"))
         entries.push(new TableEntry("mad"))
         entries.push(new TableEntry("ill"))
+        entries.push(new TableEntry("vulnerable to ").withCascadingRole(new ElementTable()))
         super(entries, TableTitles.Disadvantages);
         this.functions.push(addDisadvantage)
         this.probability = 50;

@@ -1,9 +1,9 @@
 <script lang="ts">
-    import {characters} from "../world/charStore.js";
-import CharacterView from "./CharacterView.svelte";
-    import {sites} from "../world/locationStore.js";
-    import LocationView from "./LocationView.svelte";
+    import {characters} from "../world/stores/charStore.js";
+    import CharacterView from "./CharacterView.svelte";
+    import {sites, spheres} from "../world/stores/siteStore.js";
     import {WorldGenerator} from "../world/generators/worldGenerator";
+    import SiteView from "./SiteView.svelte";
 
 let sizeOfParty = 1;
 
@@ -86,9 +86,14 @@ const addPartyHandler = ()=>{
 {/each}
 {#each $sites as site}
     <div id={site.getUniqueName()}>
-        <LocationView site={site} />
+        <SiteView site={site} />
     </div>
-
+{/each}
+<p>Spheres</p>
+{#each $spheres as sphere}
+    <div id={sphere.getUniqueName()}>
+        <SiteView site={sphere} />
+    </div>
 {/each}
 <div class="back-btn">
     <a href="#top">/|\</a>
@@ -99,10 +104,6 @@ const addPartyHandler = ()=>{
 <style>
     li{
         list-style: none;
-    }
-
-    html {
-        scroll-behavior: smooth;
     }
 
     .back-btn{

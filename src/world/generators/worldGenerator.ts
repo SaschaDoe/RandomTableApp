@@ -1,5 +1,5 @@
 import {Dice} from "../../utils/dice";
-import {applyNotMandatoryTables, characters} from "../charStore";
+import {applyNotMandatoryTables, characters} from "../stores/charStore";
 import {Character} from "../character";
 import {RelationshipGenerator} from "./relationshipGenerator";
 

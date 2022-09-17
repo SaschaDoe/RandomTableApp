@@ -4,11 +4,12 @@ import {ContinentTable} from "../tables/locationTables/continentTable";
 import {randomIntFromInterval} from "../utils/randomUtils";
 import {SphereTable} from "../tables/locationTables/sphereTable";
 
+
 export class Site {
     description : string;
     name: string;
     id: number;
-    spheres: Site[];
+    localSpheres: Site[];
     isSphere: boolean;
 
     constructor(isSphere = false) {
@@ -16,7 +17,7 @@ export class Site {
         this.name = generateContinentName();
         this.id = GetId();
         this.isSphere = isSphere;
-        this.spheres = this.generateSpheres();
+        this.localSpheres = this.generateSpheres();
     }
 
     getUniqueName() {
@@ -24,16 +25,20 @@ export class Site {
     }
 
     private generateSpheres() {
-        let spheres = [];
+        let localSpheres = [];
         if(this.isSphere === false){
             let numberOfSpheres = randomIntFromInterval(0,6);
             for(let i = 0; i < numberOfSpheres; i++){
                 let sphere = new Site(true);
+                /*spheres.update(spheres => {
+                    spheres.push(sphere);
+                    return spheres;
+                })*/
                 sphere.description = new SphereTable().role().text;
-                spheres.push(sphere);
+                localSpheres.push(sphere);
             }
         }
 
-        return spheres;
+        return localSpheres;
     }
 }

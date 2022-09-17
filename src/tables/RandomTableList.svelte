@@ -24,7 +24,7 @@
     import {VocalTable} from "./otherTables/vocalTable";
     import {generateName} from "./otherTables/nameGenerator";
     import Modal from "../components/Modal.svelte";
-    import {characters, currentChar} from "../world/charStore";
+    import {characters, currentChar} from "../world/stores/charStore";
     import {Character} from "../world/character";
     import {RarityTable} from "./otherTables/rarityTable";
     import {QualityTable} from "./otherTables/qualityTable";

@@ -1,11 +1,11 @@
-import {Character} from "./character";
+import {Character} from "../character";
 import {writable} from "svelte/store";
-import {isInProbability} from "../utils/randomUtils";
-import {DisadvantageTable} from "../tables/charTables/disadvantageTable";
-import type {Table} from "../tables/table";
-import {CurseTable} from "../tables/charTables/curseTable";
-import {AdvantageTable} from "../tables/charTables/advantageTable";
-import type {RoleResult} from "../tables/roleResult";
+import {isInProbability} from "../../utils/randomUtils";
+import {DisadvantageTable} from "../../tables/charTables/disadvantageTable";
+import type {Table} from "../../tables/table";
+import {CurseTable} from "../../tables/charTables/curseTable";
+import {AdvantageTable} from "../../tables/charTables/advantageTable";
+import type {RoleResult} from "../../tables/roleResult";
 
 
 export let characters = writable([] as Character[]);

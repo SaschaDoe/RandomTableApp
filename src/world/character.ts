@@ -12,7 +12,7 @@ import {NobilityTable} from "../tables/charTables/nobilityTable";
 import {ProfessionTable} from "../tables/charTables/professionTable";
 import {AlignmentTable} from "../tables/charTables/alignmentTable";
 import {Site} from "./site";
-import {sites} from "./locationStore";
+import {sites} from "./stores/siteStore";
 
 
 export class Character{
