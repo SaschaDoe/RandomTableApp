@@ -5,9 +5,11 @@
 </script>
 <h1>{site.getUniqueName()}</h1>
 <p>Description: {site.description}</p>
+{#if site.localSpheres.length > 0}
 <div>Spheres:</div>
+{/if}
 <ul>
-{#each site.spheres as sphere}
-    <li>{sphere.name + ": "+ sphere.description}</li>
+{#each site.localSpheres as sphere}
+    <li><a href={"#"+sphere.getUniqueName()}>{sphere.name}</a></li>
 {/each}
 </ul>

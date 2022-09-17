@@ -4,13 +4,13 @@ import {characters} from "../stores/charStore";
 import type {Character} from "../character";
 import {FakeDice} from "../../utils/fakeDice";
 import type {Site} from "../site";
-import {sites} from "../stores/siteStore";
+import {continentStore} from "../stores/siteStore";
 
 describe("WorldGenerator", () => {
     let fakeDice = new FakeDice().withNumberOf(10000,1);
     beforeEach(async () => {
         fakeDice = new FakeDice().withNumberOf(10000,1);
-        sites.set([]);
+        continentStore.set([]);
         characters.set([]);
 
     })
@@ -41,7 +41,7 @@ test.each([
         let localChars = [] as Character[];
         let localSites = [] as Site[];
         characters.subscribe(chars => {localChars = chars});
-        sites.subscribe(sites => {localSites = sites});
+        continentStore.subscribe(sites => {localSites = sites});
 
         expect(localChars.length).toBe(expectedNumberOfChars);
         expect(localSites.length).toBe(expectedNumberOfSites);
@@ -63,7 +63,7 @@ test.each([
         worldGenerator.generateWorld(numberOfInitialParty,fakeDice);
         let localSites = [] as Site[];
 
-        sites.subscribe(sites => {localSites = sites});
+        continentStore.subscribe(sites => {localSites = sites});
 
         expect(localSites.length).toBe(1);
     })

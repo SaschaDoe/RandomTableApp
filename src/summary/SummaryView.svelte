@@ -1,7 +1,7 @@
 <script lang="ts">
     import {characters} from "../world/stores/charStore.js";
     import CharacterView from "./CharacterView.svelte";
-    import {sites, spheres} from "../world/stores/siteStore.js";
+    import {continentStore, sphereStore} from "../world/stores/siteStore.js";
     import {WorldGenerator} from "../world/generators/worldGenerator";
     import SiteView from "./SiteView.svelte";
 
@@ -40,10 +40,10 @@ const addPartyHandler = ()=>{
                 {/each}
             </ul>
         {/if}
-        <div class="char-btn" on:click={handleShowSites}>{"Sites ("+$sites.length+")"}</div>
+        <div class="char-btn" on:click={handleShowSites}>{"Sites ("+$continentStore.length+")"}</div>
         {#if showSites}
             <ul>
-                {#each $sites as site}
+                {#each $continentStore as site}
                     <li>
                         <a class="overlap-list" href={"#"+site.getUniqueName()}>{site.getUniqueName()}</a>
                     </li>
@@ -64,10 +64,10 @@ const addPartyHandler = ()=>{
             {/each}
         </ul>
     {/if}
-    <div class="char-btn" on:click={handleShowSites}>{"Sites ("+$sites.length+")"}</div>
+    <div class="char-btn" on:click={handleShowSites}>{"Sites ("+$continentStore.length+")"}</div>
     {#if showSites}
         <ul>
-            {#each $sites as site}
+            {#each $continentStore as site}
                 <li>
                     <a class="overlap-list" href={"#"+site.getUniqueName()}>{site.getUniqueName()}</a>
                 </li>
@@ -84,13 +84,13 @@ const addPartyHandler = ()=>{
     </div>
 
 {/each}
-{#each $sites as site}
+{#each $continentStore as site}
     <div id={site.getUniqueName()}>
         <SiteView site={site} />
     </div>
 {/each}
-<p>Spheres</p>
-{#each $spheres as sphere}
+
+{#each $sphereStore as sphere}
     <div id={sphere.getUniqueName()}>
         <SiteView site={sphere} />
     </div>
@@ -98,7 +98,6 @@ const addPartyHandler = ()=>{
 <div class="back-btn">
     <a href="#top">/|\</a>
 </div>
-
 
 
 <style>

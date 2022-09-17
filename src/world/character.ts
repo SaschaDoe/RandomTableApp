@@ -11,8 +11,8 @@ import {RaceTable} from "../tables/charTables/raceTable";
 import {NobilityTable} from "../tables/charTables/nobilityTable";
 import {ProfessionTable} from "../tables/charTables/professionTable";
 import {AlignmentTable} from "../tables/charTables/alignmentTable";
-import {Site} from "./site";
-import {sites} from "./stores/siteStore";
+import {mapSiteWithChar} from "./continentFactory";
+import type {Site} from "./site";
 
 
 export class Character{
@@ -50,8 +50,7 @@ export class Character{
         this.advantages = [];
         this.relationships = [];
         this.curses = [];
-        let site = mapSiteWithChar(dice);
-        this.homeContinent = site;
+        this.homeContinent = mapSiteWithChar(dice);
 
         this.alignment = new AlignmentTable().roleWithCascade().text;
         this.gender = new GenderTable().role().text
@@ -84,24 +83,3 @@ export class Character{
 
 }
 
-function mapSiteWithChar(dice: Dice) {
-    let site = new Site();
-    let randomNumber = dice.getRandomInt(0, 10);
-    let numberOfSites = 0
-    sites.subscribe(sites => {
-        numberOfSites = sites.length
-    })
-
-    if (randomNumber === 1 || numberOfSites === 0) {
-        sites.update((s) => {
-            s.push(site);
-            return s;
-        });
-    } else {
-        let randomContinentIndex = dice.getRandomInt(0, numberOfSites-1);
-        sites.subscribe(sites => {
-            site = sites[randomContinentIndex]
-        })
-    }
-    return site;
-}

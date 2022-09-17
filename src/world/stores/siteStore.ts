@@ -4,9 +4,10 @@ import type {Table} from "../../tables/table";
 import type {RoleResult} from "../../tables/roleResult";
 
 
-export let sites = writable([] as Site[]);
+export let continentStore = writable([] as Site[])
+export let sphereStore = writable([] as Site[])
 export let currentLocation = writable(Site);
-export let spheres = writable([] as Site[]);
+
 
 
 export function applyLocationEntryFunctions(roleResult: RoleResult, location: Site){
@@ -15,7 +16,7 @@ export function applyLocationEntryFunctions(roleResult: RoleResult, location: Si
         let func = roleResult.functions[i];
         let newLocation = func(location);
 
-        sites.update(val => [...val, newLocation])
+        continentStore.update(val => [...val, newLocation])
 
     }
 }
