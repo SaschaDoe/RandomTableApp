@@ -34,6 +34,8 @@
     import {JewelryTable} from "./artefactTables/jewelryTable";
     import {GemstoneTable} from "./artefactTables/gemstoneTable";
     import {MaterialsTable} from "./artefactTables/materialsTable";
+    import {SphereTable} from "./locationTables/sphereTable";
+    import {ElementTable} from "./otherTables/elementTable";
 
     let charTables = [
         new RaceTable(),
@@ -54,6 +56,7 @@
         ];
     let locationTables = [
         new ContinentTable(),
+        new SphereTable(),
     ]
     let artefactsTables = [
         new WeaponTable(),
@@ -72,6 +75,7 @@
         new RarityTable(),
         new QualityTable(),
         new BodyPartsTable(),
+        new ElementTable(),
     ]
 
     let allTables = charTables.concat(locationTables).concat(artefactsTables).concat(otherTables);

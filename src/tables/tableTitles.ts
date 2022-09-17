@@ -32,4 +32,6 @@ export enum TableTitles{
     Jewelry = "Jewelry",
     BodyParts = "BodyParts",
     Materials = "Materials",
+    Sphere = "Sphere",
+    Element = "Element",
 }

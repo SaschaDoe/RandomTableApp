@@ -17,6 +17,7 @@ export class MaterialsTable extends Table{
         entries.push(new TableEntry("bone"))
         entries.push(new TableEntry("wood"))
         entries.push(new TableEntry("stone"))
+        entries.push(new TableEntry("glass"))
         super(entries, TableTitles.Materials);
         this.tableType = TableType.Artefact;
     }
