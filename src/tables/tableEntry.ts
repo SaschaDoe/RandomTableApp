@@ -6,7 +6,7 @@ export class TableEntry{
     text: string;
     textWithCascades: string;
     fullText = "";
-    cascadingRoles = [] as Table[];
+    cascadingRoles = [] as (Table|string)[];
     functions: ((entity: any) => any)[];
 
     constructor(text: string = "-", singleRoleValue = -1){
@@ -42,6 +42,12 @@ export class TableEntry{
     withCascadingRole(table: Table) {
         this.cascadingRoles.push(table);
         this.textWithCascades = this.textWithCascades + " ("+table.title+")";
+        return this;
+    }
+
+    withSelfCascade(){
+        this.cascadingRoles.push("self");
+        this.textWithCascades = this.textWithCascades + " (self)";
         return this;
     }
 

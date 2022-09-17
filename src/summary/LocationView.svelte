@@ -1,7 +1,7 @@
 <script lang="ts">
     import {Site} from "../world/site";
 
-    export let location : Site;
+    export let site : Site;
 </script>
-<h1>{location.name}</h1>
-<p>Description: {location.description}</p>
+<h1>{site.getUniqueName()}</h1>
+<p>Description: {site.description}</p>

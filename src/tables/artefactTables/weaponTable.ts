@@ -30,7 +30,9 @@ export class WeaponTable extends Table{
         entries.push(new TableEntry("butterfly"))
         entries.push(new TableEntry("katana"))
         entries.push(new TableEntry("needle"))
-        entries.push(new TableEntry("")) //TODO add logic for cascading role of same table!
+        entries.push(new TableEntry("")
+            .withSelfCascade()
+            .withSelfCascade())
         entries.push(new TableEntry("whip"))
         entries.push(new TableEntry("lance"))
         entries.push(new TableEntry("rifle"))

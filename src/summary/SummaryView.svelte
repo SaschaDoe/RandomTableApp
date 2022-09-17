@@ -86,13 +86,15 @@ const addPartyHandler = ()=>{
 {/each}
 {#each $sites as site}
     <div id={site.getUniqueName()}>
-        <LocationView location={site} />
+        <LocationView site={site} />
     </div>
 
 {/each}
 <div class="back-btn">
     <a href="#top">/|\</a>
 </div>
+
+
 
 <style>
     li{

@@ -26,14 +26,15 @@
     <li>Strength: {character.strength}</li>
 </ul>
 
-<ul class="fix-list-left">
+{#if character.curses.length !== 0}
+    <ul class="fix-list-left">
         <li class="bold inline no-list-style">Curses: </li>
-    {#each character.curses as curse}
-        <li class="inline no-list-style">{curse+ "/ "}</li>
-    {/each}
-    <li class="no-list-style"></li>
-</ul>
-
+        {#each character.curses as curse}
+            <li class="inline no-list-style">{curse+ "/ "}</li>
+        {/each}
+        <li class="no-list-style"></li>
+    </ul>
+{/if}
 <ul class="fix-list-left">
     <li class="bold inline no-list-style">Advantages: </li>
     {#each character.advantages as advantage}

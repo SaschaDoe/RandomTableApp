@@ -18,7 +18,7 @@ export class CurseTable extends Table{
         entries.push(new TableEntry("disadvantage: ", 6).withCascadingRole(new DisadvantageTable()));
         super(entries, TableTitles.Curse);
         this.functions.push(addCurse);
-        this.probability = 3;
+        this.probability = 5;
     }
 }
 

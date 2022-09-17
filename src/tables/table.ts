@@ -78,7 +78,14 @@ export class Table {
         let fullText = roleResult.text+" ";
         for (let i = 0; i < roleResult.cascadingRoles.length; i++) {
             let table = roleResult.cascadingRoles[i];
-            fullText += table.role(dice).text + " ";
+            if(table.toString() === "self"){
+                fullText += this.role(dice).text + " ";
+            }else{
+                if (table instanceof Table) {
+                    fullText += table.role(dice).text + " ";
+                }
+            }
+
         }
         let result = fullText;
         if (roleResult.cascadingRoles.length != 0) {
