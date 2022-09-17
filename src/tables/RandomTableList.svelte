@@ -17,15 +17,19 @@
     import {AdvantageTable} from "./charTables/advantageTable";
     import {AlignmentTable} from "./charTables/alignmentTable";
     import {AttitudeTable} from "./charTables/attitudeTable";
-    import {SizeTable} from "./locationTables/sizeTable";
-    import {LocationTable} from "./locationTables/locationTable";
-    import {WeatherTable} from "./locationTables/weatherTable";
+    import {SizeTable} from "./otherTables/sizeTable";
+    import {LocationTable} from "./otherTables/locationTable";
+    import {WeatherTable} from "./otherTables/weatherTable";
     import {ContinentTable} from "./locationTables/continentTable";
     import {VocalTable} from "./otherTables/vocalTable";
     import {generateName} from "./otherTables/nameGenerator";
     import Modal from "../components/Modal.svelte";
     import {characters, currentChar} from "../world/charStore";
     import {Character} from "../world/character";
+    import {RarityTable} from "./otherTables/rarityTable";
+    import {QualityTable} from "./otherTables/qualityTable";
+    import {WeaponTable} from "./artefactTables/weaponTable";
+    import {ArmorTable} from "./artefactTables/armorTable";
 
     let charTables = [
         new RaceTable(),
@@ -47,6 +51,10 @@
     let locationTables = [
         new ContinentTable(),
     ]
+    let weaponTables = [
+        new WeaponTable(),
+        new ArmorTable(),
+    ]
     let otherTables = [
         new AttributeTable(),
         new SenseTable(),
@@ -54,9 +62,11 @@
         new LocationTable(),
         new WeatherTable(),
         new VocalTable(),
+        new RarityTable(),
+        new QualityTable(),
     ]
 
-    let allTables = charTables.concat(locationTables).concat(otherTables);
+    let allTables = charTables.concat(locationTables).concat(weaponTables).concat(otherTables);
     let handleShowIndex = () => {
         showIndex = !showIndex;
     };

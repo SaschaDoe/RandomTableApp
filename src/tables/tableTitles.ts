@@ -24,4 +24,8 @@ export enum TableTitles{
     Vocal = "Vocal",
     Consonant = "Consonant",
     GermanFemaleNames = "GermanFemaleNames",
+    Rarity = "Rarity",
+    Quality = "Quality",
+    Weapon = "Weapon",
+    Armor = "Armor",
 }

@@ -1,9 +1,9 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
-import {SizeTable} from "./sizeTable";
-import {LocationTable} from "./locationTable";
-import {WeatherTable} from "./weatherTable";
+import {SizeTable} from "../otherTables/sizeTable";
+import {LocationTable} from "../otherTables/locationTable";
+import {WeatherTable} from "../otherTables/weatherTable";
 import {TableType} from "../tableType";
 import type {Site} from "../../world/site";
 import type {RoleResult} from "../roleResult";
