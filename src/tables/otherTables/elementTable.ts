@@ -15,7 +15,6 @@ export class ElementTable extends Table{
         entries.push(new TableEntry("magic"))
         entries.push(new TableEntry("light"))
         entries.push(new TableEntry("shadow"))
-        entries.push(new TableEntry("forehead"))
         entries.push(new TableEntry("electricity"))
         entries.push(new TableEntry("sound"))
         entries.push(new TableEntry("paper"))

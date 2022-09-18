@@ -107,4 +107,10 @@
         box-sizing: border-box;
     }
 
+    @media screen and (min-width: 600px) {
+        .column{
+            width: 30%;
+        }
+    }
+
 </style>
