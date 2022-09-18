@@ -3,7 +3,6 @@ import {DiceRole} from "../tables/diceRole";
 import {GermanMaleNameTable} from "../tables/charTables/germanMaleNameTable";
 import {GenderTable} from "../tables/charTables/genderTable";
 import {GermanFemaleNameTable} from "../tables/charTables/germanFemaleNameTable";
-import {GetId} from "./idGetter";
 import {Gender} from "../tables/charTables/gender";
 import type {Relationship} from "./relationship";
 import {MotivationTable} from "../tables/charTables/motivationTable";
@@ -13,14 +12,13 @@ import {ProfessionTable} from "../tables/charTables/professionTable";
 import {AlignmentTable} from "../tables/charTables/alignmentTable";
 import {mapSiteWithChar} from "./continentFactory";
 import type {Site} from "./site";
+import {Entity} from "./entity";
 
 
-export class Character{
-    name : string;
+export class Character extends Entity{
     race : string;
     gender : string;
     disadvantages : string[];
-    id: number;
     motivation : string;
 
     courage = 0;
@@ -42,7 +40,15 @@ export class Character{
     homeContinent: Site;
 
     constructor(dice = new Dice()) {
-        this.id = GetId();
+        let name = "";
+        let gender = new GenderTable().role().text
+        if(gender === Gender.Female){
+            name = new GermanFemaleNameTable().role().text;
+        }else{
+            name = new GermanMaleNameTable().role().text;
+        }
+        super(name);
+        this.gender = gender;
         this.motivation = new MotivationTable().roleWithCascade().text;
         this.nobility = new NobilityTable().role().text;
         this.profession = new ProfessionTable().roleWithCascade().text;
@@ -51,14 +57,7 @@ export class Character{
         this.relationships = [];
         this.curses = [];
         this.homeContinent = mapSiteWithChar(dice);
-
         this.alignment = new AlignmentTable().roleWithCascade().text;
-        this.gender = new GenderTable().role().text
-        if(this.gender === Gender.Female){
-            this.name = new GermanFemaleNameTable().role().text;
-        }else{
-            this.name = new GermanMaleNameTable().role().text;
-        }
         this.race = new RaceTable().roleWithCascade().text
         this.roleForAttributes(dice);
     }

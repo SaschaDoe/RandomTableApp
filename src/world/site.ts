@@ -1,19 +1,17 @@
 import {generateContinentName} from "../tables/otherTables/nameGenerator";
-import {GetId} from "./idGetter";
 import {ContinentTable} from "../tables/locationTables/continentTable";
+import {Entity} from "./entity";
 
 
-export class Site {
+export class Site extends Entity{
     description : string;
-    name: string;
-    id: number;
     localSpheres: Site[];
     isSphere: boolean;
 
     constructor(isSphere = false) {
+        let name = generateContinentName();
+        super(name)
         this.description = new ContinentTable().roleWithCascade().text;
-        this.name = generateContinentName();
-        this.id = GetId();
         this.localSpheres = [];
         this.isSphere = isSphere;
     }

@@ -4,77 +4,61 @@
     import {continentStore, sphereStore} from "../world/stores/siteStore.js";
     import {WorldGenerator} from "../world/generators/worldGenerator";
     import SiteView from "./SiteView.svelte";
+    import {Character} from "../world/character";
+    import {Site} from "../world/site";
+    import Indexes from "../components/Indexes.svelte";
+    import {indexesStore, titleStore} from "../components/indexListStore";
 
+
+    let titles = [];
+    titles.push("Characters")
+    titles.push("Continents")
+    titles.push("Spheres")
 let sizeOfParty = 1;
 
 const addPartyHandler = ()=>{
     let worldGenerator = new WorldGenerator();
     worldGenerator.generateWorld(sizeOfParty);
+    let titles = [];
+    titles.push("Characters");
+    titles.push("Continents");
+    titles.push("Spheres");
+    titleStore.set(titles);
+    let chars = [] as Character[];
+    characters.subscribe((cs) => {
+        chars = cs;
+    })
+    let charIndexes = [] as string[];
+    for(let i = 0; i < chars.length; i++){
+        let char = chars[i];
+        charIndexes.push(char.getUniqueName());
+    }
+
+    let continents = [] as Site[];
+    continentStore.subscribe((cs) => {
+        continents = cs;
+    })
+    let continentIndexes = [] as string[];
+    for(let i = 0; i < continents.length; i++){
+        let continent = continents[i];
+        continentIndexes.push(continent.getUniqueName());
+    }
+
+    let spheres = [] as Site[];
+    sphereStore.subscribe((cs) => {
+        spheres = cs;
+    })
+    let spheresIndexes = [] as string[];
+    for(let i = 0; i < spheres.length; i++){
+        let continent = spheres[i];
+        spheresIndexes.push(continent.getUniqueName());
+    }
+    indexesStore.set([charIndexes, continentIndexes, spheresIndexes]);
 }
-    let handleShowIndex = () => {
-        showIndex = !showIndex;
-    };
-    let showIndex = false;
-    let handleShowChars = () =>{
-        showChars = !showChars;
-    };
-    let showChars = false;
-    let handleShowSites = () =>{
-        showSites = !showSites;
-    };
-    let showSites = false;
+
 </script>
 
-{#if showIndex === false}
-    <div class="index-dropdown" on:click={handleShowIndex}>-></div>
-{:else}
-    <div class="index-overlap">
-        <div class="index-dropdown-close" on:click={handleShowIndex} >&lt;-</div>
-        <div class="char-btn" on:click={handleShowChars}>{"Characters ("+$characters.length+")"}</div>
-        {#if showChars}
-            <ul>
-                {#each $characters as char}
-                    <li>
-                        <a class="overlap-list" href={"#"+char.getUniqueName()}>{char.getUniqueName()}</a>
-                    </li>
-                {/each}
-            </ul>
-        {/if}
-        <div class="char-btn" on:click={handleShowSites}>{"Sites ("+$continentStore.length+")"}</div>
-        {#if showSites}
-            <ul>
-                {#each $continentStore as site}
-                    <li>
-                        <a class="overlap-list" href={"#"+site.getUniqueName()}>{site.getUniqueName()}</a>
-                    </li>
-                {/each}
-            </ul>
-        {/if}
-    </div>
-{/if}
-
-<div id="#top" class="index">
-    <div class="char-btn" on:click={handleShowChars}>{"Characters ("+$characters.length+")"}</div>
-    {#if showChars}
-        <ul>
-            {#each $characters as char}
-                <li>
-                    <a href={"#"+char.getUniqueName()}>{char.getUniqueName()}</a>
-                </li>
-            {/each}
-        </ul>
-    {/if}
-    <div class="char-btn" on:click={handleShowSites}>{"Sites ("+$continentStore.length+")"}</div>
-    {#if showSites}
-        <ul>
-            {#each $continentStore as site}
-                <li>
-                    <a class="overlap-list" href={"#"+site.getUniqueName()}>{site.getUniqueName()}</a>
-                </li>
-            {/each}
-        </ul>
-    {/if}
-</div>
+<Indexes></Indexes>
 
 <button on:click={addPartyHandler}>Add party</button>
 <input type="number" bind:value={sizeOfParty}/>
@@ -117,71 +101,6 @@ const addPartyHandler = ()=>{
         color: white;
     }
 
-    .index{
-        position: fixed;
-        top: 5%;
-        left: -30px;
-        visibility: hidden;
-        max-height: 90%;
-        overflow-x: scroll;
-        overflow-y: hidden;
-    }
-
-    .char-btn{
-        position: relative;
-        left: 31px;
-        width: 140px;
-        color: white;
-        background-color: rgba(0,0,0, 0.9);
-    }
-
-    .char-btn:hover{
-        cursor: pointer;
-    }
-
-    .index-overlap{
-        position: fixed;
-        top: 5%;
-        left: -30px;
-        visibility: visible;
-        max-height: 90%;
-        overflow: scroll;
-        color: white;
-        background-color: rgba(0,0,0, 0.9);
-    }
-
-    .index-dropdown{
-        position: fixed;
-        top: 50%;
-        left: 0;
-        visibility: visible;
-        font-size: x-large;
-        color: white;
-        background-color: rgba(0,0,0, 0.9);
-    }
-
-    .overlap-list{
-        color: white;
-    }
-
-    .index-dropdown-close{
-        position: fixed;
-        top: 50%;
-        left: 110px;
-        visibility: visible;
-        font-size: x-large;
-        color: white;
-        background-color: rgba(0,0,0, 0.9);
-    }
-
-    .index-dropdown:hover{
-        cursor: pointer;
-    }
-
-    .index-dropdown-close:hover{
-        cursor: pointer;
-    }
-
     a{
         text-decoration: none;
         color: black;
@@ -191,22 +110,5 @@ const addPartyHandler = ()=>{
         color: blueviolet;
     }
 
-    @media screen and (min-width: 720px) {
-        .index{
-            visibility: visible;
-            overflow-y: hidden;
-        }
 
-        .index-overlap{
-            visibility: hidden;
-        }
-
-        .index-dropdown{
-            visibility: hidden;
-        }
-
-        .index-dropdown-close{
-            visibility: hidden;
-        }
-    }
 </style>

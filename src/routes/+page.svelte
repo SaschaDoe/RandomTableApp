@@ -6,6 +6,7 @@
 
 
 <main>
+
     <Header/>
     <Content></Content>
     <Footer/>
