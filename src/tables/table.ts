@@ -146,4 +146,8 @@ export class Table {
         }
         return true;
     }
+
+    toString(){
+        return this.title;
+    }
 }
