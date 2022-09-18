@@ -6,8 +6,9 @@
     import SiteView from "./SiteView.svelte";
     import {Character} from "../world/character";
     import {Site} from "../world/site";
-    import Indexes from "../components/Indexes.svelte";
+    import Indexes from "../components/SummaryIndex.svelte";
     import {indexesStore, titleStore} from "../components/indexListStore";
+    import SummaryIndex from "../components/SummaryIndex.svelte";
 
 
     let titles = [];
@@ -58,7 +59,7 @@ const addPartyHandler = ()=>{
 
 </script>
 
-<Indexes></Indexes>
+<SummaryIndex></SummaryIndex>
 
 <button on:click={addPartyHandler}>Add party</button>
 <input type="number" bind:value={sizeOfParty}/>

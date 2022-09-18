@@ -36,6 +36,8 @@
     import {MaterialsTable} from "./artefactTables/materialsTable";
     import {SphereTable} from "./locationTables/sphereTable";
     import {ElementTable} from "./otherTables/elementTable";
+    import Index from "../components/Index.svelte";
+    import Indexes from "../components/SummaryIndex.svelte";
 
     let charTables = [
         new RaceTable(),
@@ -96,34 +98,11 @@
         isModalVisible = false;
     };
     let maxNumberOfSyllabus = 7;
+    let indexTitles = ["Character", "Locations", "Artefacts", "Other"];
 </script>
 
-{#if showIndex === false}
-    <div class="index-dropdown" on:click={handleShowIndex}>-></div>
-{:else}
-<div class="index-overlap">
-    <div class="index-dropdown-close" on:click={handleShowIndex} >&lt;-</div>
-        <ul>
-            {#each allTables as table}
-                <li>
-                    <a class="index-overlap-element" href={"#"+table.title}>{table.title}</a>
-                </li>
-            {/each}
-        </ul>
-</div>
-{/if}
+<Indexes titles={indexTitles}></Indexes>
 
-
-
-<div id="#top" class="index">
-    <ul>
-        {#each allTables as table}
-            <li>
-                <a href={"#"+table.title}>{table.title}</a>
-            </li>
-        {/each}
-    </ul>
-</div>
 <Modal bind:isVisible={isModalVisible}
        title={"Name"}
        bind:text={generatedName}

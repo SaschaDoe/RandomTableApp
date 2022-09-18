@@ -14,7 +14,7 @@
 <div class="container">
 
 
-    <div on:click = {toggleVisible}>{title+"("+indexes.length+")"}</div>
+    <div on:click = {toggleVisible}><u>{title+"("+indexes.length+")"}</u></div>
     {#if isIndexesVisible}
         <ul>
             {#each indexes as entity}
@@ -38,7 +38,7 @@
 
     li{
         background: #333;
-        padding: 0 2px;
+        padding: 0 0 0 5px;
         color: #fff;
         position: relative;
     }
