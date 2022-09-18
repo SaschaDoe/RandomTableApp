@@ -38,6 +38,7 @@ export class WeaponTable extends Table{
         entries.push(new TableEntry("rifle"))
         entries.push(new TableEntry("shotgun"))
         entries.push(new TableEntry("rocket launcher"))
+        entries.push(new TableEntry("shield"))
         super(entries, TableTitles.Weapon);
         this.tableType = TableType.Artefact;
     }

@@ -37,6 +37,7 @@
     div{
         background: #333;
         color: white;
+        cursor: pointer;
     }
     .index{
         position: fixed;

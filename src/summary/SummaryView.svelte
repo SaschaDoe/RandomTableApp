@@ -6,24 +6,26 @@
     import SiteView from "./SiteView.svelte";
     import {Character} from "../world/character";
     import {Site} from "../world/site";
-    import Indexes from "../components/SummaryIndex.svelte";
     import {indexesStore, titleStore} from "../components/indexListStore";
     import SummaryIndex from "../components/SummaryIndex.svelte";
+    import {dungeonStore} from "../world/stores/dungeonStore.js";
+    import DungeonView from "./DungeonView.svelte";
+    import {Dungeon} from "../world/dungeon";
 
-
+    dungeonStore.update(dungeons => {
+        dungeons.push(new Dungeon())
+        return dungeons;
+    })
     let titles = [];
     titles.push("Characters")
     titles.push("Continents")
     titles.push("Spheres")
+    titles.push("Dungeons")
 let sizeOfParty = 1;
 
 const addPartyHandler = ()=>{
     let worldGenerator = new WorldGenerator();
     worldGenerator.generateWorld(sizeOfParty);
-    let titles = [];
-    titles.push("Characters");
-    titles.push("Continents");
-    titles.push("Spheres");
     titleStore.set(titles);
     let chars = [] as Character[];
     characters.subscribe((cs) => {
@@ -54,7 +56,17 @@ const addPartyHandler = ()=>{
         let continent = spheres[i];
         spheresIndexes.push(continent.getUniqueName());
     }
-    indexesStore.set([charIndexes, continentIndexes, spheresIndexes]);
+
+    let dungeons = [] as Dungeon[];
+    dungeonStore.subscribe((cs) => {
+        dungeons = cs;
+    })
+    let dungeonIndexes = [] as string[];
+    for(let i = 0; i < dungeons.length; i++){
+        let dungeon = dungeons[i];
+        dungeonIndexes.push(dungeon.getUniqueName());
+    }
+    indexesStore.set([charIndexes, continentIndexes, spheresIndexes, dungeonIndexes]);
 }
 
 </script>
@@ -78,6 +90,12 @@ const addPartyHandler = ()=>{
 {#each $sphereStore as sphere}
     <div id={sphere.getUniqueName()}>
         <SiteView site={sphere} />
+    </div>
+{/each}
+
+{#each $dungeonStore as dungeon}
+    <div id={dungeon.getUniqueName()}>
+        <DungeonView dungeon={dungeon} />
     </div>
 {/each}
 <div class="back-btn">

@@ -10,8 +10,8 @@ import {DisadvantageTable} from "./charTables/disadvantageTable";
 import {CurseTable} from "./charTables/curseTable";
 import {ProfessionTable} from "./charTables/professionTable";
 import {MotivationTable} from "./charTables/motivationTable";
-import {GermanMaleNameTable} from "./charTables/germanMaleNameTable";
-import {GermanFemaleNameTable} from "./charTables/germanFemaleNameTable";
+import {GermanMaleNameTable} from "./nameTables/germanMaleNameTable";
+import {GermanFemaleNameTable} from "./nameTables/germanFemaleNameTable";
 import {RelationshipTypeTable} from "./charTables/relationshipTypeTable";
 import {ContinentTable} from "./locationTables/continentTable";
 import {SphereTable} from "./locationTables/sphereTable";
@@ -30,6 +30,12 @@ import {RarityTable} from "./otherTables/rarityTable";
 import {QualityTable} from "./otherTables/qualityTable";
 import {BodyPartsTable} from "./otherTables/bodyPartsTable";
 import {ElementTable} from "./otherTables/elementTable";
+import {AllocationTable} from "./locationTables/allocationTable";
+import {BuildingTable} from "./locationTables/buildingTable";
+import {BuildingAdjectiveTable} from "./locationTables/buildingAdjectiveTable";
+import {DungeonEntriesTable} from "./locationTables/dungeonEntriesTable";
+import {DungeonNameTable} from "./nameTables/dungeonNameTable";
+import {EpicSubstantiveTable} from "./nameTables/epicSubstantiveTable";
 
 export let charTables = [
     new RaceTable(),
@@ -44,13 +50,15 @@ export let charTables = [
     new CurseTable(),
     new ProfessionTable(),
     new MotivationTable(),
-    new GermanMaleNameTable(),
-    new GermanFemaleNameTable(),
     new RelationshipTypeTable(),
 ];
 export let locationTables = [
     new ContinentTable(),
     new SphereTable(),
+    new AllocationTable(),
+    new DungeonEntriesTable(),
+    new BuildingTable(),
+    new BuildingAdjectiveTable(),
 ]
 export let artefactsTables = [
     new WeaponTable(),
@@ -58,6 +66,12 @@ export let artefactsTables = [
     new JewelryTable(),
     new GemstoneTable(),
     new MaterialsTable(),
+]
+export let nameTables = [
+    new DungeonNameTable(),
+    new EpicSubstantiveTable(),
+    new GermanFemaleNameTable(),
+    new GermanMaleNameTable(),
 ]
 export let otherTables = [
     new AttributeTable(),
@@ -72,4 +86,8 @@ export let otherTables = [
     new ElementTable(),
 ]
 
-export let allTables = charTables.concat(locationTables).concat(artefactsTables).concat(otherTables);
+export let allTables = charTables
+    .concat(locationTables)
+    .concat(artefactsTables)
+    .concat(nameTables)
+    .concat(otherTables);

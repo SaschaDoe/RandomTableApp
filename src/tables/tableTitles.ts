@@ -34,4 +34,10 @@ export enum TableTitles{
     Materials = "Materials",
     Sphere = "Sphere",
     Element = "Element",
+    Allocation = "Allocation",
+    BuildingAdjective = "Building Adjectives",
+    Building = "Building",
+    DungeonEntry = "Dungeon Entry",
+    DungeonName = "Dungeon Name",
+    EpicSubstantive = "Epic Substantive",
 }

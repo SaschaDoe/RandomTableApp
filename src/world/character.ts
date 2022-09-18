@@ -1,8 +1,8 @@
 import {Dice} from "../utils/dice";
 import {DiceRole} from "../tables/diceRole";
-import {GermanMaleNameTable} from "../tables/charTables/germanMaleNameTable";
+import {GermanMaleNameTable} from "../tables/nameTables/germanMaleNameTable";
 import {GenderTable} from "../tables/charTables/genderTable";
-import {GermanFemaleNameTable} from "../tables/charTables/germanFemaleNameTable";
+import {GermanFemaleNameTable} from "../tables/nameTables/germanFemaleNameTable";
 import {Gender} from "../tables/charTables/gender";
 import type {Relationship} from "./relationship";
 import {MotivationTable} from "../tables/charTables/motivationTable";
@@ -60,11 +60,6 @@ export class Character extends Entity{
         this.alignment = new AlignmentTable().roleWithCascade().text;
         this.race = new RaceTable().roleWithCascade().text
         this.roleForAttributes(dice);
-    }
-
-
-    getUniqueName(){
-        return this.id+" "+this.name;
     }
 
     private roleForAttributes(dice: Dice) {

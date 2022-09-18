@@ -1,6 +1,6 @@
 import {randomIntFromInterval} from "../../utils/randomUtils";
-import {ConsonantTable} from "./consonantTable";
-import {VocalTable} from "./vocalTable";
+import {ConsonantTable} from "../otherTables/consonantTable";
+import {VocalTable} from "../otherTables/vocalTable";
 
 function generateNameOfLength(numberOfSyllabus: number) {
     let name = "";

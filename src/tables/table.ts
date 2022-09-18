@@ -81,7 +81,7 @@ export class Table {
             if(table.toString() === "self"){
                 fullText += this.role(dice).text;
             }else if (table instanceof Table) {
-                fullText += table.role(dice).text;
+                fullText += table.roleWithCascade(dice).text;
             }else{
                 fullText += table.toString();
             }

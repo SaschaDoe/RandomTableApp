@@ -9,4 +9,7 @@ export class Entity{
         this.id = GetId();
     }
 
+    getUniqueName(){
+        return this.id+" "+this.name;
+    }
 }

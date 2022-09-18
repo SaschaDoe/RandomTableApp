@@ -1,6 +1,6 @@
 <script lang="ts">
     import RandomTable from "./RandomTable.svelte";
-    import {generateName} from "./otherTables/nameGenerator";
+    import {generateName} from "./nameTables/nameGenerator";
     import Modal from "../components/Modal.svelte";
     import {characters, currentChar} from "../world/stores/charStore";
     import {Character} from "../world/character";
