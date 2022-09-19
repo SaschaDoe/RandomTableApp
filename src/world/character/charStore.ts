@@ -1,4 +1,4 @@
-import {Character} from "../character";
+import {Character} from "./character";
 import {writable} from "svelte/store";
 import {isInProbability} from "../../utils/randomUtils";
 import {DisadvantageTable} from "../../tables/charTables/disadvantageTable";
@@ -6,13 +6,20 @@ import type {Table} from "../../tables/table";
 import {CurseTable} from "../../tables/charTables/curseTable";
 import {AdvantageTable} from "../../tables/charTables/advantageTable";
 import type {RoleResult} from "../../tables/roleResult";
+import {TalentTable} from "../../tables/talentTables/talentTable";
 
 
 export let characters = writable([] as Character[]);
+export let higherPowerBeingsStore = writable([] as Character[]);
 export let currentChar = writable(Character);
 
 export function applyNotMandatoryTables(char : Character) {
-    let notMandatoryTables = [new AdvantageTable(), new DisadvantageTable(), new CurseTable()];
+    let notMandatoryTables = [
+        new AdvantageTable(),
+        new DisadvantageTable(),
+        new CurseTable(),
+        new TalentTable()
+    ];
 
     for (let t = 0; t < notMandatoryTables.length; t++) {
         let table = notMandatoryTables[t];

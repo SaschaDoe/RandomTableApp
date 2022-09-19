@@ -1,6 +1,6 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
-import type {Character} from "../../world/character";
+import type {Character} from "../../world/character/character";
 import {DiceRole} from "../diceRole";
 import {TableTitles} from "../tableTitles";
 import {DisadvantageTable} from "./disadvantageTable";

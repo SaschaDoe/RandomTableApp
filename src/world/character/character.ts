@@ -1,24 +1,24 @@
-import {Dice} from "../utils/dice";
-import {DiceRole} from "../tables/diceRole";
-import {GermanMaleNameTable} from "../tables/nameTables/germanMaleNameTable";
-import {GenderTable} from "../tables/charTables/genderTable";
-import {GermanFemaleNameTable} from "../tables/nameTables/germanFemaleNameTable";
-import {Gender} from "../tables/charTables/gender";
+import {Dice} from "../../utils/dice";
+import {DiceRole} from "../../tables/diceRole";
+import {GermanMaleNameTable} from "../../tables/nameTables/germanMaleNameTable";
+import {GenderTable} from "../../tables/charTables/genderTable";
+import {GermanFemaleNameTable} from "../../tables/nameTables/germanFemaleNameTable";
+import {Gender} from "../../tables/charTables/gender";
 import type {Relationship} from "./relationship";
-import {MotivationTable} from "../tables/charTables/motivationTable";
-import {RaceTable} from "../tables/charTables/raceTable";
-import {NobilityTable} from "../tables/charTables/nobilityTable";
-import {ProfessionTable} from "../tables/charTables/professionTable";
-import {AlignmentTable} from "../tables/charTables/alignmentTable";
-import {mapSiteWithChar} from "./continentFactory";
-import type {Site} from "./site";
-import {Entity} from "./entity";
+import {MotivationTable} from "../../tables/charTables/motivationTable";
+import {RaceTable} from "../../tables/charTables/raceTable";
+import {NobilityTable} from "../../tables/charTables/nobilityTable";
+import {ProfessionTable} from "../../tables/charTables/professionTable";
+import {AlignmentTable} from "../../tables/charTables/alignmentTable";
+import {mapSiteWithChar} from "../site/continentFactory";
+import type {Site} from "../site/site";
+import {Entity} from "../entity";
 
 
 export class Character extends Entity{
+    isHigherPower: boolean;
     race : string;
     gender : string;
-    disadvantages : string[];
     motivation : string;
 
     courage = 0;
@@ -35,11 +35,13 @@ export class Character extends Entity{
     nobility: string;
     profession: string;
     advantages: string[];
+    disadvantages : string[];
+    talents: string[];
     alignment: string;
 
     homeContinent: Site;
 
-    constructor(dice = new Dice()) {
+    constructor(dice = new Dice(), isHigherPower = false) {
         let name = "";
         let gender = new GenderTable().role().text
         if(gender === Gender.Female){
@@ -48,6 +50,7 @@ export class Character extends Entity{
             name = new GermanMaleNameTable().role().text;
         }
         super(name);
+        this.isHigherPower = isHigherPower;
         this.gender = gender;
         this.motivation = new MotivationTable().roleWithCascade().text;
         this.nobility = new NobilityTable().role().text;
@@ -59,6 +62,7 @@ export class Character extends Entity{
         this.homeContinent = mapSiteWithChar(dice);
         this.alignment = new AlignmentTable().roleWithCascade().text;
         this.race = new RaceTable().roleWithCascade().text
+        this.talents = [];
         this.roleForAttributes(dice);
     }
 

@@ -2,7 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {Gender} from "./gender";
-import type {Character} from "../../world/character";
+import type {Character} from "../../world/character/character";
 import type {RoleResult} from "../roleResult";
 
 export class GenderTable extends Table {

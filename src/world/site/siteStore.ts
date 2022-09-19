@@ -1,5 +1,5 @@
 import {writable} from "svelte/store";
-import {Site} from "../site";
+import {Site} from "./site";
 import type {Table} from "../../tables/table";
 import type {RoleResult} from "../../tables/roleResult";
 

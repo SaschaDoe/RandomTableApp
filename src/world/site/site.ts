@@ -1,6 +1,6 @@
-import {generateContinentName} from "../tables/nameTables/nameGenerator";
-import {ContinentTable} from "../tables/locationTables/continentTable";
-import {Entity} from "./entity";
+import {generateContinentName} from "../../tables/nameTables/nameGenerator";
+import {ContinentTable} from "../../tables/locationTables/continentTable";
+import {Entity} from "../entity";
 import type {Dungeon} from "./dungeon";
 
 

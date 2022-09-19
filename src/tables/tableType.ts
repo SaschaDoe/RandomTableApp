@@ -3,4 +3,5 @@ export enum TableType{
     Location,
     Other,
     Artefact,
+    Talent,
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
-    import {Site} from "../world/site";
-    import {Dungeon} from "../world/dungeon";
-    import {dungeonStore} from "../world/stores/dungeonStore";
+    import {Site} from "../world/site/site";
+    import {Dungeon} from "../world/site/dungeon";
+    import {dungeonStore} from "../world/site/dungeonStore";
 
     export let site : Site;
     let dungeons = [];

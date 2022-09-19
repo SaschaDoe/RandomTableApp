@@ -83,10 +83,11 @@
 }
 
     .modal-text{
-    position: relative;
-    left: 10%;
-    top: 30%;
-}
+        position: relative;
+        max-width: max-content;
+        left: 10%;
+        top: 30%;
+    }
 
     .title{
         font-size: larger;

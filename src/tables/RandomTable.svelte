@@ -1,7 +1,7 @@
 <script lang="ts">
     import {Table} from "./table.ts";
-    import {Character} from "../world/character.js";
-    import {applyEntryFunctions, applyTableFunctions, characters, currentChar} from "../world/stores/charStore";
+    import {Character} from "../world/character/character.js";
+    import {applyEntryFunctions, applyTableFunctions, characters, currentChar} from "../world/character/charStore";
     import Modal from "../components/Modal.svelte";
     import {TableType} from "./tableType";
     import {
@@ -9,8 +9,8 @@
         applyLocationEntryFunctions,
         currentLocation,
         continentStore
-    } from "../world/stores/siteStore";
-    import {Site} from "../world/site";
+    } from "../world/site/siteStore";
+    import {Site} from "../world/site/site";
     import Entry from "./Entry.svelte";
     import {RoleResult} from "./roleResult";
 

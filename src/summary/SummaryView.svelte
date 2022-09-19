@@ -1,23 +1,19 @@
 <script lang="ts">
-    import {characters} from "../world/stores/charStore.js";
+    import {characters, higherPowerBeingsStore} from "../world/character/charStore.js";
     import CharacterView from "./CharacterView.svelte";
-    import {continentStore, sphereStore} from "../world/stores/siteStore.js";
+    import {continentStore, sphereStore} from "../world/site/siteStore.js";
     import {WorldGenerator} from "../world/generators/worldGenerator";
     import SiteView from "./SiteView.svelte";
-    import {Character} from "../world/character";
-    import {Site} from "../world/site";
+    import {Character} from "../world/character/character";
+    import {Site} from "../world/site/site";
     import {indexesStore, titleStore} from "../components/indexListStore";
     import SummaryIndex from "../components/SummaryIndex.svelte";
-    import {dungeonStore} from "../world/stores/dungeonStore.js";
+    import {dungeonStore} from "../world/site/dungeonStore.js";
     import DungeonView from "./DungeonView.svelte";
-    import {Dungeon} from "../world/dungeon";
-
-    dungeonStore.update(dungeons => {
-        dungeons.push(new Dungeon())
-        return dungeons;
-    })
+    import {Dungeon} from "../world/site/dungeon";
     let titles = [];
     titles.push("Characters")
+    titles.push("Higher Power Beings")
     titles.push("Continents")
     titles.push("Spheres")
     titles.push("Dungeons")
@@ -35,6 +31,16 @@ const addPartyHandler = ()=>{
     for(let i = 0; i < chars.length; i++){
         let char = chars[i];
         charIndexes.push(char.getUniqueName());
+    }
+
+    let higherPowerBeings = [] as Character[];
+    higherPowerBeingsStore.subscribe((cs) => {
+        higherPowerBeings = cs;
+    })
+    let godsIndexes = [] as string[];
+    for(let i = 0; i < higherPowerBeings.length; i++){
+        let char = higherPowerBeings[i];
+        godsIndexes.push(char.getUniqueName());
     }
 
     let continents = [] as Site[];
@@ -66,7 +72,7 @@ const addPartyHandler = ()=>{
         let dungeon = dungeons[i];
         dungeonIndexes.push(dungeon.getUniqueName());
     }
-    indexesStore.set([charIndexes, continentIndexes, spheresIndexes, dungeonIndexes]);
+    indexesStore.set([charIndexes,godsIndexes, continentIndexes, spheresIndexes, dungeonIndexes]);
 }
 
 </script>
@@ -78,6 +84,12 @@ const addPartyHandler = ()=>{
 {#each $characters as character}
     <div id={character.getUniqueName()}>
         <CharacterView character={character} />
+    </div>
+
+{/each}
+{#each $higherPowerBeingsStore as god}
+    <div id={god.getUniqueName()}>
+        <CharacterView character={god} />
     </div>
 
 {/each}

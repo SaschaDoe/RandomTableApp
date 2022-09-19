@@ -1,12 +1,16 @@
 <script lang="ts">
-    import {Character} from "../world/character";
+    import {Character} from "../world/character/character";
 
     export let character = new Character();
 
 </script>
-
 <h1>{character.getUniqueName()}</h1>
-<p>{character.alignment +" and "+ character.nobility+" "+character.race +" "+character.gender+" "+ character.profession}</p>
+{#if character.isHigherPower}
+    <p>{character.alignment+ " " +character.race +" "+character.gender+" higher power being of "+ character.profession+"s"}</p>
+    {:else}
+    <p>{character.alignment +" and "+ character.nobility+" "+character.race +" "+character.gender+" "+ character.profession}</p>
+    {/if}
+
 <div>
     <li class="no-list-style bold inline">Homeland:</li>
     <li class="no-list-style bold inline"><a href={"#"+character.homeContinent.getUniqueName()}>{character.homeContinent.getUniqueName()}</a></li>
@@ -50,6 +54,15 @@
     {/each}
     <li class="no-list-style"></li>
 </ul>
+
+{#if character.talents.length > 0}
+    <div class="bold">Talents:</div>
+    <ul>
+        {#each character.talents as talent}
+            <li>{talent}</li>
+        {/each}
+    </ul>
+{/if}
 
 <div class="bold">Relationships:</div>
 <ul>

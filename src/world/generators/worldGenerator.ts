@@ -1,6 +1,6 @@
 import {Dice} from "../../utils/dice";
-import {applyNotMandatoryTables, characters} from "../stores/charStore";
-import {Character} from "../character";
+import {applyNotMandatoryTables, characters} from "../character/charStore";
+import {Character} from "../character/character";
 import {RelationshipGenerator} from "./relationshipGenerator";
 
 export class WorldGenerator{

@@ -2,8 +2,8 @@
     import RandomTable from "./RandomTable.svelte";
     import {generateName} from "./nameTables/nameGenerator";
     import Modal from "../components/Modal.svelte";
-    import {characters, currentChar} from "../world/stores/charStore";
-    import {Character} from "../world/character";
+    import {characters, currentChar} from "../world/character/charStore";
+    import {Character} from "../world/character/character";
 
     import TableIndex from "../components/TableIndex.svelte";
     import {allTables} from "./tableList.js";

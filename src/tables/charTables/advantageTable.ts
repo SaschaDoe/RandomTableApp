@@ -3,7 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {AttributeTable} from "./attributeTable";
 import {SenseTable} from "./senseTable";
-import type {Character} from "../../world/character";
+import type {Character} from "../../world/character/character";
 import type {RoleResult} from "../roleResult";
 import {ElementTable} from "../otherTables/elementTable";
 

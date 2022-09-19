@@ -40,4 +40,8 @@ export enum TableTitles{
     DungeonEntry = "Dungeon Entry",
     DungeonName = "Dungeon Name",
     EpicSubstantive = "Epic Substantive",
+    TalentCategory = "Talent Category",
+    ElementalTalent = "Elemental Talent",
+    Talent = "Talent",
+    TalentFromHigherPower = "Talent From Higher Power",
 }

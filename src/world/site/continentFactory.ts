@@ -1,8 +1,8 @@
-import type {Dice} from "../utils/dice";
+import type {Dice} from "../../utils/dice";
 import {Site} from "./site";
-import {continentStore, sphereStore} from "./stores/siteStore";
-import {randomIntFromInterval} from "../utils/randomUtils";
-import {SphereTable} from "../tables/locationTables/sphereTable";
+import {continentStore, sphereStore} from "./siteStore";
+import {randomIntFromInterval} from "../../utils/randomUtils";
+import {SphereTable} from "../../tables/locationTables/sphereTable";
 
 export function mapSiteWithChar(dice: Dice) {
     let continent = createContinent();

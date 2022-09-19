@@ -1,8 +1,8 @@
-import type {Character} from "../character";
+import type {Character} from "../character/character";
 import {RelationshipTypeTable} from "../../tables/charTables/relationshipTypeTable";
-import {Relationship} from "../relationship";
+import {Relationship} from "../character/relationship";
 import {Dice} from "../../utils/dice";
-import {RelationshipType} from "../relationshipType";
+import {RelationshipType} from "../character/relationshipType";
 
 export class RelationshipGenerator{
     dice : Dice;

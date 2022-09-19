@@ -3,7 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {AnimalTable} from "./animalTable";
 import {FantasyCreatureTable} from "./fantasyCreatureTable";
-import type {Character} from "../../world/character";
+import type {Character} from "../../world/character/character";
 import type {RoleResult} from "../roleResult";
 import {TableType} from "../tableType";
 import {DiceRole} from "../diceRole";

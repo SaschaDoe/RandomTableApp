@@ -36,6 +36,10 @@ import {BuildingAdjectiveTable} from "./locationTables/buildingAdjectiveTable";
 import {DungeonEntriesTable} from "./locationTables/dungeonEntriesTable";
 import {DungeonNameTable} from "./nameTables/dungeonNameTable";
 import {EpicSubstantiveTable} from "./nameTables/epicSubstantiveTable";
+import {TalentTable} from "./talentTables/talentTable";
+import {TalentCategoryTable} from "./talentTables/talentCategoryTable";
+import {ElementalTalentTable} from "./talentTables/elementalTalentTable";
+import {FromAnotherHigherPowerTalent} from "./talentTables/fromAnotherHigherPowerTalent";
 
 export let charTables = [
     new RaceTable(),
@@ -52,6 +56,12 @@ export let charTables = [
     new MotivationTable(),
     new RelationshipTypeTable(),
 ];
+export let talentTables = [
+    new TalentTable(),
+    new TalentCategoryTable(),
+    new ElementalTalentTable(),
+    new FromAnotherHigherPowerTalent()
+]
 export let locationTables = [
     new ContinentTable(),
     new SphereTable(),
@@ -87,6 +97,7 @@ export let otherTables = [
 ]
 
 export let allTables = charTables
+    .concat(talentTables)
     .concat(locationTables)
     .concat(artefactsTables)
     .concat(nameTables)

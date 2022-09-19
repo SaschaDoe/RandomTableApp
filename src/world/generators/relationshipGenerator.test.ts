@@ -1,8 +1,8 @@
 import {describe, expect, test} from "vitest";
 import {FakeDice} from "../../utils/fakeDice";
 import {RelationshipGenerator} from "./relationshipGenerator";
-import {Character} from "../character";
-import {RelationshipType} from "../relationshipType";
+import {Character} from "../character/character";
+import {RelationshipType} from "../character/relationshipType";
 
 describe("RelationshipGenerator", () => {
 
