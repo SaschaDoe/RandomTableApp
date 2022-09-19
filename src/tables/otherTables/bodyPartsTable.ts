@@ -6,6 +6,7 @@ import {TableType} from "../tableType";
 export class BodyPartsTable extends Table{
     constructor(){
         let entries = [] as TableEntry[];
+        entries.push(new TableEntry("body"))
         entries.push(new TableEntry("finger"))
         entries.push(new TableEntry("arm"))
         entries.push(new TableEntry("neck"))

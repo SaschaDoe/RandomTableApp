@@ -20,7 +20,7 @@
 {#if showIndex === false}
     <div class="smartphone-visible open-overlap-btn" on:click={toggleShowIndex}>-></div>
 {:else}
-    <div class="index smartphone-visible">
+    <div class="index smartphone-visible overlap">
         {#each headings as heading, index}
             <Index title = {heading} indexes = {indexes[index]}></Index>
         {/each}
@@ -45,8 +45,11 @@
         left: 0;
         max-width: 180px;
         max-height: 480px;
-        z-index: 100;
         visibility: hidden;
+    }
+
+    .overlap{
+        z-index: 100;
     }
 
     .open-overlap-btn{

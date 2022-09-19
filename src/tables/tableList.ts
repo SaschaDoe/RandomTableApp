@@ -40,6 +40,8 @@ import {TalentTable} from "./talentTables/talentTable";
 import {TalentCategoryTable} from "./talentTables/talentCategoryTable";
 import {ElementalTalentTable} from "./talentTables/elementalTalentTable";
 import {FromAnotherHigherPowerTalent} from "./talentTables/fromAnotherHigherPowerTalent";
+import {TargetTalentTable} from "./talentTables/targetTalentTable";
+import {ChangeTalent} from "./talentTables/changeTalent";
 
 export let charTables = [
     new RaceTable(),
@@ -59,8 +61,10 @@ export let charTables = [
 export let talentTables = [
     new TalentTable(),
     new TalentCategoryTable(),
+    new TargetTalentTable(),
     new ElementalTalentTable(),
-    new FromAnotherHigherPowerTalent()
+    new FromAnotherHigherPowerTalent(),
+    new ChangeTalent(),
 ]
 export let locationTables = [
     new ContinentTable(),

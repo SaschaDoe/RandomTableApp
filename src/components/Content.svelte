@@ -15,7 +15,7 @@
 
 <style>
     .container{
-        width: 90%;
+        width: 75%;
         margin: 0 auto; /* Center the DIV horizontally */
     }
 </style>

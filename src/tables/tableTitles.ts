@@ -44,4 +44,6 @@ export enum TableTitles{
     ElementalTalent = "Elemental Talent",
     Talent = "Talent",
     TalentFromHigherPower = "Talent From Higher Power",
+    ChangeTalent = "Change Talent",
+    TargetTalent = "Which Target of Talent",
 }

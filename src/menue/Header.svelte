@@ -1,6 +1,9 @@
 <script lang="ts">
     import {currentPage} from './navigationStore'
     import {Pages} from "./navigationStore.js";
+    import {updateIndex} from "../summary/updateSummaryIndex.js";
+
+
 </script>
 
 <header class="fixed-header">
@@ -8,7 +11,7 @@
         <div class="container">
             <nav>
                 <button class="random-table-btn" on:click={() => $currentPage = Pages.RandomTablePage}>Random Tables</button>
-                <button class="summary-btn" on:click={() => $currentPage = Pages.SummaryPage}>Summary</button>
+                <button class="summary-btn" on:click={() => {$currentPage = Pages.SummaryPage; updateIndex()}}>Summary</button>
             </nav>
         </div>
     </h1>
