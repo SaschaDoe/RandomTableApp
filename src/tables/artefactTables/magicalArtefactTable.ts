@@ -22,5 +22,5 @@ export function addArtefactToStore(){
         artefacts.push(artefact);
         return artefacts;
     })
-    return artefact.description;
+    return artefact.getUniqueName() + artefact.description;
 }

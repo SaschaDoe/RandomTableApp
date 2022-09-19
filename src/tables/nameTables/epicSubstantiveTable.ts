@@ -11,8 +11,16 @@ export class EpicSubstantiveTable extends Table {
         entries.push(new TableEntry("death"));
         entries.push(new TableEntry("temper"));
         entries.push(new TableEntry("hope"));
-        entries.push(new TableEntry("").withCascadingRole(new ElementTable()));
-        entries.push(new TableEntry("").withCascadingRole(new WeaponTable()));
+        entries.push(new TableEntry("shadow"));
+        entries.push(new TableEntry("apocalypse"));
+        entries.push(new TableEntry("eternal"));
+        entries.push(new TableEntry("flame"));
+        entries.push(new TableEntry("eagle"));
+        entries.push(new TableEntry("silence"));
+        entries.push(new TableEntry("moon"));
+        entries.push(new TableEntry("sun"));
+        entries.push(new TableEntry("universe"));
+        entries.push(new TableEntry("afterlife"));
         super(entries, TableTitles.EpicSubstantive);
     }
 }

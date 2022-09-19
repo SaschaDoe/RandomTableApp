@@ -48,6 +48,12 @@ export enum TableTitles{
     TargetTalent = "Which Target of Talent",
     Artefact = "Artefact",
     MagicalTalent = "Magical Talent",
-    ProfaneArtefact = "Profane Artefact",
     MagicalArtefact = "Magical Artefact",
+    SummonTalent = "Summon Talent",
+    MetaMagicTalent = "Meta Magic Talent",
+    ProphecyTalent = "Prophecy Talent",
+    Limitation = "Limitation",
+    Emotion = "Emotion",
+    PsyTalent = "Psy Talent",
+    HealingTalent = "Healing Talent",
 }

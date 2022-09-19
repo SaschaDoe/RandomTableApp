@@ -7,19 +7,43 @@ import {TableType} from "../tableType";
 import {addTalent} from "./talentTable";
 import {ChangeTalentTable} from "./changeTalentTable";
 import {FromAnotherHigherPowerTalent} from "./fromAnotherHigherPowerTalent";
+import {SummonTalentTable} from "./summonTalentTable";
+import {MetaMagicTalentTable} from "./metaMagicTalentTable";
+import {ProphecyTalentTable} from "./prophecyTalentTable";
+import {LimitationTable} from "./limitationTable";
+import {PsyTalentTable} from "./psyTalentTable";
+import {HealingTalentTable} from "./healingTalentTable";
 
 export class MagicalTalentTable extends Table{
     constructor(){
         let entries = [] as TableEntry[];
         entries.push(new TableEntry("")
             .withCascadingRole(new TalentCategoryTable())
-            .withCascadingRole(new ChangeTalentTable()))
+            .withCascadingRole(new ChangeTalentTable())
+            .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
         entries.push(new TableEntry("")
             .withCascadingRole(new TalentCategoryTable())
-            .withCascadingRole(new ElementalTalentTable()))
+            .withCascadingRole(new ElementalTalentTable())
+            .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
+        entries.push(new TableEntry("")
+            .withCascadingRole(new FromAnotherHigherPowerTalent())
+            .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
         entries.push(new TableEntry("")
             .withCascadingRole(new TalentCategoryTable())
-            .withCascadingRole(new FromAnotherHigherPowerTalent()))
+            .withCascadingRole(new SummonTalentTable())
+            .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
+        entries.push(new TableEntry("")
+            .withCascadingRole(new TalentCategoryTable())
+            .withCascadingRole(new ProphecyTalentTable())
+            .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
+        entries.push(new TableEntry("")
+            .withCascadingRole(new TalentCategoryTable())
+            .withCascadingRole(new PsyTalentTable())
+            .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
+        entries.push(new TableEntry("")
+            .withCascadingRole(new TalentCategoryTable())
+            .withCascadingRole(new HealingTalentTable())
+            .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
         super(entries, TableTitles.MagicalTalent);
         this.tableType = TableType.Talent;
         this.probability = 30;
