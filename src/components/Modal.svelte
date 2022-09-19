@@ -77,14 +77,14 @@
 }
 
     .modal{
-    width: 320px;
+    width: 400px;
     height: 200px;
     background: grey;
 }
 
     .modal-text{
         position: relative;
-        max-width: max-content;
+        max-width: 340px;
         left: 10%;
         top: 30%;
     }
@@ -96,7 +96,7 @@
 
     .close-btn{
     position: absolute;
-    left: 300px;
+    left: 380px;
     top: 0;
     background-color: transparent;
 }

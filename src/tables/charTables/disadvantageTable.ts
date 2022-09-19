@@ -8,6 +8,7 @@ import {AttributeTable} from "./attributeTable";
 import {SenseTable} from "./senseTable";
 import type {RoleResult} from "../roleResult";
 import {ElementTable} from "../otherTables/elementTable";
+import {TableType} from "../tableType";
 
 export class DisadvantageTable extends Table{
     constructor(){
@@ -43,6 +44,7 @@ export class DisadvantageTable extends Table{
         this.functions.push(addDisadvantage)
         this.probability = 50;
         this.moreThanOnce = true;
+        this.tableType = TableType.Character;
     }
 }
 export function addDisadvantage(char: Character, roleResult: RoleResult){

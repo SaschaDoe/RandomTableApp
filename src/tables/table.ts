@@ -2,7 +2,7 @@
 import {DiceRole, EquallyDistributed} from "./diceRole";
 import {TableTitles} from "./tableTitles";
 import {TableEntry} from "./tableEntry";
-import {randomIntFromInterval} from "../utils/randomUtils";
+import {probabilityCheck, randomIntFromInterval} from "../utils/randomUtils";
 import {Dice} from "../utils/dice";
 import {isBetween} from "../utils/listUtils";
 import {TableType} from "./tableType";
@@ -58,7 +58,7 @@ export class Table {
             }
         }
 
-        return new RoleResult(entry.text,entry.toString(),entry.cascadingRoles);
+        return new RoleResult(entry.text,entry.toString(),entry.cascadingRoles, entry.functions);
     }
 
 
@@ -77,15 +77,23 @@ export class Table {
     private cascade(roleResult: RoleResult, dice = new Dice()) {
         let fullText = roleResult.text+" ";
         for (let i = 0; i < roleResult.cascadingRoles.length; i++) {
-            let table = roleResult.cascadingRoles[i];
-            if(table.toString() === "self"){
-                fullText += this.role(dice).text;
-            }else if (table instanceof Table) {
-                fullText += table.roleWithCascade(dice).text;
-            }else{
-                fullText += table.toString();
+            let entry = roleResult.cascadingRoles[i];
+            let table = entry[0]
+            let probability = entry[1];
+            let additionalText = entry[2];
+            let isInProbability = probabilityCheck(probability);
+            if(isInProbability){
+                if(table.toString() === "self"){
+                    fullText += additionalText + this.role(dice).text;
+                }else if (table instanceof Table) {
+                    fullText += additionalText + table.roleWithCascade(dice).text;
+                }else if(typeof table === 'string'){
+                    fullText += table.toString();
+                } else{
+                    let functionReturnsString = table as (() => string);
+                   fullText += functionReturnsString();
+                }
             }
-
             fullText += " ";
 
         }

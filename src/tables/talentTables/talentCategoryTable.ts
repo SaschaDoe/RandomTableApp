@@ -9,7 +9,7 @@ export class TalentCategoryTable extends Table{
         entries.push(new TableEntry("divine"))
         entries.push(new TableEntry("unholy"))
         entries.push(new TableEntry("magical"))
-        entries.push(new TableEntry("")) //normal training
+        entries.push(new TableEntry("profane"))
         super(entries, TableTitles.TalentCategory);
         this.tableType = TableType.Talent;
     }

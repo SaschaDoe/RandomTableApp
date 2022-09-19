@@ -5,6 +5,8 @@ import type {Site} from "../world/site/site";
 import {continentStore, sphereStore} from "../world/site/siteStore";
 import type {Dungeon} from "../world/site/dungeon";
 import {dungeonStore} from "../world/site/dungeonStore";
+import type {Artefact} from "../world/artefacts/artefact";
+import {artefactStore} from "../world/artefacts/artefactStore";
 
 export const updateIndex = () =>{
     let titles = [];
@@ -13,6 +15,8 @@ export const updateIndex = () =>{
     titles.push("Continents")
     titles.push("Spheres")
     titles.push("Dungeons")
+    titles.push("Artefacts")
+
     titleStore.set(titles);
     let chars = [] as Character[];
     characters.subscribe((cs) => {
@@ -63,5 +67,20 @@ export const updateIndex = () =>{
         let dungeon = dungeons[i];
         dungeonIndexes.push(dungeon.getUniqueName());
     }
-    indexesStore.set([charIndexes,godsIndexes, continentIndexes, spheresIndexes, dungeonIndexes]);
+
+    let artefacts = [] as Artefact[];
+    artefactStore.subscribe((cs) => {
+        artefacts = cs;
+    })
+    let artefactIndexes = [] as string[];
+    for(let i = 0; i < artefacts.length; i++){
+        let artefact = artefacts[i];
+        artefactIndexes.push(artefact.getUniqueName());
+    }
+    indexesStore.set([charIndexes,
+        godsIndexes,
+        continentIndexes,
+        spheresIndexes,
+        dungeonIndexes,
+        artefactIndexes]);
 }

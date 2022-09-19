@@ -41,7 +41,10 @@ import {TalentCategoryTable} from "./talentTables/talentCategoryTable";
 import {ElementalTalentTable} from "./talentTables/elementalTalentTable";
 import {FromAnotherHigherPowerTalent} from "./talentTables/fromAnotherHigherPowerTalent";
 import {TargetTalentTable} from "./talentTables/targetTalentTable";
-import {ChangeTalent} from "./talentTables/changeTalent";
+import {ChangeTalentTable} from "./talentTables/changeTalentTable";
+import {ArtefactTable} from "./artefactTables/artefactTable";
+import {MagicalTalentTable} from "./talentTables/magicalTalentTable";
+import {MagicalArtefactTable} from "./artefactTables/magicalArtefactTable";
 
 export let charTables = [
     new RaceTable(),
@@ -60,11 +63,12 @@ export let charTables = [
 ];
 export let talentTables = [
     new TalentTable(),
+    new MagicalTalentTable(),
     new TalentCategoryTable(),
     new TargetTalentTable(),
     new ElementalTalentTable(),
     new FromAnotherHigherPowerTalent(),
-    new ChangeTalent(),
+    new ChangeTalentTable(),
 ]
 export let locationTables = [
     new ContinentTable(),
@@ -75,6 +79,8 @@ export let locationTables = [
     new BuildingAdjectiveTable(),
 ]
 export let artefactsTables = [
+    new ArtefactTable(),
+    new MagicalArtefactTable(),
     new WeaponTable(),
     new ArmorTable(),
     new JewelryTable(),

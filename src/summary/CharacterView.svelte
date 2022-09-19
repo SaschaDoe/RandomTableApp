@@ -6,7 +6,7 @@
 </script>
 <h1>{character.getUniqueName()}</h1>
 {#if character.isHigherPower}
-    <p>{character.alignment+ " " +character.race +" "+character.gender+" higher power being of "+ character.profession+"s"}</p>
+    <p>{character.alignment+ " " +character.race +" "+character.gender+" higher power being of "+ character.profession}</p>
     {:else}
     <p>{character.alignment +" and "+ character.nobility+" "+character.race +" "+character.gender+" "+ character.profession}</p>
     {/if}
@@ -72,6 +72,15 @@
         </li>
     {/each}
 </ul>
+
+{#if character.artefacts.length > 0}
+    <div class="bold">Artefacts:</div>
+    <ul>
+        {#each character.artefacts as artefact}
+            <li><a href={"#"+artefact.getUniqueName()}>{artefact.getUniqueName()}</a></li>
+        {/each}
+    </ul>
+{/if}
 
 <style>
     .inline{

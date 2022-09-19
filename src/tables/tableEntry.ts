@@ -6,7 +6,7 @@ export class TableEntry{
     text: string;
     textWithCascades: string;
     fullText = "";
-    cascadingRoles = [] as (Table|string)[];
+    cascadingRoles = [] as ([Table,number,string]|[String,number,string]|[() => string,number,string])[];
     functions: ((entity: any) => any)[];
 
     constructor(text: string = "-", singleRoleValue = -1){
@@ -39,20 +39,25 @@ export class TableEntry{
         return `${this.minRole}-${this.maxRole}`;
     }
 
-    withCascadingRole(table: Table) {
-        this.cascadingRoles.push(table);
-        this.textWithCascades = this.textWithCascades + " ("+table.title+")";
+    withCascadingRole(table: Table, probability = 100, text = "") {
+        this.cascadingRoles.push([table, probability, text]);
+        this.textWithCascades = this.textWithCascades + " " + text +" ("+table.title+")";
         return this;
     }
 
-    with(input: string) {
-        this.cascadingRoles.push(input);
+    with(input: string, probability = 100) {
+        this.cascadingRoles.push([input, probability,""]);
         this.textWithCascades = this.textWithCascades + " " + input;
         return this;
     }
 
-    withSelfCascade(){
-        this.cascadingRoles.push("self");
+    withFunctionString(fnk: () => string, probability = 100) {
+        this.cascadingRoles.push([fnk, probability,""]);
+        return this;
+    }
+
+    withSelfCascade(probability = 100, input = ""){
+        this.cascadingRoles.push(["self", probability, input]);
         this.textWithCascades = this.textWithCascades + " (self)";
         return this;
     }

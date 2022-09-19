@@ -8,6 +8,8 @@
     import {dungeonStore} from "../world/site/dungeonStore.js";
     import DungeonView from "./DungeonView.svelte";
     import {updateIndex} from "./updateSummaryIndex";
+    import {artefactStore} from "../world/artefacts/artefactStore.js";
+    import ArtefactView from "./ArtefactView.svelte";
 
 let sizeOfParty = 1;
 
@@ -51,6 +53,12 @@ const addPartyHandler = ()=>{
 {#each $dungeonStore as dungeon}
     <div id={dungeon.getUniqueName()}>
         <DungeonView dungeon={dungeon} />
+    </div>
+{/each}
+
+{#each $artefactStore as artefact}
+    <div id={artefact.getUniqueName()}>
+        <ArtefactView artefact={artefact} />
     </div>
 {/each}
 <div class="back-btn">

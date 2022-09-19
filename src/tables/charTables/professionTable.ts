@@ -4,23 +4,26 @@ import {TableTitles} from "../tableTitles";
 import type {Character} from "../../world/character/character";
 import {AnimalTable} from "./animalTable";
 import type {RoleResult} from "../roleResult";
+import {MagicUserProfessions} from "./magicUserProfessions";
 
 export class ProfessionTable extends Table{
     constructor(){
         let entries = [] as TableEntry[];
-        entries.push(new TableEntry("priest"))
-        entries.push(new TableEntry("paladin"))
-        entries.push(new TableEntry("shaman"))
-        entries.push(new TableEntry("cultist"))
-        entries.push(new TableEntry("clergyman"))
-        entries.push(new TableEntry("enlightened"))
-        entries.push(new TableEntry("enlightened"))
-        entries.push(new TableEntry("gild mage"))
-        entries.push(new TableEntry("white mage"))
-        entries.push(new TableEntry("black mage"))
-        entries.push(new TableEntry("alchimist"))
-        entries.push(new TableEntry("witch"))
-        entries.push(new TableEntry("druid"))
+        //magic users
+        entries.push(new TableEntry(MagicUserProfessions.priest))
+        entries.push(new TableEntry(MagicUserProfessions.paladin))
+        entries.push(new TableEntry(MagicUserProfessions.shaman))
+        entries.push(new TableEntry(MagicUserProfessions.cultist))
+        entries.push(new TableEntry(MagicUserProfessions.clergyman))
+        entries.push(new TableEntry(MagicUserProfessions.enlightened))
+        entries.push(new TableEntry(MagicUserProfessions.gildMage))
+        entries.push(new TableEntry(MagicUserProfessions.inquisitor))
+        entries.push(new TableEntry(MagicUserProfessions.blackMage))
+        entries.push(new TableEntry(MagicUserProfessions.alchemist))
+        entries.push(new TableEntry(MagicUserProfessions.witch))
+        entries.push(new TableEntry(MagicUserProfessions.druid))
+        entries.push(new TableEntry(MagicUserProfessions.joker))
+
         entries.push(new TableEntry("militia"))
         entries.push(new TableEntry("mercenary"))
         entries.push(new TableEntry("mercenary"))

@@ -4,12 +4,12 @@ export class RoleResult{
     text : string;
     role : string;
     fullText = "";
-    cascadingRoles : (Table|string)[];
+    cascadingRoles : ([Table,number,string]|[String,number,string]|[() => string, number,string])[];
     functions : ((entity: any) => any)[];
 
     constructor(text = "",
                 role = "",
-                cascadingRoles = [] as (Table|string)[],
+                cascadingRoles = [] as ([Table,number,string]|[String,number,string]|[() => string, number,string])[],
                 functions = [] as ((entity: any) => any)[])  {
         this.text = text;
         this.role = role;

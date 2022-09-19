@@ -30,7 +30,7 @@ export class FantasyCreatureTable extends Table{
         entries.push(new TableEntry("construct"));
         entries.push(new TableEntry("gnom"));
         entries.push(new TableEntry("orb"));
-        entries.push(new TableEntry("living artefact "));
+        entries.push(new TableEntry("living artefacts "));
         super(entries, TableTitles.FantasyCreatures);
         this.functions.push(changeRace)
     }

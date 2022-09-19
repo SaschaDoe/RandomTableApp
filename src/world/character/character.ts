@@ -13,6 +13,10 @@ import {AlignmentTable} from "../../tables/charTables/alignmentTable";
 import {mapSiteWithChar} from "../site/continentFactory";
 import type {Site} from "../site/site";
 import {Entity} from "../entity";
+import {MagicUserProfessions} from "../../tables/charTables/magicUserProfessions";
+import {randomIntFromInterval} from "../../utils/randomUtils";
+import {MagicalTalentTable} from "../../tables/talentTables/magicalTalentTable";
+import type {Artefact} from "../artefacts/artefact";
 
 
 export class Character extends Entity{
@@ -40,6 +44,8 @@ export class Character extends Entity{
     alignment: string;
 
     homeContinent: Site;
+    readonly isMagicUserProfession: boolean;
+    artefacts: Artefact[];
 
     constructor(dice = new Dice(), isHigherPower = false) {
         let name = "";
@@ -50,11 +56,13 @@ export class Character extends Entity{
             name = new GermanMaleNameTable().role().text;
         }
         super(name);
+        this.artefacts = []
         this.isHigherPower = isHigherPower;
         this.gender = gender;
         this.motivation = new MotivationTable().roleWithCascade().text;
         this.nobility = new NobilityTable().role().text;
         this.profession = new ProfessionTable().roleWithCascade().text;
+        this.isMagicUserProfession = this.isMatchingMagicUsers();
         this.disadvantages = [];
         this.advantages = [];
         this.relationships = [];
@@ -63,6 +71,9 @@ export class Character extends Entity{
         this.alignment = new AlignmentTable().roleWithCascade().text;
         this.race = new RaceTable().roleWithCascade().text
         this.talents = [];
+        if(this.isMagicUserProfession){
+            this.getMinOneMagicPower();
+        }
         this.roleForAttributes(dice);
     }
 
@@ -79,5 +90,22 @@ export class Character extends Entity{
         this.strength = dice.role(attributeDiceRole);
     }
 
+    private isMatchingMagicUsers() {
+        let magicUsers = Object.keys(MagicUserProfessions);
+        for(let i = 0; i < magicUsers.length; i++){
+            let magicUserProfession = magicUsers[i];
+            if(this.profession === magicUserProfession){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private getMinOneMagicPower() {
+        let randomNumber = randomIntFromInterval(1,3);
+        for(let i = 0; i < randomNumber; i++){
+            this.talents.push(new MagicalTalentTable().roleWithCascade().text)
+        }
+    }
 }
 
