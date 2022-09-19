@@ -8,11 +8,11 @@ import {addTalent} from "./talentTable";
 import {ChangeTalentTable} from "./changeTalentTable";
 import {FromAnotherHigherPowerTalent} from "./fromAnotherHigherPowerTalent";
 import {SummonTalentTable} from "./summonTalentTable";
-import {MetaMagicTalentTable} from "./metaMagicTalentTable";
 import {ProphecyTalentTable} from "./prophecyTalentTable";
 import {LimitationTable} from "./limitationTable";
 import {PsyTalentTable} from "./psyTalentTable";
 import {HealingTalentTable} from "./healingTalentTable";
+import {ObjectEnchantmentTable} from "./objectEnchantmentTable";
 
 export class MagicalTalentTable extends Table{
     constructor(){
@@ -43,6 +43,10 @@ export class MagicalTalentTable extends Table{
         entries.push(new TableEntry("")
             .withCascadingRole(new TalentCategoryTable())
             .withCascadingRole(new HealingTalentTable())
+            .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
+        entries.push(new TableEntry("")
+            .withCascadingRole(new TalentCategoryTable())
+            .withCascadingRole(new ObjectEnchantmentTable())
             .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
         super(entries, TableTitles.MagicalTalent);
         this.tableType = TableType.Talent;

@@ -56,4 +56,5 @@ export enum TableTitles{
     Emotion = "Emotion",
     PsyTalent = "Psy Talent",
     HealingTalent = "Healing Talent",
+    ObjectEnchantment = "Object Enchantment",
 }

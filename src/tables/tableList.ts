@@ -52,6 +52,7 @@ import {LimitationTable} from "./talentTables/limitationTable";
 import {EmotionTable} from "./otherTables/emotionTable";
 import {PsyTalentTable} from "./talentTables/psyTalentTable";
 import {HealingTalentTable} from "./talentTables/healingTalentTable";
+import {ObjectEnchantmentTable} from "./talentTables/objectEnchantmentTable";
 
 export let charTables = [
     new RaceTable(),
@@ -82,6 +83,7 @@ export let talentTables = [
     new LimitationTable(),
     new PsyTalentTable(),
     new HealingTalentTable(),
+    new ObjectEnchantmentTable(),
 ]
 export let locationTables = [
     new ContinentTable(),
