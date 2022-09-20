@@ -3,7 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 
-export class WeatherTable extends Table{
+export class WeatherAdjectiveTable extends Table{
     constructor(){
         let entries = [] as TableEntry[];
         entries.push(new TableEntry("rainy"))
@@ -17,7 +17,7 @@ export class WeatherTable extends Table{
         entries.push(new TableEntry("mild"))
         entries.push(new TableEntry("sunny"))
         entries.push(new TableEntry("windy"))
-        super(entries, TableTitles.Weather);
+        super(entries, TableTitles.WeatherAdjective);
         this.tableType = TableType.Other;
     }
 }

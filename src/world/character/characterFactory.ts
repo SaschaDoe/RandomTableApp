@@ -14,7 +14,10 @@ export function createHigherPower(){
 
     if(isProbability || (higherPowerBeings.length === 0)){
         higherPowerBeing = new Character(new Dice(),true)
-        higherPowerBeing.talents.push(new TalentTable().roleWithCascade().text)
+        let randomNumber = randomIntFromInterval(1,6);
+        for(let i = 0; i < randomNumber; i++){
+            higherPowerBeing.talents.push(new TalentTable().roleWithCascade().text)
+        }
         higherPowerBeingsStore.update(beings =>{
             beings.push(higherPowerBeing);
             return beings;

@@ -25,6 +25,7 @@
         padding: 10px 0;
         color: #fff;
         top: 0;
+        z-index: 200;
     }
 
     button{

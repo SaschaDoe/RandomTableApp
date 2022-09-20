@@ -3,7 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {SizeTable} from "../otherTables/sizeTable";
 import {LocationTable} from "../otherTables/locationTable";
-import {WeatherTable} from "../otherTables/weatherTable";
+import {WeatherAdjectiveTable} from "../otherTables/weatherAdjectiveTable";
 import {TableType} from "../tableType";
 import type {Site} from "../../world/site/site";
 import type {RoleResult} from "../roleResult";
@@ -14,7 +14,7 @@ export class ContinentTable extends Table{
         entries.push(new TableEntry("continent that is ")
             .withCascadingRole(new SizeTable())
             .withCascadingRole(new LocationTable())
-            .withCascadingRole(new WeatherTable()));
+            .withCascadingRole(new WeatherAdjectiveTable()));
         entries.push(new TableEntry("continent that is ")
             .withCascadingRole(new SizeTable())
             .withCascadingRole(new LocationTable()));

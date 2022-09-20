@@ -24,7 +24,7 @@ import {AttributeTable} from "./charTables/attributeTable";
 import {SenseTable} from "./charTables/senseTable";
 import {SizeTable} from "./otherTables/sizeTable";
 import {LocationTable} from "./otherTables/locationTable";
-import {WeatherTable} from "./otherTables/weatherTable";
+import {WeatherAdjectiveTable} from "./otherTables/weatherAdjectiveTable";
 import {VocalTable} from "./otherTables/vocalTable";
 import {RarityTable} from "./otherTables/rarityTable";
 import {QualityTable} from "./otherTables/qualityTable";
@@ -53,6 +53,7 @@ import {EmotionTable} from "./otherTables/emotionTable";
 import {PsyTalentTable} from "./talentTables/psyTalentTable";
 import {HealingTalentTable} from "./talentTables/healingTalentTable";
 import {ObjectEnchantmentTable} from "./talentTables/objectEnchantmentTable";
+import {ArtefactAdjectiveTable} from "./artefactTables/artefactAdjectiveTable";
 
 export let charTables = [
     new RaceTable(),
@@ -95,6 +96,7 @@ export let locationTables = [
 ]
 export let artefactsTables = [
     new ArtefactTable(),
+    new ArtefactAdjectiveTable(),
     new MagicalArtefactTable(),
     new WeaponTable(),
     new ArmorTable(),
@@ -114,7 +116,7 @@ export let otherTables = [
     new SenseTable(),
     new SizeTable(),
     new LocationTable(),
-    new WeatherTable(),
+    new WeatherAdjectiveTable(),
     new VocalTable(),
     new RarityTable(),
     new QualityTable(),

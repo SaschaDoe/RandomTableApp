@@ -61,7 +61,7 @@ export class MotivationTable extends Table{
         entries.push(new TableEntry("lust"));
         entries.push(new TableEntry("peer pressure"));
         entries.push(new TableEntry("no motivation anymore in").withSelfCascade());
-        entries.push(new TableEntry("boring"));
+        entries.push(new TableEntry("bored"));
         entries.push(new TableEntry("get rid of disadvantage ").withCascadingRole(new DisadvantageTable()));
         super(entries, TableTitles.Motivation,TableType.Character,new DiceRole().withNumberOfRoles(3));
         this.functions.push(changeMotivation)

@@ -17,6 +17,10 @@ import {MagicUserProfessions} from "../../tables/charTables/magicUserProfessions
 import {randomIntFromInterval} from "../../utils/randomUtils";
 import {MagicalTalentTable} from "../../tables/talentTables/magicalTalentTable";
 import type {Artefact} from "../artefacts/artefact";
+import {CurseTable} from "../../tables/charTables/curseTable";
+import {AdvantageTable} from "../../tables/charTables/advantageTable";
+import {DisadvantageTable} from "../../tables/charTables/disadvantageTable";
+import {TalentTable} from "../../tables/talentTables/talentTable";
 
 
 export class Character extends Entity{
@@ -106,6 +110,22 @@ export class Character extends Entity{
         for(let i = 0; i < randomNumber; i++){
             this.talents.push(new MagicalTalentTable().roleWithCascade().text)
         }
+    }
+
+    addCurse() {
+        this.curses.push(new CurseTable().roleWithCascade().text)
+    }
+
+    addAdvantage() {
+        this.advantages.push(new AdvantageTable().roleWithCascade().text)
+    }
+
+    addDisadvantage() {
+        this.disadvantages.push(new DisadvantageTable().roleWithCascade().text)
+    }
+
+    addTalent() {
+        this.talents.push(new TalentTable().roleWithCascade().text)
     }
 }
 

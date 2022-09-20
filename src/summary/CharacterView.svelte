@@ -1,7 +1,27 @@
 <script lang="ts">
     import {Character} from "../world/character/character";
 
-    export let character = new Character();
+    export let character: Character;
+    let handleAddCurse = () =>{
+        character.addCurse();
+        updateChar();
+    };
+    let handleAddAdvantage = ()=>{
+        character.addAdvantage();
+        updateChar();
+    };
+    let handleAddDisadvantage = () =>{
+        character.addDisadvantage();
+        updateChar();
+    };
+    let handleAddTalent = ()=>{
+        character.addTalent();
+        updateChar();
+    };
+
+    function updateChar(){
+        character = character
+    }
 
 </script>
 <h1>{character.getUniqueName()}</h1>
@@ -29,16 +49,17 @@
     <li>Constitution: {character.constitution}</li>
     <li>Strength: {character.strength}</li>
 </ul>
+{#key character}
+<button class="left" on:click={handleAddCurse}>+</button>
+<ul class="fix-list-left">
+    <li class="bold inline no-list-style">Curses: </li>
+    {#each character.curses as curse}
+        <li class="inline no-list-style">{curse+ "/ "}</li>
+    {/each}
+    <li class="no-list-style"></li>
+</ul>
 
-{#if character.curses.length !== 0}
-    <ul class="fix-list-left">
-        <li class="bold inline no-list-style">Curses: </li>
-        {#each character.curses as curse}
-            <li class="inline no-list-style">{curse+ "/ "}</li>
-        {/each}
-        <li class="no-list-style"></li>
-    </ul>
-{/if}
+<button class="left" on:click={handleAddAdvantage}>+</button>
 <ul class="fix-list-left">
     <li class="bold inline no-list-style">Advantages: </li>
     {#each character.advantages as advantage}
@@ -47,6 +68,7 @@
     <li class="no-list-style"></li>
 </ul>
 
+<button class="left" on:click={handleAddDisadvantage}>+</button>
 <ul class="fix-list-left">
     <li class="bold inline no-list-style">Disadvantages: </li>
     {#each character.disadvantages as disadvantage}
@@ -55,14 +77,14 @@
     <li class="no-list-style"></li>
 </ul>
 
-{#if character.talents.length > 0}
-    <div class="bold">Talents:</div>
-    <ul>
-        {#each character.talents as talent}
-            <li>{talent}</li>
-        {/each}
-    </ul>
-{/if}
+<button class="left" on:click={handleAddTalent}>+</button>
+<div class="bold">Talents:</div>
+<ul>
+    {#each character.talents as talent}
+        <li>{talent}</li>
+    {/each}
+</ul>
+
 
 <div class="bold">Relationships:</div>
 <ul>
@@ -81,8 +103,14 @@
         {/each}
     </ul>
 {/if}
-
+    {/key}
 <style>
+    .left{
+        position: relative;
+        top: 20px;
+        left: -30px;
+        z-index: 100;
+    }
     .inline{
         display: inline;
     }
@@ -98,5 +126,8 @@
     .fix-list-left{
         position: relative;
         left: -40px;
+    }
+    ul{
+        margin: 1px;
     }
 </style>

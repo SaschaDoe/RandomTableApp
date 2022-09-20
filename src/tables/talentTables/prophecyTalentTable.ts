@@ -10,7 +10,7 @@ export class ProphecyTalentTable extends Table{
         entries.push(new TableEntry("find something"))
         entries.push(new TableEntry("see in the present"))
         entries.push(new TableEntry("see in the past"))
-        entries.push(new TableEntry("see in the in the future"))
+        entries.push(new TableEntry("see in the future"))
         entries.push(new TableEntry("see other dimension"))
         entries.push(new TableEntry("see other sphere"))
         entries.push(new TableEntry("see other reality"))

@@ -19,7 +19,7 @@ export enum TableTitles{
     Attitude = "Attitude",
     Size = "Size",
     Location = "Location",
-    Weather = "Weather",
+    WeatherAdjective = "WeatherAdjective",
     Continent = "Continent",
     Vocal = "Vocal",
     Consonant = "Consonant",
@@ -57,4 +57,5 @@ export enum TableTitles{
     PsyTalent = "Psy Talent",
     HealingTalent = "Healing Talent",
     ObjectEnchantment = "Object Enchantment",
+    ArtefactAdjective = "Artefact Adjective",
 }

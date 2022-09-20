@@ -6,6 +6,7 @@ import {QualityTable} from "../../tables/otherTables/qualityTable";
 import {MaterialsTable} from "../../tables/artefactTables/materialsTable";
 import {ArtefactTable} from "../../tables/artefactTables/artefactTable";
 import {EpicSubstantiveTable} from "../../tables/nameTables/epicSubstantiveTable";
+import {ArtefactAdjectiveTable} from "../../tables/artefactTables/artefactAdjectiveTable";
 
 export class Artefact extends Entity{
     talents: string[];
@@ -22,7 +23,7 @@ export class Artefact extends Entity{
         this.material = new MaterialsTable().roleWithCascade().text;
         this.typeOfArtefact = new ArtefactTable().roleWithCascade().text;
         this.description = "";
-        this.name = new EpicSubstantiveTable().roleWithCascade().text + " " + this.typeOfArtefact;
+        this.name =  new ArtefactAdjectiveTable().roleWithCascade().text+ " " + this.typeOfArtefact + " of "+new EpicSubstantiveTable().roleWithCascade().text;
         this.talents = [];
         let randomNumberOfTalents = randomIntFromInterval(0,2);
         if(isMagical){

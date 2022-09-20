@@ -37,7 +37,7 @@ export function generateContinentName(){
 
     let consonant = new ConsonantTable().role().text;
 
-    let ending = randomIntFromInterval(0,2);
+    let ending = randomIntFromInterval(0,3);
 
     if(ending === 0){
         let vocal = "a";
@@ -45,8 +45,10 @@ export function generateContinentName(){
         name = name + newSyllabus;
     }else if(ending === 1){
         name = name + "ien";
-    }else{
+    }else if(ending === 2){
         name = name + "ion"
+    }else{
+        name = name + "guard"
     }
 
     return name;
