@@ -11,6 +11,7 @@
     import {artefactStore} from "../world/artefacts/artefactStore.js";
     import ArtefactView from "./ArtefactView.svelte";
     import {createNSC} from "../world/character/characterFactory";
+    import {addArtefactToStore} from "../tables/artefactTables/magicalArtefactTable.js";
 
     let sizeOfParty = 1;
 
@@ -31,6 +32,7 @@
 <button on:click={addPartyHandler}>Add party member</button>
 <input type="number" bind:value={sizeOfParty}/>
 <button on:click={addNSC}>Add NSC</button>
+<button on:click={addArtefactToStore()}>Add Artefact</button>
 {#each $characters as character}
     <div id={character.getUniqueName()}>
         <CharacterView character={character} />
