@@ -95,7 +95,6 @@ export class Table {
                 }
             }
             fullText += " ";
-
         }
         let result = fullText;
         if (roleResult.cascadingRoles.length != 0) {

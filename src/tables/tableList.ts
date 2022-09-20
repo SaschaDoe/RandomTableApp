@@ -30,7 +30,7 @@ import {RarityTable} from "./otherTables/rarityTable";
 import {QualityTable} from "./otherTables/qualityTable";
 import {BodyPartsTable} from "./otherTables/bodyPartsTable";
 import {ElementTable} from "./otherTables/elementTable";
-import {AllocationTable} from "./locationTables/allocationTable";
+import {StructureTable} from "./locationTables/structureTable";
 import {BuildingTable} from "./locationTables/buildingTable";
 import {BuildingAdjectiveTable} from "./locationTables/buildingAdjectiveTable";
 import {DungeonEntriesTable} from "./locationTables/dungeonEntriesTable";
@@ -54,6 +54,7 @@ import {PsyTalentTable} from "./talentTables/psyTalentTable";
 import {HealingTalentTable} from "./talentTables/healingTalentTable";
 import {ObjectEnchantmentTable} from "./talentTables/objectEnchantmentTable";
 import {ArtefactAdjectiveTable} from "./artefactTables/artefactAdjectiveTable";
+import {TreasureTable} from "./artefactTables/treasureTable";
 
 export let charTables = [
     new RaceTable(),
@@ -89,7 +90,7 @@ export let talentTables = [
 export let locationTables = [
     new ContinentTable(),
     new SphereTable(),
-    new AllocationTable(),
+    new StructureTable(),
     new DungeonEntriesTable(),
     new BuildingTable(),
     new BuildingAdjectiveTable(),
@@ -98,6 +99,7 @@ export let artefactsTables = [
     new ArtefactTable(),
     new ArtefactAdjectiveTable(),
     new MagicalArtefactTable(),
+    new TreasureTable(),
     new WeaponTable(),
     new ArmorTable(),
     new JewelryTable(),

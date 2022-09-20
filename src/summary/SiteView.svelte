@@ -2,6 +2,7 @@
     import {Site} from "../world/site/site";
     import {Dungeon} from "../world/site/dungeon";
     import {dungeonStore} from "../world/site/dungeonStore";
+    import {updateIndex} from "./updateSummaryIndex";
 
     export let site : Site;
     let dungeons = [];
@@ -13,6 +14,7 @@
             return dungeonStore;
         })
         dungeons = site.dungeons;
+        updateIndex();
     };
 </script>
 <h1>{site.getUniqueName()}</h1>
