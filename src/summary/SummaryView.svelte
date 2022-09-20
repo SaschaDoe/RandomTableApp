@@ -10,22 +10,27 @@
     import {updateIndex} from "./updateSummaryIndex";
     import {artefactStore} from "../world/artefacts/artefactStore.js";
     import ArtefactView from "./ArtefactView.svelte";
+    import {createNSC} from "../world/character/characterFactory";
 
-let sizeOfParty = 1;
+    let sizeOfParty = 1;
 
+    const addPartyHandler = ()=>{
+        let worldGenerator = new WorldGenerator();
+        worldGenerator.generateWorld(sizeOfParty);
+        updateIndex()
+    }
 
-const addPartyHandler = ()=>{
-    let worldGenerator = new WorldGenerator();
-    worldGenerator.generateWorld(sizeOfParty);
-    updateIndex()
-}
+    let addNSC = () => {
+        createNSC();
+    };
 
 </script>
 
 <SummaryIndex></SummaryIndex>
 
-<button on:click={addPartyHandler}>Add party</button>
+<button on:click={addPartyHandler}>Add party member</button>
 <input type="number" bind:value={sizeOfParty}/>
+<button on:click={addNSC}>Add NSC</button>
 {#each $characters as character}
     <div id={character.getUniqueName()}>
         <CharacterView character={character} />
@@ -90,6 +95,11 @@ const addPartyHandler = ()=>{
 
     a:hover{
         color: blueviolet;
+    }
+
+    input{
+        max-width: 30px;
+        height: 23px;
     }
 
 

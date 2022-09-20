@@ -1,7 +1,7 @@
 import {Character} from "./character";
 import {Dice} from "../../utils/dice";
 import {TalentTable} from "../../tables/talentTables/talentTable";
-import {higherPowerBeingsStore} from "./charStore";
+import {applyNotMandatoryTables, characters, higherPowerBeingsStore} from "./charStore";
 import {probabilityCheck, randomIntFromInterval} from "../../utils/randomUtils";
 
 export function createHigherPower(){
@@ -14,6 +14,7 @@ export function createHigherPower(){
 
     if(isProbability || (higherPowerBeings.length === 0)){
         higherPowerBeing = new Character(new Dice(),true)
+        applyNotMandatoryTables(higherPowerBeing);
         let randomNumber = randomIntFromInterval(1,6);
         for(let i = 0; i < randomNumber; i++){
             higherPowerBeing.talents.push(new TalentTable().roleWithCascade().text)
@@ -27,4 +28,13 @@ export function createHigherPower(){
         higherPowerBeing = higherPowerBeings[randomNumber];
     }
     return higherPowerBeing.getUniqueName();
+}
+
+export function createNSC(){
+    let character = new Character()
+    applyNotMandatoryTables(character);
+    characters.update(chars => {
+        chars.push(character);
+        return chars;
+    })
 }
