@@ -59,4 +59,5 @@ export enum TableTitles{
     ObjectEnchantment = "Object Enchantment",
     ArtefactAdjective = "Artefact Adjective",
     Treasure = "Treasure",
+    Furnishing = "Furnishing",
 }

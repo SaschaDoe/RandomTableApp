@@ -55,6 +55,7 @@ import {HealingTalentTable} from "./talentTables/healingTalentTable";
 import {ObjectEnchantmentTable} from "./talentTables/objectEnchantmentTable";
 import {ArtefactAdjectiveTable} from "./artefactTables/artefactAdjectiveTable";
 import {TreasureTable} from "./artefactTables/treasureTable";
+import {FurnishingTable} from "./locationTables/furnishingTable";
 
 export let charTables = [
     new RaceTable(),
@@ -94,6 +95,7 @@ export let locationTables = [
     new DungeonEntriesTable(),
     new BuildingTable(),
     new BuildingAdjectiveTable(),
+    new FurnishingTable(),
 ]
 export let artefactsTables = [
     new ArtefactTable(),

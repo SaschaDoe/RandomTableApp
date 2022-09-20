@@ -37,4 +37,5 @@ export function createNSC(){
         chars.push(character);
         return chars;
     })
+    return character.getUniqueName();
 }

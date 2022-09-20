@@ -5,6 +5,8 @@ import {DungeonNameTable} from "../../tables/nameTables/dungeonNameTable";
 import {Entity} from "../entity";
 import {TreasureTable} from "../../tables/artefactTables/treasureTable";
 import {randomIntFromInterval} from "../../utils/randomUtils";
+import {FurnishingTable} from "../../tables/locationTables/furnishingTable";
+import {createNSC} from "../character/characterFactory";
 
 export class Dungeon extends Entity {
     structure: string;
@@ -15,19 +17,33 @@ export class Dungeon extends Entity {
         super();
         this.structure = new StructureTable().roleWithCascade().text;
         this.entryBuilding = new DungeonEntriesTable().roleWithCascade().text;
-        this.rooms = this.generateRooms();
+        this.rooms = [];
         this.name = new DungeonNameTable().roleWithCascade().text
     }
 
-    generateRooms(){
-        let rooms = [] as Room[];
-        let numberOfTreasures = randomIntFromInterval(-2,2);
-        let treasures = [] as string[];
-        for(let i = 0; i < numberOfTreasures; i++){
-            treasures.push(new TreasureTable().roleWithCascade().text);
-        }
-        rooms.push(new Room(treasures));
-        return rooms;
+
+
+}
+
+export function generateRoom(dungeon: Dungeon){
+    let rooms = [] as Room[];
+
+    let numberOfTreasures = randomIntFromInterval(-2,2);
+    let treasures = [] as string[];
+    for(let i = 0; i < numberOfTreasures; i++){
+        treasures.push(new TreasureTable().roleWithCascade().text);
     }
 
+    let numberOfFurnishing = randomIntFromInterval(1,3);
+    let furnishing = [] as string[];
+    for(let i = 0; i < numberOfFurnishing; i++){
+        furnishing.push(new FurnishingTable().roleWithCascade().text);
+    }
+
+    let numberOfCharacters = randomIntFromInterval(-1,2);
+    let chars = [] as string[];
+    for(let i = 0; i < numberOfCharacters; i++){
+        chars.push(createNSC());
+    }
+    dungeon.rooms.push(new Room(treasures, furnishing, chars));
 }
