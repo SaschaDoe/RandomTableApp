@@ -46,7 +46,7 @@ export class Monster extends AttributeEntity{
             this.treasures.push(new TreasureTable().roleWithCascade().text);
         }
         this.curses = []
-        let numberOfCurses = randomIntFromInterval(0,2);
+        let numberOfCurses = randomIntFromInterval(-2,2);
         for(let i = 0; i < numberOfCurses; i++){
             this.curses.push(new CurseTable().roleWithCascade().text);
         }
