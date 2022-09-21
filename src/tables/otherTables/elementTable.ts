@@ -22,6 +22,7 @@ export class ElementTable extends Table{
         entries.push(new TableEntry("lava"))
         entries.push(new TableEntry("smoke"))
         entries.push(new TableEntry("force"))
+        entries.push(new TableEntry("blood"))
         super(entries, TableTitles.Element);
         this.tableType = TableType.Other;
     }

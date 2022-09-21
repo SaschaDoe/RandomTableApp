@@ -21,7 +21,6 @@
         isModalVisible = false;
     };
     let maxNumberOfSyllabus = 7;
-    let indexTitles = ["Character", "Locations", "Artefacts", "Other"];
 </script>
 
 <TableIndex></TableIndex>

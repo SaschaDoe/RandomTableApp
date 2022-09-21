@@ -21,7 +21,7 @@ import {JewelryTable} from "./artefactTables/jewelryTable";
 import {GemstoneTable} from "./artefactTables/gemstoneTable";
 import {MaterialsTable} from "./artefactTables/materialsTable";
 import {AttributeTable} from "./charTables/attributeTable";
-import {SenseTable} from "./charTables/senseTable";
+import {SenseTable} from "./otherTables/senseTable";
 import {SizeTable} from "./otherTables/sizeTable";
 import {LocationTable} from "./otherTables/locationTable";
 import {WeatherAdjectiveTable} from "./otherTables/weatherAdjectiveTable";
@@ -62,6 +62,13 @@ import {TrapTriggerTable} from "./locationTables/trapTriggerTable";
 import {NaturalObstacleTable} from "./locationTables/naturalObstacleTable";
 import {TrapFunctionTable} from "./locationTables/trapFunctionTable";
 import {TrapTable} from "./locationTables/trapTable";
+import {MonsterAdjectiveTable} from "./monsterTables/monsterAdjectiveTable";
+import {MonsterNumberTable} from "./monsterTables/monsterNumberTable";
+import {MonsterReproductionTable} from "./monsterTables/monsterReproductionTable";
+import {MonsterMealTable} from "./monsterTables/monsterMealTable";
+import {MonsterEncounterTypeTable} from "./monsterTables/monsterEncounterTypeTable";
+import {SpecialFeaturesTable} from "./charTables/specialFeaturesTable";
+import {MonsterTable} from "./monsterTables/monsterTable";
 
 export let charTables = [
     new RaceTable(),
@@ -77,7 +84,16 @@ export let charTables = [
     new ProfessionTable(),
     new MotivationTable(),
     new RelationshipTypeTable(),
+    new SpecialFeaturesTable(),
 ];
+export let monsterTables = [
+    new MonsterAdjectiveTable(),
+    new MonsterNumberTable(),
+    new MonsterReproductionTable(),
+    new MonsterMealTable(),
+    new MonsterEncounterTypeTable(),
+    new MonsterTable(),
+]
 export let talentTables = [
     new TalentTable(),
     new MagicalTalentTable(),
@@ -142,6 +158,7 @@ export let otherTables = [
 ]
 
 export let allTables = charTables
+    .concat(monsterTables)
     .concat(talentTables)
     .concat(locationTables)
     .concat(artefactsTables)

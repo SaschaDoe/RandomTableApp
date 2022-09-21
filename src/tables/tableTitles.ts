@@ -66,4 +66,11 @@ export enum TableTitles{
     TrapFunction = "TrapFunction",
     NaturalObstacle = "Natural Obstacle",
     Trap = "Trap",
+    MonsterAdjective = "Monster Adjective",
+    MonsterNumber = "Monster Number",
+    MonsterReproduction = "Monster Reproduction",
+    MonsterMeal = "Monster Meal",
+    MonsterEncounterType = "Monster Encounter Type",
+    Monster = "Monster",
+    SpecialFeatures = "Special Features",
 }

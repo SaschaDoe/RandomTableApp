@@ -46,6 +46,15 @@
                     <li>{trap}</li>
                 {/each}
             </ul>
+            <div>Monsters:</div>
+            <ul>
+                {#each room.monsters as monster, index}
+                    <li>
+                        <a href=,{"#"+monster}>{monster}</a>
+                        <div>{monster.number +" "+room.monsterEncounters[index]}</div>
+                    </li>
+                {/each}
+            </ul>
         </li>
     {/each}
 </ul>

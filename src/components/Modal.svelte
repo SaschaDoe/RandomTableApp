@@ -1,7 +1,10 @@
 <script lang="ts">
+    import {TableType} from "../tables/tableType";
+
     export let title = "Title";
     export let text = "Hello";
     export let isVisible = false;
+    export let tableType = TableType.Other;
     const handleClose = () => {
         isVisible = false;
     };
@@ -49,7 +52,10 @@
             <div class="modal-text">{text}</div>
             <button class="close-btn" on:click={handleClose}>X</button>
             <button class="role-again-btn" on:click={handleRole}>Role again</button>
-            <button class="add-btn" on:click={handleAdd}>Add</button>
+            {#if tableType === TableType.Character
+                || tableType === TableType.Location}
+                <button class="add-btn" on:click={handleAdd}>Add</button>
+            {/if}
         </div>
     </div>
 

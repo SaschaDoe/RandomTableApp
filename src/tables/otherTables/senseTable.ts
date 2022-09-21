@@ -1,6 +1,7 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
+import {TableType} from "../tableType";
 
 export class SenseTable extends Table{
     constructor(){
@@ -10,6 +11,6 @@ export class SenseTable extends Table{
         entries.push(new TableEntry("feel"))
         entries.push(new TableEntry("taste"))
         entries.push(new TableEntry("smell"))
-        super(entries, TableTitles.Senses);
+        super(entries, TableTitles.Senses, TableType.Other);
     }
 }

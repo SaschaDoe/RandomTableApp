@@ -3,15 +3,15 @@
     import {
         artefactsTables,
         charTables,
-        locationTables,
+        locationTables, monsterTables,
         nameTables,
         otherTables,
         talentTables
     } from "../tables/tableList";
 
-    export let headings = ["Character","Talent", "Location", "Artefact", "Name", "Other"];
+    export let headings = ["Character","Monster","Talent", "Location", "Artefact", "Name", "Other"];
 
-    export let indexes = [charTables,talentTables,locationTables,artefactsTables,nameTables, otherTables]
+    export let indexes = [charTables,monsterTables,talentTables,locationTables,artefactsTables,nameTables, otherTables]
 
     let toggleShowIndex = () => {
         showIndex = !showIndex;

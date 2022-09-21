@@ -20,7 +20,7 @@ export class FantasyCreatureTable extends Table{
         entries.push(new TableEntry("mermaid"));
         entries.push(new TableEntry("yeti"));
         entries.push(new TableEntry("schrat"));
-        entries.push(new TableEntry("gene"));
+        entries.push(new TableEntry("jin"));
         entries.push(new TableEntry("element"));
         entries.push(new TableEntry("angel"));
         entries.push(new TableEntry("demon"));
@@ -30,7 +30,9 @@ export class FantasyCreatureTable extends Table{
         entries.push(new TableEntry("construct"));
         entries.push(new TableEntry("gnom"));
         entries.push(new TableEntry("orb"));
-        entries.push(new TableEntry("living artefacts "));
+        entries.push(new TableEntry("living artefact"));
+        entries.push(new TableEntry("dragon"));
+        entries.push(new TableEntry("wyrm"));
         super(entries, TableTitles.FantasyCreatures);
         this.functions.push(changeRace)
     }

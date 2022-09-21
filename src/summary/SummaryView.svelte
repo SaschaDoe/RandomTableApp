@@ -11,8 +11,10 @@
     import {artefactStore} from "../world/artefacts/artefactStore.js";
     import ArtefactView from "./ArtefactView.svelte";
     import {createNSC} from "../world/character/characterFactory";
-    import {addArtefactToStore} from "../tables/artefactTables/magicalArtefactTable.js";
     import {Artefact} from "../world/artefacts/artefact";
+    import {addMonsterToStore, monsterStore} from "../world/monster/monsterStore.js";
+    import MonsterView from "./MonsterView.svelte";
+    import {Dungeon} from "../world/site/dungeon";
 
     let sizeOfParty = 1;
 
@@ -24,6 +26,7 @@
 
     let addNSC = () => {
         createNSC();
+        updateIndex()
     };
     let addArtefactForView= () => {
         let artefact = new Artefact();
@@ -31,7 +34,21 @@
             artefacts.push(artefact);
             return artefacts;
         })
+        updateIndex()
     };
+    let addDungeon = () =>{
+        let dungeon = new Dungeon();
+        dungeonStore.update(dungeons => {
+            dungeons.push(dungeon);
+            return dungeons;
+        })
+        updateIndex()
+    };
+
+    let addMonster = () => {
+        addMonsterToStore()
+        updateIndex()
+    }
 
 </script>
 
@@ -41,6 +58,8 @@
 <input type="number" bind:value={sizeOfParty}/>
 <button on:click={addNSC}>Add NSC</button>
 <button on:click={addArtefactForView}>Add Artefact</button>
+<button on:click={addDungeon}>Add Dungeon</button>
+<button on:click={addMonster}>Add Monster</button>
 {#each $characters as character}
     <div id={character.getUniqueName()}>
         <CharacterView character={character} />
@@ -50,6 +69,12 @@
 {#each $higherPowerBeingsStore as god}
     <div id={god.getUniqueName()}>
         <CharacterView character={god} />
+    </div>
+
+{/each}
+{#each $monsterStore as monster}
+    <div id={monster.getUniqueName()}>
+        <MonsterView monster={monster} />
     </div>
 
 {/each}

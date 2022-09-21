@@ -9,6 +9,8 @@ import {FurnishingTable} from "../../tables/locationTables/furnishingTable";
 import {createNSC} from "../character/characterFactory";
 import {ObstacleTable} from "../../tables/locationTables/obstacleTable";
 import {TrapTable} from "../../tables/locationTables/trapTable";
+import {addMonsterToStore} from "../monster/monsterStore";
+import {MonsterEncounterTypeTable} from "../../tables/monsterTables/monsterEncounterTypeTable";
 
 export class Dungeon extends Entity {
     structure: string;
@@ -54,5 +56,15 @@ export function generateRoom(dungeon: Dungeon){
     for(let i = 0; i < numberOfTraps; i++){
         traps.push(new TrapTable().roleWithCascade().text);
     }
-    dungeon.rooms.push(new Room(treasures, furnishing, chars, obstacles, traps));
+
+    let numberOfMonster = randomIntFromInterval(-1,2);
+    let monsters = [] as string[];
+    for(let i = 0; i < numberOfMonster; i++){
+        monsters.push(addMonsterToStore());
+    }
+    let monsterEncounters = [] as string[];
+    for(let i = 0; i < numberOfMonster; i++){
+        monsterEncounters.push(new MonsterEncounterTypeTable().roleWithCascade().text);
+    }
+    dungeon.rooms.push(new Room(treasures, furnishing, chars, obstacles, traps, monsters, monsterEncounters));
 }

@@ -1,5 +1,4 @@
 import {Dice} from "../../utils/dice";
-import {DiceRole} from "../../tables/diceRole";
 import {GermanMaleNameTable} from "../../tables/nameTables/germanMaleNameTable";
 import {GenderTable} from "../../tables/charTables/genderTable";
 import {GermanFemaleNameTable} from "../../tables/nameTables/germanFemaleNameTable";
@@ -12,7 +11,6 @@ import {ProfessionTable} from "../../tables/charTables/professionTable";
 import {AlignmentTable} from "../../tables/charTables/alignmentTable";
 import {mapSiteWithChar} from "../site/continentFactory";
 import type {Site} from "../site/site";
-import {Entity} from "../entity";
 import {MagicUserProfessions} from "../../tables/charTables/magicUserProfessions";
 import {randomIntFromInterval} from "../../utils/randomUtils";
 import {MagicalTalentTable} from "../../tables/talentTables/magicalTalentTable";
@@ -21,22 +19,17 @@ import {CurseTable} from "../../tables/charTables/curseTable";
 import {AdvantageTable} from "../../tables/charTables/advantageTable";
 import {DisadvantageTable} from "../../tables/charTables/disadvantageTable";
 import {TalentTable} from "../../tables/talentTables/talentTable";
+import {AttributeEntity} from "./attributeEntity";
+import {SpecialFeaturesTable} from "../../tables/charTables/specialFeaturesTable";
 
 
-export class Character extends Entity{
+export class Character extends AttributeEntity{
     isHigherPower: boolean;
     race : string;
     gender : string;
     motivation : string;
 
-    courage = 0;
-    charisma = 0;
-    wisdom  = 0;
-    intuition  = 0
-    dexterity  = 0;
-    manualDexterity = 0;
-    constitution = 0;
-    strength = 0;
+
 
     relationships: Relationship[];
     curses: string[];
@@ -50,6 +43,7 @@ export class Character extends Entity{
     homeContinent: Site;
     readonly isMagicUserProfession: boolean;
     artefacts: Artefact[];
+    specialFeature: string;
 
     constructor(dice = new Dice(), isHigherPower = false) {
         let name = "";
@@ -59,7 +53,8 @@ export class Character extends Entity{
         }else{
             name = new GermanMaleNameTable().role().text;
         }
-        super(name);
+        super(dice, name);
+        this.specialFeature = new SpecialFeaturesTable().roleWithCascade().text;
         this.artefacts = []
         this.isHigherPower = isHigherPower;
         this.gender = gender;
@@ -81,18 +76,7 @@ export class Character extends Entity{
         this.roleForAttributes(dice);
     }
 
-    private roleForAttributes(dice: Dice) {
-        let attributeDiceRole = new DiceRole().withNumberOfDice(3);
 
-        this.courage = dice.role(attributeDiceRole);
-        this.charisma = dice.role(attributeDiceRole);
-        this.wisdom = dice.role(attributeDiceRole);
-        this.intuition = dice.role(attributeDiceRole);
-        this.dexterity = dice.role(attributeDiceRole);
-        this.manualDexterity = dice.role(attributeDiceRole);
-        this.constitution = dice.role(attributeDiceRole);
-        this.strength = dice.role(attributeDiceRole);
-    }
 
     private isMatchingMagicUsers() {
         let magicUsers = Object.keys(MagicUserProfessions);

@@ -5,7 +5,7 @@ import {Character} from "../../world/character/character";
 import {Relationship} from "../../world/character/relationship";
 import {RelationshipType} from "../../world/character/relationshipType";
 import {AttributeTable} from "./attributeTable";
-import {SenseTable} from "./senseTable";
+import {SenseTable} from "../otherTables/senseTable";
 import type {RoleResult} from "../roleResult";
 import {ElementTable} from "../otherTables/elementTable";
 import {TableType} from "../tableType";

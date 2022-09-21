@@ -4,4 +4,5 @@ export enum TableType{
     Other,
     Artefact,
     Talent,
+    Monster,
 }

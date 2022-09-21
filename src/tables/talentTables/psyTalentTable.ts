@@ -3,7 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {EmotionTable} from "../otherTables/emotionTable";
-import {SenseTable} from "../charTables/senseTable";
+import {SenseTable} from "../otherTables/senseTable";
 
 export class PsyTalentTable extends Table{
     constructor(){

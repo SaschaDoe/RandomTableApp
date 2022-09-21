@@ -5,10 +5,10 @@
     import Modal from "../components/Modal.svelte";
     import {TableType} from "./tableType";
     import {
-        applyLocationTableFunctions,
         applyLocationEntryFunctions,
-        currentLocation,
-        continentStore
+        applyLocationTableFunctions,
+        continentStore,
+        currentLocation
     } from "../world/site/siteStore";
     import {Site} from "../world/site/site";
     import Entry from "./Entry.svelte";
@@ -54,6 +54,7 @@
 <Modal bind:isVisible={isModalVisible}
        bind:title={table.title}
        bind:text={roleResult.fullText}
+       bind:tableType = {table.tableType}
        handleAdd={handleAdd}
        handleRole={handleRole}/>
 
