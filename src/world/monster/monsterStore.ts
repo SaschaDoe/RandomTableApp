@@ -11,3 +11,12 @@ export function addMonsterToStore(){
     })
     return monster.getUniqueName();
 }
+
+export function getNewMonsterInStore(){
+    let monster = new Monster();
+    monsterStore.update(monsters => {
+        monsters.push(monster);
+        return monsters;
+    })
+    return monster;
+}

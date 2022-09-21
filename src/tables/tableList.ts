@@ -73,6 +73,10 @@ import {NaturalEvents} from "./otherTables/naturalEvents";
 import {TownEventTable} from "./townTables/townEventTable";
 import {TimeTalentTable} from "./talentTables/timeTalentTable";
 import {TravelTalentTable} from "./talentTables/travelTalentTable";
+import {HistoricalEventTable} from "./otherTables/historicalEventTable";
+import {TownSizeTable} from "./townTables/townSizeTable";
+import {TownFameTable} from "./townTables/townFameTable";
+import {ColourTable} from "./otherTables/colourTable";
 
 export let charTables = [
     new RaceTable(),
@@ -132,6 +136,8 @@ export let locationTables = [
 ]
 export let townTables = [
     new TownEventTable(),
+    new TownSizeTable(),
+    new TownFameTable(),
 ]
 export let artefactsTables = [
     new ArtefactTable(),
@@ -165,6 +171,8 @@ export let otherTables = [
     new ElementTable(),
     new EmotionTable(),
     new NaturalEvents(),
+    new HistoricalEventTable,
+    new ColourTable(),
 ]
 
 export let allTables = charTables

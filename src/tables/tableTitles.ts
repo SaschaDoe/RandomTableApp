@@ -78,4 +78,9 @@ export enum TableTitles{
     NaturalEvent = "Natural Event",
     TimeTalent = "Time Talent",
     TravelTalent = "Travel Talent",
+    HistoricalEvent = "Historical Event",
+    TownSize = "Town Size",
+    TownFame = "Town Fame",
+    Colour = "Colour",
+    Sign = "Sign",
 }

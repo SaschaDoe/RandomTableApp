@@ -24,3 +24,12 @@ export function addArtefactToStore(){
     })
     return artefact.getUniqueName() + artefact.description;
 }
+
+export function getNewArtefactInStore(){
+    let artefact = new Artefact(true);
+    artefactStore.update(artefacts => {
+        artefacts.push(artefact);
+        return artefacts;
+    })
+    return artefact;
+}

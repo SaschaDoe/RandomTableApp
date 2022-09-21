@@ -39,3 +39,13 @@ export function createNSC(){
     })
     return character.getUniqueName();
 }
+
+export function getNewNSC(){
+    let character = new Character()
+    applyNotMandatoryTables(character);
+    characters.update(chars => {
+        chars.push(character);
+        return chars;
+    })
+    return character;
+}
