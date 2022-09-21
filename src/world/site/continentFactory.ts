@@ -3,9 +3,10 @@ import {Site} from "./site";
 import {continentStore, sphereStore} from "./siteStore";
 import {randomIntFromInterval} from "../../utils/randomUtils";
 import {SphereTable} from "../../tables/locationTables/sphereTable";
+import {updateIndex} from "../../summary/updateSummaryIndex";
 
 export function mapSiteWithChar(dice: Dice) {
-    let continent = createContinent();
+
     let randomNumber = dice.getRandomInt(0, 10);
     let numberOfSites = 0
     continentStore.subscribe(sites => {
@@ -13,6 +14,7 @@ export function mapSiteWithChar(dice: Dice) {
     })
 
     if (randomNumber === 1 || numberOfSites === 0) {
+        let continent = createContinent();
         continentStore.update((s) => {
             s.push(continent);
             return s;
@@ -20,15 +22,17 @@ export function mapSiteWithChar(dice: Dice) {
     } else {
         let randomContinentIndex = dice.getRandomInt(0, numberOfSites-1);
         continentStore.subscribe(sites => {
-            continent = sites[randomContinentIndex]
+            let continent = sites[randomContinentIndex]
+            return continent;
         })
     }
-    return continent;
+    return new Site();
 }
 
 export function createContinent(){
     let continent = new Site();
     continent.localSpheres = generateSpheres();
+    updateIndex();
     return continent;
 }
 
