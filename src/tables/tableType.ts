@@ -5,4 +5,5 @@ export enum TableType{
     Artefact,
     Talent,
     Monster,
+    Town,
 }

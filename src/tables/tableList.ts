@@ -69,6 +69,8 @@ import {MonsterMealTable} from "./monsterTables/monsterMealTable";
 import {MonsterEncounterTypeTable} from "./monsterTables/monsterEncounterTypeTable";
 import {SpecialFeaturesTable} from "./charTables/specialFeaturesTable";
 import {MonsterTable} from "./monsterTables/monsterTable";
+import {NaturalEvents} from "./otherTables/naturalEvents";
+import {TownEventTable} from "./townTables/townEventTable";
 
 export let charTables = [
     new RaceTable(),
@@ -124,6 +126,9 @@ export let locationTables = [
     new TrapFunctionTable(),
     new TrapTable(),
 ]
+export let townTables = [
+    new TownEventTable(),
+]
 export let artefactsTables = [
     new ArtefactTable(),
     new ArtefactAdjectiveTable(),
@@ -155,12 +160,14 @@ export let otherTables = [
     new BodyPartsTable(),
     new ElementTable(),
     new EmotionTable(),
+    new NaturalEvents(),
 ]
 
 export let allTables = charTables
     .concat(monsterTables)
     .concat(talentTables)
     .concat(locationTables)
+    .concat(townTables)
     .concat(artefactsTables)
     .concat(nameTables)
     .concat(otherTables);

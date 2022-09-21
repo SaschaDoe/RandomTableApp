@@ -6,12 +6,12 @@
         locationTables, monsterTables,
         nameTables,
         otherTables,
-        talentTables
+        talentTables, townTables
     } from "../tables/tableList";
 
-    export let headings = ["Character","Monster","Talent", "Location", "Artefact", "Name", "Other"];
+    export let headings = ["Character","Monster","Talent", "Location", "Town", "Artefact", "Name", "Other"];
 
-    export let indexes = [charTables,monsterTables,talentTables,locationTables,artefactsTables,nameTables, otherTables]
+    export let indexes = [charTables,monsterTables,talentTables,locationTables,townTables,artefactsTables,nameTables, otherTables]
 
     let toggleShowIndex = () => {
         showIndex = !showIndex;
