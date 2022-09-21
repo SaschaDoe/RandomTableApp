@@ -73,4 +73,5 @@ export enum TableTitles{
     MonsterEncounterType = "Monster Encounter Type",
     Monster = "Monster",
     SpecialFeatures = "Special Features",
+    MoonPhases = "Moon Phases",
 }

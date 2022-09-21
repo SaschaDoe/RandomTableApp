@@ -4,6 +4,7 @@ import {SummonTalentTable} from "./summonTalentTable";
 import {Table} from "../table";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
+import {MoonPhasesTable} from "../otherTables/moonPhasesTable";
 
 export class LimitationTable extends Table{
     constructor(){
@@ -19,6 +20,8 @@ export class LimitationTable extends Table{
         entries.push(new TableEntry("with consent"))
         entries.push(new TableEntry("only self"))
         entries.push(new TableEntry("one time"))
+        entries.push(new TableEntry("when the stars are right"))
+        entries.push(new TableEntry("only when there is a ").withCascadingRole(new MoonPhasesTable()))
         super(entries, TableTitles.Limitation);
         this.tableType = TableType.Talent;
     }
