@@ -58,7 +58,7 @@
 <style>
     .modal-background {
         position: fixed;
-        z-index: 7;
+        z-index: 201;
         top: 0;
         left: 0;
         width: 100%;
@@ -69,7 +69,7 @@
     .fixed{
     border: 2px solid black;
     position: fixed;
-    z-index: 10;
+        z-index: 301;
     color: #fff;
     top: 50%;
     left: 50%;
@@ -77,16 +77,17 @@
 }
 
     .modal{
-    width: 400px;
-    height: 400px;
-    background: grey;
-}
+        width: 400px;
+        height: 400px;
+        background: grey;
+
+    }
 
     .modal-text{
         position: relative;
         max-width: 340px;
         left: 10%;
-        top: 30%;
+        top: 20%;
     }
 
     .title{

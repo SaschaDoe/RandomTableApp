@@ -20,9 +20,6 @@ export class Dungeon extends Entity {
         this.rooms = [];
         this.name = new DungeonNameTable().roleWithCascade().text
     }
-
-
-
 }
 
 export function generateRoom(dungeon: Dungeon){
