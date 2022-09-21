@@ -71,6 +71,8 @@ import {SpecialFeaturesTable} from "./charTables/specialFeaturesTable";
 import {MonsterTable} from "./monsterTables/monsterTable";
 import {NaturalEvents} from "./otherTables/naturalEvents";
 import {TownEventTable} from "./townTables/townEventTable";
+import {TimeTalentTable} from "./talentTables/timeTalentTable";
+import {TravelTalentTable} from "./talentTables/travelTalentTable";
 
 export let charTables = [
     new RaceTable(),
@@ -111,6 +113,8 @@ export let talentTables = [
     new PsyTalentTable(),
     new HealingTalentTable(),
     new ObjectEnchantmentTable(),
+    new TimeTalentTable(),
+    new TravelTalentTable(),
 ]
 export let locationTables = [
     new ContinentTable(),

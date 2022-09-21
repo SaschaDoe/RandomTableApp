@@ -9,7 +9,7 @@ import {MagicalTalentTable} from "./magicalTalentTable";
 export class MetaMagicTalentTable extends Table{
     constructor(){
         let entries = [] as TableEntry[];
-        entries.push(new TableEntry("")
+        entries.push(new TableEntry("new spell: ")
             .withCascadingRole(new MagicalTalentTable())
             .withCascadingRole(new MagicalTalentTable()))
         entries.push(new TableEntry("reverse talent"))

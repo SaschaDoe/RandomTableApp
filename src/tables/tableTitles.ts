@@ -76,4 +76,6 @@ export enum TableTitles{
     MoonPhases = "Moon Phases",
     TownEvent = "Town Event",
     NaturalEvent = "Natural Event",
+    TimeTalent = "Time Talent",
+    TravelTalent = "Travel Talent",
 }

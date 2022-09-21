@@ -13,6 +13,8 @@ import {LimitationTable} from "./limitationTable";
 import {PsyTalentTable} from "./psyTalentTable";
 import {HealingTalentTable} from "./healingTalentTable";
 import {ObjectEnchantmentTable} from "./objectEnchantmentTable";
+import {TimeTalentTable} from "./timeTalentTable";
+import {TravelTalentTable} from "./travelTalentTable";
 
 export class MagicalTalentTable extends Table{
     constructor(){
@@ -47,6 +49,14 @@ export class MagicalTalentTable extends Table{
         entries.push(new TableEntry("")
             .withCascadingRole(new TalentCategoryTable())
             .withCascadingRole(new ObjectEnchantmentTable())
+            .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
+        entries.push(new TableEntry("")
+            .withCascadingRole(new TalentCategoryTable())
+            .withCascadingRole(new TimeTalentTable())
+            .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
+        entries.push(new TableEntry("")
+            .withCascadingRole(new TalentCategoryTable())
+            .withCascadingRole(new TravelTalentTable())
             .withCascadingRole(new LimitationTable(),30,"but with the limitation of "))
         super(entries, TableTitles.MagicalTalent);
         this.tableType = TableType.Talent;
