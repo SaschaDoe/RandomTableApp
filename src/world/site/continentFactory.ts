@@ -34,7 +34,7 @@ export function createContinent(){
 
 function generateSpheres() {
     let spheres = [];
-    let numberOfSpheres = randomIntFromInterval(0, 6);
+    let numberOfSpheres = randomIntFromInterval(-100, 12);
     for (let i = 0; i < numberOfSpheres; i++) {
         let sphere = new Site(true);
         sphereStore.update((spheres) => {
