@@ -35,7 +35,7 @@ export class AdvantageTable extends Table{
         entries.push(new TableEntry("resistant against illness"))
         entries.push(new TableEntry("poison resistant"))
         entries.push(new TableEntry("resistant to").withCascadingRole(new ElementTable()))
-        entries.push(new TableEntry("mighty artefact").withFunction(addArtefact))
+        entries.push(new TableEntry("mighty artefact").withFunctionString(addArtefactToStore))
         super(entries, TableTitles.Advantages);
         this.functions.push(addAdvantage)
         this.probability = 50;
@@ -45,11 +45,5 @@ export class AdvantageTable extends Table{
 }
 export function addAdvantage(char: Character, roleResult: RoleResult){
     char.advantages.push(roleResult.text);
-    return char;
-}
-
-export function addArtefact(char: Character){
-    char.artefacts.push(new Artefact());
-    addArtefactToStore();
     return char;
 }

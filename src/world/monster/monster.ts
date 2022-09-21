@@ -17,7 +17,6 @@ export class Monster extends AttributeEntity{
     description: string;
     adjective: string;
     meal: string;
-    number: string;
     encounterType: string;
     reproduction: string;
     talents: string[];
@@ -31,7 +30,6 @@ export class Monster extends AttributeEntity{
         this.description = new MonsterTable().roleWithCascade().text;
         this.adjective = new MonsterAdjectiveTable().roleWithCascade().text;
         this.meal = new MonsterMealTable().roleWithCascade().text;
-        this.number = new MonsterNumberTable().roleWithCascade().text;
         this.encounterType = new MonsterEncounterTypeTable().roleWithCascade().text;
         this.reproduction = new MonsterReproductionTable().roleWithCascade().text;
         this.motivation = new MotivationTable().roleWithCascade().text;

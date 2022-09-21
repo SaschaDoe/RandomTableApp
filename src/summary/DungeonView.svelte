@@ -50,8 +50,8 @@
             <ul>
                 {#each room.monsters as monster, index}
                     <li>
-                        <a href=,{"#"+monster}>{monster}</a>
-                        <div>{monster.number +" "+room.monsterEncounters[index]}</div>
+                        <a href={"#"+monster}>{monster}</a>
+                        <div>{room.monsterEncounters[index]}</div>
                     </li>
                 {/each}
             </ul>
