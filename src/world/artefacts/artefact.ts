@@ -32,11 +32,11 @@ export class Artefact extends Entity{
         for(let i = 0; i < randomNumberOfTalents; i++){
             this.addTalent();
         }
+        this.updateDescription();
     }
 
     addTalent(){
         this.talents.push(new MagicalTalentTable().roleWithCascade().text);
-        this.updateDescription();
     }
 
     private updateDescription() {

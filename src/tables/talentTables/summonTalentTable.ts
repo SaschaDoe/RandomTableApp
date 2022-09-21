@@ -6,15 +6,15 @@ import {RaceTable} from "../charTables/raceTable";
 import {Character} from "../../world/character/character";
 import {Dice} from "../../utils/dice";
 import {characters} from "../../world/character/charStore";
-import {WeatherAdjectiveTable} from "../otherTables/weatherAdjectiveTable";
 import {addArtefactToStore} from "../artefactTables/magicalArtefactTable";
 import {createHigherPower} from "../../world/character/characterFactory";
+import {WeatherTable} from "../otherTables/weatherTable";
 
 export class SummonTalentTable extends Table{
     constructor(){
         let entries = [] as TableEntry[];
         entries.push(new TableEntry("summon").withCascadingRole(new RaceTable()))
-        entries.push(new TableEntry("summon").withCascadingRole(new WeatherAdjectiveTable()))
+        entries.push(new TableEntry("summon").withCascadingRole(new WeatherTable()))
         entries.push(new TableEntry("summon").withFunctionString(createHigherPower));
         entries.push(new TableEntry("summon artefact").withFunctionString(addArtefactToStore));
         super(entries, TableTitles.SummonTalent);

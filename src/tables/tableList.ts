@@ -56,6 +56,12 @@ import {ObjectEnchantmentTable} from "./talentTables/objectEnchantmentTable";
 import {ArtefactAdjectiveTable} from "./artefactTables/artefactAdjectiveTable";
 import {TreasureTable} from "./artefactTables/treasureTable";
 import {FurnishingTable} from "./locationTables/furnishingTable";
+import {WeatherTable} from "./otherTables/weatherTable";
+import {ObstacleTable} from "./locationTables/obstacleTable";
+import {TrapTriggerTable} from "./locationTables/trapTriggerTable";
+import {NaturalObstacleTable} from "./locationTables/naturalObstacleTable";
+import {TrapFunctionTable} from "./locationTables/trapFunctionTable";
+import {TrapTable} from "./locationTables/trapTable";
 
 export let charTables = [
     new RaceTable(),
@@ -96,6 +102,11 @@ export let locationTables = [
     new BuildingTable(),
     new BuildingAdjectiveTable(),
     new FurnishingTable(),
+    new ObstacleTable(),
+    new TrapTriggerTable(),
+    new NaturalObstacleTable(),
+    new TrapFunctionTable(),
+    new TrapTable(),
 ]
 export let artefactsTables = [
     new ArtefactTable(),
@@ -120,6 +131,7 @@ export let otherTables = [
     new SenseTable(),
     new SizeTable(),
     new LocationTable(),
+    new WeatherTable(),
     new WeatherAdjectiveTable(),
     new VocalTable(),
     new RarityTable(),

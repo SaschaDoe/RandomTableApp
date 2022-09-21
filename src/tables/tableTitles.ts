@@ -60,4 +60,10 @@ export enum TableTitles{
     ArtefactAdjective = "Artefact Adjective",
     Treasure = "Treasure",
     Furnishing = "Furnishing",
+    Weather = "Weather",
+    Obstacle = "Obstacle",
+    TrapTrigger = "Trap Trigger",
+    TrapFunction = "TrapFunction",
+    NaturalObstacle = "Natural Obstacle",
+    Trap = "Trap",
 }

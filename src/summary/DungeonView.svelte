@@ -34,6 +34,18 @@
                     <li><a href={"#"+char}>{char}</a></li>
                 {/each}
             </ul>
+            <div>Obstacles:</div>
+            <ul>
+                {#each room.obstacles as obstacle}
+                    <li>{obstacle}</li>
+                {/each}
+            </ul>
+            <div>Traps:</div>
+            <ul>
+                {#each room.traps as trap}
+                    <li>{trap}</li>
+                {/each}
+            </ul>
         </li>
     {/each}
 </ul>

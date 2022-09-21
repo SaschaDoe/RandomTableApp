@@ -10,9 +10,10 @@
         width: 100%;
         position: fixed;
         background: #333;
-        padding: 0px 0;
+        padding: 0 0;
         color: #fff;
         bottom: 0;
+        z-index: 101;
     }
     p{
         text-align: center;
