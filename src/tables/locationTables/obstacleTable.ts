@@ -11,6 +11,7 @@ export class ObstacleTable extends Table{
         entries.push(new TableEntry("wall"))
         entries.push(new TableEntry("pit"))
         entries.push(new TableEntry("pit with").withCascadingRole(new ElementTable()))
+        entries.push(new TableEntry("pit with").withFunctionString(addMonsterToStore))
         entries.push(new TableEntry("pile"))
         entries.push(new TableEntry("stream of").withCascadingRole(new ElementTable()))
         entries.push(new TableEntry("cadaver of").withFunctionString(addMonsterToStore))
