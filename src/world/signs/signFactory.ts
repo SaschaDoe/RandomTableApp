@@ -52,7 +52,6 @@ export class SignFactory{
         for(let i = 0; i < numberOfBuildings; i++){
             this.addNewBuilding();
         }
-        this.sign.setDescription();
         return this.sign;
     }
 

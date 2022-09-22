@@ -5,4 +5,4 @@
 </script>
 
 <h1>{other.getUniqueName()}</h1>
-<p>{other.description}</p>
+<p>{other.getDescription()}</p>

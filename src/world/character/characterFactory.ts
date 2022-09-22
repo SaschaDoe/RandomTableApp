@@ -3,6 +3,40 @@ import {Dice} from "../../utils/dice";
 import {TalentTable} from "../../tables/talentTables/talentTable";
 import {applyNotMandatoryTables, characters, higherPowerBeingsStore} from "./charStore";
 import {probabilityCheck, randomIntFromInterval} from "../../utils/randomUtils";
+import {TableTitles} from "../../tables/tableTitles";
+import {AllTablesMap} from "../../tables/allTablesMap";
+
+export class CharacterFactory{
+    character: Character;
+    allTableMap: AllTablesMap;
+
+    constructor(
+        allTableMap = new AllTablesMap()
+    ){
+        this.character = new Character();
+        this.allTableMap = allTableMap;
+    }
+
+    setRandomGender(){
+        let oldGender = this.character.gender;
+        let genderTable = this.allTableMap.getTableOf(TableTitles.Gender)
+        this.character.gender = genderTable.roleWithCascade().text;
+        if(oldGender != this.character.gender){
+            this.setRandomName();
+        }
+    }
+
+    setRandomName(){
+        if(this.character.gender === "female"){
+            let femaleTable = this.allTableMap.getTableOf(TableTitles.GermanFemaleNames)
+            this.character.name = femaleTable.roleWithCascade().text;
+        }else{
+            let maleTable = this.allTableMap.getTableOf(TableTitles.GermanMaleName)
+            this.character.name = maleTable.roleWithCascade().text;
+        }
+
+    }
+}
 
 export function createHigherPower(){
     let higherPowerBeing: Character;

@@ -29,7 +29,7 @@ export class Sign extends Entity{
         this.event = "";
     }
 
-    setDescription(){
+    getDescription(){
         if(this.signs.length === 0
         && this.characters.length === 0
         && this.monsters.length === 0
@@ -63,7 +63,7 @@ export class Sign extends Entity{
             description += `In the forefront lies a `
             for(let i = 0; i < this.artefacts.length; i++){
                 description +=  this.withoutLastBlankLine(this.artefacts[i].description);
-                if(i < this.buildings.length-1){
+                if(i < this.artefacts.length-1){
                     description += "and "
                 }else{
                     description += ". "
@@ -84,7 +84,6 @@ export class Sign extends Entity{
         if(this.event !== ""){
             description += `A ${this.event} is going on.`
         }
-        this.description = description;
         return description;
     }
 

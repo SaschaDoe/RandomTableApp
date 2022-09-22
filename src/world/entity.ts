@@ -11,6 +11,10 @@ export class Entity{
         this.id = getId();
     }
 
+    getDescription(){
+        return this.description;
+    }
+
     getUniqueName(){
         if(this.name === ""){
             return "Other: "+this.id;

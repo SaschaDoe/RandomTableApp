@@ -63,7 +63,7 @@ export class Table {
 
 
 
-    roleWithCascade(dice = new Dice()) {
+    roleWithCascade(dice: Dice = new Dice()) {
         let roleResult = this.role(dice);
         let cascadedString = this.cascade(roleResult, dice);
         if(cascadedString === undefined){
@@ -75,8 +75,9 @@ export class Table {
     }
 
     private cascade(roleResult: RoleResult, dice = new Dice()) {
-        let fullText = roleResult.text+" ";
+        let fullText = roleResult.text;
         for (let i = 0; i < roleResult.cascadingRoles.length; i++) {
+            fullText += " "
             let entry = roleResult.cascadingRoles[i];
             let table = entry[0]
             let probability = entry[1];
