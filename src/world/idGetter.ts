@@ -1,5 +1,5 @@
 let id = 0;
-export function GetId(){
+export function getId(){
     id++;
     return id;
 }

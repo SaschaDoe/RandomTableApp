@@ -15,6 +15,9 @@
     import {addMonsterToStore, monsterStore} from "../world/monster/monsterStore.js";
     import MonsterView from "./MonsterView.svelte";
     import {Dungeon} from "../world/site/dungeon";
+    import {otherStore} from "../world/otherStore.js";
+    import OtherView from "./OtherView.svelte";
+    import {SignFactory} from "../world/signs/signFactory";
 
     let sizeOfParty = 1;
 
@@ -49,6 +52,11 @@
         addMonsterToStore()
         updateIndex()
     }
+    let addSign = () => {
+        let signFactory = new SignFactory();
+        signFactory.addSignToStore();
+        updateIndex()
+    };
 
 </script>
 
@@ -60,6 +68,7 @@
 <button on:click={addArtefactForView}>Add Artefact</button>
 <button on:click={addDungeon}>Add Dungeon</button>
 <button on:click={addMonster}>Add Monster</button>
+<button on:click={addSign}>Add Sign</button>
 {#each $characters as character}
     <div id={character.getUniqueName()}>
         <CharacterView character={character} />
@@ -99,6 +108,12 @@
 {#each $artefactStore as artefact}
     <div id={artefact.getUniqueName()}>
         <ArtefactView artefact={artefact} />
+    </div>
+{/each}
+
+{#each $otherStore as other}
+    <div id={other.getUniqueName()}>
+        <OtherView other={other} />
     </div>
 {/each}
 <div class="back-btn">

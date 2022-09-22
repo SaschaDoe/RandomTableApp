@@ -29,8 +29,6 @@ export class Character extends AttributeEntity{
     gender : string;
     motivation : string;
 
-
-
     relationships: Relationship[];
     curses: string[];
     nobility: string;
@@ -76,8 +74,6 @@ export class Character extends AttributeEntity{
         this.roleForAttributes(dice);
     }
 
-
-
     private isMatchingMagicUsers() {
         let magicUsers = Object.keys(MagicUserProfessions);
         for(let i = 0; i < magicUsers.length; i++){
@@ -110,6 +106,39 @@ export class Character extends AttributeEntity{
 
     addTalent() {
         this.talents.push(new TalentTable().roleWithCascade().text)
+    }
+
+    getDescription(){
+        let description = `${this.name} a ${this.gender} ${this.race} `
+        for(let i = 0; i < this.curses.length; i++){
+            description += `${this.curses[i]} `;
+        }
+        description += `${this.nobility} ${this.profession} with ${this.specialFeature}`;
+        if(this.advantages.length > 0 || this.disadvantages.length > 0){
+            description += " which is "
+        }
+        for(let i = 0; i < this.advantages.length; i++){
+            description += `${this.advantages[i]}`;
+            if(i < this.advantages.length-1){
+                description += ", "
+            }else{
+                description += " "
+            }
+        }
+        if(this.disadvantages.length > 0 && this.advantages.length > 0){
+            description += " and is "
+        }else if(this.disadvantages.length > 0){
+            description += " which is "
+        }
+        for(let i = 0; i < this.advantages.length; i++){
+            description += `${this.advantages[i]}`;
+            if(i < this.advantages.length-1){
+                description += ", "
+            }else{
+                description += " "
+            }
+        }
+        return description;
     }
 }
 

@@ -1,15 +1,20 @@
-import {GetId} from "./idGetter";
+import {getId} from "./idGetter";
 
 export class Entity{
     name: string;
+    description: string;
     id: number;
 
-    constructor(name = "") {
+    constructor(name = "", description = "") {
         this.name = name;
-        this.id = GetId();
+        this.description = description;
+        this.id = getId();
     }
 
     getUniqueName(){
+        if(this.name === ""){
+            return "Other: "+this.id;
+        }
         return this.id+" "+this.name;
     }
 }

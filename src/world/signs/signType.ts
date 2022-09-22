@@ -3,5 +3,6 @@ export enum SignTypes{
     wallCarpet = "wall carpet",
     coatOfArms = "coat of arms",
     flag = "flag",
-    graffiti = "graffiti"
+    graffiti = "graffiti",
+    stature = "stature"
 }

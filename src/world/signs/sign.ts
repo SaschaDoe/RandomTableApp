@@ -2,64 +2,97 @@ import type {Character} from "../character/character";
 import type {Monster} from "../monster/monster";
 import type {Artefact} from "../artefacts/artefact";
 import {SignTypes} from "./signType";
-import {ColourTable} from "../../tables/otherTables/colourTable";
-import {createNSC, getNewNSC} from "../character/characterFactory";
-import {addMonsterToStore, getNewMonsterInStore} from "../monster/monsterStore";
-import {BuildingTable} from "../../tables/locationTables/buildingTable";
-import {addArtefactToStore, getNewArtefactInStore} from "../../tables/artefactTables/magicalArtefactTable";
-import {TalentTable} from "../../tables/talentTables/talentTable";
-import {randomIntFromInterval} from "../../utils/randomUtils";
+import {Entity} from "../entity";
 
-export class Sign{
+
+export class Sign extends Entity{
     signs: Sign[];
     colour: string;
     characters: Character[];
     monsters: Monster[];
     buildings: string[];
     artefacts: Artefact[];
-    talent: string;
     signType: string;
+    quality: string;
+    event: string;
 
-    constructor(signType: string) {
+    constructor(signType = SignTypes.picture) {
+        super();
         this.signs = [];
         this.colour = "";
         this.characters = [];
         this.monsters = []
         this.buildings = [];
         this.artefacts = [];
-        this.talent = "";
         this.signType = signType;
+        this.quality = "";
+        this.event = "";
     }
 
-    setRandomColour(){
-        this.colour = new ColourTable().roleWithCascade().text;
+    setDescription(){
+        if(this.signs.length === 0
+        && this.characters.length === 0
+        && this.monsters.length === 0
+        && this.buildings.length === 0
+        && this.artefacts.length === 0
+        && this.event === ""){
+            return `a blank ${this.colour} ${this.signType}`;
+        }
+
+        let description = `a ${this.quality} ${this.colour} ${this.signType}. `
+        for(let i = 0; i < this.characters.length; i++){
+            description += this.withoutLastBlankLine(this.characters[i].getDescription());
+            if(i < this.characters.length-1){
+                description += " and "
+            }else{
+                description += " "
+            }
+        }
+        if(this.characters.length > 0){
+            description += "and "
+        }
+        for(let i = 0; i < this.monsters.length; i++) {
+            description +=  this.withoutLastBlankLine(this.monsters[i].getDescription());
+            if (i < this.monsters.length - 1) {
+                description += "and "
+            } else {
+                description += ". "
+            }
+        }
+        if(this.artefacts.length > 0){
+            description += `In the forefront lies a `
+            for(let i = 0; i < this.artefacts.length; i++){
+                description +=  this.withoutLastBlankLine(this.artefacts[i].description);
+                if(i < this.buildings.length-1){
+                    description += "and "
+                }else{
+                    description += ". "
+                }
+            }
+        }
+        if(this.buildings.length > 0){
+            description += `In the background there is a `
+            for(let i = 0; i < this.buildings.length; i++){
+                description +=  this.withoutLastBlankLine(this.buildings[i]);
+                if(i < this.buildings.length-1){
+                    description += "and a "
+                }else{
+                    description += ". "
+                }
+            }
+        }
+        if(this.event !== ""){
+            description += `A ${this.event} is going on.`
+        }
+        this.description = description;
+        return description;
     }
 
-    addRandomNewCharacter(){
-        this.characters.push(getNewNSC());
+    withoutLastBlankLine(text: string){
+        if(text[text.length-1] === " "){
+            text = text.slice(0, -1);
+        }
+        return text;
     }
-
-    addNewMonster(){
-        this.monsters.push(getNewMonsterInStore());
-    }
-
-    addNewBuilding(){
-        this.buildings.push(new BuildingTable().roleWithCascade().text);
-    }
-
-    addNewArtefact(){
-        this.artefacts.push(getNewArtefactInStore())
-    }
-
-    setRandomTalent(){
-        this.talent = new TalentTable().roleWithCascade().text;
-    }
-
-    setRandomSignType(){
-        let allSignTypes = Object.keys(SignTypes);
-        let randomNumber = randomIntFromInterval(0,allSignTypes.length-1)
-        this.signType = allSignTypes[randomNumber];
-    }
-
 
 }

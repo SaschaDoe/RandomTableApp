@@ -5,7 +5,7 @@
 </script>
 
 <h1>{monster.getUniqueName()}</h1>
-<p>{monster.adjective + " " + monster.description}</p>
+<p>{"a "+monster.adjective  +" "+ monster.gender + " " + monster.description}</p>
 <div>{"Eating habit: "+monster.meal}</div>
 <div>{"It reproduces by "+monster.reproduction}</div>
 
@@ -28,6 +28,22 @@
     <li class="bold inline no-list-style">Curses: </li>
     {#each monster.curses as curse}
         <li class="inline no-list-style">{curse+ "/ "}</li>
+    {/each}
+    <li class="no-list-style"></li>
+</ul>
+
+<ul class="fix-list-left">
+    <li class="bold inline no-list-style">Advantages: </li>
+    {#each monster.advantages as advantage}
+        <li class="inline no-list-style">{advantage+"/ "}</li>
+    {/each}
+    <li class="no-list-style"></li>
+</ul>
+
+<ul class="fix-list-left">
+    <li class="bold inline no-list-style">Disadvantages: </li>
+    {#each monster.disadvantages as disadvantage}
+        <li class="inline no-list-style">{disadvantage+"/ "}</li>
     {/each}
     <li class="no-list-style"></li>
 </ul>

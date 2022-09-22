@@ -9,6 +9,8 @@ import type {Artefact} from "../world/artefacts/artefact";
 import {artefactStore} from "../world/artefacts/artefactStore";
 import {monsterStore} from "../world/monster/monsterStore";
 import type {Monster} from "../world/monster/monster";
+import {otherStore} from "../world/otherStore";
+import type {Entity} from "../world/entity";
 
 export const updateIndex = () =>{
     let titles = [];
@@ -19,6 +21,7 @@ export const updateIndex = () =>{
     titles.push("Spheres")
     titles.push("Dungeons")
     titles.push("Artefacts")
+    titles.push("Others")
 
     titleStore.set(titles);
     let chars = [] as Character[];
@@ -90,11 +93,22 @@ export const updateIndex = () =>{
         let artefact = artefacts[i];
         artefactIndexes.push(artefact.getUniqueName());
     }
+
+    let others = [] as Entity[];
+    otherStore.subscribe((cs) => {
+        others = cs;
+    })
+    let otherIndexes = [] as string[];
+    for(let i = 0; i < others.length; i++){
+        let other = others[i];
+        otherIndexes.push(other.getUniqueName());
+    }
     indexesStore.set([charIndexes,
         godsIndexes,
         monsterIndexes,
         continentIndexes,
         spheresIndexes,
         dungeonIndexes,
-        artefactIndexes]);
+        artefactIndexes,
+        otherIndexes]);
 }
