@@ -1,103 +1,153 @@
 import {describe, expect, test} from "vitest";
 import {CharacterFactory} from "./characterFactory";
-import {RoleResult} from "../../tables/roleResult";
-import {Table} from "../../tables/table";
-import {AllTablesMap} from "../../tables/allTablesMap";
 import {TableTitles} from "../../tables/tableTitles";
-import type {Character} from "./character";
+import {TableRoller} from "../../tables/tableRoler";
+import {FakeAllTablesMap} from "../../tables/tableRoller.test";
+
 
 describe("CharacterFactory", () => {
-
-    test("should character attribute according to random Attributes", () => {
-        let inputs = testInputs();
-        for(let i = 0; i<inputs.length; i++){
-            let input = inputs[i];
-            let tableTitles = input[0] as TableTitles[];
-            let tableOutputs = input[1] as string[];
-            let charFactoryFnk = input[2] as ((charFactory: CharacterFactory) => void)
-            let charExpectationFnk = input[3] as ((character: Character) => string);
-            let expectedString = input[4] as string;
-
-            let characterFactory = new CharacterFactory(new FakeAllTablesMap(tableTitles,tableOutputs));
-
-            charFactoryFnk(characterFactory)
-
-            let character = characterFactory.character;
-            expect(charExpectationFnk(character)).toBe(expectedString);
-        }
+    test("should set default character to what is given in random tables", () => {
+        let tableOutput = [["name"]];
+        let tableTitle = [TableTitles.GermanMaleName];
+        let characterFactory = new CharacterFactory(new FakeTableRoller(tableTitle, tableOutput))
+        let character = characterFactory.create();
     })
 
 
+    /*
+        test("should character attribute according to random Attributes", () => {
+            let inputs = testInputs();
+            for(let i = 0; i<inputs.length; i++){
+                let input = inputs[i];
+                let tableTitles = input[0] as TableTitles[];
+                let tableOutputs = input[1] as string[][];
+                let charFactoryFnk = input[2] as ((charFactory: CharacterFactory) => void);
+                let expectationFnk = input[3] as ((char: Character) => void)
+
+                let characterFactory = new CharacterFactory(new TableRoller());
+
+                charFactoryFnk(characterFactory)
+
+                let character = characterFactory.character;
+                expectationFnk(character);
+            }
+        })
+    })
+
+    function testInputs(){
+        return [
+            [
+                [TableTitles.Gender, TableTitles.GermanFemaleNames],
+                [["female"],["female name"]],                                                 //Arrange
+                (characterFactory:CharacterFactory) => characterFactory.setRandomGender(),                            //Act
+                (char: Character) => ["female"].forEach(str => expect(char.gender).toBe(str)),//Assert
+            ],*/
+    /*
+            [
+                [TableTitles.Gender, TableTitles.GermanMaleName],
+                [["male"], ["male nane"]],
+                (char:CharacterFactory) => char.setRandomGender(),
+                (char: Character) => ["male"].forEach(str => expect(char.gender).toBe(str)),
+            ],
+
+            [
+                [TableTitles.Gender, TableTitles.GermanFemaleNames],
+                [["female"], ["female name"]],
+                (char:CharacterFactory) => {char.setRandomName()},
+                (char: Character) => ["female name"].forEach(str => expect(char.name).toBe(str)),
+            ],
+
+            [
+                [TableTitles.Gender, TableTitles.GermanMaleName],
+                [["male"], ["male name", "male name"]], //change Gender triggers name change
+                (charFactory:CharacterFactory) => {charFactory.setRandomGender(); charFactory.setRandomName()},
+                (char: Character) => ["male name"].forEach(str => expect(char.name).toBe(str)),
+            ],
+
+            [
+                [TableTitles.SpecialFeatures],
+                [["special feature"]],
+                (char:CharacterFactory) => char.setRandomSpecialFeature(),
+                (char: Character) => ["special feature"].forEach(str => expect(char.specialFeature).toBe(str)),
+            ],
+
+            [
+                [TableTitles.Motivation],
+                [["motivation"]],
+                (char:CharacterFactory) => char.setRandomMotivation(),
+                (char: Character) => ["motivation"].forEach(str => expect(char.motivation).toBe(str)),
+            ],
+
+            [
+                [TableTitles.Curse],
+                [["curse"]],
+                (char:CharacterFactory) => char.setRandomCurses(new FakeRandom([1])),
+                (char: Character) => ["curse"].forEach((str,index) => expect(char.curses[index]).toBe(str)),
+            ],
+
+            [
+                [TableTitles.Curse],
+                [["curse one", "curse two"]],
+                (char:CharacterFactory) => char.setRandomCurses(new FakeRandom([2])),
+                (char: Character) =>
+                    ["curse one", "curse two"].
+                    forEach((str,index) =>
+                        expect(char.curses[index])
+                            .toBe(str)),
+            ],
+
+            [
+                [TableTitles.Curse],
+                [["curse one", "curse two"]],
+                (char:CharacterFactory) => char.setRandomCurses(new FakeRandom([2])),
+                (char: Character) =>
+                    ["curse one", "curse two"].
+                    forEach((str,index) =>
+                        expect(char.curses[index])
+                            .toBe(str)),
+            ],
+
+            [
+                [TableTitles.Nobility],
+                [["nobility"]],
+                (char:CharacterFactory) => char.setRandomNobility(),
+                (char: Character) =>
+                    ["nobility"].
+                    forEach((str) =>
+                        expect(char.nobility)
+                            .toBe(str)),
+            ],
+
+        ]
+    }*/
+    /*
+    class FakeRandom extends Random{
+        private readonly results: number[];
+        private count: number;
+
+        constructor(results: number[]) {
+            super();
+            this.results = results;
+            this.count = 0;
+        }
+
+        intFromInterval(minIncluded: number, maxIncluded: number): number {
+            if(this.results.length > this.count){
+                let result = this.results[this.count];
+                this.count++;
+                return result;
+            }else{
+                throw Error(`Not enough results just ${this.results.length}`);
+            }
+        }
+    }
+    */
 })
 
-function testInputs(){
-    return [
-        [[TableTitles.Gender],["female"],(char:CharacterFactory) => char.setRandomGender(), (char: Character) => char.gender,"female"],
-        [[TableTitles.Gender],["male"],(char:CharacterFactory) => char.setRandomGender(), (char: Character) => char.gender,"male"],
+class FakeTableRoller extends TableRoller{
+    constructor(tableTitles: TableTitles[], tableOutputs: string[][]) {
+        super(new FakeAllTablesMap(tableTitles,tableOutputs));
 
-        [
-            [TableTitles.Gender, TableTitles.GermanMaleName],
-            ["male", "maleName"],
-            (char:CharacterFactory) => char.setRandomName(),
-            (char: Character) => char.name,
-            "maleName"
-        ],
-
-        [
-            [TableTitles.Gender, TableTitles.GermanFemaleNames],
-            ["female", "femaleName"],
-            (char:CharacterFactory) => char.setRandomName(),
-            (char: Character) => char.name,
-            "femaleName"
-        ],
-
-        [
-            [TableTitles.Gender, TableTitles.GermanFemaleNames],
-            ["female", "femaleName"],
-            (char:CharacterFactory) => {char.setRandomName()},
-            (char: Character) => char.gender,
-            "femaleName"
-        ],
-    ]
-}
-
-class FakeAllTablesMap extends AllTablesMap{
-
-    constructor(tableTitles: TableTitles[], outputStrings: string[]) {
-        super(fakeAllTablesMapFunction(tableTitles,outputStrings));
-    }
-}
-
-export function fakeAllTablesMapFunction(tableTitles: TableTitles[], outputStrings: string[]){
-    let allTablesMap = new Map<TableTitles,Table>();
-
-    initializeTables(allTablesMap)
-
-    for(let i = 0; i < tableTitles.length; i++){
-        let tableTitle = tableTitles[i];
-        let outputString = outputStrings[i];
-        allTablesMap.set(tableTitle, new FakeTable(outputString))
     }
 
-    return allTablesMap;
-}
-
-function initializeTables(allTablesMap: Map<TableTitles,Table>){
-    allTablesMap.set(TableTitles.Gender, new FakeTable("female"));
-    allTablesMap.set(TableTitles.GermanFemaleNames, new FakeTable("femaleName"));
-    allTablesMap.set(TableTitles.GermanMaleName, new FakeTable("maleName"));
-    return allTablesMap;
-}
-
-class FakeTable extends Table{
-    private result: string;
-
-    constructor(result: string) {
-
-        super();
-        this.result = result;
-    }
-    role(){
-        return new RoleResult(this.result)
-    }
 }

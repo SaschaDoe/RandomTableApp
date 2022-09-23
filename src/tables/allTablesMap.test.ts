@@ -1,7 +1,13 @@
-import { describe, expect, test } from "vitest";
+import {describe, expect, test} from "vitest";
 import {AllTablesMap} from "./allTablesMap";
 import {TableTitles} from "./tableTitles";
 import {GenderTable} from "./charTables/genderTable";
+import {GermanFemaleNameTable} from "./nameTables/germanFemaleNameTable";
+import {GermanMaleNameTable} from "./nameTables/germanMaleNameTable";
+import {SpecialFeaturesTable} from "./charTables/specialFeaturesTable";
+import {MotivationTable} from "./charTables/motivationTable";
+import {CurseTable} from "./charTables/curseTable";
+import {NobilityTable} from "./charTables/nobilityTable";
 
 describe("AllTablesMap", () => {
 
@@ -20,4 +26,27 @@ describe("AllTablesMap", () => {
             .toThrowError("Table title is not in all tables map");
     })
 
+    test.each(
+        testInput()
+    )
+    ("should return specific table type when called for %s", (tt , tableType) => {
+        let tableTitle = tt as TableTitles;
+        let allTablesMap = new AllTablesMap();
+
+            let table = allTablesMap.getTableOf(tableTitle);
+
+            expect(table).toBeInstanceOf(tableType);
+    })
 })
+
+function testInput(){
+    return [
+        [TableTitles.GermanFemaleNames, GermanFemaleNameTable],
+        [TableTitles.Gender, GenderTable],
+        [TableTitles.GermanMaleName, GermanMaleNameTable],
+        [TableTitles.SpecialFeatures, SpecialFeaturesTable],
+        [TableTitles.Motivation, MotivationTable],
+        [TableTitles.Curse, CurseTable],
+        [TableTitles.Nobility, NobilityTable],
+    ]
+}

@@ -1,43 +1,80 @@
-import {Character} from "./character";
-import {Dice} from "../../utils/dice";
-import {TalentTable} from "../../tables/talentTables/talentTable";
-import {applyNotMandatoryTables, characters, higherPowerBeingsStore} from "./charStore";
-import {probabilityCheck, randomIntFromInterval} from "../../utils/randomUtils";
+import {TableRoller} from "../../tables/tableRoler";
+import {CharacterBuilder} from "./characterBuilder";
 import {TableTitles} from "../../tables/tableTitles";
-import {AllTablesMap} from "../../tables/allTablesMap";
 
 export class CharacterFactory{
-    character: Character;
-    allTableMap: AllTablesMap;
+    private tableRoller: TableRoller;
+    private characterName: string;
 
     constructor(
-        allTableMap = new AllTablesMap()
+        tableRoller = new TableRoller()
     ){
-        this.character = new Character();
-        this.allTableMap = allTableMap;
+        this.tableRoller = tableRoller
+
+        this.characterName = tableRoller.roleFor(TableTitles.GermanMaleName).text;
     }
 
-    setRandomGender(){
-        let oldGender = this.character.gender;
-        let genderTable = this.allTableMap.getTableOf(TableTitles.Gender)
-        this.character.gender = genderTable.roleWithCascade().text;
-        if(oldGender != this.character.gender){
+    create() {
+        return new CharacterBuilder()
+            .withName(this.characterName)
+            .build();
+    }
+/*
+    createNewCharacter(){
+        let gender = this.tableRoller.roleFor(TableTitles.Gender);
+
+        return new Character(gender)
+    }
+
+    getRandomGender(){
+        let oldGender = this.gender;
+        let genderTable = this.getTableOf(TableTitles.Gender)
+        this.gender = genderTable.roleWithCascade().text;
+        if(oldGender != this.gender){
             this.setRandomName();
         }
     }
 
     setRandomName(){
-        if(this.character.gender === "female"){
-            let femaleTable = this.allTableMap.getTableOf(TableTitles.GermanFemaleNames)
-            this.character.name = femaleTable.roleWithCascade().text;
+        if(this.gender === "female"){
+            let femaleTable = this.getTableOf(TableTitles.GermanFemaleNames)
+            this.name = femaleTable.roleWithCascade().text;
         }else{
             let maleTable = this.allTableMap.getTableOf(TableTitles.GermanMaleName)
-            this.character.name = maleTable.roleWithCascade().text;
+            this.name = maleTable.roleWithCascade().text;
         }
-
     }
-}
 
+    setRandomSpecialFeature() {
+        let specialFeatureTable = this.getTableOf(TableTitles.SpecialFeatures);
+        this.specialFeature = specialFeatureTable.roleWithCascade().text;
+    }
+
+    setRandomMotivation() {
+        let specialFeatureTable = this.getTableOf(TableTitles.Motivation);
+        this.character.motivation = specialFeatureTable.roleWithCascade().text;
+    }
+
+    setRandomCurses(random = new Random()) {
+        let specialFeatureTable = this.getTableOf(TableTitles.Curse)
+        let numberOfCurses = random.intFromInterval(-50,2);
+        for(let i = 0; i < numberOfCurses; i++){
+            this.character.curses.push(specialFeatureTable.roleWithCascade().text);
+        }
+    }
+
+    private getTableOf(tableTitle: TableTitles){
+        return this.allTableMap.getTableOf(tableTitle);
+    }
+
+    setRandomNobility() {
+        let nobilityTable = this.getTableOf(TableTitles.Nobility);
+        this.character.nobility = nobilityTable.roleWithCascade().text;
+    }*/
+
+
+}
+/*
 export function createHigherPower(){
     let higherPowerBeing: Character;
     let higherPowerBeings = [] as Character[];
@@ -83,3 +120,4 @@ export function getNewNSC(){
     })
     return character;
 }
+*/

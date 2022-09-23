@@ -12,21 +12,7 @@ export class AttributeEntity extends Entity{
     constitution = 0;
     strength = 0;
 
-    constructor(dice = new Dice(), name = "") {
-        super(name);
-        this.roleForAttributes(dice)
-    }
-
-    roleForAttributes(dice: Dice) {
-        let attributeDiceRole = new DiceRole().withNumberOfDice(3);
-
-        this.courage = dice.role(attributeDiceRole);
-        this.charisma = dice.role(attributeDiceRole);
-        this.wisdom = dice.role(attributeDiceRole);
-        this.intuition = dice.role(attributeDiceRole);
-        this.dexterity = dice.role(attributeDiceRole);
-        this.manualDexterity = dice.role(attributeDiceRole);
-        this.constitution = dice.role(attributeDiceRole);
-        this.strength = dice.role(attributeDiceRole);
+    constructor() {
+        super();
     }
 }

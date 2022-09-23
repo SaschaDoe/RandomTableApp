@@ -1,37 +1,31 @@
 import {Dice} from "../../utils/dice";
-import {GermanMaleNameTable} from "../../tables/nameTables/germanMaleNameTable";
-import {GenderTable} from "../../tables/charTables/genderTable";
-import {GermanFemaleNameTable} from "../../tables/nameTables/germanFemaleNameTable";
-import {Gender} from "../../tables/charTables/gender";
-import type {Relationship} from "./relationship";
-import {MotivationTable} from "../../tables/charTables/motivationTable";
-import {RaceTable} from "../../tables/charTables/raceTable";
-import {NobilityTable} from "../../tables/charTables/nobilityTable";
-import {ProfessionTable} from "../../tables/charTables/professionTable";
-import {AlignmentTable} from "../../tables/charTables/alignmentTable";
-import {mapSiteWithChar} from "../site/continentFactory";
-import type {Site} from "../site/site";
-import {MagicUserProfessions} from "../../tables/charTables/magicUserProfessions";
-import {randomIntFromInterval} from "../../utils/randomUtils";
-import {MagicalTalentTable} from "../../tables/talentTables/magicalTalentTable";
-import type {Artefact} from "../artefacts/artefact";
-import {CurseTable} from "../../tables/charTables/curseTable";
-import {AdvantageTable} from "../../tables/charTables/advantageTable";
-import {DisadvantageTable} from "../../tables/charTables/disadvantageTable";
-import {TalentTable} from "../../tables/talentTables/talentTable";
 import {AttributeEntity} from "./attributeEntity";
-import {SpecialFeaturesTable} from "../../tables/charTables/specialFeaturesTable";
+import type {CharacterBuilder} from "./characterBuilder";
 
 
 export class Character extends AttributeEntity{
-    isHigherPower: boolean;
-    race : string;
-    gender : string;
-    motivation : string;
+    readonly name: string;
 
+    constructor(
+        characterBuilder: CharacterBuilder
+    ) {
+        super();
+        if(characterBuilder.charName === undefined){
+            throw Error("Character name must be set");
+        }
+        this.name = characterBuilder.charName;
+    }
+  /*
+      gender : string;
+    isHigherPower: boolean;
+    nobility: string;
+    motivation : string;
+    race : string;
+    specialFeature: string;
+    curses: string[];
     relationships: Relationship[];
     curses: string[];
-    nobility: string;
+
     profession: string;
     advantages: string[];
     disadvantages : string[];
@@ -41,21 +35,18 @@ export class Character extends AttributeEntity{
     homeContinent: Site;
     readonly isMagicUserProfession: boolean;
     artefacts: Artefact[];
-    specialFeature: string;
 
+    */
+
+
+/*
     constructor(dice = new Dice(), isHigherPower = false) {
         let name = "";
-        let gender = new GenderTable().role().text
-        if(gender === Gender.Female){
-            name = new GermanFemaleNameTable().role().text;
-        }else{
-            name = new GermanMaleNameTable().role().text;
-        }
         super(dice, name);
         this.specialFeature = new SpecialFeaturesTable().roleWithCascade().text;
         this.artefacts = []
         this.isHigherPower = isHigherPower;
-        this.gender = gender;
+        this.gender = Gender.Female;
         this.motivation = new MotivationTable().roleWithCascade().text;
         this.nobility = new NobilityTable().role().text;
         this.profession = new ProfessionTable().roleWithCascade().text;
@@ -73,7 +64,8 @@ export class Character extends AttributeEntity{
         }
         this.roleForAttributes(dice);
     }
-
+*/
+    /*
     private isMatchingMagicUsers() {
         let magicUsers = Object.keys(MagicUserProfessions);
         for(let i = 0; i < magicUsers.length; i++){
@@ -140,5 +132,7 @@ export class Character extends AttributeEntity{
         }
         return description;
     }
+    */
+
 }
 
