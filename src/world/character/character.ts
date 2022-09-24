@@ -4,29 +4,61 @@ import type {CharacterBuilder} from "./characterBuilder";
 
 
 export class Character extends AttributeEntity{
+    readonly gender: string;
     readonly name: string;
+    readonly nobility: string;
+    readonly motivation: string;
+    readonly profession: string;
+    readonly race : string;
+    readonly curses: string[];
+
 
     constructor(
         characterBuilder: CharacterBuilder
     ) {
         super();
+        if(characterBuilder.charGender === undefined){
+            throw Error("Character gender must be set");
+        }
+        this.gender = characterBuilder.charGender;
+
+        if(characterBuilder.charMotivation === undefined){
+            throw Error("Character motivation must be set");
+        }
+        this.motivation = characterBuilder.charMotivation;
+
         if(characterBuilder.charName === undefined){
             throw Error("Character name must be set");
         }
         this.name = characterBuilder.charName;
+
+        if(characterBuilder.charNobility === undefined){
+            throw Error("Character nobility must be set");
+        }
+        this.nobility = characterBuilder.charNobility;
+
+        if(characterBuilder.charProfession === undefined){
+            throw Error("Character profession must be set");
+        }
+        this.profession = characterBuilder.charProfession;
+
+        if(characterBuilder.charRace === undefined){
+            throw Error("Character race must be set");
+        }
+        this.race = characterBuilder.charRace;
+
+        this.curses = characterBuilder.charCurses;
     }
   /*
-      gender : string;
-    isHigherPower: boolean;
-    nobility: string;
-    motivation : string;
-    race : string;
-    specialFeature: string;
-    curses: string[];
-    relationships: Relationship[];
-    curses: string[];
 
-    profession: string;
+    isHigherPower: boolean;
+
+
+    specialFeature: string;
+
+    relationships: Relationship[];
+
+
     advantages: string[];
     disadvantages : string[];
     talents: string[];

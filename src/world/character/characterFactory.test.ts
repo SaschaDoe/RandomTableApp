@@ -3,15 +3,67 @@ import {CharacterFactory} from "./characterFactory";
 import {TableTitles} from "../../tables/tableTitles";
 import {TableRoller} from "../../tables/tableRoler";
 import {FakeAllTablesMap} from "../../tables/tableRoller.test";
+import {Random} from "../../utils/randomUtils";
 
 
 describe("CharacterFactory", () => {
     test("should set default character to what is given in random tables", () => {
-        let tableOutput = [["name"]];
-        let tableTitle = [TableTitles.GermanMaleName];
-        let characterFactory = new CharacterFactory(new FakeTableRoller(tableTitle, tableOutput))
+        let tableOutput = [
+            ["female"],
+            ["motivation"],
+            ["name"],
+            ["nobel"],
+            ["profession"],
+            ["human"],
+            ["vampire"]];
+        let tableTitle = [
+            TableTitles.Gender,
+            TableTitles.Motivation,
+            TableTitles.GermanMaleName,
+            TableTitles.Nobility,
+            TableTitles.Profession,
+            TableTitles.Race,
+            TableTitles.Curse];
+        let characterFactory = new CharacterFactory(new FakeTableRoller(tableTitle, tableOutput), new FakeRandom([1]))
+
         let character = characterFactory.create();
+
+        expect(character.gender).toBe("female");
+        expect(character.name).toBe("name");
+        expect(character.nobility).toBe("nobel");
+        expect(character.motivation).toBe("motivation");
+        expect(character.profession).toBe("profession");
+        expect(character.race).toBe("human");
+
+        expect(character.curses.length).toBe(1);
+        expect(character.curses[0]).toBe("vampire");
     })
+})
+
+class FakeRandom extends Random{
+    private readonly results: number[];
+    private count: number;
+
+    constructor(results: number[]) {
+        super();
+        this.results = results;
+        this.count = 0;
+    }
+
+    intFromInterval(minIncluded: number, maxIncluded: number): number {
+        let result = this.results[this.count];
+        this.count++;
+        return result;
+    }
+}
+
+class FakeTableRoller extends TableRoller{
+    constructor(tableTitles: TableTitles[], tableOutputs: string[][]) {
+        super(new FakeAllTablesMap(tableTitles,tableOutputs));
+
+    }
+
+}
 
 
     /*
@@ -142,12 +194,4 @@ describe("CharacterFactory", () => {
         }
     }
     */
-})
 
-class FakeTableRoller extends TableRoller{
-    constructor(tableTitles: TableTitles[], tableOutputs: string[][]) {
-        super(new FakeAllTablesMap(tableTitles,tableOutputs));
-
-    }
-
-}

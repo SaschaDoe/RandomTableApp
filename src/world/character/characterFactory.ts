@@ -1,24 +1,65 @@
 import {TableRoller} from "../../tables/tableRoler";
 import {CharacterBuilder} from "./characterBuilder";
+// @ts-ignore
+import {CharacterAttributeTableTitlesMap} from "./characterAttributeTableTitlesMap";
+import {Random} from "../../utils/randomUtils";
 import {TableTitles} from "../../tables/tableTitles";
 
-export class CharacterFactory{
-    private tableRoller: TableRoller;
-    private characterName: string;
+export let curseMinInterval = -50;
+export let curseMaxInterval = 1;
+
+export class CharacterFactory {
+    tableRoller: TableRoller;
+    random: Random;
+    characterName = "";
+    characterGender = "";
+    characterNobility = "";
+    characterMotivation = "";
+    characterRace = "";
+    characterProfession = "";
+    characterCurses: string[];
 
     constructor(
-        tableRoller = new TableRoller()
-    ){
+        tableRoller = new TableRoller(),
+        random = new Random()
+    ) {
         this.tableRoller = tableRoller
+        this.random = random;
 
-        this.characterName = tableRoller.roleFor(TableTitles.GermanMaleName).text;
+        this.characterCurses = [];
     }
 
     create() {
+        this.setAllMandatory();
+        this.setAllNonMandatory()
+
         return new CharacterBuilder()
             .withName(this.characterName)
+            .withGender(this.characterGender)
+            .withNobility(this.characterNobility)
+            .withMotivation(this.characterMotivation)
+            .withProfession(this.characterProfession)
+            .withRace(this.characterRace)
+            .withCurses(this.characterCurses)
             .build();
     }
+
+    private setAllMandatory() {
+        let charAttributeTableTitleMap = new CharacterAttributeTableTitlesMap().charAttributeTableTitlesMap;
+        charAttributeTableTitleMap.forEach((attributeFnk, title) => {
+            let text = this.tableRoller.roleFor(title).text;
+            attributeFnk(this, text);
+        })
+    }
+
+    private setAllNonMandatory() {
+        let numberOfCurses = this.random.intFromInterval(-curseMinInterval,curseMaxInterval);
+        for(let i = 0; i < numberOfCurses; i++){
+            this.characterCurses.push(this.tableRoller.roleFor(TableTitles.Curse).text);
+        }
+    }
+}
+
 /*
     createNewCharacter(){
         let gender = this.tableRoller.roleFor(TableTitles.Gender);
@@ -71,9 +112,6 @@ export class CharacterFactory{
         let nobilityTable = this.getTableOf(TableTitles.Nobility);
         this.character.nobility = nobilityTable.roleWithCascade().text;
     }*/
-
-
-}
 /*
 export function createHigherPower(){
     let higherPowerBeing: Character;
