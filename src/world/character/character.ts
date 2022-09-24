@@ -12,8 +12,10 @@ export class Character extends AttributeEntity{
     readonly profession: string;
     readonly race : string;
 
+    readonly advantages: string[];
     readonly curses: string[];
     readonly specialFeatures: string[];
+
 
     constructor(
         characterBuilder: CharacterBuilder
@@ -56,6 +58,7 @@ export class Character extends AttributeEntity{
 
         this.curses = characterBuilder.charCurses;
         this.specialFeatures = characterBuilder.charSpecialFeatures;
+        this.advantages = characterBuilder.charAdvantages;
     }
   /*
 
@@ -70,11 +73,11 @@ export class Character extends AttributeEntity{
     advantages: string[];
     disadvantages : string[];
     talents: string[];
-
+    artefacts: Artefact[];
 
     homeContinent: Site;
     readonly isMagicUserProfession: boolean;
-    artefacts: Artefact[];
+
 
     */
 

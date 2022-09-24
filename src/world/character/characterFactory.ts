@@ -5,6 +5,8 @@ import {CharacterAttributeTableTitlesMap} from "./characterAttributeTableTitlesM
 import {Random} from "../../utils/randomUtils";
 import {TableTitles} from "../../tables/tableTitles";
 
+export let advantagesMinInterval = -10;
+export let advantagesMaxInterval = 3;
 export let curseMinInterval = -50;
 export let curseMaxInterval = 2;
 export let specialFeaturesMinInterval = -10;
@@ -22,10 +24,9 @@ export class CharacterFactory {
     characterRace = "";
     characterProfession = "";
 
+    characterAdvantages = [] as string[];
     characterCurses = [] as string[];
     charSpecialFeatures = [] as string[];
-
-
 
     constructor(
         tableRoller = new TableRoller(),
@@ -47,6 +48,7 @@ export class CharacterFactory {
             .withMotivation(this.characterMotivation)
             .withProfession(this.characterProfession)
             .withRace(this.characterRace)
+            .withAdvantages(this.characterAdvantages)
             .withCurses(this.characterCurses)
             .withSpecialFeature((this.charSpecialFeatures))
             .build();
@@ -61,6 +63,11 @@ export class CharacterFactory {
     }
 
     private setAllNonMandatory() {
+        let numberOfAdvantages = this.random.intFromInterval(advantagesMinInterval,advantagesMaxInterval);
+        for(let i = 0; i < numberOfAdvantages; i++){
+            this.characterAdvantages.push(this.tableRoller.roleFor(TableTitles.Advantages).text);
+        }
+
         let numberOfCurses = this.random.intFromInterval(curseMinInterval,curseMaxInterval);
         for(let i = 0; i < numberOfCurses; i++){
             this.characterCurses.push(this.tableRoller.roleFor(TableTitles.Curse).text);

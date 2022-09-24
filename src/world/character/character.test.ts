@@ -25,11 +25,16 @@ describe("Character", () => {
         expect(character.race).toBe("human");
         expect(character.curses.length).toBe(0);
         expect(character.specialFeatures.length).toBe(0);
+        expect(character.advantages)
 
         character = characterBuilder
+            .withAdvantages(["lucky"])
             .withCurses(["vampire"])
             .withSpecialFeature(["horn"])
             .build();
+
+        expect(character.advantages.length).toBe(1);
+        expect(character.advantages[0]).toBe("lucky");
 
         expect(character.curses.length).toBe(1);
         expect(character.curses[0]).toBe("vampire");

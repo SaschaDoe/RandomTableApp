@@ -12,10 +12,12 @@ export class CharacterBuilder{
 
     charCurses: string[];
     charSpecialFeatures: string[];
+    charAdvantages: string[];
 
     constructor() {
         this.charCurses = [];
         this.charSpecialFeatures = [];
+        this.charAdvantages = [];
     }
 
     build() {
@@ -54,6 +56,11 @@ export class CharacterBuilder{
 
     withRace(race: string) {
         this.charRace = race
+        return this;
+    }
+
+    withAdvantages(advantages: string[]){
+        this.charAdvantages = this.charAdvantages.concat(advantages);
         return this;
     }
 
