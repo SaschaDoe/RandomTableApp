@@ -8,11 +8,13 @@ export class CharacterBuilder{
     charMotivation: string|undefined;
     charProfession: string|undefined;
     charRace: string|undefined;
-    charCurses: string[];
 
+    charCurses: string[];
+    charSpecialFeatures: string[];
 
     constructor() {
         this.charCurses = [];
+        this.charSpecialFeatures = [];
     }
 
     build() {
@@ -46,6 +48,11 @@ export class CharacterBuilder{
 
     withRace(race: string) {
         this.charRace = race
+        return this;
+    }
+
+    withSpecialFeature(specialFeatures: string[]) {
+        this.charSpecialFeatures = specialFeatures
         return this;
     }
 

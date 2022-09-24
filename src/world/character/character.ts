@@ -10,8 +10,9 @@ export class Character extends AttributeEntity{
     readonly motivation: string;
     readonly profession: string;
     readonly race : string;
-    readonly curses: string[];
 
+    readonly curses: string[];
+    readonly specialFeatures: string[];
 
     constructor(
         characterBuilder: CharacterBuilder
@@ -47,6 +48,11 @@ export class Character extends AttributeEntity{
         }
         this.race = characterBuilder.charRace;
 
+        if(characterBuilder.charSpecialFeatures === undefined){
+            throw Error("Character special feature must be set");
+        }
+        this.specialFeatures = characterBuilder.charSpecialFeatures;
+
         this.curses = characterBuilder.charCurses;
     }
   /*
@@ -54,7 +60,7 @@ export class Character extends AttributeEntity{
     isHigherPower: boolean;
 
 
-    specialFeature: string;
+
 
     relationships: Relationship[];
 

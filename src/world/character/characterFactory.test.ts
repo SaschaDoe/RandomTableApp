@@ -15,7 +15,8 @@ describe("CharacterFactory", () => {
             ["nobel"],
             ["profession"],
             ["human"],
-            ["vampire"]];
+            ["vampire"],
+            ["horn"]];
         let tableTitle = [
             TableTitles.Gender,
             TableTitles.Motivation,
@@ -23,8 +24,9 @@ describe("CharacterFactory", () => {
             TableTitles.Nobility,
             TableTitles.Profession,
             TableTitles.Race,
-            TableTitles.Curse];
-        let characterFactory = new CharacterFactory(new FakeTableRoller(tableTitle, tableOutput), new FakeRandom([1]))
+            TableTitles.Curse,
+            TableTitles.SpecialFeatures];
+        let characterFactory = new CharacterFactory(new FakeTableRoller(tableTitle, tableOutput), new FakeRandom([1,1]))
 
         let character = characterFactory.create();
 
@@ -36,6 +38,9 @@ describe("CharacterFactory", () => {
         expect(character.race).toBe("human");
 
         expect(character.curses.length).toBe(1);
+        expect(character.curses[0]).toBe("vampire");
+
+        expect(character.specialFeatures.length).toBe(1);
         expect(character.curses[0]).toBe("vampire");
     })
 })

@@ -13,6 +13,7 @@ describe("Character", () => {
             .withProfession("profession")
             .withRace("human")
 
+
         let character = characterBuilder.build();
 
         expect(character.gender).toBe("gender");
@@ -22,13 +23,18 @@ describe("Character", () => {
         expect(character.profession).toBe("profession");
         expect(character.race).toBe("human");
         expect(character.curses.length).toBe(0);
+        expect(character.specialFeatures.length).toBe(0);
 
         character = characterBuilder
             .withCurses(["vampire"])
+            .withSpecialFeature(["horn"])
             .build();
 
         expect(character.curses.length).toBe(1);
         expect(character.curses[0]).toBe("vampire");
+
+        expect(character.specialFeatures.length).toBe(1);
+        expect(character.specialFeatures[0]).toBe("horn");
 
     })
 

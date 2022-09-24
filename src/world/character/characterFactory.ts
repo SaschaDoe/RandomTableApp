@@ -6,7 +6,9 @@ import {Random} from "../../utils/randomUtils";
 import {TableTitles} from "../../tables/tableTitles";
 
 export let curseMinInterval = -50;
-export let curseMaxInterval = 1;
+export let curseMaxInterval = 2;
+export let specialFeaturesMinInterval = -10;
+export let specialFeaturesMaxInterval = 2;
 
 export class CharacterFactory {
     tableRoller: TableRoller;
@@ -17,7 +19,10 @@ export class CharacterFactory {
     characterMotivation = "";
     characterRace = "";
     characterProfession = "";
-    characterCurses: string[];
+
+    characterCurses = [] as string[];
+    charSpecialFeatures = [] as string[];
+
 
     constructor(
         tableRoller = new TableRoller(),
@@ -25,8 +30,6 @@ export class CharacterFactory {
     ) {
         this.tableRoller = tableRoller
         this.random = random;
-
-        this.characterCurses = [];
     }
 
     create() {
@@ -41,6 +44,7 @@ export class CharacterFactory {
             .withProfession(this.characterProfession)
             .withRace(this.characterRace)
             .withCurses(this.characterCurses)
+            .withSpecialFeature((this.charSpecialFeatures))
             .build();
     }
 
@@ -53,9 +57,14 @@ export class CharacterFactory {
     }
 
     private setAllNonMandatory() {
-        let numberOfCurses = this.random.intFromInterval(-curseMinInterval,curseMaxInterval);
+        let numberOfCurses = this.random.intFromInterval(curseMinInterval,curseMaxInterval);
         for(let i = 0; i < numberOfCurses; i++){
             this.characterCurses.push(this.tableRoller.roleFor(TableTitles.Curse).text);
+        }
+
+        let numberOfSpecialFeatures = this.random.intFromInterval(specialFeaturesMinInterval, specialFeaturesMaxInterval)
+        for(let i = 0; i < numberOfSpecialFeatures; i++){
+            this.charSpecialFeatures.push(this.tableRoller.roleFor(TableTitles.SpecialFeatures).text);
         }
     }
 }
