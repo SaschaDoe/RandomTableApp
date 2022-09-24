@@ -7,6 +7,10 @@ import {SpecialFeaturesTable} from "./charTables/specialFeaturesTable";
 import {MotivationTable} from "./charTables/motivationTable";
 import {CurseTable} from "./charTables/curseTable";
 import {NobilityTable} from "./charTables/nobilityTable";
+import {AlignmentTable} from "./charTables/alignmentTable";
+import {ProfessionTable} from "./charTables/professionTable";
+import {RaceTable} from "./charTables/raceTable";
+import {AdvantageTable} from "./charTables/advantageTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -21,7 +25,7 @@ export class AllTablesMap{
     getTableOf(tableTitle: TableTitles){
         let table = this.allTablesMap.get(tableTitle);
         if(table === undefined){
-            throw new Error("Table title is not in all tables map");
+            throw new Error(`Table title: ${tableTitle} is not in all tables map`);
         }
         return table;
     }
@@ -34,6 +38,10 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.Motivation, new MotivationTable());
         this.allTablesMap.set(TableTitles.Curse, new CurseTable());
         this.allTablesMap.set(TableTitles.Nobility, new NobilityTable());
+        this.allTablesMap.set(TableTitles.Alignment, new AlignmentTable());
+        this.allTablesMap.set(TableTitles.Profession, new ProfessionTable());
+        this.allTablesMap.set(TableTitles.Race, new RaceTable());
+        this.allTablesMap.set(TableTitles.Advantages, new AdvantageTable());
     }
 }
 

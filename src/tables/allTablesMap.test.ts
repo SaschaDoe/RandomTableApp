@@ -8,6 +8,10 @@ import {SpecialFeaturesTable} from "./charTables/specialFeaturesTable";
 import {MotivationTable} from "./charTables/motivationTable";
 import {CurseTable} from "./charTables/curseTable";
 import {NobilityTable} from "./charTables/nobilityTable";
+import {AlignmentTable} from "./charTables/alignmentTable";
+import {ProfessionTable} from "./charTables/professionTable";
+import {RaceTable} from "./charTables/raceTable";
+import {AdvantageTable} from "./charTables/advantageTable";
 
 describe("AllTablesMap", () => {
 
@@ -23,7 +27,7 @@ describe("AllTablesMap", () => {
         let allTablesMap = new AllTablesMap();
 
         expect(() => {allTablesMap.getTableOf(TableTitles.Default)})
-            .toThrowError("Table title is not in all tables map");
+            .toThrowError("Table title: default title is not in all tables map")
     })
 
     test.each(
@@ -48,5 +52,9 @@ function testInput(){
         [TableTitles.Motivation, MotivationTable],
         [TableTitles.Curse, CurseTable],
         [TableTitles.Nobility, NobilityTable],
+        [TableTitles.Alignment, AlignmentTable],
+        [TableTitles.Profession, ProfessionTable],
+        [TableTitles.Race, RaceTable],
+        [TableTitles.Advantages, AdvantageTable],
     ]
 }

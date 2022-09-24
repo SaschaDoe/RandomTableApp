@@ -1,9 +1,12 @@
 import {Dice} from "../../utils/dice";
 import {AttributeEntity} from "./attributeEntity";
 import type {CharacterBuilder} from "./characterBuilder";
+import type {Equatable} from "../../utils/equatable";
+import {expect} from "vitest";
+import {arrayEquals} from "../../utils/equatable";
 
 
-export class Character extends AttributeEntity{
+export class Character extends AttributeEntity implements Equatable<Character>{
     readonly alignment: string;
     readonly gender: string;
     readonly name: string;
@@ -60,26 +63,40 @@ export class Character extends AttributeEntity{
         this.specialFeatures = characterBuilder.charSpecialFeatures;
         this.advantages = characterBuilder.charAdvantages;
     }
-  /*
 
-    isHigherPower: boolean;
+    isEqualTo(other: Character){
+        return (this.alignment === other.alignment &&
+            arrayEquals(this.advantages, other.advantages) &&
+            arrayEquals(this.curses, other.curses) &&
+            this.gender === other.gender &&
+            this.name === other.name &&
+            this.nobility === other.nobility &&
+            this.motivation === other.motivation &&
+            this.profession === other.profession &&
+            this.race === other.race &&
+            arrayEquals(this.specialFeatures, other.specialFeatures));
+    }
+
+    /*
+
+      isHigherPower: boolean;
 
 
 
 
-    relationships: Relationship[];
+      relationships: Relationship[];
 
 
-    advantages: string[];
-    disadvantages : string[];
-    talents: string[];
-    artefacts: Artefact[];
+      advantages: string[];
+      disadvantages : string[];
+      talents: string[];
+      artefacts: Artefact[];
 
-    homeContinent: Site;
-    readonly isMagicUserProfession: boolean;
+      homeContinent: Site;
+      readonly isMagicUserProfession: boolean;
 
 
-    */
+      */
 
 
 /*

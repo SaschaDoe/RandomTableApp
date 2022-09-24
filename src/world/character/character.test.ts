@@ -1,6 +1,7 @@
 import {describe, expect, test} from "vitest";
 import {CharacterBuilder} from "./characterBuilder";
 import {Character} from "./character";
+import {CharacterFactory} from "./characterFactory";
 
 describe("Character", () => {
 
@@ -25,7 +26,7 @@ describe("Character", () => {
         expect(character.race).toBe("human");
         expect(character.curses.length).toBe(0);
         expect(character.specialFeatures.length).toBe(0);
-        expect(character.advantages)
+        expect(character.advantages.length).toBe(0);
 
         character = characterBuilder
             .withAdvantages(["lucky"])
@@ -82,6 +83,28 @@ describe("Character", () => {
     ("should throw error when no attribute is set", (characterBuilder,expectedError) => {
 
         expect(() => {new Character(characterBuilder)}).toThrowError(expectedError);
+    })
+
+    test("is false when character gender is not equal",()=>{
+        let characterFactory = new CharacterFactory();
+        characterFactory.characterGender = "female";
+        let character1 = characterFactory.create();
+        characterFactory.characterGender = "male";
+        let character2 = characterFactory.create();
+
+        let isEqual = character1.isEqualTo(character2);
+
+        expect(isEqual).toBe(false);
+    })
+
+    test("is true when character is equal",()=>{
+        let characterFactory = new CharacterFactory();
+        let character1 = characterFactory.create();
+        let character2 = characterFactory.create();
+
+        let isEqual = character1.isEqualTo(character2);
+
+        expect(isEqual).toBe(true);
     })
 })
 

@@ -33,13 +33,14 @@ export class CharacterFactory {
         random = new Random()
     ) {
         this.tableRoller = tableRoller
-        this.random = random;
-    }
+        this.random = random
 
-    create() {
         this.setAllMandatory();
         this.setAllNonMandatory()
 
+    }
+
+    create() {
         return new CharacterBuilder()
             .withAlignment(this.characterAlignment)
             .withName(this.characterName)
