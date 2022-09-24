@@ -17,8 +17,10 @@ describe("CharacterFactory", () => {
             ["profession"],
             ["human"],
             ["lucky"],
+            ["unlucky"],
             ["vampire"],
-            ["horn"]];
+            ["horn"],
+            ["fireball"]];
         let tableTitle = [
             TableTitles.Alignment,
             TableTitles.Gender,
@@ -28,11 +30,13 @@ describe("CharacterFactory", () => {
             TableTitles.Profession,
             TableTitles.Race,
             TableTitles.Advantages,
+            TableTitles.Disadvantages,
             TableTitles.Curse,
-            TableTitles.SpecialFeatures];
+            TableTitles.SpecialFeatures,
+            TableTitles.Talent];
         let characterFactory = new CharacterFactory(
             new FakeTableRoller(tableTitle, tableOutput),
-            new FakeRandom([1,1,1]))
+            new FakeRandom([1,1,1,1,1,1,1]))
 
         let character = characterFactory.create();
 
@@ -47,11 +51,17 @@ describe("CharacterFactory", () => {
         expect(character.advantages.length).toBe(1);
         expect(character.advantages[0]).toBe("lucky");
 
+        expect(character.disadvantages.length).toBe(1);
+        expect(character.disadvantages[0]).toBe("unlucky");
+
         expect(character.curses.length).toBe(1);
         expect(character.curses[0]).toBe("vampire");
 
         expect(character.specialFeatures.length).toBe(1);
-        expect(character.curses[0]).toBe("vampire");
+        expect(character.specialFeatures[0]).toBe("horn");
+
+        expect(character.talents.length).toBe(1);
+        expect(character.talents[0]).toBe("fireball");
     })
 })
 

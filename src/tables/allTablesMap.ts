@@ -11,6 +11,8 @@ import {AlignmentTable} from "./charTables/alignmentTable";
 import {ProfessionTable} from "./charTables/professionTable";
 import {RaceTable} from "./charTables/raceTable";
 import {AdvantageTable} from "./charTables/advantageTable";
+import {DisadvantageTable} from "./charTables/disadvantageTable";
+import {TalentTable} from "./talentTables/talentTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -42,6 +44,8 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.Profession, new ProfessionTable());
         this.allTablesMap.set(TableTitles.Race, new RaceTable());
         this.allTablesMap.set(TableTitles.Advantages, new AdvantageTable());
+        this.allTablesMap.set(TableTitles.Disadvantages, new DisadvantageTable());
+        this.allTablesMap.set(TableTitles.Talent, new TalentTable());
     }
 }
 

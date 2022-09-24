@@ -13,11 +13,15 @@ export class CharacterBuilder{
     charCurses: string[];
     charSpecialFeatures: string[];
     charAdvantages: string[];
+    charDisadvantages: string[];
+    charTalents: string[];
 
     constructor() {
         this.charCurses = [];
         this.charSpecialFeatures = [];
         this.charAdvantages = [];
+        this.charDisadvantages = [];
+        this.charTalents = [];
     }
 
     build() {
@@ -64,6 +68,11 @@ export class CharacterBuilder{
         return this;
     }
 
+    withDisadvantages(disadvantages: string[]){
+        this.charDisadvantages = this.charDisadvantages.concat(disadvantages);
+        return this;
+    }
+
     withSpecialFeature(specialFeatures: string[]) {
         this.charSpecialFeatures = specialFeatures
         return this;
@@ -71,6 +80,11 @@ export class CharacterBuilder{
 
     withCurses(curses: string[]){
         this.charCurses = this.charCurses.concat(curses);
+        return this;
+    }
+
+    withTalents(talents: string[]){
+        this.charTalents = this.charTalents.concat(talents);
         return this;
     }
 }

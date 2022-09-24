@@ -7,10 +7,14 @@ import {TableTitles} from "../../tables/tableTitles";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
+export let disadvantagesMinInterval = -10;
+export let disadvantagesMaxInterval = 3;
 export let curseMinInterval = -50;
 export let curseMaxInterval = 2;
 export let specialFeaturesMinInterval = -10;
 export let specialFeaturesMaxInterval = 2;
+export let talentsMinInterval = -20;
+export let talentsMaxInterval = 3;
 
 export class CharacterFactory {
     tableRoller: TableRoller;
@@ -27,6 +31,8 @@ export class CharacterFactory {
     characterAdvantages = [] as string[];
     characterCurses = [] as string[];
     charSpecialFeatures = [] as string[];
+    characterDisadvantages = [] as string[];
+    charTalents = [] as string[];
 
     constructor(
         tableRoller = new TableRoller(),
@@ -50,8 +56,10 @@ export class CharacterFactory {
             .withProfession(this.characterProfession)
             .withRace(this.characterRace)
             .withAdvantages(this.characterAdvantages)
+            .withDisadvantages(this.characterDisadvantages)
             .withCurses(this.characterCurses)
             .withSpecialFeature((this.charSpecialFeatures))
+            .withTalents((this.charTalents))
             .build();
     }
 
@@ -64,19 +72,17 @@ export class CharacterFactory {
     }
 
     private setAllNonMandatory() {
-        let numberOfAdvantages = this.random.intFromInterval(advantagesMinInterval,advantagesMaxInterval);
+        this.setNonMandatory(advantagesMinInterval, advantagesMaxInterval,this.characterAdvantages,TableTitles.Advantages)
+        this.setNonMandatory(disadvantagesMinInterval, disadvantagesMaxInterval,this.characterDisadvantages,TableTitles.Disadvantages)
+        this.setNonMandatory(curseMinInterval, curseMaxInterval,this.characterCurses,TableTitles.Curse)
+        this.setNonMandatory(specialFeaturesMinInterval, specialFeaturesMaxInterval,this.charSpecialFeatures,TableTitles.SpecialFeatures)
+        this.setNonMandatory(talentsMinInterval, talentsMaxInterval,this.charTalents,TableTitles.Talent)
+    }
+
+    private setNonMandatory(minInterval: number, maxInterval: number, charAttribute: string[], tableTitle: TableTitles) {
+        let numberOfAdvantages = this.random.intFromInterval(minInterval,maxInterval);
         for(let i = 0; i < numberOfAdvantages; i++){
-            this.characterAdvantages.push(this.tableRoller.roleFor(TableTitles.Advantages).text);
-        }
-
-        let numberOfCurses = this.random.intFromInterval(curseMinInterval,curseMaxInterval);
-        for(let i = 0; i < numberOfCurses; i++){
-            this.characterCurses.push(this.tableRoller.roleFor(TableTitles.Curse).text);
-        }
-
-        let numberOfSpecialFeatures = this.random.intFromInterval(specialFeaturesMinInterval, specialFeaturesMaxInterval)
-        for(let i = 0; i < numberOfSpecialFeatures; i++){
-            this.charSpecialFeatures.push(this.tableRoller.roleFor(TableTitles.SpecialFeatures).text);
+            charAttribute.push(this.tableRoller.roleFor(tableTitle).text);
         }
     }
 }

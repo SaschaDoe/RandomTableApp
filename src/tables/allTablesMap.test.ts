@@ -12,6 +12,8 @@ import {AlignmentTable} from "./charTables/alignmentTable";
 import {ProfessionTable} from "./charTables/professionTable";
 import {RaceTable} from "./charTables/raceTable";
 import {AdvantageTable} from "./charTables/advantageTable";
+import {DisadvantageTable} from "./charTables/disadvantageTable";
+import {TalentTable} from "./talentTables/talentTable";
 
 describe("AllTablesMap", () => {
 
@@ -56,5 +58,7 @@ function testInput(){
         [TableTitles.Profession, ProfessionTable],
         [TableTitles.Race, RaceTable],
         [TableTitles.Advantages, AdvantageTable],
+        [TableTitles.Disadvantages, DisadvantageTable],
+        [TableTitles.Talent, TalentTable],
     ]
 }

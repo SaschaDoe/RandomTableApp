@@ -27,6 +27,51 @@ describe("Character", () => {
         expect(character.curses.length).toBe(0);
         expect(character.specialFeatures.length).toBe(0);
         expect(character.advantages.length).toBe(0);
+        expect(character.talents.length).toBe(0);
+
+        character = characterBuilder
+            .withAdvantages(["lucky"])
+            .withCurses(["vampire"])
+            .withSpecialFeature(["horn"])
+            .withTalents(["fireball"])
+            .build();
+
+        expect(character.advantages.length).toBe(1);
+        expect(character.advantages[0]).toBe("lucky");
+
+        expect(character.curses.length).toBe(1);
+        expect(character.curses[0]).toBe("vampire");
+
+        expect(character.specialFeatures.length).toBe(1);
+        expect(character.specialFeatures[0]).toBe("horn");
+
+        expect(character.talents.length).toBe(1);
+        expect(character.talents[0]).toBe("fireball");
+
+    })
+
+    test("should set characters attributes according to builder", () => {
+        let characterBuilder = new CharacterBuilder()
+            .withAlignment("good")
+            .withName("name")
+            .withGender("gender")
+            .withNobility("nobel")
+            .withMotivation("motivation")
+            .withProfession("profession")
+            .withRace("human")
+
+        let character = characterBuilder.build();
+
+        expect(character.alignment).toBe("good")
+        expect(character.gender).toBe("gender");
+        expect(character.name).toBe("name");
+        expect(character.nobility).toBe("nobel");
+        expect(character.motivation).toBe("motivation");
+        expect(character.profession).toBe("profession");
+        expect(character.race).toBe("human");
+        expect(character.curses.length).toBe(0);
+        expect(character.specialFeatures.length).toBe(0);
+        expect(character.advantages.length).toBe(0);
 
         character = characterBuilder
             .withAdvantages(["lucky"])

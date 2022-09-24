@@ -2,7 +2,6 @@ import {Dice} from "../../utils/dice";
 import {AttributeEntity} from "./attributeEntity";
 import type {CharacterBuilder} from "./characterBuilder";
 import type {Equatable} from "../../utils/equatable";
-import {expect} from "vitest";
 import {arrayEquals} from "../../utils/equatable";
 
 
@@ -16,8 +15,10 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     readonly race : string;
 
     readonly advantages: string[];
+    readonly disadvantages : string[];
     readonly curses: string[];
     readonly specialFeatures: string[];
+    readonly talents: string[];
 
 
     constructor(
@@ -62,6 +63,8 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         this.curses = characterBuilder.charCurses;
         this.specialFeatures = characterBuilder.charSpecialFeatures;
         this.advantages = characterBuilder.charAdvantages;
+        this.disadvantages = characterBuilder.charDisadvantages;
+        this.talents = characterBuilder.charTalents;
     }
 
     isEqualTo(other: Character){
@@ -87,9 +90,9 @@ export class Character extends AttributeEntity implements Equatable<Character>{
       relationships: Relationship[];
 
 
-      advantages: string[];
-      disadvantages : string[];
-      talents: string[];
+
+
+
       artefacts: Artefact[];
 
       homeContinent: Site;
