@@ -9,6 +9,7 @@ import {Random} from "../../utils/randomUtils";
 describe("CharacterFactory", () => {
     test("should set default character to what is given in random tables", () => {
         let tableOutput = [
+            ["good"],
             ["female"],
             ["motivation"],
             ["name"],
@@ -18,6 +19,7 @@ describe("CharacterFactory", () => {
             ["vampire"],
             ["horn"]];
         let tableTitle = [
+            TableTitles.Alignment,
             TableTitles.Gender,
             TableTitles.Motivation,
             TableTitles.GermanMaleName,
@@ -30,6 +32,7 @@ describe("CharacterFactory", () => {
 
         let character = characterFactory.create();
 
+        expect(character.alignment).toBe("good");
         expect(character.gender).toBe("female");
         expect(character.name).toBe("name");
         expect(character.nobility).toBe("nobel");

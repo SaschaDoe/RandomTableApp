@@ -12,6 +12,8 @@ export class CharacterAttributeTableTitlesMap{
     }
 
     private initializeAllTablesMap() {
+        this.charAttributeTableTitlesMap.set(TableTitles.Alignment,
+            (charFactory: CharacterFactory, text: string)=>charFactory.characterAlignment = text);
         this.charAttributeTableTitlesMap.set(TableTitles.Gender,
             (charFactory: CharacterFactory, text: string)=>charFactory.characterGender = text);
         this.charAttributeTableTitlesMap.set(TableTitles.GermanMaleName,

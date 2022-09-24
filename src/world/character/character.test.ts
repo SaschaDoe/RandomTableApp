@@ -6,6 +6,7 @@ describe("Character", () => {
 
     test("should set characters attributes according to builder", () => {
         let characterBuilder = new CharacterBuilder()
+            .withAlignment("good")
             .withName("name")
             .withGender("gender")
             .withNobility("nobel")
@@ -13,9 +14,9 @@ describe("Character", () => {
             .withProfession("profession")
             .withRace("human")
 
-
         let character = characterBuilder.build();
 
+        expect(character.alignment).toBe("good")
         expect(character.gender).toBe("gender");
         expect(character.name).toBe("name");
         expect(character.nobility).toBe("nobel");
@@ -40,24 +41,32 @@ describe("Character", () => {
 
 
     test.each([
-        [new CharacterBuilder(),"Character gender must be set"],
-        [new CharacterBuilder().withGender("female"),"Character motivation must be set"],
+        [new CharacterBuilder(),"Character alignment must be set"],
+        [new CharacterBuilder().withAlignment("good"),"Character gender must be set"],
         [new CharacterBuilder()
+            .withAlignment("good")
+            .withGender("female"),"Character motivation must be set"],
+        [new CharacterBuilder()
+            .withAlignment("good")
             .withGender("female")
             .withName("femaleName"), "Character motivation must be set"],
         [new CharacterBuilder()
+            .withAlignment("good")
             .withGender("female")
             .withMotivation("motivation"), "Character name must be set"],
         [new CharacterBuilder()
+            .withAlignment("good")
             .withGender("female")
             .withMotivation("motivation")
             .withName("name"), "Character nobility must be set"],
         [new CharacterBuilder()
+            .withAlignment("good")
             .withGender("female")
             .withMotivation("motivation")
             .withName("name")
             .withNobility("nobel"), "Character profession must be set"],
         [new CharacterBuilder()
+            .withAlignment("good")
             .withGender("female")
             .withMotivation("motivation")
             .withName("name")

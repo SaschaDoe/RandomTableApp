@@ -13,6 +13,8 @@ export let specialFeaturesMaxInterval = 2;
 export class CharacterFactory {
     tableRoller: TableRoller;
     random: Random;
+
+    characterAlignment = "";
     characterName = "";
     characterGender = "";
     characterNobility = "";
@@ -22,6 +24,7 @@ export class CharacterFactory {
 
     characterCurses = [] as string[];
     charSpecialFeatures = [] as string[];
+
 
 
     constructor(
@@ -37,6 +40,7 @@ export class CharacterFactory {
         this.setAllNonMandatory()
 
         return new CharacterBuilder()
+            .withAlignment(this.characterAlignment)
             .withName(this.characterName)
             .withGender(this.characterGender)
             .withNobility(this.characterNobility)

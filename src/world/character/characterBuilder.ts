@@ -2,6 +2,7 @@ import {Character} from "./character";
 
 export class CharacterBuilder{
     //undefined because there is no default value
+    charAlignment: string|undefined;
     charGender: string|undefined;
     charName: string|undefined;
     charNobility: string|undefined;
@@ -19,6 +20,11 @@ export class CharacterBuilder{
 
     build() {
         return new Character(this);
+    }
+
+    withAlignment(alignment: string) {
+        this.charAlignment = alignment;
+        return this;
     }
 
     withGender(gender: string) {

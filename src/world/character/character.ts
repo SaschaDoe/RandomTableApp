@@ -4,6 +4,7 @@ import type {CharacterBuilder} from "./characterBuilder";
 
 
 export class Character extends AttributeEntity{
+    readonly alignment: string;
     readonly gender: string;
     readonly name: string;
     readonly nobility: string;
@@ -18,6 +19,11 @@ export class Character extends AttributeEntity{
         characterBuilder: CharacterBuilder
     ) {
         super();
+        if(characterBuilder.charAlignment === undefined){
+            throw Error("Character alignment must be set");
+        }
+        this.alignment = characterBuilder.charAlignment;
+
         if(characterBuilder.charGender === undefined){
             throw Error("Character gender must be set");
         }
@@ -48,12 +54,8 @@ export class Character extends AttributeEntity{
         }
         this.race = characterBuilder.charRace;
 
-        if(characterBuilder.charSpecialFeatures === undefined){
-            throw Error("Character special feature must be set");
-        }
-        this.specialFeatures = characterBuilder.charSpecialFeatures;
-
         this.curses = characterBuilder.charCurses;
+        this.specialFeatures = characterBuilder.charSpecialFeatures;
     }
   /*
 
@@ -68,7 +70,7 @@ export class Character extends AttributeEntity{
     advantages: string[];
     disadvantages : string[];
     talents: string[];
-    alignment: string;
+
 
     homeContinent: Site;
     readonly isMagicUserProfession: boolean;
