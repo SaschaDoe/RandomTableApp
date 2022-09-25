@@ -6,10 +6,9 @@ import {SenseTable} from "../otherTables/senseTable";
 import type {Character} from "../../world/character/character";
 import type {RoleResult} from "../roleResult";
 import {ElementTable} from "../otherTables/elementTable";
-import {addArtefactToStore} from "../artefactTables/magicalArtefactTable";
-import {Artefact} from "../../world/artefacts/artefact";
 import {TalentTable} from "../talentTables/talentTable";
 import {TableType} from "../tableType";
+import {addArtefactToStoreReturnUniqueName} from "../../world/artefacts/artefactStore";
 
 export class AdvantageTable extends Table{
     constructor(){
@@ -35,7 +34,7 @@ export class AdvantageTable extends Table{
         entries.push(new TableEntry("resistant against illness"))
         entries.push(new TableEntry("poison resistant"))
         entries.push(new TableEntry("resistant to").withCascadingRole(new ElementTable()))
-        entries.push(new TableEntry("mighty artefact").withFunctionString(addArtefactToStore))
+        entries.push(new TableEntry("mighty artefact").withFunctionString(addArtefactToStoreReturnUniqueName))
         super(entries, TableTitles.Advantages);
         this.functions.push(addAdvantage)
         this.probability = 50;

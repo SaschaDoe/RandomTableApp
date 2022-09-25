@@ -1,4 +1,3 @@
-
 import {DiceRole, EquallyDistributed} from "./diceRole";
 import {TableTitles} from "./tableTitles";
 import {TableEntry} from "./tableEntry";
@@ -57,11 +56,8 @@ export class Table {
                 }
             }
         }
-
         return new RoleResult(entry.text,entry.toString(),entry.cascadingRoles, entry.functions);
     }
-
-
 
     roleWithCascade(dice: Dice = new Dice()) {
         let roleResult = this.role(dice);
@@ -76,33 +72,39 @@ export class Table {
 
     private cascade(roleResult: RoleResult, dice = new Dice()) {
         let fullText = roleResult.text;
+        let spaceString = " ";
+        if(fullText === ""){
+            spaceString = "";
+        }
         for (let i = 0; i < roleResult.cascadingRoles.length; i++) {
-            fullText += " "
             let entry = roleResult.cascadingRoles[i];
             let table = entry[0]
             let probability = entry[1];
             let additionalText = entry[2];
             let isInProbability = probabilityCheck(probability);
-            if(isInProbability){
-                if(table.toString() === "self"){
-                    fullText += additionalText + this.role(dice).text;
-                }else if (table instanceof Table) {
-                    fullText += additionalText + table.roleWithCascade(dice).text;
-                }else if(typeof table === 'string'){
-                    fullText += table.toString();
-                } else{
-                    let functionReturnsString = table as (() => string);
-                   fullText += functionReturnsString();
+            let castedString = "";
+            try {
+                castedString= table.toString();
+                if(isInProbability){
+                    if(castedString === "self"){
+                        fullText += additionalText + spaceString + this.role(dice).text;
+                    }else if (table instanceof Table) {
+                        fullText += additionalText + spaceString + table.roleWithCascade(dice).text;
+                    }else if(typeof table === 'string'){
+                        fullText += spaceString + table.toString();
+                    } else{
+                        let functionReturnsString = table as (() => string);
+                        fullText += spaceString+functionReturnsString();
+                    }
+                    spaceString = " ";
                 }
             }
-            fullText += " ";
-        }
-        let result = fullText;
-        if (roleResult.cascadingRoles.length != 0) {
-            result = fullText.slice(0, -1);
-        }
+            catch(e){
+                throw Error(`${roleResult.fullText} role hast thrown this error: ${e}`);
+            }
 
-        return result;
+        }
+        return fullText;
     }
 
     private isEntriesOverlapping(entries : TableEntry[]){

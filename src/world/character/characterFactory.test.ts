@@ -74,6 +74,12 @@ describe("CharacterFactory", () => {
 
         expect(higherPower.isHigherPower).toBe(true);
     })
+
+    test("should three magical talents when creating a higher power character", () => {
+        let higherPower = createHigherPower();
+
+        expect(higherPower.magicalTalents.length).toBeGreaterThan(2);
+    })
 })
 
 

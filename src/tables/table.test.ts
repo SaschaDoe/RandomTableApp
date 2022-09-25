@@ -45,4 +45,47 @@ describe("Table", () => {
         expect(randomTable.entries[2].getMax()).toBe(2);
     })
 
+    test("should return soldier when role with cascade and entry set to soldier without cascade", () => {
+        let entry = new TableEntry("soldier");
+        let table = new Table([entry]);
+
+        let roleResult = table.roleWithCascade();
+
+        expect(roleResult.text).toBe("soldier");
+    })
+
+    test("should return soldier when role with cascade and entry set to soldier with function", () => {
+        let entry = new TableEntry("").withFunctionString(getSoldierString);
+        let table = new Table([entry]);
+
+        let roleResult = table.roleWithCascade();
+
+        expect(roleResult.text).toBe("soldier");
+    })
+
+    test("should return super soldier when role with cascade and entry set to super and soldier with table", () => {
+        let otherEntry = new TableEntry("soldier");
+        let otherTable = new Table([otherEntry]);
+
+        let entry = new TableEntry("super").withCascadingRole(otherTable);
+        let table = new Table([entry]);
+
+        let roleResult = table.roleWithCascade();
+
+        expect(roleResult.text).toBe("super soldier");
+    })
+
+    test("should return super soldier when role with cascade and entry set to super and soldier with With", () => {
+        let entry = new TableEntry("super").with("soldier");
+        let table = new Table([entry]);
+
+        let roleResult = table.roleWithCascade();
+
+        expect(roleResult.text).toBe("super soldier");
+    })
+
 })
+
+function getSoldierString(){
+    return "soldier";
+}

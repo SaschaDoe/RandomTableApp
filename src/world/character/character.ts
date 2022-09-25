@@ -94,11 +94,18 @@ export class Character extends AttributeEntity implements Equatable<Character>{
 
         this.relationships = [];
 
-        this.ensureMagicalUserHasAtLeastOneMagicalTalent();
+        this.ensureMagicalUserHasMagicalTalent();
+        this.ensureHigherPowerHasMinThreeMagicalTalent();
     }
 
-    private ensureMagicalUserHasAtLeastOneMagicalTalent() {
+    private ensureMagicalUserHasMagicalTalent() {
         if(isMagicalProfession(this.profession) && this.magicalTalents.length < 1){
+            throw Error(`Profession ${this.profession} needs at least one magical power`);
+        }
+    }
+
+    private ensureHigherPowerHasMinThreeMagicalTalent() {
+        if(isMagicalProfession(this.profession) && this.magicalTalents.length < 3){
             throw Error(`Profession ${this.profession} needs at least one magical power`);
         }
     }
@@ -119,77 +126,11 @@ export class Character extends AttributeEntity implements Equatable<Character>{
             stringArrayEquals(this.specialFeatures, other.specialFeatures));
     }
 
+    toString(){
+        return `${this.getUniqueName()} a ${this.alignment} ${this.nobility} ${this.gender} ${this.race} from ${this.homeContinent.getUniqueName()} with the motivation ${this.motivation}`;
+    }
+
     /*
-
-      isHigherPower: boolean;
-
-
-      readonly isMagicUserProfession: boolean;
-
-
-      */
-
-
-/*
-    constructor(dice = new Dice(), isHigherPower = false) {
-        let name = "";
-        super(dice, name);
-        this.specialFeature = new SpecialFeaturesTable().roleWithCascade().text;
-        this.artefacts = []
-        this.isHigherPower = isHigherPower;
-        this.gender = Gender.Female;
-        this.motivation = new MotivationTable().roleWithCascade().text;
-        this.nobility = new NobilityTable().role().text;
-        this.profession = new ProfessionTable().roleWithCascade().text;
-        this.isMagicUserProfession = this.isMatchingMagicUsers();
-        this.disadvantages = [];
-        this.advantages = [];
-        this.relationships = [];
-        this.curses = [];
-        this.homeContinent = mapSiteWithChar(dice);
-        this.alignment = new AlignmentTable().roleWithCascade().text;
-        this.race = new RaceTable().roleWithCascade().text
-        this.talents = [];
-        if(this.isMagicUserProfession){
-            this.getMinOneMagicPower();
-        }
-        this.roleForAttributes(dice);
-    }
-*/
-    /*
-    private isMatchingMagicUsers() {
-        let magicUsers = Object.keys(MagicUserProfessions);
-        for(let i = 0; i < magicUsers.length; i++){
-            let magicUserProfession = magicUsers[i];
-            if(this.profession === magicUserProfession){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private getMinOneMagicPower() {
-        let randomNumber = randomIntFromInterval(1,3);
-        for(let i = 0; i < randomNumber; i++){
-            this.talents.push(new MagicalTalentTable().roleWithCascade().text)
-        }
-    }
-
-    addCurse() {
-        this.curses.push(new CurseTable().roleWithCascade().text)
-    }
-
-    addAdvantage() {
-        this.advantages.push(new AdvantageTable().roleWithCascade().text)
-    }
-
-    addDisadvantage() {
-        this.disadvantages.push(new DisadvantageTable().roleWithCascade().text)
-    }
-
-    addTalent() {
-        this.talents.push(new TalentTable().roleWithCascade().text)
-    }
 
     getDescription(){
         let description = `${this.name} a ${this.gender} ${this.race} `

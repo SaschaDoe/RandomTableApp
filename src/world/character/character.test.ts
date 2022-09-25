@@ -1,42 +1,33 @@
-import {describe, expect, test} from "vitest";
+import {beforeEach, describe, expect, test} from "vitest";
 import {CharacterBuilder} from "./characterBuilder";
 import {Character} from "./character";
 import {CharacterFactory} from "./characterFactory";
 import {ArtefactFactory} from "../artefacts/artefactFactory";
 import {Site} from "../site/site";
+import type {Artefact} from "../artefacts/artefact";
 
 describe("Character", () => {
+    let character: Character;
+    let characterWithoutLists: Character;
+    let artefact: Artefact;
+    let site: Site;
 
-    test("should set characters attributes according to builder", () => {
-        let site = new Site();
+    beforeEach(() => {
+        site = new Site();
         let characterBuilder = new CharacterBuilder()
             .withAlignment("good")
-            .withName("name")
-            .withGender("gender")
+            .withName("kassandra")
+            .withGender("female")
             .withNobility("nobel")
-            .withMotivation("motivation")
-            .withProfession("profession")
+            .withMotivation("to protect the earth")
+            .withProfession("soldier")
             .withRace("human")
             .withContinent(site)
-            .withIsHigherPower(false)
+            .withIsHigherPower(false);
 
-        let character = characterBuilder.build();
+        characterWithoutLists = characterBuilder.build();
 
-        expect(character.alignment).toBe("good")
-        expect(character.gender).toBe("gender");
-        expect(character.name).toBe("name");
-        expect(character.nobility).toBe("nobel");
-        expect(character.motivation).toBe("motivation");
-        expect(character.profession).toBe("profession");
-        expect(character.race).toBe("human");
-        expect(character.isHigherPower).toBe(false);
-        expect(character.homeContinent).toBe(site);
-        expect(character.curses.length).toBe(0);
-        expect(character.specialFeatures.length).toBe(0);
-        expect(character.advantages.length).toBe(0);
-        expect(character.artefacts.length).toBe(0);
-        expect(character.magicalTalents.length).toBe(0);
-        let artefact = new ArtefactFactory().create()
+        artefact = new ArtefactFactory().create()
         character = characterBuilder
             .withAdvantages(["lucky"])
             .withCurses(["vampire"])
@@ -45,6 +36,24 @@ describe("Character", () => {
             .withTalents(["fishing"])
             .withMagicalTalents(["fireball"])
             .build();
+    })
+
+
+    test("should set characters attributes according to builder", () => {
+        expect(characterWithoutLists.alignment).toBe("good")
+        expect(characterWithoutLists.gender).toBe("female");
+        expect(characterWithoutLists.name).toBe("kassandra");
+        expect(characterWithoutLists.nobility).toBe("nobel");
+        expect(characterWithoutLists.motivation).toBe("to protect the earth");
+        expect(characterWithoutLists.profession).toBe("soldier");
+        expect(characterWithoutLists.race).toBe("human");
+        expect(characterWithoutLists.isHigherPower).toBe(false);
+        expect(characterWithoutLists.homeContinent).toBe(site);
+        expect(characterWithoutLists.curses.length).toBe(0);
+        expect(characterWithoutLists.specialFeatures.length).toBe(0);
+        expect(characterWithoutLists.advantages.length).toBe(0);
+        expect(characterWithoutLists.artefacts.length).toBe(0);
+        expect(characterWithoutLists.magicalTalents.length).toBe(0);
 
         expect(character.advantages.length).toBe(1);
         expect(character.advantages[0]).toBe("lucky");
@@ -66,7 +75,6 @@ describe("Character", () => {
         expect(isEqual).toBe(true);
 
     })
-
 
     test.each([
         [new CharacterBuilder(),"Character gender must be set"],
@@ -135,6 +143,13 @@ describe("Character", () => {
         let isEqual = character1.isEqualTo(character2);
 
         expect(isEqual).toBe(true);
+    })
+
+    test("toString without lists",() => {
+        let characterString = characterWithoutLists.toString();
+        let characterStringWithoutId = characterString.slice(characterString.indexOf(" "));
+
+        expect(characterStringWithoutId).toBe(" kassandra a good nobel female human soldier from TODO with the motivation to protect the earth")
     })
 })
 

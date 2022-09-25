@@ -18,6 +18,9 @@ export let specialFeaturesMaxInterval = 2;
 export let talentsMinInterval = -20;
 export let talentsMaxInterval = 3;
 export let magicalTalentsMinInterval = -50;
+export let magicalTalentUserMinInterval = 1
+export let magicalTalentHigherPowerMinInterval = 3
+export let magicalTalentHigherPowerMaxInterval = 7
 export let magicalTalentMaxInterval = 3;
 
 export class CharacterFactory {
@@ -58,6 +61,7 @@ export class CharacterFactory {
         let characterBuilder = new CharacterBuilder()
 
         this.ensureMagicalUserHasAtLeastOneMagicalTalent();
+        this.ensureHigherPowerHasAtLeastThreeMagicalTalent();
 
         return characterBuilder
             .withAlignment(this.characterAlignment)
@@ -80,7 +84,13 @@ export class CharacterFactory {
 
     private ensureMagicalUserHasAtLeastOneMagicalTalent() {
         if (isMagicalProfession(this.characterProfession) && this.charMagicalTalents.length < 1) {
-            this.setNonMandatory(1, magicalTalentMaxInterval, this.charMagicalTalents, TableTitles.MagicalTalent);
+            this.setNonMandatory(magicalTalentUserMinInterval, magicalTalentMaxInterval, this.charMagicalTalents, TableTitles.MagicalTalent);
+        }
+    }
+
+    private ensureHigherPowerHasAtLeastThreeMagicalTalent() {
+        if (this.characterIsHigherPower && this.charMagicalTalents.length < 3) {
+            this.setNonMandatory(magicalTalentHigherPowerMinInterval, magicalTalentHigherPowerMaxInterval, this.charMagicalTalents, TableTitles.MagicalTalent);
         }
     }
 
@@ -103,6 +113,9 @@ export class CharacterFactory {
 
     private setNonMandatory(minInterval: number, maxInterval: number, charAttribute: string[], tableTitle: TableTitles) {
         let numberOfAdvantages = this.random.intFromInterval(minInterval,maxInterval);
+        if(numberOfAdvantages <= 0 && minInterval === 1){
+            numberOfAdvantages = 0;
+        }
         for(let i = 0; i < numberOfAdvantages; i++){
             charAttribute.push(this.tableRoller.roleFor(tableTitle).text);
         }
