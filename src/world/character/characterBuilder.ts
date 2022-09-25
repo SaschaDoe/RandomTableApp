@@ -1,4 +1,6 @@
 import {Character} from "./character";
+import type {Artefact} from "../artefacts/artefact";
+import type {Site} from "../site/site";
 
 export class CharacterBuilder{
     //undefined because there is no default value
@@ -9,12 +11,18 @@ export class CharacterBuilder{
     charMotivation: string|undefined;
     charProfession: string|undefined;
     charRace: string|undefined;
+    charContinent: Site|undefined;
+    charHigherPower: boolean|undefined;
 
     charCurses: string[];
     charSpecialFeatures: string[];
     charAdvantages: string[];
     charDisadvantages: string[];
     charTalents: string[];
+    charArtefacts: Artefact[];
+    charMagicalTalents: string[];
+
+
 
     constructor() {
         this.charCurses = [];
@@ -22,6 +30,8 @@ export class CharacterBuilder{
         this.charAdvantages = [];
         this.charDisadvantages = [];
         this.charTalents = [];
+        this.charMagicalTalents = [];
+        this.charArtefacts = [];
     }
 
     build() {
@@ -63,6 +73,11 @@ export class CharacterBuilder{
         return this;
     }
 
+    withContinent(continent: Site){
+        this.charContinent = continent;
+        return this;
+    }
+
     withAdvantages(advantages: string[]){
         this.charAdvantages = this.charAdvantages.concat(advantages);
         return this;
@@ -85,6 +100,21 @@ export class CharacterBuilder{
 
     withTalents(talents: string[]){
         this.charTalents = this.charTalents.concat(talents);
+        return this;
+    }
+
+    withMagicalTalents(magicalTalents: string[]){
+        this.charMagicalTalents = this.charMagicalTalents.concat(magicalTalents);
+        return this;
+    }
+
+    withArtefacts(artefacts: Artefact[]){
+        this.charArtefacts = this.charArtefacts.concat(artefacts);
+        return this;
+    }
+
+    withIsHigherPower(isHigherPower: boolean){
+        this.charHigherPower = isHigherPower;
         return this;
     }
 }

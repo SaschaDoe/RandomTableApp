@@ -14,6 +14,8 @@ import {RaceTable} from "./charTables/raceTable";
 import {AdvantageTable} from "./charTables/advantageTable";
 import {DisadvantageTable} from "./charTables/disadvantageTable";
 import {TalentTable} from "./talentTables/talentTable";
+import {RarityTable} from "./otherTables/rarityTable";
+import {MagicalTalentTable} from "./talentTables/magicalTalentTable";
 
 describe("AllTablesMap", () => {
 
@@ -60,5 +62,7 @@ function testInput(){
         [TableTitles.Advantages, AdvantageTable],
         [TableTitles.Disadvantages, DisadvantageTable],
         [TableTitles.Talent, TalentTable],
+        [TableTitles.Rarity, RarityTable],
+        [TableTitles.MagicalTalent, MagicalTalentTable],
     ]
 }

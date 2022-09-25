@@ -1,11 +1,11 @@
-import type {Dice} from "../../utils/dice";
+import {Dice} from "../../utils/dice";
 import {Site} from "./site";
 import {continentStore, sphereStore} from "./siteStore";
 import {randomIntFromInterval} from "../../utils/randomUtils";
 import {SphereTable} from "../../tables/locationTables/sphereTable";
 import {updateIndex} from "../../summary/updateSummaryIndex";
 
-export function mapSiteWithChar(dice: Dice) {
+export function mapSiteWithChar(dice = new Dice()) {
 
     let randomNumber = dice.getRandomInt(0, 10);
     let numberOfSites = 0
@@ -22,8 +22,7 @@ export function mapSiteWithChar(dice: Dice) {
     } else {
         let randomContinentIndex = dice.getRandomInt(0, numberOfSites-1);
         continentStore.subscribe(sites => {
-            let continent = sites[randomContinentIndex]
-            return continent;
+            return sites[randomContinentIndex];
         })
     }
     return new Site();

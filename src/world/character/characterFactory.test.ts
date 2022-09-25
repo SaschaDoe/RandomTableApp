@@ -1,9 +1,8 @@
 import {describe, expect, test} from "vitest";
-import {CharacterFactory} from "./characterFactory";
+import {CharacterFactory, createHigherPower} from "./characterFactory";
 import {TableTitles} from "../../tables/tableTitles";
-import {TableRoller} from "../../tables/tableRoler";
-import {FakeAllTablesMap} from "../../tables/tableRoller.test";
-import {Random} from "../../utils/randomUtils";
+import {FakeRandom} from "../../utils/fakeRandom";
+import {FakeTableRoller} from "../../tables/fakeTableRoller";
 
 
 describe("CharacterFactory", () => {
@@ -20,6 +19,7 @@ describe("CharacterFactory", () => {
             ["unlucky"],
             ["vampire"],
             ["horn"],
+            ["fishing"],
             ["fireball"]];
         let tableTitle = [
             TableTitles.Alignment,
@@ -33,7 +33,8 @@ describe("CharacterFactory", () => {
             TableTitles.Disadvantages,
             TableTitles.Curse,
             TableTitles.SpecialFeatures,
-            TableTitles.Talent];
+            TableTitles.Talent,
+            TableTitles.MagicalTalent];
         let characterFactory = new CharacterFactory(
             new FakeTableRoller(tableTitle, tableOutput),
             new FakeRandom([1,1,1,1,1,1,1]))
@@ -47,6 +48,7 @@ describe("CharacterFactory", () => {
         expect(character.motivation).toBe("motivation");
         expect(character.profession).toBe("profession");
         expect(character.race).toBe("human");
+        expect(character.homeContinent.id).toBeGreaterThan(1);
 
         expect(character.advantages.length).toBe(1);
         expect(character.advantages[0]).toBe("lucky");
@@ -61,34 +63,22 @@ describe("CharacterFactory", () => {
         expect(character.specialFeatures[0]).toBe("horn");
 
         expect(character.talents.length).toBe(1);
-        expect(character.talents[0]).toBe("fireball");
+        expect(character.talents[0]).toBe("fishing");
+
+        expect(character.magicalTalents.length).toBe(1);
+        expect(character.magicalTalents[0]).toBe("fireball");
+    })
+
+    test("should isHigherPower true when creating a higher power character", () => {
+        let higherPower = createHigherPower();
+
+        expect(higherPower.isHigherPower).toBe(true);
     })
 })
 
-class FakeRandom extends Random{
-    private readonly results: number[];
-    private count: number;
 
-    constructor(results: number[]) {
-        super();
-        this.results = results;
-        this.count = 0;
-    }
 
-    intFromInterval(minIncluded: number, maxIncluded: number): number {
-        let result = this.results[this.count];
-        this.count++;
-        return result;
-    }
-}
 
-class FakeTableRoller extends TableRoller{
-    constructor(tableTitles: TableTitles[], tableOutputs: string[][]) {
-        super(new FakeAllTablesMap(tableTitles,tableOutputs));
-
-    }
-
-}
 
 
     /*

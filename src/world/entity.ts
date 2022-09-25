@@ -1,8 +1,16 @@
 import {getId} from "./idGetter";
 
 export class Entity{
-    id: number;
+    readonly id: number;
+    readonly name: string;
 
-    constructor()
-     {this.id = getId();}
+    constructor(name: string)
+     {
+         this.name = name;
+         this.id = getId();
+     }
+
+     getUniqueName(){
+        return `${this.id} ${this.name}`;
+     }
 }

@@ -1,6 +1,4 @@
 import {Entity} from "../entity";
-import {Dice} from "../../utils/dice";
-import {DiceRole} from "../../tables/diceRole";
 
 export class AttributeEntity extends Entity{
     courage = 0;
@@ -12,7 +10,7 @@ export class AttributeEntity extends Entity{
     constitution = 0;
     strength = 0;
 
-    constructor() {
-        super();
+    constructor(name: string) {
+        super(name);
     }
 }

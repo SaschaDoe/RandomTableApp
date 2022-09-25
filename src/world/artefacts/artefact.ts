@@ -1,23 +1,29 @@
 import {Entity} from "../entity";
-import {randomIntFromInterval} from "../../utils/randomUtils";
-import {MagicalTalentTable} from "../../tables/talentTables/magicalTalentTable";
-import {RarityTable} from "../../tables/otherTables/rarityTable";
-import {QualityTable} from "../../tables/otherTables/qualityTable";
-import {MaterialsTable} from "../../tables/artefactTables/materialsTable";
-import {ArtefactTable} from "../../tables/artefactTables/artefactTable";
-import {EpicSubstantiveTable} from "../../tables/nameTables/epicSubstantiveTable";
-import {ArtefactAdjectiveTable} from "../../tables/artefactTables/artefactAdjectiveTable";
+import type {Equatable} from "../../utils/equatable";
+import type {ArtefactBuilder} from "./artefactBuilder";
 
-export class Artefact extends Entity{
+export class Artefact extends Entity implements Equatable<Artefact>{
+    readonly rarity: string;
+
+    /*
     talents: string[];
     description: string;
     rarity: string;
     quality: string;
     material: string;
     typeOfArtefact: string;
+    name: string;
+*/
+    constructor(artefactBuilder: ArtefactBuilder) {
+        let name = "";
 
-    constructor(isMagical = false) {
-        super();
+        super(name);
+
+        if(artefactBuilder.artefactRarity === undefined){
+            throw Error("Artefact rarity must be set");
+        }
+        this.rarity = artefactBuilder.artefactRarity;
+        /*
         this.rarity = new RarityTable().roleWithCascade().text;
         this.quality = new QualityTable().roleWithCascade().text;
         this.material = new MaterialsTable().roleWithCascade().text;
@@ -33,8 +39,14 @@ export class Artefact extends Entity{
             this.addTalent();
         }
         this.updateDescription();
+
+         */
     }
 
+    isEqualTo(other: Artefact){
+        return(this.rarity === other.rarity)
+    }
+/*
     addTalent(){
         this.talents.push(new MagicalTalentTable().roleWithCascade().text);
     }
@@ -56,4 +68,5 @@ export class Artefact extends Entity{
             this.description += talent;
         }
     }
+    */
 }

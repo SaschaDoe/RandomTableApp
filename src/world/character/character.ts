@@ -1,8 +1,11 @@
-import {Dice} from "../../utils/dice";
 import {AttributeEntity} from "./attributeEntity";
 import type {CharacterBuilder} from "./characterBuilder";
 import type {Equatable} from "../../utils/equatable";
-import {arrayEquals} from "../../utils/equatable";
+import {artefactArrayEquals, stringArrayEquals} from "../../utils/equatable";
+import type {Artefact} from "../artefacts/artefact";
+import type {Site} from "../site/site";
+import type {Relationship} from "./relationship";
+import {isMagicalProfession} from "../../tables/charTables/magicUserProfessions";
 
 
 export class Character extends AttributeEntity implements Equatable<Character>{
@@ -19,31 +22,42 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     readonly curses: string[];
     readonly specialFeatures: string[];
     readonly talents: string[];
+    readonly magicalTalents: string[];
+    readonly artefacts: Artefact[];
+
+    readonly homeContinent: Site;
+
+    readonly relationships: Relationship[];
+    readonly isHigherPower: boolean;
 
 
     constructor(
         characterBuilder: CharacterBuilder
     ) {
-        super();
+        if(characterBuilder.charGender === undefined){
+            throw Error("Character gender must be set");
+        }
+        let gender = characterBuilder.charGender;
+
+        if(characterBuilder.charName === undefined){
+            throw Error("Character name must be set");
+        }
+        let name = characterBuilder.charName;
+
+        super(name);
+
+        this.gender = gender;
+        this.name = name;
+
         if(characterBuilder.charAlignment === undefined){
             throw Error("Character alignment must be set");
         }
         this.alignment = characterBuilder.charAlignment;
 
-        if(characterBuilder.charGender === undefined){
-            throw Error("Character gender must be set");
-        }
-        this.gender = characterBuilder.charGender;
-
         if(characterBuilder.charMotivation === undefined){
             throw Error("Character motivation must be set");
         }
         this.motivation = characterBuilder.charMotivation;
-
-        if(characterBuilder.charName === undefined){
-            throw Error("Character name must be set");
-        }
-        this.name = characterBuilder.charName;
 
         if(characterBuilder.charNobility === undefined){
             throw Error("Character nobility must be set");
@@ -60,24 +74,49 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         }
         this.race = characterBuilder.charRace;
 
+        if(characterBuilder.charContinent === undefined){
+            throw Error("Character home continent must be set");
+        }
+        this.homeContinent = characterBuilder.charContinent;
+
+        if(characterBuilder.charHigherPower === undefined){
+            throw Error("Character isHigherPower must be set");
+        }
+        this.isHigherPower = characterBuilder.charHigherPower;
+
         this.curses = characterBuilder.charCurses;
         this.specialFeatures = characterBuilder.charSpecialFeatures;
         this.advantages = characterBuilder.charAdvantages;
         this.disadvantages = characterBuilder.charDisadvantages;
         this.talents = characterBuilder.charTalents;
+        this.magicalTalents = characterBuilder.charMagicalTalents
+        this.artefacts = characterBuilder.charArtefacts;
+
+        this.relationships = [];
+
+        this.ensureMagicalUserHasAtLeastOneMagicalTalent();
+    }
+
+    private ensureMagicalUserHasAtLeastOneMagicalTalent() {
+        if(isMagicalProfession(this.profession) && this.magicalTalents.length < 1){
+            throw Error(`Profession ${this.profession} needs at least one magical power`);
+        }
     }
 
     isEqualTo(other: Character){
         return (this.alignment === other.alignment &&
-            arrayEquals(this.advantages, other.advantages) &&
-            arrayEquals(this.curses, other.curses) &&
+            stringArrayEquals(this.advantages, other.advantages) &&
+            stringArrayEquals(this.curses, other.curses) &&
             this.gender === other.gender &&
             this.name === other.name &&
             this.nobility === other.nobility &&
             this.motivation === other.motivation &&
             this.profession === other.profession &&
             this.race === other.race &&
-            arrayEquals(this.specialFeatures, other.specialFeatures));
+            this.homeContinent === other.homeContinent &&
+            stringArrayEquals(this.talents, other.talents) &&
+            artefactArrayEquals(this.artefacts, other.artefacts) &&
+            stringArrayEquals(this.specialFeatures, other.specialFeatures));
     }
 
     /*
@@ -85,17 +124,6 @@ export class Character extends AttributeEntity implements Equatable<Character>{
       isHigherPower: boolean;
 
 
-
-
-      relationships: Relationship[];
-
-
-
-
-
-      artefacts: Artefact[];
-
-      homeContinent: Site;
       readonly isMagicUserProfession: boolean;
 
 
@@ -196,6 +224,8 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         return description;
     }
     */
+
+
 
 }
 

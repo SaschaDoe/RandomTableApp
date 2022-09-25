@@ -1,9 +1,11 @@
 import {TableRoller} from "../../tables/tableRoler";
 import {CharacterBuilder} from "./characterBuilder";
-// @ts-ignore
 import {CharacterAttributeTableTitlesMap} from "./characterAttributeTableTitlesMap";
 import {Random} from "../../utils/randomUtils";
 import {TableTitles} from "../../tables/tableTitles";
+import type {Site} from "../site/site";
+import {mapSiteWithChar} from "../site/continentFactory";
+import {isMagicalProfession} from "../../tables/charTables/magicUserProfessions";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -15,6 +17,8 @@ export let specialFeaturesMinInterval = -10;
 export let specialFeaturesMaxInterval = 2;
 export let talentsMinInterval = -20;
 export let talentsMaxInterval = 3;
+export let magicalTalentsMinInterval = -50;
+export let magicalTalentMaxInterval = 3;
 
 export class CharacterFactory {
     tableRoller: TableRoller;
@@ -33,6 +37,9 @@ export class CharacterFactory {
     charSpecialFeatures = [] as string[];
     characterDisadvantages = [] as string[];
     charTalents = [] as string[];
+    charMagicalTalents = [] as string[];
+    characterContinent: Site;
+    characterIsHigherPower = false;
 
     constructor(
         tableRoller = new TableRoller(),
@@ -44,10 +51,15 @@ export class CharacterFactory {
         this.setAllMandatory();
         this.setAllNonMandatory()
 
+        this.characterContinent = mapSiteWithChar();
     }
 
     create() {
-        return new CharacterBuilder()
+        let characterBuilder = new CharacterBuilder()
+
+        this.ensureMagicalUserHasAtLeastOneMagicalTalent();
+
+        return characterBuilder
             .withAlignment(this.characterAlignment)
             .withName(this.characterName)
             .withGender(this.characterGender)
@@ -60,7 +72,16 @@ export class CharacterFactory {
             .withCurses(this.characterCurses)
             .withSpecialFeature((this.charSpecialFeatures))
             .withTalents((this.charTalents))
-            .build();
+            .withMagicalTalents((this.charMagicalTalents))
+            .withContinent(this.characterContinent)
+            .withIsHigherPower(this.characterIsHigherPower)
+            .build()
+    }
+
+    private ensureMagicalUserHasAtLeastOneMagicalTalent() {
+        if (isMagicalProfession(this.characterProfession) && this.charMagicalTalents.length < 1) {
+            this.setNonMandatory(1, magicalTalentMaxInterval, this.charMagicalTalents, TableTitles.MagicalTalent);
+        }
     }
 
     private setAllMandatory() {
@@ -77,6 +98,7 @@ export class CharacterFactory {
         this.setNonMandatory(curseMinInterval, curseMaxInterval,this.characterCurses,TableTitles.Curse)
         this.setNonMandatory(specialFeaturesMinInterval, specialFeaturesMaxInterval,this.charSpecialFeatures,TableTitles.SpecialFeatures)
         this.setNonMandatory(talentsMinInterval, talentsMaxInterval,this.charTalents,TableTitles.Talent)
+        this.setNonMandatory(magicalTalentsMinInterval, magicalTalentMaxInterval,this.charMagicalTalents,TableTitles.MagicalTalent)
     }
 
     private setNonMandatory(minInterval: number, maxInterval: number, charAttribute: string[], tableTitle: TableTitles) {
@@ -85,6 +107,19 @@ export class CharacterFactory {
             charAttribute.push(this.tableRoller.roleFor(tableTitle).text);
         }
     }
+
+
+}
+
+export function createHigherPower() {
+    let charFactory = new CharacterFactory();
+    charFactory.characterIsHigherPower = true;
+    return charFactory.create();
+}
+
+export function createHigherPowerReturnUniqueName(){
+    let higherPower = createHigherPower();
+    return higherPower.getUniqueName();
 }
 
 /*

@@ -13,6 +13,8 @@ import {RaceTable} from "./charTables/raceTable";
 import {AdvantageTable} from "./charTables/advantageTable";
 import {DisadvantageTable} from "./charTables/disadvantageTable";
 import {TalentTable} from "./talentTables/talentTable";
+import {RarityTable} from "./otherTables/rarityTable";
+import {MagicalTalentTable} from "./talentTables/magicalTalentTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -46,6 +48,8 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.Advantages, new AdvantageTable());
         this.allTablesMap.set(TableTitles.Disadvantages, new DisadvantageTable());
         this.allTablesMap.set(TableTitles.Talent, new TalentTable());
+        this.allTablesMap.set(TableTitles.Rarity, new RarityTable());
+        this.allTablesMap.set(TableTitles.MagicalTalent, new MagicalTalentTable());
     }
 }
 
