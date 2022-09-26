@@ -22,6 +22,7 @@ import {DungeonEntriesTable} from "./locationTables/dungeonEntriesTable";
 import {TreasureTable} from "./artefactTables/treasureTable";
 import {FurnishingTable} from "./locationTables/furnishingTable";
 import {ObstacleTable} from "./locationTables/obstacleTable";
+import {TrapTable} from "./locationTables/trapTable";
 
 describe("AllTablesMap", () => {
 
@@ -76,5 +77,6 @@ function testInput(){
         [TableTitles.Treasure, TreasureTable],
         [TableTitles.Furnishing, FurnishingTable],
         [TableTitles.Obstacle, ObstacleTable],
+        [TableTitles.Trap, TrapTable],
     ]
 }

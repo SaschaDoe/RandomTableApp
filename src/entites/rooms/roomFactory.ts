@@ -3,12 +3,14 @@ import {Random} from "../../utils/randomUtils";
 import {TableTitles} from "../../tables/tableTitles";
 import {RoomBuilder} from "./roomBuilder";
 
-export const treasureMinInterval = -2;
+export const treasureMinInterval = -5;
 export const treasureMaxInterval = 3;
 export const furnishingMinInterval = 0;
 export const furnishingMaxInterval = 3
-export const obstacleMinInterval = -1;
+export const obstacleMinInterval = -3;
 export const obstacleMaxInterval = 3;
+export const trapsMinInterval = -3;
+export const trapsMaxInterval = 3;
 
 export class RoomFactory{
     private tableRoller: TableRoller;
@@ -17,6 +19,7 @@ export class RoomFactory{
     roomTreasures: string[];
     roomFurnishing: string[];
     roomObstacles: string[];
+    roomTraps: string[];
 
     constructor(
         tableRoller = new TableRoller(),
@@ -27,10 +30,12 @@ export class RoomFactory{
         this.roomTreasures = [];
         this.roomFurnishing = [];
         this.roomObstacles = [];
+        this.roomTraps = [];
 
         this.setNonMandatory(treasureMinInterval, treasureMaxInterval, this.roomTreasures, TableTitles.Treasure);
         this.setNonMandatory(furnishingMinInterval, furnishingMaxInterval, this.roomFurnishing, TableTitles.Furnishing);
         this.setNonMandatory(obstacleMinInterval, obstacleMaxInterval, this.roomObstacles, TableTitles.Obstacle);
+        this.setNonMandatory(trapsMinInterval, trapsMaxInterval, this.roomTraps, TableTitles.Trap);
     }
 
     private setNonMandatory(minInterval: number, maxInterval: number, attributeList: string[], tableTitle: TableTitles) {
@@ -48,6 +53,7 @@ export class RoomFactory{
             .withTreasures(this.roomTreasures)
             .withFurnishing(this.roomFurnishing)
             .withObstacles(this.roomObstacles)
+            .withTraps(this.roomTraps)
             .build();
     }
 }
