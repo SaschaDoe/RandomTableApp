@@ -8,6 +8,7 @@ describe("Room", () => {
     beforeEach(() => {
         let roomBuilder = new RoomBuilder()
             .withTreasures(["gold"])
+            .withFurnishing(["kitchen"])
         room = roomBuilder.build();
     })
 
@@ -15,5 +16,8 @@ describe("Room", () => {
 
         expect(room.treasures.length).toBe(1);
         expect(room.treasures[0]).toBe("gold");
+
+        expect(room.furnishing.length).toBe(1);
+        expect(room.furnishing[0]).toBe("kitchen");
     })
 })

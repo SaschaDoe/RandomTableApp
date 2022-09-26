@@ -9,10 +9,12 @@ import {RoomFactory} from "./roomFactory";
 describe("RoomFactory", () => {
     test("should set default room to what is given in random tables", () => {
         let tableOutput = [
-            ["gold"]
+            ["gold"],
+            ["kitchen"],
         ];
         let tableTitle = [
             TableTitles.Treasure,
+            TableTitles.Furnishing,
         ];
         let roomFactory = new RoomFactory(
             new FakeTableRoller(tableTitle, tableOutput),
@@ -22,5 +24,8 @@ describe("RoomFactory", () => {
 
         expect(room.treasures.length).toBe(1);
         expect(room.treasures[0]).toBe("gold");
+
+        expect(room.furnishing.length).toBe(1);
+        expect(room.furnishing[0]).toBe("kitchen");
     })
 })

@@ -20,6 +20,7 @@ import {ContinentTable} from "./locationTables/continentTable";
 import {StructureTable} from "./locationTables/structureTable";
 import {DungeonEntriesTable} from "./locationTables/dungeonEntriesTable";
 import {TreasureTable} from "./artefactTables/treasureTable";
+import {FurnishingTable} from "./locationTables/furnishingTable";
 
 describe("AllTablesMap", () => {
 
@@ -72,5 +73,6 @@ function testInput(){
         [TableTitles.Structure, StructureTable],
         [TableTitles.DungeonEntry, DungeonEntriesTable],
         [TableTitles.Treasure, TreasureTable],
+        [TableTitles.Furnishing, FurnishingTable],
     ]
 }

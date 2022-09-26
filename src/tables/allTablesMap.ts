@@ -19,6 +19,7 @@ import {ContinentTable} from "./locationTables/continentTable";
 import {StructureTable} from "./locationTables/structureTable";
 import {DungeonEntriesTable} from "./locationTables/dungeonEntriesTable";
 import {TreasureTable} from "./artefactTables/treasureTable";
+import {FurnishingTable} from "./locationTables/furnishingTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -58,6 +59,7 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.Structure, new StructureTable());
         this.allTablesMap.set(TableTitles.DungeonEntry, new DungeonEntriesTable());
         this.allTablesMap.set(TableTitles.Treasure, new TreasureTable());
+        this.allTablesMap.set(TableTitles.Furnishing, new FurnishingTable());
     }
 }
 
