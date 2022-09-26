@@ -2,6 +2,7 @@ import {TableRoller} from "../../tables/tableRoler";
 import {Random} from "../../utils/randomUtils";
 import {ArtefactBuilder} from "./artefactBuilder";
 import {TableTitles} from "../../tables/tableTitles";
+import {generateName} from "../../tables/nameTables/nameGenerator";
 
 export let magicTalentsMinInterval = -1;
 export let magicTalentMaxInterval = 2;
@@ -14,7 +15,7 @@ export class ArtefactFactory{
 
     artefactRarity = "";
     artefactName = "";
-    artefactId = 0;
+    artefactId = -1;
     artefactMagicTalents: string[] = [];
     artefactQuality = "";
     artefactMaterials: string[] = [];
@@ -29,6 +30,7 @@ export class ArtefactFactory{
         this.artefactQuality = tableRoller.roleFor(TableTitles.Quality).text;
         this.artefactRarity = tableRoller.roleFor(TableTitles.Rarity).text;
         this.artefactType = tableRoller.roleFor(TableTitles.Artefact).text;
+        this.artefactName = generateName(3);
 
         this.setAllNonMandatoryAttribute();
     }
@@ -50,8 +52,8 @@ export class ArtefactFactory{
 
     create() {
         return new ArtefactBuilder()
-            .withId(this.artefactId)
             .withName(this.artefactName)
+            .withId(this.artefactId)
             .withRarity(this.artefactRarity)
             .withMagicTalents(this.artefactMagicTalents)
             .withQuality(this.artefactQuality)

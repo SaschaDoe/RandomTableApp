@@ -2,7 +2,6 @@
     import {addNSCToCharacterStore, characters, higherPowerBeingsStore} from "../entites/character/charStore.js";
     import CharacterView from "./CharacterView.svelte";
     import {continentStore, sphereStore} from "../entites/site/siteStore.js";
-    import {WorldGenerator} from "../entites/generators/worldGenerator";
     import SiteView from "./SiteView.svelte";
     import SummaryIndex from "../components/SummaryIndex.svelte";
     import {dungeonStore} from "../entites/site/dungeonStore.js";
@@ -12,16 +11,16 @@
     import ArtefactView from "./ArtefactView.svelte";
     import {addMonsterToStore, monsterStore} from "../entites/monster/monsterStore.js";
     import MonsterView from "./MonsterView.svelte";
-    import {Dungeon} from "../entites/site/dungeon";
     import {otherStore} from "../entites/otherStore.js";
     import OtherView from "./OtherView.svelte";
+    import {DungeonFactory} from "../entites/dungeons/dungeonFactory";
     import {SignFactory} from "../entites/signs/signFactory";
+    import {AddSignToStore} from "../entites/signs/signStore";
 
     let sizeOfParty = 1;
 
     const addPartyHandler = ()=>{
-        let worldGenerator = new WorldGenerator();
-        worldGenerator.generateWorld(sizeOfParty);
+        //TODO add store handler for party creation
         updateIndex()
     }
 
@@ -34,7 +33,7 @@
         updateIndex()
     };
     let addDungeon = () =>{
-        let dungeon = new Dungeon();
+        let dungeon = new DungeonFactory().create();
         dungeonStore.update(dungeons => {
             dungeons.push(dungeon);
             return dungeons;
@@ -47,8 +46,8 @@
         updateIndex()
     }
     let addSign = () => {
-        let signFactory = new SignFactory();
-        signFactory.addSignToStore();
+        let sign = new SignFactory().create();
+        AddSignToStore(sign);
         updateIndex()
     };
 

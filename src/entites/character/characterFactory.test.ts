@@ -35,7 +35,7 @@ describe("CharacterFactory", () => {
             TableTitles.Disadvantages,
             TableTitles.Curse,
             TableTitles.SpecialFeatures,
-            TableTitles.Talent,
+            TableTitles.ProfaneTalent,
             TableTitles.MagicalTalent];
         let characterFactory = new CharacterFactory(
             new FakeTableRoller(tableTitle, tableOutput),

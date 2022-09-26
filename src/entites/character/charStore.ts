@@ -7,9 +7,10 @@ export let higherPowerBeingsStore = writable([] as Character[]);
 export let currentChar = writable(Character);
 
 export function addNSCToCharacterStore(){
+    let character = new CharacterFactory().create();
     characters.update(chars => {
-        let character = new CharacterFactory().create();
         chars.push(character);
         return chars;
     })
+    return character.getUniqueName();
 }

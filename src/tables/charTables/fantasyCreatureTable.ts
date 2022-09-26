@@ -1,7 +1,6 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
-import {changeRace} from "./raceTable";
 
 export class FantasyCreatureTable extends Table{
     constructor(){
@@ -34,6 +33,5 @@ export class FantasyCreatureTable extends Table{
         entries.push(new TableEntry("dragon"));
         entries.push(new TableEntry("wyrm"));
         super(entries, TableTitles.FantasyCreatures);
-        this.functions.push(changeRace)
     }
 }

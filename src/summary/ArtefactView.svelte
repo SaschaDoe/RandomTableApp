@@ -5,4 +5,4 @@
 </script>
 
 <h1>{artefact.getUniqueName()}</h1>
-<p>{artefact.description}</p>
+<p>{artefact.toString()}</p>

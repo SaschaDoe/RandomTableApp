@@ -4,7 +4,6 @@ import {TalentCategoryTable} from "./talentCategoryTable";
 import {ElementalTalentTable} from "./elementalTalentTable";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import {addTalent} from "./talentTable";
 import {ChangeTalentTable} from "./changeTalentTable";
 import {FromAnotherHigherPowerTalent} from "./fromAnotherHigherPowerTalent";
 import {SummonTalentTable} from "./summonTalentTable";
@@ -62,6 +61,5 @@ export class MagicalTalentTable extends Table{
         this.tableType = TableType.Talent;
         this.probability = 30;
         this.moreThanOnce = true;
-        this.functions.push(addTalent)
     }
 }

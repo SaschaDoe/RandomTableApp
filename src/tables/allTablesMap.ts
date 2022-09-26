@@ -26,6 +26,7 @@ import {MonsterEncounterTypeTable} from "./monsterTables/monsterEncounterTypeTab
 import {QualityTable} from "./otherTables/qualityTable";
 import {MaterialsTable} from "./artefactTables/materialsTable";
 import {ArtefactTable} from "./artefactTables/artefactTable";
+import {ProfaneTalentTable} from "./talentTables/profaneTalentTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -72,6 +73,7 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.Quality, new QualityTable());
         this.allTablesMap.set(TableTitles.Materials, new MaterialsTable());
         this.allTablesMap.set(TableTitles.Artefact, new ArtefactTable());
+        this.allTablesMap.set(TableTitles.ProfaneTalent, new ProfaneTalentTable());
     }
 }
 

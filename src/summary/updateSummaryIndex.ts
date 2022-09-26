@@ -3,7 +3,6 @@ import type {Character} from "../entites/character/character";
 import {characters, higherPowerBeingsStore} from "../entites/character/charStore";
 import type {Site} from "../entites/site/site";
 import {continentStore, sphereStore} from "../entites/site/siteStore";
-import type {Dungeon} from "../entites/site/dungeon";
 import {dungeonStore} from "../entites/site/dungeonStore";
 import type {Artefact} from "../entites/artefacts/artefact";
 import {artefactStore} from "../entites/artefacts/artefactStore";
@@ -11,6 +10,8 @@ import {monsterStore} from "../entites/monster/monsterStore";
 import type {Monster} from "../entites/monster/monster";
 import {otherStore} from "../entites/otherStore";
 import type {Entity} from "../entites/entity";
+import type {Dungeon} from "../entites/dungeons/dungeon";
+import {signStore} from "../entites/signs/signStore";
 
 export const updateIndex = () =>{
     let titles = [];
@@ -21,7 +22,7 @@ export const updateIndex = () =>{
     titles.push("Spheres")
     titles.push("Dungeons")
     titles.push("Artefacts")
-    titles.push("Others")
+    titles.push("Signs")
 
     titleStore.set(titles);
     let chars = [] as Character[];
@@ -94,14 +95,14 @@ export const updateIndex = () =>{
         artefactIndexes.push(artefact.getUniqueName());
     }
 
-    let others = [] as Entity[];
-    otherStore.subscribe((cs) => {
-        others = cs;
+    let signs = [] as Entity[];
+    signStore.subscribe((cs) => {
+        signs = cs;
     })
-    let otherIndexes = [] as string[];
-    for(let i = 0; i < others.length; i++){
-        let other = others[i];
-        otherIndexes.push(other.getUniqueName());
+    let signIndexes = [] as string[];
+    for(let i = 0; i < signs.length; i++){
+        let sign = signs[i];
+        signIndexes.push(sign.getUniqueName());
     }
     indexesStore.set([charIndexes,
         godsIndexes,
@@ -110,5 +111,5 @@ export const updateIndex = () =>{
         spheresIndexes,
         dungeonIndexes,
         artefactIndexes,
-        otherIndexes]);
+        signIndexes]);
 }

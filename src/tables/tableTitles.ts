@@ -82,5 +82,5 @@ export enum TableTitles{
     TownSize = "Town Size",
     TownFame = "Town Fame",
     Colour = "Colour",
-    Sign = "Sign",
+    ProfaneTalent = "Profane Talent",
 }
