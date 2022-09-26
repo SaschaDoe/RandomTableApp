@@ -4,6 +4,8 @@ import {continentStore, sphereStore} from "./siteStore";
 import {randomIntFromInterval} from "../../utils/randomUtils";
 import {SphereTable} from "../../tables/locationTables/sphereTable";
 import {updateIndex} from "../../summary/updateSummaryIndex";
+import {Continent} from "../continent/continent";
+import {ContinentFactory} from "../continent/continentFactory";
 
 export function mapSiteWithChar(dice = new Dice()) {
 
@@ -25,7 +27,7 @@ export function mapSiteWithChar(dice = new Dice()) {
             return sites[randomContinentIndex];
         })
     }
-    return new Site();
+    return new ContinentFactory().create();
 }
 
 export function createContinent(){

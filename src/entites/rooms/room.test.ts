@@ -2,19 +2,25 @@ import {beforeEach, describe, expect, test} from "vitest";
 import type {Room} from "./room";
 import {RoomBuilder} from "./roomBuilder";
 import {Monster} from "../monster/monster";
+import type {Character} from "../character/character";
+import {CharacterFactory} from "../character/characterFactory";
 
 describe("Room", () => {
     let room: Room;
     let monster: Monster;
+    let character: Character;
+
     beforeEach(() => {
         monster = new Monster();
+        character = new CharacterFactory().create();
         let roomBuilder = new RoomBuilder()
             .withTreasures(["gold"])
             .withFurnishing(["kitchen"])
             .withObstacles(["obstacle"])
             .withTraps(["stone"])
             .withEncounters(["far away"])
-            .withMonsters([monster]);
+            .withMonsters([monster])
+            .withCharacters([character]);
         room = roomBuilder.build();
     })
 
@@ -37,5 +43,8 @@ describe("Room", () => {
 
         expect(room.monsters.length).toBe(1);
         expect(room.monsters[0]).toBe(monster);
+
+        expect(room.characters.length).toBe(1);
+        expect(room.characters[0]).toBe(character);
     })
 })

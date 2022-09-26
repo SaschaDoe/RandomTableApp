@@ -3,6 +3,11 @@ import {Random} from "../../utils/randomUtils";
 import {ArtefactBuilder} from "./artefactBuilder";
 import {TableTitles} from "../../tables/tableTitles";
 
+export let magicTalentsMinInterval = -1;
+export let magicTalentMaxInterval = 2;
+export let materialsMinInterval = 1;
+export let materialsMaxInterval = 2;
+
 export class ArtefactFactory{
     private tableRoller: TableRoller;
     private random: Random;
@@ -10,6 +15,9 @@ export class ArtefactFactory{
     artefactRarity = "";
     artefactName = "";
     artefactId = 0;
+    artefactMagicTalents: string[] = [];
+    artefactQuality = "";
+    artefactMaterials: string[] = [];
 
     constructor(
         tableRoller = new TableRoller(),
@@ -17,8 +25,25 @@ export class ArtefactFactory{
     ) {
         this.tableRoller = tableRoller
         this.random = random
-
+        this.artefactQuality = tableRoller.roleFor(TableTitles.Quality).text;
         this.artefactRarity = tableRoller.roleFor(TableTitles.Rarity).text;
+
+        this.setAllNonMandatoryAttribute();
+    }
+
+    private setAllNonMandatoryAttribute() {
+        this.setNonMandatory(magicTalentsMinInterval, magicTalentMaxInterval, this.artefactMagicTalents, TableTitles.MagicalTalent)
+        this.setNonMandatory(materialsMinInterval, materialsMaxInterval, this.artefactMaterials, TableTitles.Materials)
+    }
+
+    private setNonMandatory(minInterval: number, maxInterval: number, artefactAttribute: string[], tableTitle: TableTitles) {
+        let randomNumber = this.random.intFromInterval(minInterval,maxInterval);
+        if(randomNumber <= 0 && minInterval === 1){
+            randomNumber = 0;
+        }
+        for(let i = 0; i < randomNumber; i++){
+            artefactAttribute.push(this.tableRoller.roleFor(tableTitle).text);
+        }
     }
 
     create() {
@@ -26,6 +51,11 @@ export class ArtefactFactory{
             .withId(this.artefactId)
             .withName(this.artefactName)
             .withRarity(this.artefactRarity)
+            .withMagicTalents(this.artefactMagicTalents)
+            .withQuality(this.artefactQuality)
+            .withMaterials(this.artefactMaterials)
             .build();
     }
+
+
 }

@@ -3,17 +3,15 @@ import type {Equatable} from "../../utils/equatable";
 import type {ArtefactBuilder} from "./artefactBuilder";
 
 export class Artefact extends Entity implements Equatable<Artefact>{
-    readonly rarity: string;
-
-    /*
-    talents: string[];
-    description: string;
     rarity: string;
     quality: string;
-    material: string;
+    magicTalents: string[];
+    materials: string[];
+    /*
     typeOfArtefact: string;
     name: string;
 */
+
     constructor(artefactBuilder: ArtefactBuilder) {
         if(artefactBuilder.artefactName === undefined){
             throw Error("Artefact name must be set");
@@ -27,6 +25,14 @@ export class Artefact extends Entity implements Equatable<Artefact>{
             throw Error("Artefact rarity must be set");
         }
         this.rarity = artefactBuilder.artefactRarity;
+
+        if(artefactBuilder.artefactQuality === undefined){
+            throw Error("Artefact quality must be set");
+        }
+        this.quality = artefactBuilder.artefactQuality;
+
+        this.magicTalents = artefactBuilder.magicTalents;
+        this.materials = artefactBuilder.artefactMaterials;
         /*
         this.rarity = new RarityTable().roleWithCascade().text;
         this.quality = new QualityTable().roleWithCascade().text;

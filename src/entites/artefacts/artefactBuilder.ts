@@ -4,8 +4,13 @@ export class ArtefactBuilder{
     artefactRarity: string|undefined;
     artefactId: number|undefined;
     artefactName: string|undefined;
+    magicTalents: string[];
+    artefactQuality: string | undefined;
+    artefactMaterials: string[];
 
     constructor() {
+        this.magicTalents = [];
+        this.artefactMaterials = [];
     }
 
     withRarity(rarity: string) {
@@ -24,6 +29,21 @@ export class ArtefactBuilder{
 
     withName(name: string) {
         this.artefactName = name;
+        return this;
+    }
+
+    withMagicTalents(magicTalents: string[]) {
+        this.magicTalents = this.magicTalents.concat(magicTalents);
+        return this;
+    }
+
+    withQuality(quality: string){
+        this.artefactQuality = quality;
+        return this;
+    }
+
+    withMaterials(materials: string[]){
+        this.artefactMaterials = materials;
         return this;
     }
 }

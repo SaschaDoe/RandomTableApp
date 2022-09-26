@@ -23,6 +23,8 @@ import {FurnishingTable} from "./locationTables/furnishingTable";
 import {ObstacleTable} from "./locationTables/obstacleTable";
 import {TrapTable} from "./locationTables/trapTable";
 import {MonsterEncounterTypeTable} from "./monsterTables/monsterEncounterTypeTable";
+import {QualityTable} from "./otherTables/qualityTable";
+import {MaterialsTable} from "./artefactTables/materialsTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -66,6 +68,8 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.Obstacle, new ObstacleTable());
         this.allTablesMap.set(TableTitles.Trap, new TrapTable());
         this.allTablesMap.set(TableTitles.MonsterEncounterType, new MonsterEncounterTypeTable());
+        this.allTablesMap.set(TableTitles.Quality, new QualityTable());
+        this.allTablesMap.set(TableTitles.Materials, new MaterialsTable());
     }
 }
 

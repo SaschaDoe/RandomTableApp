@@ -24,6 +24,8 @@ import {FurnishingTable} from "./locationTables/furnishingTable";
 import {ObstacleTable} from "./locationTables/obstacleTable";
 import {TrapTable} from "./locationTables/trapTable";
 import {MonsterEncounterTypeTable} from "./monsterTables/monsterEncounterTypeTable";
+import {QualityTable} from "./otherTables/qualityTable";
+import {MaterialsTable} from "./artefactTables/materialsTable";
 
 describe("AllTablesMap", () => {
 
@@ -80,5 +82,7 @@ function testInput(){
         [TableTitles.Obstacle, ObstacleTable],
         [TableTitles.Trap, TrapTable],
         [TableTitles.MonsterEncounterType, MonsterEncounterTypeTable],
+        [TableTitles.Quality, QualityTable],
+        [TableTitles.Materials, MaterialsTable],
     ]
 }
