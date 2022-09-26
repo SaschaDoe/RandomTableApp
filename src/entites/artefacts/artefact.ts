@@ -8,10 +8,6 @@ export class Artefact extends Entity implements Equatable<Artefact>{
     magicTalents: string[];
     materials: string[];
     type: string;
-    /*
-
-    name: string;
-*/
 
     constructor(artefactBuilder: ArtefactBuilder) {
         if(artefactBuilder.artefactName === undefined){
@@ -39,28 +35,32 @@ export class Artefact extends Entity implements Equatable<Artefact>{
 
         this.magicTalents = artefactBuilder.magicTalents;
         this.materials = artefactBuilder.artefactMaterials;
-        /*
-        this.rarity = new RarityTable().roleWithCascade().text;
-        this.quality = new QualityTable().roleWithCascade().text;
-        this.material = new MaterialsTable().roleWithCascade().text;
-        this.typeOfArtefact = new ArtefactTable().roleWithCascade().text;
-        this.description = "";
-        this.name =  new ArtefactAdjectiveTable().roleWithCascade().text+ " " + this.typeOfArtefact + " of "+new EpicSubstantiveTable().roleWithCascade().text;
-        this.talents = [];
-        let randomNumberOfTalents = randomIntFromInterval(0,2);
-        if(isMagical){
-            randomNumberOfTalents = randomIntFromInterval(1,2);
-        }
-        for(let i = 0; i < randomNumberOfTalents; i++){
-            this.addTalent();
-        }
-        this.updateDescription();
-
-         */
     }
 
     isEqualTo(other: Artefact){
         return(this.rarity === other.rarity)
+    }
+
+    toString(){
+        let description = `${this.getUniqueName()} a ${this.rarity} ${this.quality} ${this.type} out of `;
+        for(let i = 0; i < this.materials.length; i++){
+            description += `${this.materials[i]} `;
+            if(this.materials.length > 1){
+                description += `and `;
+            }
+        }
+
+        for(let i = 0; i < this.magicTalents.length; i++){
+            if(i === 0){
+                description += `with the power of ${this.magicTalents[i]} `;
+            }
+            if(this.magicTalents.length > 1){
+                description += `and the power of ${this.magicTalents[i]}`;
+            }
+            description = description.slice(0,description.length-1);
+        }
+        description += ".";
+        return description;
     }
 /*
     addTalent(){
