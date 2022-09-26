@@ -1,23 +1,21 @@
 <script lang="ts">
-    import {characters, higherPowerBeingsStore} from "../world/character/charStore.js";
+    import {addNSCToCharacterStore, characters, higherPowerBeingsStore} from "../entites/character/charStore.js";
     import CharacterView from "./CharacterView.svelte";
-    import {continentStore, sphereStore} from "../world/site/siteStore.js";
-    import {WorldGenerator} from "../world/generators/worldGenerator";
+    import {continentStore, sphereStore} from "../entites/site/siteStore.js";
+    import {WorldGenerator} from "../entites/generators/worldGenerator";
     import SiteView from "./SiteView.svelte";
     import SummaryIndex from "../components/SummaryIndex.svelte";
-    import {dungeonStore} from "../world/site/dungeonStore.js";
+    import {dungeonStore} from "../entites/site/dungeonStore.js";
     import DungeonView from "./DungeonView.svelte";
     import {updateIndex} from "./updateSummaryIndex";
-    import {artefactStore} from "../world/artefacts/artefactStore.js";
+    import {addArtefactToStore, artefactStore} from "../entites/artefacts/artefactStore.js";
     import ArtefactView from "./ArtefactView.svelte";
-    import {createNSC} from "../world/character/characterFactory";
-    import {Artefact} from "../world/artefacts/artefact";
-    import {addMonsterToStore, monsterStore} from "../world/monster/monsterStore.js";
+    import {addMonsterToStore, monsterStore} from "../entites/monster/monsterStore.js";
     import MonsterView from "./MonsterView.svelte";
-    import {Dungeon} from "../world/site/dungeon";
-    import {otherStore} from "../world/otherStore.js";
+    import {Dungeon} from "../entites/site/dungeon";
+    import {otherStore} from "../entites/otherStore.js";
     import OtherView from "./OtherView.svelte";
-    import {SignFactory} from "../world/signs/signFactory";
+    import {SignFactory} from "../entites/signs/signFactory";
 
     let sizeOfParty = 1;
 
@@ -28,15 +26,11 @@
     }
 
     let addNSC = () => {
-        createNSC();
+        addNSCToCharacterStore();
         updateIndex()
     };
     let addArtefactForView= () => {
-        let artefact = new Artefact();
-        artefactStore.update(artefacts => {
-            artefacts.push(artefact);
-            return artefacts;
-        })
+        addArtefactToStore();
         updateIndex()
     };
     let addDungeon = () =>{

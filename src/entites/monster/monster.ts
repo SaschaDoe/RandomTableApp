@@ -2,7 +2,6 @@ import {AttributeEntity} from "../character/attributeEntity";
 import {generateName} from "../../tables/nameTables/nameGenerator";
 import {MonsterAdjectiveTable} from "../../tables/monsterTables/monsterAdjectiveTable";
 import {MonsterMealTable} from "../../tables/monsterTables/monsterMealTable";
-import {MonsterNumberTable} from "../../tables/monsterTables/monsterNumberTable";
 import {MonsterEncounterTypeTable} from "../../tables/monsterTables/monsterEncounterTypeTable";
 import {MonsterReproductionTable} from "../../tables/monsterTables/monsterReproductionTable";
 import {MotivationTable} from "../../tables/charTables/motivationTable";
@@ -17,7 +16,6 @@ import {DisadvantageTable} from "../../tables/charTables/disadvantageTable";
 import type {Table} from "../../tables/table";
 
 export class Monster extends AttributeEntity{
-    name: string;
     gender: string;
     description: string;
     adjective: string;
@@ -32,8 +30,8 @@ export class Monster extends AttributeEntity{
     disadvantages: string[];
 
     constructor() {
-        super();
-        this.name = generateName(4);
+        let name = generateName(4);
+        super(name);
         this.gender = new GenderTable().roleWithCascade().text;
         this.description = new MonsterTable().roleWithCascade().text;
         this.adjective = new MonsterAdjectiveTable().roleWithCascade().text;

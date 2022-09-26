@@ -1,9 +1,7 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
-import type {Character} from "../../world/character/character";
 import {AnimalTable} from "./animalTable";
-import type {RoleResult} from "../roleResult";
 import {MagicUserProfessions} from "./magicUserProfessions";
 
 export class ProfessionTable extends Table{
@@ -116,11 +114,5 @@ export class ProfessionTable extends Table{
         entries.push(new TableEntry("mine worker"))
         entries.push(new TableEntry("good for nothing"))
         super(entries, TableTitles.Profession);
-        this.functions.push(changeProfession)
     }
-}
-
-export function changeProfession(char: Character, roleResult: RoleResult){
-    char.profession = roleResult.text;
-    return char;
 }

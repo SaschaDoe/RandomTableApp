@@ -3,7 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {ElementTable} from "../otherTables/elementTable";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import {addMonsterToStore} from "../../world/monster/monsterStore";
+import {addMonsterToStore} from "../../entites/monster/monsterStore";
 
 export class ObstacleTable extends Table{
     constructor(){

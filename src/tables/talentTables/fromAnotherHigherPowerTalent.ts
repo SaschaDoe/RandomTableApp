@@ -2,7 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import {createHigherPowerReturnUniqueName} from "../../world/character/characterFactory";
+import {createHigherPowerReturnUniqueName} from "../../entites/character/characterFactory";
 
 export class FromAnotherHigherPowerTalent extends Table{
     constructor(){

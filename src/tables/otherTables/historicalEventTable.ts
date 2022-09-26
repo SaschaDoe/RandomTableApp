@@ -2,7 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import {createNSC} from "../../world/character/characterFactory";
+import {createNSC} from "../../entites/character/characterFactory";
 import {NaturalEvents} from "./naturalEvents";
 
 export class HistoricalEventTable extends Table{

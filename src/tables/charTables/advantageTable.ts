@@ -3,12 +3,12 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {AttributeTable} from "./attributeTable";
 import {SenseTable} from "../otherTables/senseTable";
-import type {Character} from "../../world/character/character";
+import type {Character} from "../../entites/character/character";
 import type {RoleResult} from "../roleResult";
 import {ElementTable} from "../otherTables/elementTable";
 import {TalentTable} from "../talentTables/talentTable";
 import {TableType} from "../tableType";
-import {addArtefactToStoreReturnUniqueName} from "../../world/artefacts/artefactStore";
+import {addArtefactToStoreReturnUniqueName} from "../../entites/artefacts/artefactStore";
 
 export class AdvantageTable extends Table{
     constructor(){
@@ -24,13 +24,13 @@ export class AdvantageTable extends Table{
         entries.push(new TableEntry("fey blood"))
         entries.push(new TableEntry("quick"))
         entries.push(new TableEntry("resistant against age"))
-        entries.push(new TableEntry("dwarven nose"))
+        entries.push(new TableEntry("capable of finding hidden things"))
         entries.push(new TableEntry("hard bone"))
         entries.push(new TableEntry("magically incognito"))
         entries.push(new TableEntry("berserker"))
         entries.push(new TableEntry("regeneration"))
         entries.push(new TableEntry("good looking"))
-        entries.push(new TableEntry("can remember much"))
+        entries.push(new TableEntry("good at remembering things"))
         entries.push(new TableEntry("resistant against illness"))
         entries.push(new TableEntry("poison resistant"))
         entries.push(new TableEntry("resistant to").withCascadingRole(new ElementTable()))

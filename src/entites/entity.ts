@@ -4,10 +4,14 @@ export class Entity{
     readonly id: number;
     readonly name: string;
 
-    constructor(name: string)
+    constructor(name: string, id = -1)
      {
          this.name = name;
-         this.id = getId();
+         if(id === -1){
+             this.id = getId();
+         }else{
+             this.id = id;
+         }
      }
 
      getUniqueName(){

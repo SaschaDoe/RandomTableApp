@@ -15,9 +15,13 @@ export class Artefact extends Entity implements Equatable<Artefact>{
     name: string;
 */
     constructor(artefactBuilder: ArtefactBuilder) {
-        let name = "";
+        if(artefactBuilder.artefactName === undefined){
+            throw Error("Artefact name must be set");
+        }
 
-        super(name);
+        let name = artefactBuilder.artefactName;
+
+        super(name,artefactBuilder.artefactId);
 
         if(artefactBuilder.artefactRarity === undefined){
             throw Error("Artefact rarity must be set");

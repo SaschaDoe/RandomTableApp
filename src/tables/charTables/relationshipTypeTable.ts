@@ -1,7 +1,7 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
-import {RelationshipType} from "../../world/character/relationshipType";
+import {RelationshipType} from "../../entites/character/relationshipType";
 import {DiceRole} from "../diceRole";
 
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {Entity} from "../world/entity";
+    import {Entity} from "../entites/entity";
 
     export let other : Entity;
 </script>

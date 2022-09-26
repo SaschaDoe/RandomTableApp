@@ -1,13 +1,10 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
-import type {Character} from "../../world/character/character";
 import {DiceRole} from "../diceRole";
 import {TableTitles} from "../tableTitles";
 import {DisadvantageTable} from "./disadvantageTable";
 import {AttributeTable} from "./attributeTable";
 import {TableType} from "../tableType";
-import type {RoleResult} from "../roleResult";
-
 
 export class MotivationTable extends Table{
     constructor(){
@@ -64,11 +61,5 @@ export class MotivationTable extends Table{
         entries.push(new TableEntry("bored"));
         entries.push(new TableEntry("get rid of disadvantage ").withCascadingRole(new DisadvantageTable()));
         super(entries, TableTitles.Motivation,TableType.Character,new DiceRole().withNumberOfRoles(3));
-        this.functions.push(changeMotivation)
     }
-}
-
-export function changeMotivation(char: Character, roleResult: RoleResult){
-    char.motivation = roleResult.text;
-    return char;
 }

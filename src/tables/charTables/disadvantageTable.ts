@@ -1,9 +1,9 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
-import {Character} from "../../world/character/character";
-import {Relationship} from "../../world/character/relationship";
-import {RelationshipType} from "../../world/character/relationshipType";
+import {Character} from "../../entites/character/character";
+import {Relationship} from "../../entites/character/relationship";
+import {RelationshipType} from "../../entites/character/relationshipType";
 import {AttributeTable} from "./attributeTable";
 import {SenseTable} from "../otherTables/senseTable";
 import type {RoleResult} from "../roleResult";

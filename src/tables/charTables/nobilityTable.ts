@@ -1,10 +1,11 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
-import type {Character} from "../../world/character/character";
 import {DiceRole} from "../diceRole";
-import type {RoleResult} from "../roleResult";
 import {TableType} from "../tableType";
+import type {Factory} from "../../entites/factory";
+import type {CharacterFactory} from "../../entites/character/characterFactory";
+import type {RoleResult} from "../roleResult";
 
 export class NobilityTable extends Table{
     constructor(){
@@ -16,11 +17,11 @@ export class NobilityTable extends Table{
         entries.push(new TableEntry("serf").withRoleInterval(13,16))
         entries.push(new TableEntry("slave").withRoleInterval(17,18))
         super(entries, TableTitles.Nobility,TableType.Character,new DiceRole().withNumberOfDice(3));
-        this.functions.push(changeNobility)
+        this.functions.push(withNobility)
     }
 }
 
-export function changeNobility(char: Character, roleResult: RoleResult){
-    char.nobility = roleResult.text;
-    return char;
+export function withNobility(factory: Factory, roleResult: RoleResult){
+    let charFactory = factory as CharacterFactory;
+    charFactory.withNobility(roleResult.text);
 }

@@ -6,6 +6,7 @@ import {Dice} from "../utils/dice";
 import {isBetween} from "../utils/listUtils";
 import {TableType} from "./tableType";
 import {RoleResult} from "./roleResult";
+import type {Factory} from "../entites/factory";
 
 
 export class Table {
@@ -14,7 +15,7 @@ export class Table {
     title: TableTitles;
     diceRole: DiceRole;
     entries: TableEntry[];
-    functions: ((entity: any, roleResult: RoleResult) => any)[] = [];
+    functions: ((factory: Factory, roleResult: RoleResult) => void)[] = [];
     tableType: TableType;
 
     constructor( entries : TableEntry[] = [new TableEntry().withRoleInterval(1,6)],
@@ -56,7 +57,7 @@ export class Table {
                 }
             }
         }
-        return new RoleResult(entry.text,entry.toString(),entry.cascadingRoles, entry.functions);
+        return new RoleResult(entry.text, entry.toString(), entry.cascadingRoles, entry.functions);
     }
 
     roleWithCascade(dice: Dice = new Dice()) {

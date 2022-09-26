@@ -2,7 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {AnimalTable} from "./animalTable";
-import type {Character} from "../../world/character/character";
+import type {Character} from "../../entites/character/character";
 import {DisadvantageTable} from "./disadvantageTable";
 import type {RoleResult} from "../roleResult";
 import {ElementTable} from "../otherTables/elementTable";

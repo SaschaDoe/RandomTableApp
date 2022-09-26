@@ -3,7 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {ProfessionTable} from "../charTables/professionTable";
-import {createNSC} from "../../world/character/characterFactory";
+import {createNSC} from "../../entites/character/characterFactory";
 import {NaturalEvents} from "../otherTables/naturalEvents";
 
 export class TownEventTable extends Table{

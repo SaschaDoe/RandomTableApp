@@ -3,8 +3,6 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {AnimalTable} from "./animalTable";
 import {FantasyCreatureTable} from "./fantasyCreatureTable";
-import type {Character} from "../../world/character/character";
-import type {RoleResult} from "../roleResult";
 import {TableType} from "../tableType";
 import {DiceRole} from "../diceRole";
 
@@ -25,11 +23,5 @@ export class RaceTable extends Table{
             .withCascadingRole(new AnimalTable())
             .withCascadingRole(new AnimalTable()));
         super(entries, TableTitles.Race,TableType.Character, new DiceRole().withNumberOfDice(2));
-        this.functions.push(changeRace)
     }
-}
-
-export function changeRace(char: Character, roleResult: RoleResult){
-    char.race = roleResult.text;
-    return char;
 }

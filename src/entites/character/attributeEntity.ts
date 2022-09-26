@@ -10,7 +10,7 @@ export class AttributeEntity extends Entity{
     constitution = 0;
     strength = 0;
 
-    constructor(name: string) {
-        super(name);
+    constructor(name: string, id = -1) {
+        super(name, id);
     }
 }

@@ -8,6 +8,8 @@ export class ArtefactFactory{
     private random: Random;
 
     artefactRarity = "";
+    artefactName = "";
+    artefactId = 0;
 
     constructor(
         tableRoller = new TableRoller(),
@@ -21,6 +23,8 @@ export class ArtefactFactory{
 
     create() {
         return new ArtefactBuilder()
+            .withId(this.artefactId)
+            .withName(this.artefactName)
             .withRarity(this.artefactRarity)
             .build();
     }

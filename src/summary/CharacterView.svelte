@@ -1,27 +1,23 @@
 <script lang="ts">
-    import {Character} from "../world/character/character";
+    import {Character} from "../entites/character/character";
+    import {CharacterFactory} from "../entites/character/characterFactory";
 
     export let character: Character;
+
+    let characterFactory = new CharacterFactory();
     let handleAddCurse = () =>{
-        character.addCurse();
-        updateChar();
+        character = characterFactory.clone(character).addCurse().create();
     };
     let handleAddAdvantage = ()=>{
-        character.addAdvantage();
-        updateChar();
+        character = characterFactory.clone(character).addAdvantage().create();
     };
     let handleAddDisadvantage = () =>{
-        character.addDisadvantage();
-        updateChar();
+        character = characterFactory.clone(character).addDisadvantage().create();
     };
     let handleAddTalent = ()=>{
-        character.addTalent();
-        updateChar();
+        character = characterFactory.clone(character).addTalent().create();
     };
-
-    function updateChar(){
-        character = character
-    }
+    //TODO: add magical talent too
 
 </script>
 <h1>{character.getUniqueName()}</h1>

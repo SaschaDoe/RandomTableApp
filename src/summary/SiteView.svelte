@@ -1,7 +1,7 @@
 <script lang="ts">
-    import {Site} from "../world/site/site";
-    import {Dungeon} from "../world/site/dungeon";
-    import {dungeonStore} from "../world/site/dungeonStore";
+    import {Site} from "../entites/site/site";
+    import {Dungeon} from "../entites/site/dungeon";
+    import {dungeonStore} from "../entites/site/dungeonStore";
     import {updateIndex} from "./updateSummaryIndex";
 
     export let site : Site;

@@ -2,7 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import {addMonsterToStore} from "../../world/monster/monsterStore";
+import {addMonsterToStore} from "../../entites/monster/monsterStore";
 
 export class TrapTriggerTable extends Table{
     constructor(){

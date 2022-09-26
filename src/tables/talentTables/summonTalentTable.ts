@@ -3,9 +3,9 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {RaceTable} from "../charTables/raceTable";
-import {createHigherPowerReturnUniqueName} from "../../world/character/characterFactory";
+import {createHigherPowerReturnUniqueName} from "../../entites/character/characterFactory";
 import {WeatherTable} from "../otherTables/weatherTable";
-import {addArtefactToStoreReturnUniqueName} from "../../world/artefacts/artefactStore";
+import {addArtefactToStoreReturnUniqueName} from "../../entites/artefacts/artefactStore";
 
 export class SummonTalentTable extends Table{
     constructor(){

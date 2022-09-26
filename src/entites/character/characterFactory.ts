@@ -1,11 +1,14 @@
 import {TableRoller} from "../../tables/tableRoler";
 import {CharacterBuilder} from "./characterBuilder";
-import {CharacterAttributeTableTitlesMap} from "./characterAttributeTableTitlesMap";
 import {Random} from "../../utils/randomUtils";
 import {TableTitles} from "../../tables/tableTitles";
-import type {Site} from "../site/site";
 import {mapSiteWithChar} from "../site/continentFactory";
 import {isMagicalProfession} from "../../tables/charTables/magicUserProfessions";
+import type {Character} from "./character";
+import type {Continent} from "../continent/continent";
+import type {Table} from "../../tables/table";
+import type {Factory} from "../factory";
+import type {RoleResult} from "../../tables/roleResult";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -23,7 +26,7 @@ export let magicalTalentHigherPowerMinInterval = 3
 export let magicalTalentHigherPowerMaxInterval = 7
 export let magicalTalentMaxInterval = 3;
 
-export class CharacterFactory {
+export class CharacterFactory implements Factory{
     tableRoller: TableRoller;
     random: Random;
 
@@ -41,7 +44,7 @@ export class CharacterFactory {
     characterDisadvantages = [] as string[];
     charTalents = [] as string[];
     charMagicalTalents = [] as string[];
-    characterContinent: Site;
+    characterContinent: Continent;
     characterIsHigherPower = false;
 
     constructor(
@@ -55,6 +58,26 @@ export class CharacterFactory {
         this.setAllNonMandatory()
 
         this.characterContinent = mapSiteWithChar();
+    }
+
+    clone(char: Character){
+        this.characterAlignment = char.alignment;
+        this.characterName = char.name;
+        this.characterGender = char.gender;
+        this.characterNobility = char.nobility
+        this.characterMotivation = char.motivation;
+        this.characterRace = char.race;
+        this.characterProfession = char.profession;
+
+        this.characterAdvantages = char.advantages.slice();
+        this.characterCurses = char.curses.slice();
+        this.charSpecialFeatures = char.specialFeatures.slice();
+        this.characterDisadvantages = char.disadvantages.slice();
+        this.charTalents = char.talents.slice();
+        this.charMagicalTalents = char.magicalTalents.slice();
+        this.characterContinent = char.homeContinent;
+        this.characterIsHigherPower = char.isHigherPower;
+        return this;
     }
 
     create() {
@@ -82,6 +105,15 @@ export class CharacterFactory {
             .build()
     }
 
+    withTable(table: Table, roleResult: RoleResult){
+        for(let i = 0; i < table.functions.length; i++){
+            let fnk = table.functions[i];
+            fnk(this, roleResult);
+        }
+
+        return this;
+    }
+
     private ensureMagicalUserHasAtLeastOneMagicalTalent() {
         if (isMagicalProfession(this.characterProfession) && this.charMagicalTalents.length < 1) {
             this.setNonMandatory(magicalTalentUserMinInterval, magicalTalentMaxInterval, this.charMagicalTalents, TableTitles.MagicalTalent);
@@ -95,11 +127,17 @@ export class CharacterFactory {
     }
 
     private setAllMandatory() {
-        let charAttributeTableTitleMap = new CharacterAttributeTableTitlesMap().charAttributeTableTitlesMap;
-        charAttributeTableTitleMap.forEach((attributeFnk, title) => {
-            let text = this.tableRoller.roleFor(title).text;
-            attributeFnk(this, text);
-        })
+        this.characterGender = this.tableRoller.roleFor(TableTitles.Gender).text;
+        if(this.characterGender === "female"){
+            this.characterName = this.tableRoller.roleFor(TableTitles.GermanFemaleNames).text;
+        }else{
+            this.characterName = this.tableRoller.roleFor(TableTitles.GermanMaleName).text;
+        }
+        this.characterAlignment = this.tableRoller.roleFor(TableTitles.Alignment).text;
+        this.characterRace = this.tableRoller.roleFor(TableTitles.Race).text;
+        this.characterMotivation = this.tableRoller.roleFor(TableTitles.Motivation).text;
+        this.characterProfession = this.tableRoller.roleFor(TableTitles.Profession).text;
+        this.characterNobility = this.tableRoller.roleFor(TableTitles.Nobility).text;
     }
 
     private setAllNonMandatory() {
@@ -109,6 +147,41 @@ export class CharacterFactory {
         this.setNonMandatory(specialFeaturesMinInterval, specialFeaturesMaxInterval,this.charSpecialFeatures,TableTitles.SpecialFeatures)
         this.setNonMandatory(talentsMinInterval, talentsMaxInterval,this.charTalents,TableTitles.Talent)
         this.setNonMandatory(magicalTalentsMinInterval, magicalTalentMaxInterval,this.charMagicalTalents,TableTitles.MagicalTalent)
+    }
+
+    addAdvantage(){
+        this.characterAdvantages.push(this.tableRoller.roleFor(TableTitles.Advantages).text)
+        return this;
+    }
+
+    addDisadvantage(){
+        this.characterDisadvantages.push(this.tableRoller.roleFor(TableTitles.Disadvantages).text)
+        return this;
+    }
+
+    addCurse(){
+        this.characterCurses.push(this.tableRoller.roleFor(TableTitles.Curse).text)
+        return this;
+    }
+
+    addSpecialFeature(){
+        this.charSpecialFeatures.push(this.tableRoller.roleFor(TableTitles.SpecialFeatures).text)
+        return this;
+    }
+
+    addTalent(){
+        this.charTalents.push(this.tableRoller.roleFor(TableTitles.Talent).text)
+        return this;
+    }
+
+    withName(name: string){
+        this.characterName = name;
+        return this
+    }
+
+    addMagicalTalent(){
+        this.charMagicalTalents.push(this.tableRoller.roleFor(TableTitles.MagicalTalent).text)
+        return this;
     }
 
     private setNonMandatory(minInterval: number, maxInterval: number, charAttribute: string[], tableTitle: TableTitles) {
@@ -121,7 +194,10 @@ export class CharacterFactory {
         }
     }
 
-
+    withNobility(nobility: string) {
+        this.characterNobility = nobility;
+        return this;
+    }
 }
 
 export function createHigherPower() {
@@ -134,103 +210,3 @@ export function createHigherPowerReturnUniqueName(){
     let higherPower = createHigherPower();
     return higherPower.getUniqueName();
 }
-
-/*
-    createNewCharacter(){
-        let gender = this.tableRoller.roleFor(TableTitles.Gender);
-
-        return new Character(gender)
-    }
-
-    getRandomGender(){
-        let oldGender = this.gender;
-        let genderTable = this.getTableOf(TableTitles.Gender)
-        this.gender = genderTable.roleWithCascade().text;
-        if(oldGender != this.gender){
-            this.setRandomName();
-        }
-    }
-
-    setRandomName(){
-        if(this.gender === "female"){
-            let femaleTable = this.getTableOf(TableTitles.GermanFemaleNames)
-            this.name = femaleTable.roleWithCascade().text;
-        }else{
-            let maleTable = this.allTableMap.getTableOf(TableTitles.GermanMaleName)
-            this.name = maleTable.roleWithCascade().text;
-        }
-    }
-
-    setRandomSpecialFeature() {
-        let specialFeatureTable = this.getTableOf(TableTitles.SpecialFeatures);
-        this.specialFeature = specialFeatureTable.roleWithCascade().text;
-    }
-
-    setRandomMotivation() {
-        let specialFeatureTable = this.getTableOf(TableTitles.Motivation);
-        this.character.motivation = specialFeatureTable.roleWithCascade().text;
-    }
-
-    setRandomCurses(random = new Random()) {
-        let specialFeatureTable = this.getTableOf(TableTitles.Curse)
-        let numberOfCurses = random.intFromInterval(-50,2);
-        for(let i = 0; i < numberOfCurses; i++){
-            this.character.curses.push(specialFeatureTable.roleWithCascade().text);
-        }
-    }
-
-    private getTableOf(tableTitle: TableTitles){
-        return this.allTableMap.getTableOf(tableTitle);
-    }
-
-    setRandomNobility() {
-        let nobilityTable = this.getTableOf(TableTitles.Nobility);
-        this.character.nobility = nobilityTable.roleWithCascade().text;
-    }*/
-/*
-export function createHigherPower(){
-    let higherPowerBeing: Character;
-    let higherPowerBeings = [] as Character[];
-    higherPowerBeingsStore.subscribe(beings => {
-        higherPowerBeings = beings;
-    })
-    let isProbability = probabilityCheck(1)
-
-    if(isProbability || (higherPowerBeings.length === 0)){
-        higherPowerBeing = new Character(new Dice(),true)
-        applyNotMandatoryTables(higherPowerBeing);
-        let randomNumber = randomIntFromInterval(1,6);
-        for(let i = 0; i < randomNumber; i++){
-            higherPowerBeing.talents.push(new TalentTable().roleWithCascade().text)
-        }
-        higherPowerBeingsStore.update(beings =>{
-            beings.push(higherPowerBeing);
-            return beings;
-        })
-    }else{
-        let randomNumber = randomIntFromInterval(0, higherPowerBeings.length-1);
-        higherPowerBeing = higherPowerBeings[randomNumber];
-    }
-    return higherPowerBeing.getUniqueName();
-}
-
-export function createNSC(){
-    let character = new Character()
-    applyNotMandatoryTables(character);
-    characters.update(chars => {
-        chars.push(character);
-        return chars;
-    })
-    return character.getUniqueName();
-}
-
-export function getNewNSC(){
-    let character = new Character()
-    applyNotMandatoryTables(character);
-    characters.update(chars => {
-        chars.push(character);
-        return chars;
-    })
-    return character;
-}
-*/

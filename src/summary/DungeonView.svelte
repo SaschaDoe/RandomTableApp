@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {Dungeon, generateRoom} from "../world/site/dungeon.js";
+    import {Dungeon, generateRoom} from "../entites/site/dungeon.js";
 
     export let dungeon : Dungeon;
     let handleAddRoom = () =>{

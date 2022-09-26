@@ -2,8 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import {MonsterTable} from "../monsterTables/monsterTable";
-import {addMonsterToStore} from "../../world/monster/monsterStore";
+import {addMonsterToStore} from "../../entites/monster/monsterStore";
 
 export class TravelTalentTable extends Table{
     constructor(){

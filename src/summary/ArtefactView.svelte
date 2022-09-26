@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {Artefact} from "../world/artefacts/artefact";
+    import {Artefact} from "../entites/artefacts/artefact";
 
     export let artefact : Artefact;
 </script>

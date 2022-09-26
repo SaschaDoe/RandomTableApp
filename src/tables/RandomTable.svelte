@@ -1,7 +1,6 @@
 <script lang="ts">
     import {Table} from "./table.ts";
-    import {Character} from "../world/character/character.js";
-    import {applyEntryFunctions, applyTableFunctions, characters, currentChar} from "../world/character/charStore";
+    import {characters, currentChar} from "../entites/character/charStore";
     import Modal from "../components/Modal.svelte";
     import {TableType} from "./tableType";
     import {
@@ -9,20 +8,18 @@
         applyLocationTableFunctions,
         continentStore,
         currentLocation
-    } from "../world/site/siteStore";
-    import {Site} from "../world/site/site";
+    } from "../entites/site/siteStore";
+    import {Site} from "../entites/site/site";
     import Entry from "./Entry.svelte";
     import {RoleResult} from "./roleResult";
+    import {CharacterFactory} from "../entites/character/characterFactory";
 
     export let table : Table;
 
     function handleAdd(){
         if(table.tableType === TableType.Character){
-            $currentChar = new Character();
-            applyTableFunctions(roleResult,table,$currentChar);
-            applyEntryFunctions(roleResult,$currentChar);
-
-            $characters.push($currentChar)
+            let character = new CharacterFactory().withTable(table,roleResult).create();
+            $characters.push(character)
             isModalVisible = false;
         }
         if(table.tableType === TableType.Location){

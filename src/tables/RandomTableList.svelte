@@ -2,11 +2,10 @@
     import RandomTable from "./RandomTable.svelte";
     import {generateName} from "./nameTables/nameGenerator";
     import Modal from "../components/Modal.svelte";
-    import {characters, currentChar} from "../world/character/charStore";
-    import {Character} from "../world/character/character";
-
+    import {characters, currentChar} from "../entites/character/charStore";
     import TableIndex from "../components/TableIndex.svelte";
     import {allTables} from "./tableList.js";
+    import {CharacterFactory} from "../entites/character/characterFactory";
 
     let handleGenerateName = () =>{
         isModalVisible = true;
@@ -15,9 +14,8 @@
     let generatedName = "";
     let isModalVisible = false;
     let handleAdd = () =>{
-        $currentChar = new Character();
-
-        $characters.push($currentChar)
+        let character = new CharacterFactory().withName(generatedName).create();
+        $characters.push(character)
         isModalVisible = false;
     };
     let maxNumberOfSyllabus = 7;

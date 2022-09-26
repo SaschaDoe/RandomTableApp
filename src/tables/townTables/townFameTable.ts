@@ -3,7 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {ArtefactTable} from "../artefactTables/artefactTable";
-import {createNSC} from "../../world/character/characterFactory";
+import {createNSC} from "../../entites/character/characterFactory";
 import {TownEventTable} from "./townEventTable";
 import {BuildingTable} from "../locationTables/buildingTable";
 

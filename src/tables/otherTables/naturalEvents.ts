@@ -1,11 +1,9 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
-import {ProfessionTable} from "../charTables/professionTable";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {AnimalTable} from "../charTables/animalTable";
 import {MonsterTable} from "../monsterTables/monsterTable";
-import {createNSC} from "../../world/character/characterFactory";
 
 export class NaturalEvents extends Table{
     constructor(){

@@ -3,19 +3,19 @@ import type {CharacterBuilder} from "./characterBuilder";
 import type {Equatable} from "../../utils/equatable";
 import {artefactArrayEquals, stringArrayEquals} from "../../utils/equatable";
 import type {Artefact} from "../artefacts/artefact";
-import type {Site} from "../site/site";
 import type {Relationship} from "./relationship";
 import {isMagicalProfession} from "../../tables/charTables/magicUserProfessions";
+import type {Continent} from "../continent/continent";
 
 
 export class Character extends AttributeEntity implements Equatable<Character>{
-    readonly alignment: string;
-    readonly gender: string;
-    readonly name: string;
-    readonly nobility: string;
-    readonly motivation: string;
-    readonly profession: string;
-    readonly race : string;
+    alignment: string;
+    gender: string;
+    name: string;
+    nobility: string;
+    motivation: string;
+    profession: string;
+    race : string;
 
     readonly advantages: string[];
     readonly disadvantages : string[];
@@ -25,7 +25,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     readonly magicalTalents: string[];
     readonly artefacts: Artefact[];
 
-    readonly homeContinent: Site;
+    readonly homeContinent: Continent;
 
     readonly relationships: Relationship[];
     readonly isHigherPower: boolean;
@@ -84,13 +84,13 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         }
         this.isHigherPower = characterBuilder.charHigherPower;
 
-        this.curses = characterBuilder.charCurses;
-        this.specialFeatures = characterBuilder.charSpecialFeatures;
-        this.advantages = characterBuilder.charAdvantages;
-        this.disadvantages = characterBuilder.charDisadvantages;
-        this.talents = characterBuilder.charTalents;
-        this.magicalTalents = characterBuilder.charMagicalTalents
-        this.artefacts = characterBuilder.charArtefacts;
+        this.curses = characterBuilder.charCurses.slice();
+        this.specialFeatures = characterBuilder.charSpecialFeatures.slice();
+        this.advantages = characterBuilder.charAdvantages.slice();
+        this.disadvantages = characterBuilder.charDisadvantages.slice();
+        this.talents = characterBuilder.charTalents.slice();
+        this.magicalTalents = characterBuilder.charMagicalTalents.slice();
+        this.artefacts = characterBuilder.charArtefacts.slice();
 
         this.relationships = [];
 
@@ -127,46 +127,89 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     }
 
     toString(){
-        return `${this.getUniqueName()} a ${this.alignment} ${this.nobility} ${this.gender} ${this.race} from ${this.homeContinent.getUniqueName()} with the motivation ${this.motivation}`;
-    }
+        let description = `${this.getUniqueName()} a ${this.alignment} ${this.nobility} ${this.gender} ${this.race}`;
 
-    /*
-
-    getDescription(){
-        let description = `${this.name} a ${this.gender} ${this.race} `
         for(let i = 0; i < this.curses.length; i++){
-            description += `${this.curses[i]} `;
+            description += ` ${this.curses[i]}`
         }
-        description += `${this.nobility} ${this.profession} with ${this.specialFeature}`;
-        if(this.advantages.length > 0 || this.disadvantages.length > 0){
-            description += " which is "
-        }
-        for(let i = 0; i < this.advantages.length; i++){
-            description += `${this.advantages[i]}`;
-            if(i < this.advantages.length-1){
-                description += ", "
+
+        description += ` ${this.profession}`
+
+        for(let i = 0; i < this.specialFeatures.length; i++){
+            if(i === 0){
+                description += ` with ${this.specialFeatures[i]}`;
             }else{
-                description += " "
+                description += ` and ${this.specialFeatures[i]}`;
             }
         }
-        if(this.disadvantages.length > 0 && this.advantages.length > 0){
-            description += " and is "
-        }else if(this.disadvantages.length > 0){
-            description += " which is "
-        }
+
+        description += `. She is from \"${this.homeContinent.getUniqueName()}\" and has the motivation ${this.motivation}`;
+
+
         for(let i = 0; i < this.advantages.length; i++){
-            description += `${this.advantages[i]}`;
-            if(i < this.advantages.length-1){
-                description += ", "
+            if(i === 0){
+                if(this.advantages.length === 1){
+                    description += `. Her advantage is that she is ${this.advantages[i]}`
+                }else{
+                    description += `. Her advantages are that she is ${this.advantages[i]}`
+                }
             }else{
-                description += " "
+                description += ` and that she is ${this.advantages[i]}`
             }
         }
-        return description;
+
+        for(let i = 0; i < this.disadvantages.length; i++){
+            if(i === 0){
+                if(this.disadvantages.length === 1){
+                    description += `. Her disadvantage is that she is ${this.disadvantages[i]}`
+                }else{
+                    description += `. Her disadvantages are that she is ${this.disadvantages[i]}`
+                }
+            }else{
+                description += ` and that she is ${this.disadvantages[i]}`
+            }
+        }
+
+        for(let i = 0; i < this.talents.length; i++){
+            if(i === 0){
+                if(this.talents.length === 1){
+                    description += `. Her talent is ${this.talents[i]}`
+                }else{
+                    description += `. Her talents are ${this.talents[i]}`
+                }
+            }else{
+                description += ` and ${this.talents[i]}`
+            }
+        }
+
+        for(let i = 0; i < this.magicalTalents.length; i++){
+            if(i === 0){
+                if(this.magicalTalents.length === 1){
+                    description += `. Her magical talent is ${this.magicalTalents[i]}`
+                }else{
+                    description += `. Her magical talents are ${this.magicalTalents[i]}`
+                }
+            }else{
+                description += ` and ${this.magicalTalents[i]}`
+            }
+        }
+
+        for(let i = 0; i < this.artefacts.length; i++){
+            if(i === 0){
+                if(this.artefacts.length === 1){
+                    description += `. She has the artefact \"${this.artefacts[i].getUniqueName()}\" with her.`
+                }else{
+                    description += `. She has the artefacts \"${this.artefacts[i].getUniqueName()}\"`
+                }
+            }else{
+                description += ` and \"${this.artefacts[i].getUniqueName()}\"`
+                if(i === this.artefacts.length -1){
+                    description += ` with her.`
+                }
+            }
+        }
+
+        return description
     }
-    */
-
-
-
 }
 

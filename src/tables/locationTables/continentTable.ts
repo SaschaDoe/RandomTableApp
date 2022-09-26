@@ -5,7 +5,7 @@ import {SizeTable} from "../otherTables/sizeTable";
 import {LocationTable} from "../otherTables/locationTable";
 import {WeatherAdjectiveTable} from "../otherTables/weatherAdjectiveTable";
 import {TableType} from "../tableType";
-import type {Site} from "../../world/site/site";
+import type {Site} from "../../entites/site/site";
 import type {RoleResult} from "../roleResult";
 
 export class ContinentTable extends Table{

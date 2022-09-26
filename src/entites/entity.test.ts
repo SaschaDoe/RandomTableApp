@@ -8,4 +8,10 @@ describe("Entity", () => {
         expect(entity.getUniqueName()).toBe("1 Kassandra");
     })
 
+    test("should set id to 2 when given 2", () => {
+        let entity = new Entity("Kassandra", 2);
+
+        expect(entity.id).toBe(2);
+    })
+
 })

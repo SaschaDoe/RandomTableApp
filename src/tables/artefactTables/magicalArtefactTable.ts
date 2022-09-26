@@ -4,7 +4,7 @@ import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {
     addArtefactToStoreReturnUniqueName,
-} from "../../world/artefacts/artefactStore";
+} from "../../entites/artefacts/artefactStore";
 
 export class MagicalArtefactTable extends Table{
     constructor(){

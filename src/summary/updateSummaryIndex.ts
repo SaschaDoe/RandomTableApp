@@ -1,16 +1,16 @@
 import {indexesStore, titleStore} from "../components/indexListStore";
-import type {Character} from "../world/character/character";
-import {characters, higherPowerBeingsStore} from "../world/character/charStore";
-import type {Site} from "../world/site/site";
-import {continentStore, sphereStore} from "../world/site/siteStore";
-import type {Dungeon} from "../world/site/dungeon";
-import {dungeonStore} from "../world/site/dungeonStore";
-import type {Artefact} from "../world/artefacts/artefact";
-import {artefactStore} from "../world/artefacts/artefactStore";
-import {monsterStore} from "../world/monster/monsterStore";
-import type {Monster} from "../world/monster/monster";
-import {otherStore} from "../world/otherStore";
-import type {Entity} from "../world/entity";
+import type {Character} from "../entites/character/character";
+import {characters, higherPowerBeingsStore} from "../entites/character/charStore";
+import type {Site} from "../entites/site/site";
+import {continentStore, sphereStore} from "../entites/site/siteStore";
+import type {Dungeon} from "../entites/site/dungeon";
+import {dungeonStore} from "../entites/site/dungeonStore";
+import type {Artefact} from "../entites/artefacts/artefact";
+import {artefactStore} from "../entites/artefacts/artefactStore";
+import {monsterStore} from "../entites/monster/monsterStore";
+import type {Monster} from "../entites/monster/monster";
+import {otherStore} from "../entites/otherStore";
+import type {Entity} from "../entites/entity";
 
 export const updateIndex = () =>{
     let titles = [];

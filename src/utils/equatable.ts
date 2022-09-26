@@ -1,4 +1,4 @@
-import type {Artefact} from "../world/artefacts/artefact";
+import type {Artefact} from "../entites/artefacts/artefact";
 
 export interface Equatable<T>{
     isEqualTo(other: T): boolean;

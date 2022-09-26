@@ -2,7 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {DiceRole} from "../diceRole";
-import type {Character} from "../../world/character/character";
+import type {Character} from "../../entites/character/character";
 import type {RoleResult} from "../roleResult";
 
 export class GermanMaleNameTable extends Table {

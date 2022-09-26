@@ -2,7 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import type {Character} from "../../world/character/character";
+import type {Character} from "../../entites/character/character";
 import type {RoleResult} from "../roleResult";
 import {MagicalTalentTable} from "./magicalTalentTable";
 

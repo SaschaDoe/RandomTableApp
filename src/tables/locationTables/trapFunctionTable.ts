@@ -7,7 +7,7 @@ import {ElementTable} from "../otherTables/elementTable";
 import {NaturalObstacleTable} from "./naturalObstacleTable";
 import {MagicalTalentTable} from "../talentTables/magicalTalentTable";
 import {BodyPartsTable} from "../otherTables/bodyPartsTable";
-import {addMonsterToStore} from "../../world/monster/monsterStore";
+import {addMonsterToStore} from "../../entites/monster/monsterStore";
 
 export class TrapFunctionTable extends Table{
     constructor(){

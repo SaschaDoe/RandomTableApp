@@ -1,6 +1,6 @@
 import {Character} from "./character";
 import type {Artefact} from "../artefacts/artefact";
-import type {Site} from "../site/site";
+import type {Continent} from "../continent/continent";
 
 export class CharacterBuilder{
     //undefined because there is no default value
@@ -11,7 +11,7 @@ export class CharacterBuilder{
     charMotivation: string|undefined;
     charProfession: string|undefined;
     charRace: string|undefined;
-    charContinent: Site|undefined;
+    charContinent: Continent|undefined;
     charHigherPower: boolean|undefined;
 
     charCurses: string[];
@@ -73,7 +73,7 @@ export class CharacterBuilder{
         return this;
     }
 
-    withContinent(continent: Site){
+    withContinent(continent: Continent){
         this.charContinent = continent;
         return this;
     }
@@ -89,7 +89,7 @@ export class CharacterBuilder{
     }
 
     withSpecialFeature(specialFeatures: string[]) {
-        this.charSpecialFeatures = specialFeatures
+        this.charSpecialFeatures = this.charSpecialFeatures.concat(specialFeatures);
         return this;
     }
 
