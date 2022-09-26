@@ -7,8 +7,9 @@ export class Artefact extends Entity implements Equatable<Artefact>{
     quality: string;
     magicTalents: string[];
     materials: string[];
+    type: string;
     /*
-    typeOfArtefact: string;
+
     name: string;
 */
 
@@ -30,6 +31,11 @@ export class Artefact extends Entity implements Equatable<Artefact>{
             throw Error("Artefact quality must be set");
         }
         this.quality = artefactBuilder.artefactQuality;
+
+        if(artefactBuilder.artefactType === undefined){
+            throw Error("Artefact type must be set");
+        }
+        this.type = artefactBuilder.artefactType;
 
         this.magicTalents = artefactBuilder.magicTalents;
         this.materials = artefactBuilder.artefactMaterials;

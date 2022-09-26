@@ -18,6 +18,7 @@ export class ArtefactFactory{
     artefactMagicTalents: string[] = [];
     artefactQuality = "";
     artefactMaterials: string[] = [];
+    artefactType = "";
 
     constructor(
         tableRoller = new TableRoller(),
@@ -27,6 +28,7 @@ export class ArtefactFactory{
         this.random = random
         this.artefactQuality = tableRoller.roleFor(TableTitles.Quality).text;
         this.artefactRarity = tableRoller.roleFor(TableTitles.Rarity).text;
+        this.artefactType = tableRoller.roleFor(TableTitles.Artefact).text;
 
         this.setAllNonMandatoryAttribute();
     }
@@ -54,6 +56,7 @@ export class ArtefactFactory{
             .withMagicTalents(this.artefactMagicTalents)
             .withQuality(this.artefactQuality)
             .withMaterials(this.artefactMaterials)
+            .withType(this.artefactType)
             .build();
     }
 

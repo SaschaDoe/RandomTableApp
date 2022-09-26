@@ -8,12 +8,14 @@ describe("Artefacts", () => {
             .withMagicTalents(["fireball"])
             .withQuality("broken")
             .withName("name")
+            .withType("sword")
 
         let artefact = artefactBuilder.build();
 
         expect(artefact.rarity).toBe("common");
         expect(artefact.quality).toBe("broken");
         expect(artefact.name).toBe("name");
+        expect(artefact.type).toBe("sword");
 
         expect(artefact.magicTalents.length).toBe(1);
     })

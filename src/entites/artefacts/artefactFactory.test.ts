@@ -11,12 +11,14 @@ describe("ArtefactFactory", () => {
             ["broken"],
             ["fireball"],
             ["wood"],
+            ["sword"],
         ];
         let tableTitle = [
             TableTitles.Rarity,
             TableTitles.Quality,
             TableTitles.MagicalTalent,
             TableTitles.Materials,
+            TableTitles.Artefact,
             ];
         let artefactFactory = new ArtefactFactory(
             new FakeTableRoller(tableTitle, tableOutput),
@@ -26,6 +28,7 @@ describe("ArtefactFactory", () => {
 
         expect(artefact.rarity).toBe("common");
         expect(artefact.quality).toBe("broken");
+        expect(artefact.type).toBe("sword");
 
         expect(artefact.magicTalents.length).toBe(1);
         expect(artefact.magicTalents[0]).toBe("fireball");

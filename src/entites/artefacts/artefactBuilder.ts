@@ -7,6 +7,7 @@ export class ArtefactBuilder{
     magicTalents: string[];
     artefactQuality: string | undefined;
     artefactMaterials: string[];
+    artefactType: string|undefined;
 
     constructor() {
         this.magicTalents = [];
@@ -44,6 +45,11 @@ export class ArtefactBuilder{
 
     withMaterials(materials: string[]){
         this.artefactMaterials = materials;
+        return this;
+    }
+
+    withType(type: string){
+        this.artefactType = type;
         return this;
     }
 }
