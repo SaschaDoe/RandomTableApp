@@ -105,7 +105,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     }
 
     private ensureHigherPowerHasMinThreeMagicalTalent() {
-        if(isMagicalProfession(this.profession) && this.magicalTalents.length < 3){
+        if(this.isHigherPower && this.magicalTalents.length < 3){
             throw Error(`Profession ${this.profession} needs at least one magical power`);
         }
     }

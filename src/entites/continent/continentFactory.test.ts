@@ -3,14 +3,15 @@ import {TableTitles} from "../../tables/tableTitles";
 import {FakeTableRoller} from "../../tables/fakeTableRoller";
 import {FakeRandom} from "../../utils/fakeRandom";
 import {ContinentFactory} from "./continentFactory";
+import {DungeonFactory} from "../dungeons/dungeonFactory";
 
 describe("ContinentFactory", () => {
     test("should set default content to what is given in random tables", () => {
         let tableOutput = [
-            ["continenta"],
+            ["northern"]
             ];
         let tableTitle = [
-            TableTitles.GermanMaleName,
+            TableTitles.Continent,
         ];
         let continentFactory = new ContinentFactory(
             new FakeTableRoller(tableTitle, tableOutput),
@@ -18,7 +19,14 @@ describe("ContinentFactory", () => {
 
         let continent = continentFactory.create();
 
-        expect(continent.name).toBe("continenta");
+        expect(continent.description).toBe("northern");
+        expect(continent.dungeons.length).toBe(0)
 
+        let dungeon = new DungeonFactory().create();
+        continentFactory.withDungeon(dungeon);
+        continent = continentFactory.create();
+
+        expect(continent.dungeons.length).toBe(1);
+        expect(continent.dungeons[0].id).toBe(dungeon.id);
     })
 })
