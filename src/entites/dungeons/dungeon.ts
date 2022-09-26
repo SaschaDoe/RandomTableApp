@@ -1,8 +1,11 @@
 import type {DungeonBuilder} from "./dungeonBuilder";
 import {Entity} from "../entity";
+import type {Room} from "../rooms/room";
 
 export class Dungeon extends Entity{
     structure: string;
+    entryBuilding: string;
+    rooms: Room[];
 
     constructor(dungeonBuilder: DungeonBuilder) {
         if(dungeonBuilder.dungeonName === undefined){
@@ -18,10 +21,16 @@ export class Dungeon extends Entity{
             throw Error("Dungeon structure must be set.");
         }
         this.structure = dungeonBuilder.dungeonStructure;
+        if(dungeonBuilder.dungeonEntryBuilding === undefined){
+            throw Error("Dungeon entry building must be set.");
+        }
+        this.entryBuilding = dungeonBuilder.dungeonEntryBuilding;
+
+        this.rooms = dungeonBuilder.dungeonRooms;
     }
 
     toString(){
-        return `${this.getUniqueName()} a dungeon with ${this.structure}.`;
+        return `${this.getUniqueName()} a ${this.entryBuilding} with ${this.structure}.`;
     }
 
 

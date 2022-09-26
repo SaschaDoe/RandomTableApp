@@ -83,6 +83,17 @@ describe("CharacterFactory", () => {
         expect(higherPower.magicalTalents.length).toBeGreaterThan(2);
     })
 
+    test("should connect all party members", () => {
+        let partyCharacters = new CharacterFactory().createParty(2);
+        let character1 = partyCharacters[0];
+        let character2 = partyCharacters[1];
+
+        expect(partyCharacters.length).toBe(2);
+        expect(character1.relationships.length).toBe(1);
+        expect(character2.relationships.length).toBe(1);
+    })
+
+
     let character = new CharacterFactory().create();
     let charString = character.toString();
     let highPower = createHigherPower();

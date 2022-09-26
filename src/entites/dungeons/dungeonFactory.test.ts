@@ -7,10 +7,12 @@ import {DungeonFactory} from "./dungeonFactory";
 describe("DungeonFactory", () => {
     test("should set default dungeon to what is given in random tables", () => {
         let tableOutput = [
-            ["small rooms"]
+            ["small rooms"],
+            ["ancient hill"],
         ];
         let tableTitle = [
             TableTitles.Structure,
+            TableTitles.DungeonEntry,
         ];
         let dungeonFactory = new DungeonFactory(
             new FakeTableRoller(tableTitle, tableOutput),
@@ -19,5 +21,6 @@ describe("DungeonFactory", () => {
         let continent = dungeonFactory.create();
 
         expect(continent.structure).toBe("small rooms");
+        expect(continent.entryBuilding).toBe("ancient hill");
     })
 })

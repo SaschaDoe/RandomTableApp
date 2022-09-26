@@ -9,6 +9,9 @@ import type {Continent} from "../continent/continent";
 import type {Table} from "../../tables/table";
 import type {Factory} from "../factory";
 import type {RoleResult} from "../../tables/roleResult";
+import {RelationshipTypeTable} from "../../tables/charTables/relationshipTypeTable";
+import {RelationshipType} from "./relationshipType";
+import {Relationship} from "./relationship";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -197,6 +200,49 @@ export class CharacterFactory implements Factory{
     withNobility(nobility: string) {
         this.characterNobility = nobility;
         return this;
+    }
+
+    createParty(numberOfPartyMembers: number) {
+        let party = [];
+        for(let i = 0; i < numberOfPartyMembers; i++){
+            let character = this.create();
+            party.push(character)
+        }
+
+        this.connectChars(party);
+        return party;
+    }
+
+    connectChars(characters: Character[]) {
+        for (let i = 0; i < characters.length; i++) {
+            for (let n = 0; n < characters.length; n++) {
+                let outerChar = characters[i];
+                let innerChar = characters[n];
+                if (outerChar != innerChar) {
+                    let found = false;
+                    for (let r = 0; r < outerChar.relationships.length; r++) {
+                        let relationship = outerChar.relationships[r];
+                        if (relationship.getOtherChar(outerChar) === innerChar) {
+                            found = true;
+                        }
+                    }
+                    if (found === false) {
+                        let relationshipTypeTable = new RelationshipTypeTable();
+                        relationshipTypeTable.changeToPartyDistribution();
+                        let firstRelationshipType = relationshipTypeTable.role().text;
+                        let secondRelationshipType = relationshipTypeTable.role().text;
+                        if (firstRelationshipType === RelationshipType.JustMet || secondRelationshipType === RelationshipType.JustMet) {
+                            firstRelationshipType = RelationshipType.JustMet;
+                            secondRelationshipType = RelationshipType.JustMet;
+                        }
+                        let relationship = new Relationship(outerChar, innerChar, firstRelationshipType, secondRelationshipType);
+                        outerChar.relationships.push(relationship);
+                        innerChar.relationships.push(relationship);
+                    }
+                }
+
+            }
+        }
     }
 }
 

@@ -18,6 +18,8 @@ import {RarityTable} from "./otherTables/rarityTable";
 import {MagicalTalentTable} from "./talentTables/magicalTalentTable";
 import {ContinentTable} from "./locationTables/continentTable";
 import {StructureTable} from "./locationTables/structureTable";
+import {DungeonEntriesTable} from "./locationTables/dungeonEntriesTable";
+import {TreasureTable} from "./artefactTables/treasureTable";
 
 describe("AllTablesMap", () => {
 
@@ -68,5 +70,7 @@ function testInput(){
         [TableTitles.MagicalTalent, MagicalTalentTable],
         [TableTitles.Continent, ContinentTable],
         [TableTitles.Structure, StructureTable],
+        [TableTitles.DungeonEntry, DungeonEntriesTable],
+        [TableTitles.Treasure, TreasureTable],
     ]
 }

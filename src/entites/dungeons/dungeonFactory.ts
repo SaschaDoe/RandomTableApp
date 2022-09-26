@@ -3,6 +3,7 @@ import {Random} from "../../utils/randomUtils";
 import {generateContinentName} from "../../tables/nameTables/nameGenerator";
 import {TableTitles} from "../../tables/tableTitles";
 import {DungeonBuilder} from "./dungeonBuilder";
+import {DungeonEntriesTable} from "../../tables/locationTables/dungeonEntriesTable";
 
 export class DungeonFactory{
     private tableRoller: TableRoller;
@@ -10,6 +11,7 @@ export class DungeonFactory{
     dungeonName = "";
     dungeonId = -1;
     dungeonStructure = "";
+    private dungeonEntryBuilding = "";
 
     constructor(
         tableRoller = new TableRoller(),
@@ -26,12 +28,14 @@ export class DungeonFactory{
             .withName(this.dungeonName)
             .withId(this.dungeonId)
             .withStructure(this.dungeonStructure)
+            .withEntryBuilding(this.dungeonEntryBuilding)
             .build();
     }
 
     private setMandatoryAttributes() {
         this.dungeonName = generateContinentName();
         this.dungeonStructure = this.tableRoller.roleFor(TableTitles.Structure).text;
+        this.dungeonEntryBuilding = this.tableRoller.roleFor(TableTitles.DungeonEntry).text;
     }
 
 

@@ -17,6 +17,8 @@ import {RarityTable} from "./otherTables/rarityTable";
 import {MagicalTalentTable} from "./talentTables/magicalTalentTable";
 import {ContinentTable} from "./locationTables/continentTable";
 import {StructureTable} from "./locationTables/structureTable";
+import {DungeonEntriesTable} from "./locationTables/dungeonEntriesTable";
+import {TreasureTable} from "./artefactTables/treasureTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -54,6 +56,8 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.MagicalTalent, new MagicalTalentTable());
         this.allTablesMap.set(TableTitles.Continent, new ContinentTable());
         this.allTablesMap.set(TableTitles.Structure, new StructureTable());
+        this.allTablesMap.set(TableTitles.DungeonEntry, new DungeonEntriesTable());
+        this.allTablesMap.set(TableTitles.Treasure, new TreasureTable());
     }
 }
 
