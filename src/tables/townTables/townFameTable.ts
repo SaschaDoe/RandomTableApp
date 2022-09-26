@@ -2,16 +2,16 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import {ArtefactTable} from "../artefactTables/artefactTable";
-import {createNSC} from "../../entites/character/characterFactory";
+import {ArtefactTable} from "../artefactTables/artefactTable";;
 import {TownEventTable} from "./townEventTable";
 import {BuildingTable} from "../locationTables/buildingTable";
+import {addNSCToCharacterStore} from "../../entites/character/charStore";
 
 export class TownFameTable extends Table{
     constructor(){
         let entries = [] as TableEntry[];
         entries.push(new TableEntry("quality of product").withCascadingRole(new ArtefactTable()));
-        entries.push(new TableEntry("famous home town of").withFunctionString(createNSC));
+        entries.push(new TableEntry("famous home town of").withFunctionString(addNSCToCharacterStore));
         entries.push(new TableEntry("famous town event:").withCascadingRole(new TownEventTable()));
         entries.push(new TableEntry("unknown"));
         entries.push(new TableEntry("sleepy nest"));

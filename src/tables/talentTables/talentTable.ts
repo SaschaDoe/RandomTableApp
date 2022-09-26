@@ -2,8 +2,6 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import type {Character} from "../../entites/character/character";
-import type {RoleResult} from "../roleResult";
 import {MagicalTalentTable} from "./magicalTalentTable";
 
 export class TalentTable extends Table{
@@ -15,12 +13,6 @@ export class TalentTable extends Table{
         this.tableType = TableType.Talent;
         this.probability = 30;
         this.moreThanOnce = true;
-        this.functions.push(addTalent)
     }
-}
-
-export function addTalent(char: Character, roleResult: RoleResult){
-    char.talents.push(roleResult.text);
-    return char;
 }
 

@@ -2,7 +2,6 @@ import {TableRoller} from "../../tables/tableRoler";
 import {CharacterBuilder} from "./characterBuilder";
 import {Random} from "../../utils/randomUtils";
 import {TableTitles} from "../../tables/tableTitles";
-import {mapSiteWithChar} from "../site/continentFactory";
 import {isMagicalProfession} from "../../tables/charTables/magicUserProfessions";
 import type {Character} from "./character";
 import type {Continent} from "../continent/continent";
@@ -12,6 +11,9 @@ import type {RoleResult} from "../../tables/roleResult";
 import {RelationshipTypeTable} from "../../tables/charTables/relationshipTypeTable";
 import {RelationshipType} from "./relationshipType";
 import {Relationship} from "./relationship";
+import {ContinentFactory} from "../continent/continentFactory";
+import {Dice} from "../../utils/dice";
+import {DiceRole} from "../../tables/diceRole";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -21,7 +23,7 @@ export let curseMinInterval = -50;
 export let curseMaxInterval = 2;
 export let specialFeaturesMinInterval = -10;
 export let specialFeaturesMaxInterval = 2;
-export let talentsMinInterval = -20;
+export let talentsMinInterval = -10;
 export let talentsMaxInterval = 3;
 export let magicalTalentsMinInterval = -50;
 export let magicalTalentUserMinInterval = 1
@@ -57,10 +59,10 @@ export class CharacterFactory implements Factory{
         this.tableRoller = tableRoller
         this.random = random
 
+        this.characterContinent = new ContinentFactory().create();
+
         this.setAllMandatory();
         this.setAllNonMandatory()
-
-        this.characterContinent = mapSiteWithChar();
     }
 
     clone(char: Character){
@@ -148,7 +150,7 @@ export class CharacterFactory implements Factory{
         this.setNonMandatory(disadvantagesMinInterval, disadvantagesMaxInterval,this.characterDisadvantages,TableTitles.Disadvantages)
         this.setNonMandatory(curseMinInterval, curseMaxInterval,this.characterCurses,TableTitles.Curse)
         this.setNonMandatory(specialFeaturesMinInterval, specialFeaturesMaxInterval,this.charSpecialFeatures,TableTitles.SpecialFeatures)
-        this.setNonMandatory(talentsMinInterval, talentsMaxInterval,this.charTalents,TableTitles.Talent)
+        this.setNonMandatory(talentsMinInterval, talentsMaxInterval,this.charTalents,TableTitles.ProfaneTalent)
         this.setNonMandatory(magicalTalentsMinInterval, magicalTalentMaxInterval,this.charMagicalTalents,TableTitles.MagicalTalent)
     }
 
@@ -244,6 +246,8 @@ export class CharacterFactory implements Factory{
             }
         }
     }
+
+
 }
 
 export function createHigherPower() {

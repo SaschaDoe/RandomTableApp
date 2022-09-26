@@ -1,9 +1,10 @@
 <script lang="ts">
-    import {Dungeon, generateRoom} from "../entites/site/dungeon.js";
+    import {Dungeon} from "../entites/dungeons/dungeon";
+    import {RoomFactory} from "../entites/rooms/roomFactory";
 
     export let dungeon : Dungeon;
     let handleAddRoom = () =>{
-        generateRoom(dungeon);
+        dungeon.rooms.push(new RoomFactory().create())
         dungeon = dungeon;
     };
 </script>

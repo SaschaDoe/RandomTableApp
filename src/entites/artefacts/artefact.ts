@@ -1,6 +1,7 @@
 import {Entity} from "../entity";
 import type {Equatable} from "../../utils/equatable";
 import type {ArtefactBuilder} from "./artefactBuilder";
+import {withoutLastSpace} from "../../utils/stringUtils";
 
 export class Artefact extends Entity implements Equatable<Artefact>{
     rarity: string;
@@ -45,20 +46,22 @@ export class Artefact extends Entity implements Equatable<Artefact>{
         let description = `${this.getUniqueName()} a ${this.rarity} ${this.quality} ${this.type} out of `;
         for(let i = 0; i < this.materials.length; i++){
             description += `${this.materials[i]} `;
-            if(this.materials.length > 1){
+            if(this.materials.length > 1 && i < this.materials.length-1){
                 description += `and `;
             }
         }
 
         for(let i = 0; i < this.magicTalents.length; i++){
             if(i === 0){
-                description += `with the power of ${this.magicTalents[i]} `;
+                description += `with the power of `;
             }
-            if(this.magicTalents.length > 1){
-                description += `and the power of ${this.magicTalents[i]}`;
+            if(this.magicTalents.length > 1 && i !== 0){
+                description += ` and the power of `;
             }
-            description = description.slice(0,description.length-1);
+            description += `${this.magicTalents[i]}`;
+            withoutLastSpace(description);
         }
+        withoutLastSpace(description)
         description += ".";
         return description;
     }

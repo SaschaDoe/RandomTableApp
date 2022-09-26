@@ -1,29 +1,29 @@
 <script lang="ts">
-    import {Site} from "../entites/site/site";
-    import {Dungeon} from "../entites/site/dungeon";
     import {dungeonStore} from "../entites/site/dungeonStore";
     import {updateIndex} from "./updateSummaryIndex";
+    import {DungeonFactory} from "../entites/dungeons/dungeonFactory";
+    import {Continent} from "../entites/continent/continent";
 
-    export let site : Site;
+    export let continent : Continent;
     let dungeons = [];
     let handleAddDungeon = () => {
-        let dungeon = new Dungeon();
-        site.dungeons.push(dungeon)
+        let dungeon = new DungeonFactory().create();
+        continent.dungeons.push(dungeon)
         dungeonStore.update(dungeonStore => {
             dungeonStore.push(dungeon)
             return dungeonStore;
         })
-        dungeons = site.dungeons;
+        dungeons = continent.dungeons;
         updateIndex();
     };
 </script>
-<h1>{site.getUniqueName()}</h1>
-<p>{site.description}</p>
-{#if site.localSpheres.length > 0}
+<h1>{continent.getUniqueName()}</h1>
+<p>{continent.description}</p>
+{#if continent.localSpheres.length > 0}
 <div>Spheres:</div>
 {/if}
 <ul>
-{#each site.localSpheres as sphere}
+{#each continent.localSpheres as sphere}
     <li><a href={"#"+sphere.getUniqueName()}>{sphere.name}</a></li>
 {/each}
 </ul>

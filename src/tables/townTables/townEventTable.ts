@@ -3,8 +3,8 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {ProfessionTable} from "../charTables/professionTable";
-import {createNSC} from "../../entites/character/characterFactory";
 import {NaturalEvents} from "../otherTables/naturalEvents";
+import {addNSCToCharacterStore} from "../../entites/character/charStore";
 
 export class TownEventTable extends Table{
     constructor(){
@@ -28,7 +28,7 @@ export class TownEventTable extends Table{
         entries.push(new TableEntry("museum"))
         entries.push(new TableEntry("theater"))
         entries.push(new TableEntry("child of the king is born"))
-        entries.push(new TableEntry("execution of").withFunctionString(createNSC))
+        entries.push(new TableEntry("execution of").withFunctionString(addNSCToCharacterStore))
         entries.push(new TableEntry("").withCascadingRole(new ProfessionTable()).with(" festival"))
         super(entries, TableTitles.TownEvent);
         this.tableType = TableType.Town;
