@@ -2,8 +2,8 @@ import {describe, expect, test} from "vitest";
 import {TableTitles} from "../../tables/tableTitles";
 import {FakeTableRoller} from "../../tables/fakeTableRoller";
 import {FakeRandom} from "../../utils/fakeRandom";
-import {ContinentFactory} from "./continentFactory";
 import {DungeonFactory} from "../dungeons/dungeonFactory";
+import {ContinentFactory} from "./continentFactory";
 
 describe("ContinentFactory", () => {
     test("should set default content to what is given in random tables", () => {

@@ -62,27 +62,4 @@ export class Artefact extends Entity implements Equatable<Artefact>{
         description += ".";
         return description;
     }
-/*
-    addTalent(){
-        this.talents.push(new MagicalTalentTable().roleWithCascade().text);
-    }
-
-    private updateDescription() {
-        this.description = `a ${this.rarity} ${this.quality} ${this.material} ${this.typeOfArtefact}`;
-        this.addTalentDescription();
-    }
-
-    private addTalentDescription() {
-        for (let i = 0; i < this.talents.length; i++) {
-            if(i === 0){
-                this.description += " with the power of "
-            }else {
-                this.description += " and with the power of "
-            }
-
-            let talent = this.talents[i];
-            this.description += talent;
-        }
-    }
-    */
 }
