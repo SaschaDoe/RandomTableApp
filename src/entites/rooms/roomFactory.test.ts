@@ -11,10 +11,12 @@ describe("RoomFactory", () => {
         let tableOutput = [
             ["gold"],
             ["kitchen"],
+            ["wall"],
         ];
         let tableTitle = [
             TableTitles.Treasure,
             TableTitles.Furnishing,
+            TableTitles.Obstacle,
         ];
         let roomFactory = new RoomFactory(
             new FakeTableRoller(tableTitle, tableOutput),
@@ -27,5 +29,8 @@ describe("RoomFactory", () => {
 
         expect(room.furnishing.length).toBe(1);
         expect(room.furnishing[0]).toBe("kitchen");
+
+        expect(room.obstacles.length).toBe(1);
+        expect(room.obstacles[0]).toBe("wall");
     })
 })

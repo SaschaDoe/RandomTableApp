@@ -3,10 +3,12 @@ import {Room} from "./room";
 export class RoomBuilder{
     roomTreasures: string[];
     roomFurnishings: string[];
+    roomObstacles: string[];
 
     constructor() {
         this.roomTreasures = [];
         this.roomFurnishings = [];
+        this.roomObstacles = [];
     }
 
     build(){
@@ -21,6 +23,10 @@ export class RoomBuilder{
     withFurnishing(furnishing: string[]) {
         this.roomFurnishings = this.roomFurnishings.concat(furnishing);
         return this;
+    }
 
+    withObstacles(obstacles: string[]){
+        this.roomObstacles = this.roomObstacles.concat(obstacles);
+        return this;
     }
 }
