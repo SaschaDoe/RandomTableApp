@@ -2,6 +2,7 @@ import {TableRoller} from "../../tables/tableRoler";
 import {Random} from "../../utils/randomUtils";
 import {TableTitles} from "../../tables/tableTitles";
 import {RoomBuilder} from "./roomBuilder";
+import {Monster} from "../monster/monster";
 
 export const treasureMinInterval = -5;
 export const treasureMaxInterval = 3;
@@ -11,6 +12,8 @@ export const obstacleMinInterval = -3;
 export const obstacleMaxInterval = 3;
 export const trapsMinInterval = -3;
 export const trapsMaxInterval = 3;
+export const monsterMinInterval = -3;
+export const monsterMaxInterval = 2;
 
 export class RoomFactory{
     private tableRoller: TableRoller;
@@ -20,6 +23,9 @@ export class RoomFactory{
     roomFurnishing: string[];
     roomObstacles: string[];
     roomTraps: string[];
+    roomEncounters: string[];
+    roomMonsters: Monster[];
+
 
     constructor(
         tableRoller = new TableRoller(),
@@ -31,11 +37,25 @@ export class RoomFactory{
         this.roomFurnishing = [];
         this.roomObstacles = [];
         this.roomTraps = [];
+        this.roomEncounters = [];
+        this.roomMonsters = [];
 
         this.setNonMandatory(treasureMinInterval, treasureMaxInterval, this.roomTreasures, TableTitles.Treasure);
         this.setNonMandatory(furnishingMinInterval, furnishingMaxInterval, this.roomFurnishing, TableTitles.Furnishing);
         this.setNonMandatory(obstacleMinInterval, obstacleMaxInterval, this.roomObstacles, TableTitles.Obstacle);
         this.setNonMandatory(trapsMinInterval, trapsMaxInterval, this.roomTraps, TableTitles.Trap);
+
+        this.setMonsterEncounters();
+    }
+
+    private setMonsterEncounters() {
+        let randomMonsterNumber = this.random.intFromInterval(monsterMinInterval, monsterMaxInterval);
+        for (let i = 0; i < randomMonsterNumber; i++) {
+            this.roomMonsters.push(new Monster());
+        }
+        for (let i = 0; i < this.roomMonsters.length; i++) {
+            this.roomEncounters.push(this.tableRoller.roleFor(TableTitles.MonsterEncounterType).text);
+        }
     }
 
     private setNonMandatory(minInterval: number, maxInterval: number, attributeList: string[], tableTitle: TableTitles) {
@@ -54,6 +74,8 @@ export class RoomFactory{
             .withFurnishing(this.roomFurnishing)
             .withObstacles(this.roomObstacles)
             .withTraps(this.roomTraps)
+            .withEncounters(this.roomEncounters)
+            .withMonsters(this.roomMonsters)
             .build();
     }
 }

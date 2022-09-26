@@ -2,7 +2,6 @@ import {AttributeEntity} from "../character/attributeEntity";
 import {generateName} from "../../tables/nameTables/nameGenerator";
 import {MonsterAdjectiveTable} from "../../tables/monsterTables/monsterAdjectiveTable";
 import {MonsterMealTable} from "../../tables/monsterTables/monsterMealTable";
-import {MonsterEncounterTypeTable} from "../../tables/monsterTables/monsterEncounterTypeTable";
 import {MonsterReproductionTable} from "../../tables/monsterTables/monsterReproductionTable";
 import {MotivationTable} from "../../tables/charTables/motivationTable";
 import {randomIntFromInterval} from "../../utils/randomUtils";
@@ -20,7 +19,6 @@ export class Monster extends AttributeEntity{
     description: string;
     adjective: string;
     meal: string;
-    encounterType: string;
     reproduction: string;
     talents: string[];
     treasures: string[];
@@ -36,7 +34,6 @@ export class Monster extends AttributeEntity{
         this.description = new MonsterTable().roleWithCascade().text;
         this.adjective = new MonsterAdjectiveTable().roleWithCascade().text;
         this.meal = new MonsterMealTable().roleWithCascade().text;
-        this.encounterType = new MonsterEncounterTypeTable().roleWithCascade().text;
         this.reproduction = new MonsterReproductionTable().roleWithCascade().text;
         this.motivation = new MotivationTable().roleWithCascade().text;
         this.talents = [];

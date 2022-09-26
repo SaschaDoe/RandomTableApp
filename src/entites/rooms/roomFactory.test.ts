@@ -5,6 +5,7 @@ import {FakeTableRoller} from "../../tables/fakeTableRoller";
 import {FakeRandom} from "../../utils/fakeRandom";
 import {DungeonFactory} from "../dungeons/dungeonFactory";
 import {RoomFactory} from "./roomFactory";
+import {Monster} from "../monster/monster";
 
 describe("RoomFactory", () => {
     test("should set default room to what is given in random tables", () => {
@@ -13,18 +14,20 @@ describe("RoomFactory", () => {
             ["kitchen"],
             ["wall"],
             ["stone"],
+            ["far away"],
         ];
         let tableTitle = [
             TableTitles.Treasure,
             TableTitles.Furnishing,
             TableTitles.Obstacle,
             TableTitles.Trap,
+            TableTitles.MonsterEncounterType,
         ];
         let roomFactory = new RoomFactory(
             new FakeTableRoller(tableTitle, tableOutput),
-            new FakeRandom([1,1,1,1,1,1,1]))
-
-        let room = roomFactory.create();
+            new FakeRandom([1,1,1,1,1,1,1,1]))
+        let room = roomFactory
+            .create();
 
         expect(room.treasures.length).toBe(1);
         expect(room.treasures[0]).toBe("gold");
@@ -37,5 +40,10 @@ describe("RoomFactory", () => {
 
         expect(room.traps.length).toBe(1);
         expect(room.traps[0]).toBe("stone");
+
+        expect(room.encounters.length).toBe(1);
+        expect(room.encounters[0]).toBe("far away");
+
+        expect(room.monsters.length).toBe(1);
     })
 })

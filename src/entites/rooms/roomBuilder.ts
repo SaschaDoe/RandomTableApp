@@ -1,16 +1,21 @@
 import {Room} from "./room";
+import type {Monster} from "../monster/monster";
 
 export class RoomBuilder{
     roomTreasures: string[];
     roomFurnishings: string[];
     roomObstacles: string[];
     roomTraps: string[];
+    roomEncounters: string[];
+    roomMonsters: Monster[];
 
     constructor() {
         this.roomTreasures = [];
         this.roomFurnishings = [];
         this.roomObstacles = [];
         this.roomTraps = [];
+        this.roomEncounters = [];
+        this.roomMonsters = [];
     }
 
     build(){
@@ -34,6 +39,16 @@ export class RoomBuilder{
 
     withTraps(traps: string[]) {
         this.roomTraps = this.roomTraps.concat(traps);
+        return this;
+    }
+
+    withEncounters(encounters: string[]) {
+        this.roomEncounters = this.roomEncounters.concat(encounters);
+        return this;
+    }
+
+    withMonsters(monsters: Monster[]) {
+        this.roomMonsters = this.roomMonsters.concat(monsters);
         return this;
     }
 }
