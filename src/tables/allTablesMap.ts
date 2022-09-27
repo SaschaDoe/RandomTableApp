@@ -28,6 +28,7 @@ import {MaterialsTable} from "./artefactTables/materialsTable";
 import {ArtefactTable} from "./artefactTables/artefactTable";
 import {ProfaneTalentTable} from "./talentTables/profaneTalentTable";
 import {SphereTable} from "./locationTables/sphereTable";
+import {ProfaneArtefactTable} from "./artefactTables/profaneArtefactTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -76,6 +77,7 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.Artefact, new ArtefactTable());
         this.allTablesMap.set(TableTitles.ProfaneTalent, new ProfaneTalentTable());
         this.allTablesMap.set(TableTitles.Sphere, new SphereTable());
+        this.allTablesMap.set(TableTitles.ProfaneArtefact, new ProfaneArtefactTable());
     }
 }
 

@@ -8,10 +8,12 @@ import {ContinentFactory} from "./continentFactory";
 describe("ContinentFactory", () => {
     test("should set default content to what is given in random tables", () => {
         let tableOutput = [
-            ["northern"]
-            ];
+            ["northern"],
+            ["fey"]
+        ];
         let tableTitle = [
             TableTitles.Continent,
+            TableTitles.Sphere,
         ];
         let continentFactory = new ContinentFactory(
             new FakeTableRoller(tableTitle, tableOutput),

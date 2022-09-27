@@ -7,7 +7,7 @@ import {ElementTable} from "../otherTables/elementTable";
 import {NaturalObstacleTable} from "./naturalObstacleTable";
 import {MagicalTalentTable} from "../talentTables/magicalTalentTable";
 import {BodyPartsTable} from "../otherTables/bodyPartsTable";
-import {addMonsterToStore} from "../../entites/monster/monsterStore";
+import {addNewMonsterToStoreReturnUniqueName} from "../../entites/monster/monsterStore";
 
 export class TrapFunctionTable extends Table{
     constructor(){
@@ -20,9 +20,9 @@ export class TrapFunctionTable extends Table{
         entries.push(new TableEntry("swinging").withCascadingRole(new WeaponTable()))
         entries.push(new TableEntry("").withCascadingRole(new ElementTable()))
         entries.push(new TableEntry("").withCascadingRole(new NaturalObstacleTable()))
-        entries.push(new TableEntry("monster on leash").withFunctionString(addMonsterToStore))
-        entries.push(new TableEntry("monster in cage").withFunctionString(addMonsterToStore))
-        entries.push(new TableEntry("monster in pit").withFunctionString(addMonsterToStore))
+        entries.push(new TableEntry("monster on leash").withFunctionString(addNewMonsterToStoreReturnUniqueName))
+        entries.push(new TableEntry("monster in cage").withFunctionString(addNewMonsterToStoreReturnUniqueName))
+        entries.push(new TableEntry("monster in pit").withFunctionString(addNewMonsterToStoreReturnUniqueName))
         entries.push(new TableEntry("").withCascadingRole(new MagicalTalentTable()))
         entries.push(new TableEntry("rope around").withCascadingRole(new BodyPartsTable()))
         entries.push(new TableEntry("cage"))

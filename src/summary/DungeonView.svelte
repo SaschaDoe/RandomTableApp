@@ -1,10 +1,10 @@
 <script lang="ts">
     import {Dungeon} from "../entites/dungeons/dungeon";
-    import {RoomFactory} from "../entites/rooms/roomFactory";
+    import {addNewRoomTo} from "../entites/dungeons/dungeonStore";
 
     export let dungeon : Dungeon;
     let handleAddRoom = () =>{
-        dungeon.rooms.push(new RoomFactory().create())
+        addNewRoomTo(dungeon);
         dungeon = dungeon;
     };
 </script>
@@ -17,7 +17,17 @@
     {#each dungeon.rooms as room, index}
         <li>
             <div>{"Room "+index}</div>
-            {#if room.treasures.length > 1}
+            {#if
+                room.treasures.length === 0 &&
+                room.furnishing.length === 0 &&
+                room.obstacles.length === 0 &&
+                room.traps.length === 0 &&
+                room.monsters.length === 0 &&
+                room.characters.length === 0
+            }
+                <div>is totally empty.</div>
+            {/if}
+            {#if room.treasures.length > 0}
                 <div>Treasures:</div>
                 <ul>
                     {#each room.treasures as treasure}
@@ -25,7 +35,7 @@
                     {/each}
                 </ul>
             {/if}
-            {#if room.furnishing.length > 1}
+            {#if room.furnishing.length > 0}
                 <div>Furnishing:</div>
                 <ul>
                     {#each room.furnishing as furnish}
@@ -33,7 +43,7 @@
                     {/each}
                 </ul>
             {/if}
-            {#if room.characters.length > 1}
+            {#if room.characters.length > 0}
                 <div>Characters:</div>
                 <ul>
                     {#each room.characters as char}
@@ -41,7 +51,7 @@
                     {/each}
                 </ul>
             {/if}
-            {#if room.obstacles.length > 1}
+            {#if room.obstacles.length > 0}
                 <div>Obstacles:</div>
                 <ul>
                     {#each room.obstacles as obstacle}
@@ -49,7 +59,7 @@
                     {/each}
                 </ul>
             {/if}
-            {#if room.traps.length > 1}
+            {#if room.traps.length > 0}
                 <div>Traps:</div>
                 <ul>
                     {#each room.traps as trap}
@@ -57,7 +67,7 @@
                     {/each}
                 </ul>
             {/if}
-            {#if room.monsters.length > 1}
+            {#if room.monsters.length > 0}
                 <div>Monsters:</div>
                 <ul>
                     {#each room.monsters as monster, index}
@@ -67,9 +77,6 @@
                         </li>
                     {/each}
                 </ul>
-            {/if}
-            {#if room.isEmpty()}
-                <div>totally empty.</div>
             {/if}
         </li>
     {/each}

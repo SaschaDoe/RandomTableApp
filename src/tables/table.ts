@@ -87,16 +87,31 @@ export class Table {
             try {
                 castedString= table.toString();
                 if(isInProbability){
+                    let newText = "";
                     if(castedString === "self"){
-                        fullText += additionalText + spaceString + this.role(dice).text;
+                        newText = this.roleWithCascade(dice).text;
+                        if(newText === "" || newText === " "){
+                            new Error(`error in self with ${roleResult.fullText}`)
+                        }
                     }else if (table instanceof Table) {
-                        fullText += additionalText + spaceString + table.roleWithCascade(dice).text;
+                        newText = table.roleWithCascade(dice).text;
+                        if(newText === "" || newText === " "){
+                            new Error(`error in table with ${roleResult.fullText}`)
+                        }
                     }else if(typeof table === 'string'){
-                        fullText += spaceString + table.toString();
+                        newText = table.toString();
+                        if(newText === "" || newText === " "){
+                            new Error(`error in string with ${roleResult.fullText}`)
+                        }
                     } else{
                         let functionReturnsString = table as (() => string);
-                        fullText += spaceString+functionReturnsString();
+                        newText = functionReturnsString();
+                        if(newText === "" || newText === " "){
+                            new Error(`error in functionstring with ${roleResult.fullText}`)
+                        }
                     }
+
+                    fullText += additionalText + spaceString + newText;
                     spaceString = " ";
                 }
             }

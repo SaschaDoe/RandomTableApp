@@ -54,7 +54,7 @@ export class Monster extends AttributeEntity{
         for (let i = 0; i < numberOfTalents; i++) {
             let newString = table.roleWithCascade().text
             if (!property.includes(newString)) {
-                property.push();
+                property.push(newString);
             }
         }
         return property;

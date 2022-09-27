@@ -3,7 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {ElementTable} from "../otherTables/elementTable";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import {addMonsterToStore} from "../../entites/monster/monsterStore";
+import {addNewMonsterToStoreReturnUniqueName} from "../../entites/monster/monsterStore";
 
 export class ObstacleTable extends Table{
     constructor(){
@@ -11,10 +11,10 @@ export class ObstacleTable extends Table{
         entries.push(new TableEntry("wall"))
         entries.push(new TableEntry("pit"))
         entries.push(new TableEntry("pit with").withCascadingRole(new ElementTable()))
-        entries.push(new TableEntry("pit with").withFunctionString(addMonsterToStore))
+        entries.push(new TableEntry("pit with").withFunctionString(addNewMonsterToStoreReturnUniqueName))
         entries.push(new TableEntry("pile"))
         entries.push(new TableEntry("stream of").withCascadingRole(new ElementTable()))
-        entries.push(new TableEntry("cadaver of").withFunctionString(addMonsterToStore))
+        entries.push(new TableEntry("cadaver of").withFunctionString(addNewMonsterToStoreReturnUniqueName))
         super(entries, TableTitles.Obstacle);
         this.tableType = TableType.Location;
     }

@@ -1,5 +1,5 @@
 import {describe, expect, test} from "vitest";
-import {CharacterFactory, createHigherPower} from "./characterFactory";
+import {CharacterFactory} from "./characterFactory";
 import {TableTitles} from "../../tables/tableTitles";
 import {FakeRandom} from "../../utils/fakeRandom";
 import {FakeTableRoller} from "../../tables/fakeTableRoller";
@@ -50,7 +50,7 @@ describe("CharacterFactory", () => {
         expect(character.motivation).toBe("motivation");
         expect(character.profession).toBe("profession");
         expect(character.race).toBe("human");
-        expect(character.homeContinent.id).toBeGreaterThan(1);
+        expect(character.homeContinent.id).toBeGreaterThan(0);
 
         expect(character.advantages.length).toBe(1);
         expect(character.advantages[0]).toBe("lucky");
@@ -72,13 +72,13 @@ describe("CharacterFactory", () => {
     })
 
     test("should isHigherPower true when creating a higher power character", () => {
-        let higherPower = createHigherPower();
+        let higherPower = new CharacterFactory().createHigherPower();
 
         expect(higherPower.isHigherPower).toBe(true);
     })
 
     test("should three magical talents when creating a higher power character", () => {
-        let higherPower = createHigherPower();
+        let higherPower = new CharacterFactory().createHigherPower();
 
         expect(higherPower.magicalTalents.length).toBeGreaterThan(2);
     })
@@ -92,9 +92,4 @@ describe("CharacterFactory", () => {
         expect(character1.relationships.length).toBe(1);
         expect(character2.relationships.length).toBe(1);
     })
-
-
-    let character = new CharacterFactory().create();
-    let charString = character.toString();
-    let highPower = createHigherPower();
 })

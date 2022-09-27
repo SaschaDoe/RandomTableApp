@@ -1,22 +1,19 @@
 import {writable} from "svelte/store";
 import {Monster} from "./monster";
+import {updateIndex} from "../../summary/updateSummaryIndex";
 
 export let monsterStore = writable([] as Monster[]);
 
-export function addMonsterToStore(){
+export function addNewMonsterToStoreReturnUniqueName(){
     let monster = new Monster();
-    monsterStore.update(monsters => {
-        monsters.push(monster);
-        return monsters;
-    })
+    addMonsterInStore(monster);
     return monster.getUniqueName();
 }
 
-export function getNewMonsterInStore(){
-    let monster = new Monster();
+export function addMonsterInStore(monster: Monster){
     monsterStore.update(monsters => {
         monsters.push(monster);
         return monsters;
     })
-    return monster;
+    updateIndex();
 }

@@ -77,6 +77,7 @@ import {HistoricalEventTable} from "./otherTables/historicalEventTable";
 import {TownSizeTable} from "./townTables/townSizeTable";
 import {TownFameTable} from "./townTables/townFameTable";
 import {ColourTable} from "./otherTables/colourTable";
+import {ProfaneArtefactTable} from "./artefactTables/profaneArtefactTable";
 
 export let charTables = [
     new RaceTable(),
@@ -149,7 +150,7 @@ export let artefactsTables = [
     new JewelryTable(),
     new GemstoneTable(),
     new MaterialsTable(),
-
+    new ProfaneArtefactTable(),
 ]
 export let nameTables = [
     new DungeonNameTable(),

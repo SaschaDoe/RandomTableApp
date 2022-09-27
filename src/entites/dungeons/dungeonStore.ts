@@ -2,6 +2,9 @@ import {writable} from "svelte/store";
 import type {Dungeon} from "./dungeon";
 import {DungeonFactory} from "./dungeonFactory";
 import {addNSCToCharacterStore} from "../character/charStore";
+import {RoomFactory} from "../rooms/roomFactory";
+import {addMonsterInStore} from "../monster/monsterStore";
+import {updateIndex} from "../../summary/updateSummaryIndex";
 
 export let dungeonStore = writable([] as Dungeon[]);
 
@@ -15,6 +18,13 @@ export function addDungeonToStore(dungeonFactory = new DungeonFactory()){
     characters.forEach(char => {
         addNSCToCharacterStore(char);
     })
-
+    updateIndex();
     return dungeon;
+}
+
+export function addNewRoomTo(dungeon: Dungeon){
+    let room = new RoomFactory().create();
+    dungeon.rooms.push(room);
+    room.monsters.forEach(monster => addMonsterInStore(monster));
+    return room;
 }

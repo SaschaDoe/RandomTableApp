@@ -29,6 +29,7 @@ import {MaterialsTable} from "./artefactTables/materialsTable";
 import {ArtefactTable} from "./artefactTables/artefactTable";
 import {ProfaneTalentTable} from "./talentTables/profaneTalentTable";
 import {SphereTable} from "./locationTables/sphereTable";
+import {ProfaneArtefactTable} from "./artefactTables/profaneArtefactTable";
 
 describe("AllTablesMap", () => {
 
@@ -90,5 +91,6 @@ function testInput(){
         [TableTitles.Artefact, ArtefactTable],
         [TableTitles.ProfaneTalent, ProfaneTalentTable],
         [TableTitles.Sphere, SphereTable],
+        [TableTitles.ProfaneArtefact, ProfaneArtefactTable],
     ]
 }

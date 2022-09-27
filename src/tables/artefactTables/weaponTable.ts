@@ -2,6 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
+import {ProfaneArtefactTable} from "./profaneArtefactTable";
 
 export class WeaponTable extends Table{
     constructor(){
@@ -24,7 +25,9 @@ export class WeaponTable extends Table{
         entries.push(new TableEntry("slingshot"))
         entries.push(new TableEntry("combat fan"))
         entries.push(new TableEntry("throwing star"))
-        entries.push(new TableEntry("improvised weapon")) //TODO cascade with normal artefacts
+        entries.push(new TableEntry("improvised weapon: (")
+            .withCascadingRole(new ProfaneArtefactTable())
+            .with(")"))
         entries.push(new TableEntry("flail"))
         entries.push(new TableEntry("gun"))
         entries.push(new TableEntry("butterfly"))
@@ -32,6 +35,7 @@ export class WeaponTable extends Table{
         entries.push(new TableEntry("needle"))
         entries.push(new TableEntry("")
             .withSelfCascade()
+            .with(" together with ")
             .withSelfCascade())
         entries.push(new TableEntry("whip"))
         entries.push(new TableEntry("lance"))

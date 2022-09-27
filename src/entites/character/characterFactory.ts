@@ -224,16 +224,12 @@ export class CharacterFactory extends Factory{
         }
     }
 
+    createHigherPower() {
+        let charFactory = new CharacterFactory();
+        charFactory.characterIsHigherPower = true;
+        return charFactory.create();
 
+    }
 }
 
-export function createHigherPower() {
-    let charFactory = new CharacterFactory();
-    charFactory.characterIsHigherPower = true;
-    return charFactory.create();
-}
 
-export function createHigherPowerReturnUniqueName(){
-    let higherPower = createHigherPower();
-    return higherPower.getUniqueName();
-}

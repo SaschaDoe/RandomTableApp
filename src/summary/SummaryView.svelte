@@ -1,13 +1,18 @@
 <script lang="ts">
-    import {addNewNSCToCharacterStore, characters, higherPowerBeingsStore} from "../entites/character/charStore.js";
+    import {
+        addNewNSCToCharacterStore,
+        addNSCsToCharacterStore,
+        characters,
+        higherPowerBeingsStore
+    } from "../entites/character/charStore.js";
     import CharacterView from "./CharacterView.svelte";
     import SiteView from "./SiteView.svelte";
     import SummaryIndex from "../components/SummaryIndex.svelte";
     import DungeonView from "./DungeonView.svelte";
     import {updateIndex} from "./updateSummaryIndex";
-    import {addArtefactToStore, artefactStore} from "../entites/artefacts/artefactStore.js";
+    import {addNewArtefactToStore, artefactStore} from "../entites/artefacts/artefactStore.js";
     import ArtefactView from "./ArtefactView.svelte";
-    import {addMonsterToStore, monsterStore} from "../entites/monster/monsterStore.js";
+    import {addNewMonsterToStoreReturnUniqueName, monsterStore} from "../entites/monster/monsterStore.js";
     import MonsterView from "./MonsterView.svelte";
     import {otherStore} from "../entites/otherStore.js";
     import OtherView from "./OtherView.svelte";
@@ -16,11 +21,12 @@
     import {AddSignToStore} from "../entites/signs/signStore";
     import {dungeonStore} from "../entites/dungeons/dungeonStore.js";
     import {continentStore} from "../entites/continent/continentStore.js";
+    import {CharacterFactory} from "../entites/character/characterFactory";
 
     let sizeOfParty = 1;
 
     const addPartyHandler = ()=>{
-        //TODO add store handler for party creation
+        addNSCsToCharacterStore(new CharacterFactory().createParty(sizeOfParty))
         updateIndex()
     }
 
@@ -29,7 +35,7 @@
         updateIndex()
     };
     let addArtefactForView= () => {
-        addArtefactToStore();
+        addNewArtefactToStore();
         updateIndex();
     };
     let addDungeon = () =>{
@@ -38,7 +44,7 @@
     };
 
     let addMonster = () => {
-        addMonsterToStore()
+        addNewMonsterToStoreReturnUniqueName()
         updateIndex()
     }
     let addSign = () => {
