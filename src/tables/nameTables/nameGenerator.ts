@@ -1,6 +1,7 @@
 import {randomIntFromInterval} from "../../utils/randomUtils";
 import {ConsonantTable} from "../otherTables/consonantTable";
 import {VocalTable} from "../otherTables/vocalTable";
+import {FractionNameTable} from "../otherTables/fractionNameTable";
 
 function generateNameOfLength(numberOfSyllabus: number) {
     let name = "";
@@ -28,6 +29,13 @@ export function generateName(maxNumberOfSyllabus = 7){
     let numberOfSyllabus = randomIntFromInterval(1,maxNumberOfSyllabus);
 
     return generateNameOfLength(numberOfSyllabus);
+}
+
+export function generateFractionName(){
+    let numberOfSyllabus = randomIntFromInterval(1,4);
+    let first = generateNameOfLength(numberOfSyllabus);
+    let second = new FractionNameTable().roleWithCascade().text;
+    return first + " " + second;
 }
 
 export function generateContinentName(){

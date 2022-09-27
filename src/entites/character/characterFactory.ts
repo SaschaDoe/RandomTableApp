@@ -9,7 +9,9 @@ import {Factory} from "../factory";
 import {RelationshipTypeTable} from "../../tables/charTables/relationshipTypeTable";
 import {RelationshipType} from "./relationshipType";
 import {Relationship} from "./relationship";
-import {ContinentFactory} from "../continent/continentFactory";
+import type {Fraction} from "../fractions/fraction";
+import {addNewFractionToStore} from "../fractions/fractionStore";
+import {chooseAContinentFromStore} from "../continent/continentStore";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -26,6 +28,9 @@ export let magicalTalentUserMinInterval = 1
 export let magicalTalentHigherPowerMinInterval = 3
 export let magicalTalentHigherPowerMaxInterval = 7
 export let magicalTalentMaxInterval = 3;
+export let fractionMinInterval = -1;
+export let fractionMaxInterval = 0;
+export let oldContinentProbability = 80;
 
 export class CharacterFactory extends Factory{
     characterAlignment = "";
@@ -42,8 +47,9 @@ export class CharacterFactory extends Factory{
     characterDisadvantages = [] as string[];
     charTalents = [] as string[];
     charMagicalTalents = [] as string[];
-    characterContinent: Continent;
+    characterContinent: Continent|undefined;
     characterIsHigherPower = false;
+    characterFractions: Fraction[] = [];
 
     constructor(
         tableRoller = new TableRoller(),
@@ -53,7 +59,7 @@ export class CharacterFactory extends Factory{
         this.tableRoller = tableRoller
         this.random = random
 
-        this.characterContinent = new ContinentFactory().create();
+
 
         this.setAllMandatory();
         this.setAllNonMandatory()
@@ -84,8 +90,9 @@ export class CharacterFactory extends Factory{
 
         this.ensureMagicalUserHasAtLeastOneMagicalTalent();
         this.ensureHigherPowerHasAtLeastThreeMagicalTalent();
+        this.characterContinent = chooseAContinentFromStore(oldContinentProbability);
 
-        return characterBuilder
+        let char = characterBuilder
             .withAlignment(this.characterAlignment)
             .withName(this.characterName)
             .withGender(this.characterGender)
@@ -101,7 +108,13 @@ export class CharacterFactory extends Factory{
             .withMagicalTalents((this.charMagicalTalents))
             .withContinent(this.characterContinent)
             .withIsHigherPower(this.characterIsHigherPower)
+            .withFraction(this.characterFractions)
             .build()
+
+        this.characterFractions.forEach(fraction => {
+            fraction.members.push(char);
+        })
+        return char;
     }
 
 
@@ -139,6 +152,14 @@ export class CharacterFactory extends Factory{
         this.setNonMandatory(specialFeaturesMinInterval, specialFeaturesMaxInterval,this.charSpecialFeatures,TableTitles.SpecialFeatures)
         this.setNonMandatory(talentsMinInterval, talentsMaxInterval,this.charTalents,TableTitles.ProfaneTalent)
         this.setNonMandatory(magicalTalentsMinInterval, magicalTalentMaxInterval,this.charMagicalTalents,TableTitles.MagicalTalent)
+
+        let numberOfAdvantages = this.random.intFromInterval(fractionMinInterval,fractionMaxInterval);
+        if(numberOfAdvantages <= 0){
+            numberOfAdvantages = 0;
+        }
+        for(let i = 0; i < numberOfAdvantages; i++){
+            this.characterFractions.push(addNewFractionToStore());
+        }
     }
 
     addAdvantage(){

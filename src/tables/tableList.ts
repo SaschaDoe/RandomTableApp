@@ -81,6 +81,9 @@ import {ProfaneArtefactTable} from "./artefactTables/profaneArtefactTable";
 import {ArtworkTable} from "./artefactTables/artworkTable";
 import {LandscapeTable} from "./locationTables/landscapeTable";
 import {PositionTable} from "./otherTables/positionTable";
+import {FractionNameTable} from "./otherTables/fractionNameTable";
+import {FractionWealthTable} from "./otherTables/fractionWealthTable";
+import {FractionQuestTable} from "./otherTables/fractionQuestTable";
 
 export let charTables = [
     new RaceTable(),
@@ -182,6 +185,9 @@ export let otherTables = [
     new PositionTable(),
     new HistoricalEventTable,
     new ColourTable(),
+    new FractionNameTable(),
+    new FractionWealthTable(),
+    new FractionQuestTable(),
 ]
 
 export let allTables = charTables

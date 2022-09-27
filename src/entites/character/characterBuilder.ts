@@ -1,6 +1,7 @@
 import {Character} from "./character";
 import type {Artefact} from "../artefacts/artefact";
 import type {Continent} from "../continent/continent";
+import type {Fraction} from "../fractions/fraction";
 
 export class CharacterBuilder{
     //undefined because there is no default value
@@ -21,6 +22,7 @@ export class CharacterBuilder{
     charTalents: string[];
     charArtefacts: Artefact[];
     charMagicalTalents: string[];
+    charMemberOfFraction: Fraction[];
 
 
 
@@ -32,6 +34,7 @@ export class CharacterBuilder{
         this.charTalents = [];
         this.charMagicalTalents = [];
         this.charArtefacts = [];
+        this.charMemberOfFraction = [];
     }
 
     build() {
@@ -115,6 +118,12 @@ export class CharacterBuilder{
 
     withIsHigherPower(isHigherPower: boolean){
         this.charHigherPower = isHigherPower;
+        return this;
+    }
+
+    withFraction(fractions: Fraction[]){
+        this.charMemberOfFraction = this.charMemberOfFraction.concat(fractions);
+
         return this;
     }
 }

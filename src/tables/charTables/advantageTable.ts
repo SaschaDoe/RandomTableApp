@@ -3,8 +3,6 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {AttributeTable} from "./attributeTable";
 import {SenseTable} from "../otherTables/senseTable";
-import type {Character} from "../../entites/character/character";
-import type {RoleResult} from "../roleResult";
 import {ElementTable} from "../otherTables/elementTable";
 import {TalentTable} from "../talentTables/talentTable";
 import {TableType} from "../tableType";
@@ -36,13 +34,6 @@ export class AdvantageTable extends Table{
         entries.push(new TableEntry("resistant to").withCascadingRole(new ElementTable()))
         entries.push(new TableEntry("mighty artefact").withFunctionString(addArtefactToStoreReturnUniqueName))
         super(entries, TableTitles.Advantages);
-        this.functions.push(addAdvantage)
-        this.probability = 50;
-        this.moreThanOnce = true;
         this.tableType = TableType.Character;
     }
-}
-export function addAdvantage(char: Character, roleResult: RoleResult){
-    char.advantages.push(roleResult.text);
-    return char;
 }

@@ -11,11 +11,14 @@ import type {Continent} from "../entites/continent/continent";
 import {continentStore} from "../entites/continent/continentStore";
 import {dungeonStore} from "../entites/dungeons/dungeonStore";
 import {signStore} from "../entites/signs/signStore";
+import {fractionStore} from "../entites/fractions/fractionStore";
+import type {Fraction} from "../entites/fractions/fraction";
 
 export const updateIndex = () =>{
     let titles = [];
     titles.push("Characters")
     titles.push("Higher Beings")
+    titles.push("Fractions")
     titles.push("Monsters")
     titles.push("Continents")
     titles.push("Dungeons")
@@ -41,6 +44,16 @@ export const updateIndex = () =>{
     for(let i = 0; i < higherPowerBeings.length; i++){
         let char = higherPowerBeings[i];
         godsIndexes.push(char.getUniqueName());
+    }
+
+    let fractions = [] as Fraction[];
+    fractionStore.subscribe((cs) => {
+        fractions = cs;
+    })
+    let fractionIndexes = [] as string[];
+    for(let i = 0; i < fractions.length; i++){
+        let fraction = fractions[i];
+        fractionIndexes.push(fraction.getUniqueName());
     }
 
     let monsters = [] as Monster[];
@@ -94,6 +107,7 @@ export const updateIndex = () =>{
     }
     indexesStore.set([charIndexes,
         godsIndexes,
+        fractionIndexes,
         monsterIndexes,
         continentIndexes,
         dungeonIndexes,

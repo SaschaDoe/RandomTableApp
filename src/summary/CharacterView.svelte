@@ -91,6 +91,13 @@
         {/each}
     </ul>
 
+    <div class="bold">Membership:</div>
+    <ul>
+        {#each character.memberOfFraction as fraction}
+            <li><a>{fraction.getUniqueName()}</a></li>
+        {/each}
+    </ul>
+
 
     <div class="bold">Relationships:</div>
     <ul>

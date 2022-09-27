@@ -36,6 +36,9 @@ import {LandscapeTable} from "./locationTables/landscapeTable";
 import {PositionTable} from "./otherTables/positionTable";
 import {HistoricalEventTable} from "./otherTables/historicalEventTable";
 import {BuildingTable} from "./locationTables/buildingTable";
+import {FractionNameTable} from "./otherTables/fractionNameTable";
+import {FractionWealthTable} from "./otherTables/fractionWealthTable";
+import {FractionQuestTable} from "./otherTables/fractionQuestTable";
 
 describe("AllTablesMap", () => {
 
@@ -104,5 +107,8 @@ function testInput(){
         [TableTitles.Position, PositionTable],
         [TableTitles.HistoricalEvent, HistoricalEventTable],
         [TableTitles.Building, BuildingTable],
+        [TableTitles.FractionName, FractionNameTable],
+        [TableTitles.FractionWealth, FractionWealthTable],
+        [TableTitles.FractionQuest, FractionQuestTable],
     ]
 }

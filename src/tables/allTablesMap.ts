@@ -35,6 +35,9 @@ import {LandscapeTable} from "./locationTables/landscapeTable";
 import {PositionTable} from "./otherTables/positionTable";
 import {HistoricalEventTable} from "./otherTables/historicalEventTable";
 import {BuildingTable} from "./locationTables/buildingTable";
+import {FractionNameTable} from "./otherTables/fractionNameTable";
+import {FractionWealthTable} from "./otherTables/fractionWealthTable";
+import {FractionQuestTable} from "./otherTables/fractionQuestTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -90,6 +93,9 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.Position, new PositionTable());
         this.allTablesMap.set(TableTitles.HistoricalEvent, new HistoricalEventTable());
         this.allTablesMap.set(TableTitles.Building, new BuildingTable());
+        this.allTablesMap.set(TableTitles.FractionName, new FractionNameTable());
+        this.allTablesMap.set(TableTitles.FractionWealth, new FractionWealthTable());
+        this.allTablesMap.set(TableTitles.FractionQuest, new FractionQuestTable());
     }
 }
 

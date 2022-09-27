@@ -1,7 +1,6 @@
 import {Character} from "./character";
 import {writable} from "svelte/store";
 import {CharacterFactory} from "./characterFactory";
-import {addContinentToStore} from "../continent/continentStore";
 import {updateIndex} from "../../summary/updateSummaryIndex";
 
 export let characters = writable([] as Character[]);
@@ -24,18 +23,12 @@ export function addNSCToCharacterStore(char: Character){
         characterStore.push(char);
         return characterStore;
     })
-    addContinentToStore(char.homeContinent);
     updateIndex();
 
 }
 
 export function addNSCsToCharacterStore(chars: Character[]){
     chars.forEach(char => addNSCToCharacterStore(char));
-
-    let continents = chars.map(chars => chars.homeContinent).filter(onlyUnique);
-    continents.forEach(continent => {
-        addContinentToStore(continent);
-    })
 }
 
 function onlyUnique(value: any, index: any, self:any) {

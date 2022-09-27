@@ -1,14 +1,15 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
-import {Character} from "../../entites/character/character";
+import type {Character} from "../../entites/character/character";
 import {Relationship} from "../../entites/character/relationship";
 import {RelationshipType} from "../../entites/character/relationshipType";
 import {AttributeTable} from "./attributeTable";
 import {SenseTable} from "../otherTables/senseTable";
-import type {RoleResult} from "../roleResult";
 import {ElementTable} from "../otherTables/elementTable";
 import {TableType} from "../tableType";
+import {addNSCToCharacterStore} from "../../entites/character/charStore";
+import {CharacterFactory} from "../../entites/character/characterFactory";
 
 export class DisadvantageTable extends Table{
     constructor(){
@@ -41,20 +42,15 @@ export class DisadvantageTable extends Table{
         entries.push(new TableEntry("ill"))
         entries.push(new TableEntry("vulnerable to ").withCascadingRole(new ElementTable()))
         super(entries, TableTitles.Disadvantages);
-        this.functions.push(addDisadvantage)
-        this.probability = 50;
-        this.moreThanOnce = true;
         this.tableType = TableType.Character;
     }
 }
-export function addDisadvantage(char: Character, roleResult: RoleResult){
-    char.disadvantages.push(roleResult.text);
-    return char;
-}
+
 export function AddCharForPower(char: Character){
-    let newChar = new Character();
+    let newChar = new CharacterFactory().create();
     let relationship = new Relationship(char, newChar, RelationshipType.Obedient, RelationshipType.Acquaintanceship);
     newChar.relationships.push(relationship);
     char.relationships.push(relationship);
+    addNSCToCharacterStore(newChar);
     return newChar;
 }

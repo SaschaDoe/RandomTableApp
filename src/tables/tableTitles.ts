@@ -87,4 +87,7 @@ export enum TableTitles{
     Artwork = "Artwork",
     Landscape = "Landscape",
     Position = "Position",
+    FractionName = "Fraction Name",
+    FractionWealth = "Fraction Wealth",
+    FractionQuest = "Fraction Quest",
 }

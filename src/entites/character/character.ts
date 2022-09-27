@@ -6,6 +6,7 @@ import type {Artefact} from "../artefacts/artefact";
 import type {Relationship} from "./relationship";
 import {isMagicalProfession} from "../../tables/charTables/magicUserProfessions";
 import type {Continent} from "../continent/continent";
+import type {Fraction} from "../fractions/fraction";
 
 
 export class Character extends AttributeEntity implements Equatable<Character>{
@@ -17,6 +18,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     profession: string;
     race : string;
 
+    memberOfFraction: Fraction[];
     readonly advantages: string[];
     readonly disadvantages : string[];
     readonly curses: string[];
@@ -91,7 +93,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         this.talents = characterBuilder.charTalents.slice();
         this.magicalTalents = characterBuilder.charMagicalTalents.slice();
         this.artefacts = characterBuilder.charArtefacts.slice();
-
+        this.memberOfFraction = characterBuilder.charMemberOfFraction.slice();
         this.relationships = [];
 
         this.ensureMagicalUserHasMagicalTalent();

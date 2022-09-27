@@ -23,6 +23,9 @@
     import {CharacterFactory} from "../entites/character/characterFactory";
     import {signStore} from "../entites/signs/signStore.js";
     import SignView from "./SignView.svelte";
+    import {addNewFractionToStore} from "../entites/fractions/fractionStore";
+    import {fractionStore} from "../entites/fractions/fractionStore.js";
+    import FractionView from "./FractionView.svelte";
 
     let sizeOfParty = 1;
 
@@ -52,6 +55,10 @@
         addNewSignToStore()
         updateIndex()
     };
+    let addFraction = ()=>{
+        addNewFractionToStore();
+        updateIndex();
+    };
 
 </script>
 
@@ -60,6 +67,7 @@
 <button on:click={addPartyHandler}>Add party member</button>
 <input type="number" bind:value={sizeOfParty}/>
 <button on:click={addNSC}>Add NSC</button>
+<button on:click={addFraction}>Add Fraction</button>
 <button on:click={addArtefactForView}>Add Artefact</button>
 <button on:click={addDungeon}>Add Dungeon</button>
 <button on:click={addMonster}>Add Monster</button>
@@ -74,7 +82,12 @@
     <div id={god.getUniqueName()}>
         <CharacterView character={god} />
     </div>
+{/each}
 
+{#each $fractionStore as fraction}
+    <div id={fraction.getUniqueName()}>
+        <FractionView fraction={fraction} />
+    </div>
 {/each}
 {#each $monsterStore as monster}
     <div id={monster.getUniqueName()}>
