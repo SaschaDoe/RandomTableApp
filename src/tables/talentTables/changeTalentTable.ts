@@ -3,10 +3,9 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {BodyPartsTable} from "../otherTables/bodyPartsTable";
-import {AttitudeTable} from "../charTables/attitudeTable";
 import {RaceTable} from "../charTables/raceTable";
-import {TalentTable} from "./talentTable";
 import {AttributeTable} from "../charTables/attributeTable";
+import {ProfaneTalentTable} from "./profaneTalentTable";
 
 export class ChangeTalentTable extends Table{
     constructor(){
@@ -20,6 +19,7 @@ export class ChangeTalentTable extends Table{
         entries.push(new TableEntry("improve attribute").withCascadingRole(new AttributeTable()))
         entries.push(new TableEntry("worsen attribute").withCascadingRole(new AttributeTable()))
         entries.push(new TableEntry("transformation into").withCascadingRole(new RaceTable()))
+        entries.push(new TableEntry("be extraordinary good in ").withCascadingRole(new ProfaneTalentTable()))
         entries.push(new TableEntry("invisibility"))
         entries.push(new TableEntry("not destroyable"))
         super(entries, TableTitles.ChangeTalent);

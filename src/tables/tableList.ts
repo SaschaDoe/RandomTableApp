@@ -84,6 +84,10 @@ import {PositionTable} from "./otherTables/positionTable";
 import {FractionNameTable} from "./otherTables/fractionNameTable";
 import {FractionWealthTable} from "./otherTables/fractionWealthTable";
 import {FractionQuestTable} from "./otherTables/fractionQuestTable";
+import {CraftTable} from "./talentTables/craftTable";
+import {AthleticsTalentTable} from "./talentTables/athleticsTalentTable";
+import {ArtistTalentTable} from "./talentTables/artistTalentTable";
+import {ProfaneTalentTable} from "./talentTables/profaneTalentTable";
 
 export let charTables = [
     new RaceTable(),
@@ -112,6 +116,7 @@ export let monsterTables = [
 export let talentTables = [
     new TalentTable(),
     new MagicalTalentTable(),
+    new ProfaneTalentTable(),
     new TalentCategoryTable(),
     new TargetTalentTable(),
     new ElementalTalentTable(),
@@ -126,6 +131,9 @@ export let talentTables = [
     new ObjectEnchantmentTable(),
     new TimeTalentTable(),
     new TravelTalentTable(),
+    new CraftTable(),
+    new AthleticsTalentTable(),
+    new ArtistTalentTable(),
 ]
 export let locationTables = [
     new ContinentTable(),

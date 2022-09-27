@@ -183,7 +183,7 @@ export class CharacterFactory extends Factory{
     }
 
     addTalent(){
-        this.charTalents.push(this.tableRoller.roleFor(TableTitles.Talent).text)
+        this.charTalents.push(this.tableRoller.roleFor(TableTitles.ProfaneTalent).text)
         return this;
     }
 
@@ -205,7 +205,7 @@ export class CharacterFactory extends Factory{
     createParty(numberOfPartyMembers: number) {
         let party = [];
         for(let i = 0; i < numberOfPartyMembers; i++){
-            let character = this.create();
+            let character = new CharacterFactory().create();
             party.push(character)
         }
 

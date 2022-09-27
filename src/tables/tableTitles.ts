@@ -90,4 +90,7 @@ export enum TableTitles{
     FractionName = "Fraction Name",
     FractionWealth = "Fraction Wealth",
     FractionQuest = "Fraction Quest",
+    CraftTalent = "Craft Talent",
+    AthleticsTalent = "Athletics Talent",
+    ArtistTalent = "Artistic Talent",
 }

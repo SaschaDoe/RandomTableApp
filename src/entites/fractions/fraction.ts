@@ -7,6 +7,8 @@ import {FractionWealthTable} from "../../tables/otherTables/fractionWealthTable"
 import {MotivationTable} from "../../tables/charTables/motivationTable";
 import {Random} from "../../utils/randomUtils";
 import {TalentTable} from "../../tables/talentTables/talentTable";
+import {addNewSignToStore, addSignToStore} from "../signs/signStore";
+import type {Sign} from "../signs/sign";
 
 export class Fraction extends Entity{
     leader: Character;
@@ -17,10 +19,12 @@ export class Fraction extends Entity{
     motivation: string;
     quests: string[];
     associatedTalent: string;
+    sign: Sign;
 
     constructor() {
         let name = generateFractionName();
         super(name)
+        this.sign = addNewSignToStore();
         this.leader = addNewNSCToCharacterStore();
         this.size = new SizeTable().roleWithCascade().text;
         this.influence = new SizeTable().roleWithCascade().text;

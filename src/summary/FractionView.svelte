@@ -10,6 +10,7 @@
 <div>{"Influence: "+fraction.influence}</div>
 <div>{"Motivation: "+fraction.motivation}</div>
 <div>{"Associated Talent: "+fraction.associatedTalent}</div>
+<div>{"Sign is "+fraction.sign.toString()}</div>
 <div>{"Leader: "}<a href={"#"+fraction.leader.getUniqueName()}>{fraction.leader.getUniqueName()}</a></div>
 {#if fraction.members.length > 0}
     <div>Members:</div>

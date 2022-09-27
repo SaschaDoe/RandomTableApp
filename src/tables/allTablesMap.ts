@@ -38,6 +38,9 @@ import {BuildingTable} from "./locationTables/buildingTable";
 import {FractionNameTable} from "./otherTables/fractionNameTable";
 import {FractionWealthTable} from "./otherTables/fractionWealthTable";
 import {FractionQuestTable} from "./otherTables/fractionQuestTable";
+import {CraftTable} from "./talentTables/craftTable";
+import {AthleticsTalentTable} from "./talentTables/athleticsTalentTable";
+import {ArtistTalentTable} from "./talentTables/artistTalentTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -96,6 +99,9 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.FractionName, new FractionNameTable());
         this.allTablesMap.set(TableTitles.FractionWealth, new FractionWealthTable());
         this.allTablesMap.set(TableTitles.FractionQuest, new FractionQuestTable());
+        this.allTablesMap.set(TableTitles.CraftTalent, new CraftTable());
+        this.allTablesMap.set(TableTitles.AthleticsTalent, new AthleticsTalentTable());
+        this.allTablesMap.set(TableTitles.ArtistTalent, new ArtistTalentTable());
     }
 }
 

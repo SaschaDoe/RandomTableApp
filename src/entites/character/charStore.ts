@@ -31,10 +31,6 @@ export function addNSCsToCharacterStore(chars: Character[]){
     chars.forEach(char => addNSCToCharacterStore(char));
 }
 
-function onlyUnique(value: any, index: any, self:any) {
-    return self.indexOf(value) === index;
-}
-
 export function createHigherPowerReturnUniqueName(){
     let higherPower = new CharacterFactory().createHigherPower();
     addNSCToCharacterStore(higherPower);

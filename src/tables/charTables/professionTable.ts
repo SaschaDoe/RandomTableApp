@@ -1,8 +1,8 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
-import {AnimalTable} from "./animalTable";
 import {MagicUserProfessions} from "./magicUserProfessions";
+import {CraftTable} from "../talentTables/craftTable";
 
 export class ProfessionTable extends Table{
     constructor(){
@@ -23,7 +23,6 @@ export class ProfessionTable extends Table{
         entries.push(new TableEntry(MagicUserProfessions.joker))
 
         entries.push(new TableEntry("militia"))
-        entries.push(new TableEntry("mercenary"))
         entries.push(new TableEntry("mercenary"))
         entries.push(new TableEntry("officer"))
         entries.push(new TableEntry("general"))
@@ -61,57 +60,20 @@ export class ProfessionTable extends Table{
         entries.push(new TableEntry("bodyguard"))
         entries.push(new TableEntry("musician"))
         entries.push(new TableEntry("painter"))
-
-        //Crafts
-        entries.push(new TableEntry("construction worker"))
-        entries.push(new TableEntry("fisherman"))
-        entries.push(new TableEntry("perl diver"))
-        entries.push(new TableEntry("ship builder"))
-        entries.push(new TableEntry("weaver"))
-        entries.push(new TableEntry("stonemason"))
-        entries.push(new TableEntry("cook"))
-        entries.push(new TableEntry("rope maker"))
-        entries.push(new TableEntry("amorer"))
-        entries.push(new TableEntry("weapon smith"))
-        entries.push(new TableEntry("smith"))
-        entries.push(new TableEntry("bow maker"))
-        entries.push(new TableEntry("woodcutter"))
-        entries.push(new TableEntry("casino worker"))
-        entries.push(new TableEntry("vintner"))
-        entries.push(new TableEntry("locksmith"))
         entries.push(new TableEntry("astronomer"))
-        entries.push(new TableEntry("liberian"))
-        entries.push(new TableEntry("dyer"))
-        entries.push(new TableEntry("cooper"))
-        entries.push(new TableEntry("fur processor"))
-        entries.push(new TableEntry("bard"))
-        entries.push(new TableEntry("hairdresser"))
-        entries.push(new TableEntry("baker"))
-        entries.push(new TableEntry("brewer"))
-        entries.push(new TableEntry("butcher"))
-        entries.push(new TableEntry("metal caster"))
-        entries.push(new TableEntry("mechanic"))
-        entries.push(new TableEntry("goldsmith"))
-        entries.push(new TableEntry("clock maker"))
-        entries.push(new TableEntry("shoemaker"))
-        entries.push(new TableEntry("tailor"))
-        entries.push(new TableEntry("hatter"))
-        entries.push(new TableEntry("innkeeper"))
-        entries.push(new TableEntry("launderer"))
-        entries.push(new TableEntry("miller"))
-        entries.push(new TableEntry("breeder of ").withCascadingRole(new AnimalTable()))
-        entries.push(new TableEntry("slave trader"))
-        entries.push(new TableEntry("capitan"))
-        entries.push(new TableEntry("sailor"))
-        entries.push(new TableEntry("carpenter"))
-        entries.push(new TableEntry("bureaucrat"))
-        entries.push(new TableEntry("sculpturer"))
-        entries.push(new TableEntry("messenger"))
         entries.push(new TableEntry("guide"))
         entries.push(new TableEntry("advisor"))
-        entries.push(new TableEntry("gunsmith"))
-        entries.push(new TableEntry("blaster"))
-        entries.push(new TableEntry("mine worker"))
+        entries.push(new TableEntry("messenger"))
+        entries.push(new TableEntry("capitan"))
+        entries.push(new TableEntry("slave trader"))
+        entries.push(new TableEntry("bureaucrat"))
+        entries.push(new TableEntry("liberian"))
+        entries.push(new TableEntry("casino worker"))
+        entries.push(new TableEntry("vintner"))
+        entries.push(new TableEntry("bard"))
+        entries.push(new TableEntry("construction worker"))
+        //Crafts
+        entries.push(new TableEntry("craft: ").withCascadingRole(new CraftTable()))
         entries.push(new TableEntry("good for nothing"))
         super(entries, TableTitles.Profession);
     }

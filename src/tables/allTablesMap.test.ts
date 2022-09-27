@@ -39,6 +39,9 @@ import {BuildingTable} from "./locationTables/buildingTable";
 import {FractionNameTable} from "./otherTables/fractionNameTable";
 import {FractionWealthTable} from "./otherTables/fractionWealthTable";
 import {FractionQuestTable} from "./otherTables/fractionQuestTable";
+import {CraftTable} from "./talentTables/craftTable";
+import {AthleticsTalentTable} from "./talentTables/athleticsTalentTable";
+import {ArtistTalentTable} from "./talentTables/artistTalentTable";
 
 describe("AllTablesMap", () => {
 
@@ -110,5 +113,8 @@ function testInput(){
         [TableTitles.FractionName, FractionNameTable],
         [TableTitles.FractionWealth, FractionWealthTable],
         [TableTitles.FractionQuest, FractionQuestTable],
+        [TableTitles.CraftTalent, CraftTable],
+        [TableTitles.AthleticsTalent, AthleticsTalentTable],
+        [TableTitles.ArtistTalent, ArtistTalentTable],
     ]
 }
