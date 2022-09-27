@@ -77,8 +77,10 @@ export class Sign extends Entity{
             if(i > 0){
                 description += ` and on`
             }
-            description += ` ${this.characters[i][1]} is ${this.characters[i][0].race} ${this.characters[i][0].profession} ${this.characters[i][0].getUniqueName()}.`
+            description += ` ${this.characters[i][1]} is ${this.characters[i][0].race} ${this.characters[i][0].profession} ${this.characters[i][0].getUniqueName()}`
         }
+
+        description += "."
 
         for(let i = 0; i < this.monsters.length; i++){
             if(i === 0){
@@ -87,8 +89,10 @@ export class Sign extends Entity{
             if(i > 0){
                 description += ` and on`
             }
-            description += ` ${this.monsters[i][1]} is ${this.monsters[i][0].description} ${this.monsters[i][0].getUniqueName()}.`
+            description += ` ${this.monsters[i][1]} is ${this.monsters[i][0].description} ${this.monsters[i][0].getUniqueName()}`
         }
+
+        description += "."
 
         for(let i = 0; i < this.buildings.length; i++){
             if(i === 0){
@@ -97,8 +101,10 @@ export class Sign extends Entity{
             if(i > 0){
                 description += ` and on`
             }
-            description += `${this.buildings[i][1]} is ${this.buildings[i][0]}.`
+            description += `${this.buildings[i][1]} is ${this.buildings[i][0]}`
         }
+
+        description += "."
 
         if(this.event.length > 0){
             description += ` A ${this.event[0]} is going on.`
