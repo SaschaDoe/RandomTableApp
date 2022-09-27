@@ -72,7 +72,7 @@ export class Sign extends Entity{
 
         for(let i = 0; i < this.characters.length; i++){
             if(i === 0){
-                description += ` On `
+                description += ` On the`
             }
             if(i > 0){
                 description += ` and on`
@@ -85,10 +85,10 @@ export class Sign extends Entity{
 
         for(let i = 0; i < this.monsters.length; i++){
             if(i === 0){
-                description += ` On`
+                description += ` On the`
             }
             if(i > 0){
-                description += ` and on`
+                description += ` and on the`
             }
             description += ` ${this.monsters[i][1]} is ${this.monsters[i][0].description} ${this.monsters[i][0].getUniqueName()}`
             if(i === this.monsters.length-1){
@@ -100,10 +100,10 @@ export class Sign extends Entity{
 
         for(let i = 0; i < this.buildings.length; i++){
             if(i === 0){
-                description += ` On `
+                description += ` On the`
             }
             if(i > 0){
-                description += ` and on`
+                description += ` and on the`
             }
             description += `${this.buildings[i][1]} is ${this.buildings[i][0]}`
             if(i === this.buildings.length-1){
