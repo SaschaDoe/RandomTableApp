@@ -17,45 +17,60 @@
     {#each dungeon.rooms as room, index}
         <li>
             <div>{"Room "+index}</div>
-            <div>Treasures:</div>
-            <ul>
-                {#each room.treasures as treasure}
-                    <li>{treasure}</li>
-                {/each}
-            </ul>
-            <div>Furnishing:</div>
-            <ul>
-                {#each room.furnishing as furnish}
-                    <li>{furnish}</li>
-                {/each}
-            </ul>
-            <div>Characters:</div>
-            <ul>
-                {#each room.characters as char}
-                    <li><a href={"#"+char}>{char}</a></li>
-                {/each}
-            </ul>
-            <div>Obstacles:</div>
-            <ul>
-                {#each room.obstacles as obstacle}
-                    <li>{obstacle}</li>
-                {/each}
-            </ul>
-            <div>Traps:</div>
-            <ul>
-                {#each room.traps as trap}
-                    <li>{trap}</li>
-                {/each}
-            </ul>
-            <div>Monsters:</div>
-            <ul>
-                {#each room.monsters as monster, index}
-                    <li>
-                        <a href={"#"+monster}>{monster}</a>
-                        <div>{room.monsterEncounters[index]}</div>
-                    </li>
-                {/each}
-            </ul>
+            {#if room.treasures.length > 1}
+                <div>Treasures:</div>
+                <ul>
+                    {#each room.treasures as treasure}
+                        <li>{treasure}</li>
+                    {/each}
+                </ul>
+            {/if}
+            {#if room.furnishing.length > 1}
+                <div>Furnishing:</div>
+                <ul>
+                    {#each room.furnishing as furnish}
+                        <li>{furnish}</li>
+                    {/each}
+                </ul>
+            {/if}
+            {#if room.characters.length > 1}
+                <div>Characters:</div>
+                <ul>
+                    {#each room.characters as char}
+                        <li><a href={"#"+char}>{char}</a></li>
+                    {/each}
+                </ul>
+            {/if}
+            {#if room.obstacles.length > 1}
+                <div>Obstacles:</div>
+                <ul>
+                    {#each room.obstacles as obstacle}
+                        <li>{obstacle}</li>
+                    {/each}
+                </ul>
+            {/if}
+            {#if room.traps.length > 1}
+                <div>Traps:</div>
+                <ul>
+                    {#each room.traps as trap}
+                        <li>{trap}</li>
+                    {/each}
+                </ul>
+            {/if}
+            {#if room.monsters.length > 1}
+                <div>Monsters:</div>
+                <ul>
+                    {#each room.monsters as monster, index}
+                        <li>
+                            <a href={"#"+monster.getUniqueName()}>{monster.getUniqueName()}</a>
+                            <div>{room.encounters[index]}</div>
+                        </li>
+                    {/each}
+                </ul>
+            {/if}
+            {#if room.isEmpty()}
+                <div>totally empty.</div>
+            {/if}
         </li>
     {/each}
 </ul>

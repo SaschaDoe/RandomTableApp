@@ -5,6 +5,7 @@ import type {Dungeon} from "../dungeons/dungeon";
 export class Continent extends Entity{
     description: string;
     dungeons: Dungeon[]
+    spheres: string[];
 
     constructor(continentBuilder: ContinentBuilder) {
         if(continentBuilder.continentName === undefined){
@@ -18,7 +19,7 @@ export class Continent extends Entity{
             throw Error("Continents description must be set")
         }
         this.description = continentBuilder.continentDescription;
-
+        this.spheres = continentBuilder.continentSpheres;
         this.dungeons = continentBuilder.continentDungeons;
     }
 

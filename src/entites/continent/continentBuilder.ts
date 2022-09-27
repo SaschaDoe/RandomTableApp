@@ -6,6 +6,7 @@ export class ContinentBuilder{
     continentId = -1;
     continentDescription: string|undefined;
     continentDungeons: Dungeon[] = [];
+    continentSpheres: string[] = [];
 
     build() {
         return new Continent(this);
@@ -28,6 +29,11 @@ export class ContinentBuilder{
 
     withDungeons(dungeons: Dungeon[]){
         this.continentDungeons = this.continentDungeons.concat(dungeons);
+        return this;
+    }
+
+    withSpheres(spheres: string[]){
+        this.continentSpheres = this.continentSpheres.concat(spheres);
         return this;
     }
 

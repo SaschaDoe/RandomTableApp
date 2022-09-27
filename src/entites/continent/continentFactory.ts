@@ -4,24 +4,29 @@ import {ContinentBuilder} from "./continentBuilder";
 import {generateContinentName} from "../../tables/nameTables/nameGenerator";
 import {TableTitles} from "../../tables/tableTitles";
 import type {Dungeon} from "../dungeons/dungeon";
+import {Factory} from "../factory";
 
-export class ContinentFactory{
-    private tableRoller: TableRoller;
-    private random: Random;
+export let spheresMinInterval = 0;
+export let spheresMaxInterval = 7;
+
+export class ContinentFactory extends Factory{
     continentName = "";
     continentId = -1;
-    private continentDescription = "";
-    private continentDungeons: Dungeon[];
+    continentDescription = "";
+    continentDungeons: Dungeon[];
+    continentSpheres: string[];
 
     constructor(
         tableRoller = new TableRoller(),
         random = new Random()
     ) {
+        super(tableRoller, random);
         this.tableRoller = tableRoller
         this.random = random
         this.continentDungeons = [];
-
+        this.continentSpheres = [];
         this.setMandatoryAttributes();
+        this.setNonMandatoryAttributes();
     }
 
     create() {
@@ -30,6 +35,7 @@ export class ContinentFactory{
             .withId(this.continentId)
             .withDescription(this.continentDescription)
             .withDungeons(this.continentDungeons)
+            .withSpheres(this.continentSpheres)
             .build();
     }
 
@@ -40,5 +46,9 @@ export class ContinentFactory{
 
     withDungeon(dungeon: Dungeon) {
         this.continentDungeons.push(dungeon);
+    }
+
+    private setNonMandatoryAttributes() {
+        this.setNonMandatory(spheresMinInterval, spheresMaxInterval, this.continentSpheres, TableTitles.Sphere);
     }
 }

@@ -1,10 +1,8 @@
 <script lang="ts">
-    import {addNSCToCharacterStore, characters, higherPowerBeingsStore} from "../entites/character/charStore.js";
+    import {addNewNSCToCharacterStore, characters, higherPowerBeingsStore} from "../entites/character/charStore.js";
     import CharacterView from "./CharacterView.svelte";
-    import {continentStore, sphereStore} from "../entites/site/siteStore.js";
     import SiteView from "./SiteView.svelte";
     import SummaryIndex from "../components/SummaryIndex.svelte";
-    import {dungeonStore} from "../entites/site/dungeonStore.js";
     import DungeonView from "./DungeonView.svelte";
     import {updateIndex} from "./updateSummaryIndex";
     import {addArtefactToStore, artefactStore} from "../entites/artefacts/artefactStore.js";
@@ -13,9 +11,11 @@
     import MonsterView from "./MonsterView.svelte";
     import {otherStore} from "../entites/otherStore.js";
     import OtherView from "./OtherView.svelte";
-    import {DungeonFactory} from "../entites/dungeons/dungeonFactory";
+    import {addDungeonToStore} from "../entites/dungeons/dungeonStore";
     import {SignFactory} from "../entites/signs/signFactory";
     import {AddSignToStore} from "../entites/signs/signStore";
+    import {dungeonStore} from "../entites/dungeons/dungeonStore.js";
+    import {continentStore} from "../entites/continent/continentStore.js";
 
     let sizeOfParty = 1;
 
@@ -25,20 +25,16 @@
     }
 
     let addNSC = () => {
-        addNSCToCharacterStore();
+        addNewNSCToCharacterStore();
         updateIndex()
     };
     let addArtefactForView= () => {
         addArtefactToStore();
-        updateIndex()
+        updateIndex();
     };
     let addDungeon = () =>{
-        let dungeon = new DungeonFactory().create();
-        dungeonStore.update(dungeons => {
-            dungeons.push(dungeon);
-            return dungeons;
-        })
-        updateIndex()
+        addDungeonToStore();
+        updateIndex();
     };
 
     let addMonster = () => {
@@ -80,15 +76,9 @@
     </div>
 
 {/each}
-{#each $continentStore as site}
-    <div id={site.getUniqueName()}>
-        <SiteView site={site} />
-    </div>
-{/each}
-
-{#each $sphereStore as sphere}
-    <div id={sphere.getUniqueName()}>
-        <SiteView site={sphere} />
+{#each $continentStore as continent}
+    <div id={continent.getUniqueName()}>
+        <SiteView continent={continent} />
     </div>
 {/each}
 

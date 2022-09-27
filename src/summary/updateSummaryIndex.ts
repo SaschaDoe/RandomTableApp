@@ -1,16 +1,15 @@
 import {indexesStore, titleStore} from "../components/indexListStore";
 import type {Character} from "../entites/character/character";
 import {characters, higherPowerBeingsStore} from "../entites/character/charStore";
-import type {Site} from "../entites/site/site";
-import {continentStore, sphereStore} from "../entites/site/siteStore";
-import {dungeonStore} from "../entites/site/dungeonStore";
 import type {Artefact} from "../entites/artefacts/artefact";
 import {artefactStore} from "../entites/artefacts/artefactStore";
 import {monsterStore} from "../entites/monster/monsterStore";
 import type {Monster} from "../entites/monster/monster";
-import {otherStore} from "../entites/otherStore";
 import type {Entity} from "../entites/entity";
 import type {Dungeon} from "../entites/dungeons/dungeon";
+import type {Continent} from "../entites/continent/continent";
+import {continentStore} from "../entites/continent/continentStore";
+import {dungeonStore} from "../entites/dungeons/dungeonStore";
 import {signStore} from "../entites/signs/signStore";
 
 export const updateIndex = () =>{
@@ -19,7 +18,6 @@ export const updateIndex = () =>{
     titles.push("Higher Beings")
     titles.push("Monsters")
     titles.push("Continents")
-    titles.push("Spheres")
     titles.push("Dungeons")
     titles.push("Artefacts")
     titles.push("Signs")
@@ -55,7 +53,7 @@ export const updateIndex = () =>{
         monsterIndexes.push(monster.getUniqueName());
     }
 
-    let continents = [] as Site[];
+    let continents = [] as Continent[];
     continentStore.subscribe((cs) => {
         continents = cs;
     })
@@ -63,16 +61,6 @@ export const updateIndex = () =>{
     for(let i = 0; i < continents.length; i++){
         let continent = continents[i];
         continentIndexes.push(continent.getUniqueName());
-    }
-
-    let spheres = [] as Site[];
-    sphereStore.subscribe((cs) => {
-        spheres = cs;
-    })
-    let spheresIndexes = [] as string[];
-    for(let i = 0; i < spheres.length; i++){
-        let continent = spheres[i];
-        spheresIndexes.push(continent.getUniqueName());
     }
 
     let dungeons = [] as Dungeon[];
@@ -108,7 +96,6 @@ export const updateIndex = () =>{
         godsIndexes,
         monsterIndexes,
         continentIndexes,
-        spheresIndexes,
         dungeonIndexes,
         artefactIndexes,
         signIndexes]);

@@ -1,33 +1,23 @@
 <script lang="ts">
     import {Table} from "./table.ts";
-    import {characters, currentChar} from "../entites/character/charStore";
+    import {addNewNSCToCharacterStore} from "../entites/character/charStore";
     import Modal from "../components/Modal.svelte";
     import {TableType} from "./tableType";
-    import {
-        applyLocationEntryFunctions,
-        applyLocationTableFunctions,
-        continentStore,
-        currentLocation
-    } from "../entites/site/siteStore";
-    import {Site} from "../entites/site/site";
     import Entry from "./Entry.svelte";
     import {RoleResult} from "./roleResult";
     import {CharacterFactory} from "../entites/character/characterFactory";
+    import {ContinentFactory} from "../entites/continent/continentFactory";
+    import {addNewContinentToStore} from "../entites/continent/continentStore";
 
     export let table : Table;
 
     function handleAdd(){
         if(table.tableType === TableType.Character){
-            let character = new CharacterFactory().withTable(table,roleResult).create();
-            $characters.push(character)
+            addNewNSCToCharacterStore(new CharacterFactory().withTable(table,roleResult))
             isModalVisible = false;
         }
         if(table.tableType === TableType.Location){
-            $currentLocation = new Site();
-            applyLocationTableFunctions(roleResult,table,$currentLocation);
-            applyLocationEntryFunctions(roleResult,$currentLocation);
-
-            $continentStore.push($currentLocation)
+            addNewContinentToStore(new ContinentFactory().withTable(table,roleResult))
             isModalVisible = false;
         }
         isModalVisible = false;

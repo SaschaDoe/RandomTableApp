@@ -3,14 +3,14 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {NaturalEvents} from "./naturalEvents";
-import {addNSCToCharacterStore} from "../../entites/character/charStore";
+import {addNewNSCToCharacterStore} from "../../entites/character/charStore";
 
 export class HistoricalEventTable extends Table{
     constructor(){
         let entries = [] as TableEntry[];
         entries.push(new TableEntry("battle between fractions"))
         entries.push(new TableEntry("contract between fractions"))
-        entries.push(new TableEntry("new ruler").withFunctionString(addNSCToCharacterStore))
+        entries.push(new TableEntry("new ruler").withFunctionString(addNewNSCToCharacterStore))
         entries.push(new TableEntry("").withCascadingRole(new NaturalEvents()))
         entries.push(new TableEntry("science"))
         entries.push(new TableEntry("destruction town or fraction"))

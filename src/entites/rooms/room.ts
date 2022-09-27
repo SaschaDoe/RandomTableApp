@@ -21,4 +21,14 @@ export class Room{
         this.characters = roomBuilder.roomCharacters;
     }
 
+    isEmpty(){
+        return this.treasures.length === 0 &&
+            this.furnishing.length === 0 &&
+            this.obstacles.length === 0 &&
+            this.traps.length === 0 &&
+            this.monsters.length === 0 &&
+            this.characters.length === 0;
+
+    }
+
 }

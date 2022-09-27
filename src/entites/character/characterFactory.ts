@@ -5,15 +5,11 @@ import {TableTitles} from "../../tables/tableTitles";
 import {isMagicalProfession} from "../../tables/charTables/magicUserProfessions";
 import type {Character} from "./character";
 import type {Continent} from "../continent/continent";
-import type {Table} from "../../tables/table";
-import type {Factory} from "../factory";
-import type {RoleResult} from "../../tables/roleResult";
+import {Factory} from "../factory";
 import {RelationshipTypeTable} from "../../tables/charTables/relationshipTypeTable";
 import {RelationshipType} from "./relationshipType";
 import {Relationship} from "./relationship";
 import {ContinentFactory} from "../continent/continentFactory";
-import {Dice} from "../../utils/dice";
-import {DiceRole} from "../../tables/diceRole";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -31,10 +27,7 @@ export let magicalTalentHigherPowerMinInterval = 3
 export let magicalTalentHigherPowerMaxInterval = 7
 export let magicalTalentMaxInterval = 3;
 
-export class CharacterFactory implements Factory{
-    tableRoller: TableRoller;
-    random: Random;
-
+export class CharacterFactory extends Factory{
     characterAlignment = "";
     characterName = "";
     characterGender = "";
@@ -56,6 +49,7 @@ export class CharacterFactory implements Factory{
         tableRoller = new TableRoller(),
         random = new Random()
     ) {
+        super(tableRoller,random);
         this.tableRoller = tableRoller
         this.random = random
 
@@ -110,14 +104,7 @@ export class CharacterFactory implements Factory{
             .build()
     }
 
-    withTable(table: Table, roleResult: RoleResult){
-        for(let i = 0; i < table.functions.length; i++){
-            let fnk = table.functions[i];
-            fnk(this, roleResult);
-        }
 
-        return this;
-    }
 
     private ensureMagicalUserHasAtLeastOneMagicalTalent() {
         if (isMagicalProfession(this.characterProfession) && this.charMagicalTalents.length < 1) {
@@ -187,16 +174,6 @@ export class CharacterFactory implements Factory{
     addMagicalTalent(){
         this.charMagicalTalents.push(this.tableRoller.roleFor(TableTitles.MagicalTalent).text)
         return this;
-    }
-
-    private setNonMandatory(minInterval: number, maxInterval: number, charAttribute: string[], tableTitle: TableTitles) {
-        let numberOfAdvantages = this.random.intFromInterval(minInterval,maxInterval);
-        if(numberOfAdvantages <= 0 && minInterval === 1){
-            numberOfAdvantages = 0;
-        }
-        for(let i = 0; i < numberOfAdvantages; i++){
-            charAttribute.push(this.tableRoller.roleFor(tableTitle).text);
-        }
     }
 
     withNobility(nobility: string) {

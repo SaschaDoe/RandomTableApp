@@ -1,30 +1,25 @@
 <script lang="ts">
-    import {dungeonStore} from "../entites/site/dungeonStore";
     import {updateIndex} from "./updateSummaryIndex";
-    import {DungeonFactory} from "../entites/dungeons/dungeonFactory";
     import {Continent} from "../entites/continent/continent";
+    import {addDungeonToStore} from "../entites/dungeons/dungeonStore";
 
     export let continent : Continent;
     let dungeons = [];
     let handleAddDungeon = () => {
-        let dungeon = new DungeonFactory().create();
+        let dungeon = addDungeonToStore()
         continent.dungeons.push(dungeon)
-        dungeonStore.update(dungeonStore => {
-            dungeonStore.push(dungeon)
-            return dungeonStore;
-        })
         dungeons = continent.dungeons;
         updateIndex();
     };
 </script>
 <h1>{continent.getUniqueName()}</h1>
 <p>{continent.description}</p>
-{#if continent.localSpheres.length > 0}
+{#if continent.spheres.length > 0}
 <div>Spheres:</div>
 {/if}
 <ul>
-{#each continent.localSpheres as sphere}
-    <li><a href={"#"+sphere.getUniqueName()}>{sphere.name}</a></li>
+{#each continent.spheres as sphere}
+    <li>{sphere}</li>
 {/each}
 </ul>
 <button on:click={handleAddDungeon}>Add Dungeon</button>
