@@ -84,4 +84,7 @@ export enum TableTitles{
     Colour = "Colour",
     ProfaneTalent = "Profane Talent",
     ProfaneArtefact = "ProfaneArtefact",
+    Artwork = "Artwork",
+    Landscape = "Landscape",
+    Position = "Position",
 }

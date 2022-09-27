@@ -8,13 +8,15 @@ export let characters = writable([] as Character[]);
 export let higherPowerBeingsStore = writable([] as Character[]);
 export let currentChar = writable(Character);
 
+export function addNewNSCToCharacterStoreReturnUniqueName(characterFactory = new CharacterFactory()){
+    let char = addNewNSCToCharacterStore(characterFactory)
+    return char.getUniqueName();
+}
+
 export function addNewNSCToCharacterStore(characterFactory = new CharacterFactory()){
     let character = characterFactory.create();
     addNSCToCharacterStore(character);
-
-    addContinentToStore(character.homeContinent);
-
-    return character.getUniqueName();
+    return character;
 }
 
 export function addNSCToCharacterStore(char: Character){
@@ -22,7 +24,9 @@ export function addNSCToCharacterStore(char: Character){
         characterStore.push(char);
         return characterStore;
     })
+    addContinentToStore(char.homeContinent);
     updateIndex();
+
 }
 
 export function addNSCsToCharacterStore(chars: Character[]){

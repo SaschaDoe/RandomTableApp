@@ -3,7 +3,6 @@ import {Random} from "../../utils/randomUtils";
 import {generateContinentName} from "../../tables/nameTables/nameGenerator";
 import {TableTitles} from "../../tables/tableTitles";
 import {DungeonBuilder} from "./dungeonBuilder";
-import {DungeonEntriesTable} from "../../tables/locationTables/dungeonEntriesTable";
 import type {Room} from "../rooms/room";
 
 export class DungeonFactory{

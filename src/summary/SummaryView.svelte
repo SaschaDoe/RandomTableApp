@@ -1,6 +1,6 @@
 <script lang="ts">
     import {
-        addNewNSCToCharacterStore,
+        addNewNSCToCharacterStoreReturnUniqueName,
         addNSCsToCharacterStore,
         characters,
         higherPowerBeingsStore
@@ -17,11 +17,12 @@
     import {otherStore} from "../entites/otherStore.js";
     import OtherView from "./OtherView.svelte";
     import {addDungeonToStore} from "../entites/dungeons/dungeonStore";
-    import {SignFactory} from "../entites/signs/signFactory";
-    import {AddSignToStore} from "../entites/signs/signStore";
+    import {addNewSignToStore} from "../entites/signs/signStore";
     import {dungeonStore} from "../entites/dungeons/dungeonStore.js";
     import {continentStore} from "../entites/continent/continentStore.js";
     import {CharacterFactory} from "../entites/character/characterFactory";
+    import {signStore} from "../entites/signs/signStore.js";
+    import SignView from "./SignView.svelte";
 
     let sizeOfParty = 1;
 
@@ -31,7 +32,7 @@
     }
 
     let addNSC = () => {
-        addNewNSCToCharacterStore();
+        addNewNSCToCharacterStoreReturnUniqueName();
         updateIndex()
     };
     let addArtefactForView= () => {
@@ -48,8 +49,7 @@
         updateIndex()
     }
     let addSign = () => {
-        let sign = new SignFactory().create();
-        AddSignToStore(sign);
+        addNewSignToStore()
         updateIndex()
     };
 
@@ -97,6 +97,12 @@
 {#each $artefactStore as artefact}
     <div id={artefact.getUniqueName()}>
         <ArtefactView artefact={artefact} />
+    </div>
+{/each}
+
+{#each $signStore as sign}
+    <div id={sign.getUniqueName()}>
+        <SignView sign={sign} />
     </div>
 {/each}
 

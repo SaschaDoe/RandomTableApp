@@ -5,9 +5,13 @@ import {updateIndex} from "../../summary/updateSummaryIndex";
 export let monsterStore = writable([] as Monster[]);
 
 export function addNewMonsterToStoreReturnUniqueName(){
+    return addNewMonsterToStore().getUniqueName();
+}
+
+export function addNewMonsterToStore(){
     let monster = new Monster();
     addMonsterInStore(monster);
-    return monster.getUniqueName();
+    return monster;
 }
 
 export function addMonsterInStore(monster: Monster){

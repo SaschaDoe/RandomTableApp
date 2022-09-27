@@ -30,10 +30,10 @@ import {RarityTable} from "./otherTables/rarityTable";
 import {QualityTable} from "./otherTables/qualityTable";
 import {BodyPartsTable} from "./otherTables/bodyPartsTable";
 import {ElementTable} from "./otherTables/elementTable";
-import {StructureTable} from "./locationTables/structureTable";
+import {StructureTable} from "./dungeonTables/structureTable";
 import {BuildingTable} from "./locationTables/buildingTable";
 import {BuildingAdjectiveTable} from "./locationTables/buildingAdjectiveTable";
-import {DungeonEntriesTable} from "./locationTables/dungeonEntriesTable";
+import {DungeonEntriesTable} from "./dungeonTables/dungeonEntriesTable";
 import {DungeonNameTable} from "./nameTables/dungeonNameTable";
 import {EpicSubstantiveTable} from "./nameTables/epicSubstantiveTable";
 import {TalentTable} from "./talentTables/talentTable";
@@ -55,13 +55,13 @@ import {HealingTalentTable} from "./talentTables/healingTalentTable";
 import {ObjectEnchantmentTable} from "./talentTables/objectEnchantmentTable";
 import {ArtefactAdjectiveTable} from "./artefactTables/artefactAdjectiveTable";
 import {TreasureTable} from "./artefactTables/treasureTable";
-import {FurnishingTable} from "./locationTables/furnishingTable";
+import {FurnishingTable} from "./dungeonTables/furnishingTable";
 import {WeatherTable} from "./otherTables/weatherTable";
-import {ObstacleTable} from "./locationTables/obstacleTable";
-import {TrapTriggerTable} from "./locationTables/trapTriggerTable";
-import {NaturalObstacleTable} from "./locationTables/naturalObstacleTable";
-import {TrapFunctionTable} from "./locationTables/trapFunctionTable";
-import {TrapTable} from "./locationTables/trapTable";
+import {ObstacleTable} from "./dungeonTables/obstacleTable";
+import {TrapTriggerTable} from "./dungeonTables/trapTriggerTable";
+import {NaturalObstacleTable} from "./dungeonTables/naturalObstacleTable";
+import {TrapFunctionTable} from "./dungeonTables/trapFunctionTable";
+import {TrapTable} from "./dungeonTables/trapTable";
 import {MonsterAdjectiveTable} from "./monsterTables/monsterAdjectiveTable";
 import {MonsterNumberTable} from "./monsterTables/monsterNumberTable";
 import {MonsterReproductionTable} from "./monsterTables/monsterReproductionTable";
@@ -78,6 +78,9 @@ import {TownSizeTable} from "./townTables/townSizeTable";
 import {TownFameTable} from "./townTables/townFameTable";
 import {ColourTable} from "./otherTables/colourTable";
 import {ProfaneArtefactTable} from "./artefactTables/profaneArtefactTable";
+import {ArtworkTable} from "./artefactTables/artworkTable";
+import {LandscapeTable} from "./locationTables/landscapeTable";
+import {PositionTable} from "./otherTables/positionTable";
 
 export let charTables = [
     new RaceTable(),
@@ -124,16 +127,19 @@ export let talentTables = [
 export let locationTables = [
     new ContinentTable(),
     new SphereTable(),
-    new StructureTable(),
-    new DungeonEntriesTable(),
     new BuildingTable(),
     new BuildingAdjectiveTable(),
+    new LandscapeTable(),
+]
+export let dungeonTables = [
     new FurnishingTable(),
     new ObstacleTable(),
     new TrapTriggerTable(),
     new NaturalObstacleTable(),
     new TrapFunctionTable(),
     new TrapTable(),
+    new StructureTable(),
+    new DungeonEntriesTable(),
 ]
 export let townTables = [
     new TownEventTable(),
@@ -151,6 +157,7 @@ export let artefactsTables = [
     new GemstoneTable(),
     new MaterialsTable(),
     new ProfaneArtefactTable(),
+    new ArtworkTable(),
 ]
 export let nameTables = [
     new DungeonNameTable(),
@@ -172,6 +179,7 @@ export let otherTables = [
     new ElementTable(),
     new EmotionTable(),
     new NaturalEvents(),
+    new PositionTable(),
     new HistoricalEventTable,
     new ColourTable(),
 ]
@@ -180,6 +188,7 @@ export let allTables = charTables
     .concat(monsterTables)
     .concat(talentTables)
     .concat(locationTables)
+    .concat(dungeonTables)
     .concat(townTables)
     .concat(artefactsTables)
     .concat(nameTables)

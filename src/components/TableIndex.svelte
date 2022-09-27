@@ -2,16 +2,16 @@
     import Index from "./Index.svelte";
     import {
         artefactsTables,
-        charTables,
+        charTables, dungeonTables,
         locationTables, monsterTables,
         nameTables,
         otherTables,
         talentTables, townTables
     } from "../tables/tableList";
 
-    export let headings = ["Character","Monster","Talent", "Location", "Town", "Artefact", "Name", "Other"];
+    export let headings = ["Character","Monster","Talent", "Location", "Dungeon", "Town", "Artefact", "Name", "Other"];
 
-    export let indexes = [charTables,monsterTables,talentTables,locationTables,townTables,artefactsTables,nameTables, otherTables]
+    export let indexes = [charTables,monsterTables,talentTables,locationTables,dungeonTables,townTables,artefactsTables,nameTables, otherTables]
 
     let toggleShowIndex = () => {
         showIndex = !showIndex;

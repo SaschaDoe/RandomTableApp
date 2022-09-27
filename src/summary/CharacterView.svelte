@@ -83,7 +83,7 @@
         {/each}
     </ul>
 
-    <button class="left" on:click={handleAddMagicalTalent()}>+</button>
+    <button class="left" on:click={handleAddMagicalTalent}>+</button>
     <div class="bold">Magical Talents:</div>
     <ul>
         {#each character.magicalTalents as talent}

@@ -15,9 +15,7 @@ export function addArtefactToStore(artefact: Artefact){
 }
 
 export function addNewArtefactToStore(){
-    let artefact = addArtefactToStore(new ArtefactFactory().create());
-    addArtefactToStore(artefact);
-    return artefact;
+    return addArtefactToStore(new ArtefactFactory().create());
 }
 
 export function addArtefactToStoreReturnUniqueName(){

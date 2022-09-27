@@ -4,6 +4,7 @@ import {TableRoller} from "./tableRoler";
 import {RoleResult} from "./roleResult";
 import {Table} from "./table";
 import {AllTablesMap} from "./allTablesMap";
+import {Dice} from "../utils/dice";
 
 describe("TableRoller", () => {
 
@@ -61,5 +62,9 @@ class FakeTable extends Table{
         }else{
             throw Error(`Not enough results just ${this.results.length}`);
         }
+    }
+
+    roleWithCascade(dice: Dice = new Dice()): RoleResult {
+        return this.role();
     }
 }

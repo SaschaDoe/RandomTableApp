@@ -1,6 +1,6 @@
 <script lang="ts">
     import {Table} from "./table.ts";
-    import {addNewNSCToCharacterStore} from "../entites/character/charStore";
+    import {addNewNSCToCharacterStoreReturnUniqueName} from "../entites/character/charStore";
     import Modal from "../components/Modal.svelte";
     import {TableType} from "./tableType";
     import Entry from "./Entry.svelte";
@@ -13,7 +13,7 @@
 
     function handleAdd(){
         if(table.tableType === TableType.Character){
-            addNewNSCToCharacterStore(new CharacterFactory().withTable(table,roleResult))
+            addNewNSCToCharacterStoreReturnUniqueName(new CharacterFactory().withTable(table,roleResult))
             isModalVisible = false;
         }
         if(table.tableType === TableType.Location){

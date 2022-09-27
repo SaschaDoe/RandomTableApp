@@ -2,8 +2,8 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import {BuildingAdjectiveTable} from "./buildingAdjectiveTable";
-import {BuildingTable} from "./buildingTable";
+import {BuildingAdjectiveTable} from "../locationTables/buildingAdjectiveTable";
+import {BuildingTable} from "../locationTables/buildingTable";
 
 export class DungeonEntriesTable extends Table{
     constructor(){

@@ -2,8 +2,6 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {Gender} from "./gender";
-import type {Character} from "../../entites/character/character";
-import type {RoleResult} from "../roleResult";
 import {DiceRole} from "../diceRole";
 
 export class GenderTable extends Table {
@@ -18,12 +16,6 @@ export class GenderTable extends Table {
         entries.push(new TableEntry(Gender.Genderless)
             .withRoleInterval(18, 18));
         super(entries,TableTitles.Gender)
-        this.functions.push(changeGender)
         this.diceRole = new DiceRole().withNumberOfDice(3);
     }
-}
-
-function changeGender(char: Character, roleResult: RoleResult){
-    char.gender = roleResult.text;
-    return char;
 }

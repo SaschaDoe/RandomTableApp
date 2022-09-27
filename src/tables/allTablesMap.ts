@@ -16,12 +16,12 @@ import {TalentTable} from "./talentTables/talentTable";
 import {RarityTable} from "./otherTables/rarityTable";
 import {MagicalTalentTable} from "./talentTables/magicalTalentTable";
 import {ContinentTable} from "./locationTables/continentTable";
-import {StructureTable} from "./locationTables/structureTable";
-import {DungeonEntriesTable} from "./locationTables/dungeonEntriesTable";
+import {StructureTable} from "./dungeonTables/structureTable";
+import {DungeonEntriesTable} from "./dungeonTables/dungeonEntriesTable";
 import {TreasureTable} from "./artefactTables/treasureTable";
-import {FurnishingTable} from "./locationTables/furnishingTable";
-import {ObstacleTable} from "./locationTables/obstacleTable";
-import {TrapTable} from "./locationTables/trapTable";
+import {FurnishingTable} from "./dungeonTables/furnishingTable";
+import {ObstacleTable} from "./dungeonTables/obstacleTable";
+import {TrapTable} from "./dungeonTables/trapTable";
 import {MonsterEncounterTypeTable} from "./monsterTables/monsterEncounterTypeTable";
 import {QualityTable} from "./otherTables/qualityTable";
 import {MaterialsTable} from "./artefactTables/materialsTable";
@@ -29,6 +29,12 @@ import {ArtefactTable} from "./artefactTables/artefactTable";
 import {ProfaneTalentTable} from "./talentTables/profaneTalentTable";
 import {SphereTable} from "./locationTables/sphereTable";
 import {ProfaneArtefactTable} from "./artefactTables/profaneArtefactTable";
+import {ColourTable} from "./otherTables/colourTable";
+import {ArtworkTable} from "./artefactTables/artworkTable";
+import {LandscapeTable} from "./locationTables/landscapeTable";
+import {PositionTable} from "./otherTables/positionTable";
+import {HistoricalEventTable} from "./otherTables/historicalEventTable";
+import {BuildingTable} from "./locationTables/buildingTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -78,6 +84,12 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.ProfaneTalent, new ProfaneTalentTable());
         this.allTablesMap.set(TableTitles.Sphere, new SphereTable());
         this.allTablesMap.set(TableTitles.ProfaneArtefact, new ProfaneArtefactTable());
+        this.allTablesMap.set(TableTitles.Artwork, new ArtworkTable());
+        this.allTablesMap.set(TableTitles.Colour, new ColourTable());
+        this.allTablesMap.set(TableTitles.Landscape, new LandscapeTable());
+        this.allTablesMap.set(TableTitles.Position, new PositionTable());
+        this.allTablesMap.set(TableTitles.HistoricalEvent, new HistoricalEventTable());
+        this.allTablesMap.set(TableTitles.Building, new BuildingTable());
     }
 }
 

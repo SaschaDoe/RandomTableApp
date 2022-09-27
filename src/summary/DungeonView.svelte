@@ -78,6 +78,17 @@
                     {/each}
                 </ul>
             {/if}
+            {#if room.artworks.length > 0}
+                <div>Artworks:</div>
+                <ul>
+                    {#each room.artworks as artwork, index}
+                        <li>
+                            <a href={"#"+artwork.getUniqueName()}>{artwork.getUniqueName()}</a>
+                            <div>{artwork.toString()}</div>
+                        </li>
+                    {/each}
+                </ul>
+            {/if}
         </li>
     {/each}
 </ul>

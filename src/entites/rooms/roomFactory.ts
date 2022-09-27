@@ -3,6 +3,8 @@ import {Random} from "../../utils/randomUtils";
 import {TableTitles} from "../../tables/tableTitles";
 import {RoomBuilder} from "./roomBuilder";
 import {Monster} from "../monster/monster";
+import type {Sign} from "../signs/sign";
+import {SignFactory} from "../signs/signFactory";
 
 export const treasureMinInterval = -5;
 export const treasureMaxInterval = 3;
@@ -14,6 +16,8 @@ export const trapsMinInterval = -3;
 export const trapsMaxInterval = 3;
 export const monsterMinInterval = -3;
 export const monsterMaxInterval = 2;
+export const artworkMinInterval = -3;
+export const artworkMaxInterval = 1;
 
 export class RoomFactory{
     private tableRoller: TableRoller;
@@ -25,7 +29,7 @@ export class RoomFactory{
     roomTraps: string[];
     roomEncounters: string[];
     roomMonsters: Monster[];
-
+    roomArtworks: Sign[];
 
     constructor(
         tableRoller = new TableRoller(),
@@ -39,13 +43,25 @@ export class RoomFactory{
         this.roomTraps = [];
         this.roomEncounters = [];
         this.roomMonsters = [];
+        this.roomArtworks = [];
 
         this.setNonMandatory(treasureMinInterval, treasureMaxInterval, this.roomTreasures, TableTitles.Treasure);
         this.setNonMandatory(furnishingMinInterval, furnishingMaxInterval, this.roomFurnishing, TableTitles.Furnishing);
         this.setNonMandatory(obstacleMinInterval, obstacleMaxInterval, this.roomObstacles, TableTitles.Obstacle);
         this.setNonMandatory(trapsMinInterval, trapsMaxInterval, this.roomTraps, TableTitles.Trap);
 
+        this.setArtworks();
         this.setMonsterEncounters();
+    }
+
+    private setArtworks() {
+        let number = this.random.intFromInterval(artworkMinInterval, artworkMaxInterval);
+        if (number <= 0) {
+            number = 0;
+        }
+        for (let i = 0; i < number; i++) {
+            this.roomArtworks.push(new SignFactory().create());
+        }
     }
 
     private setMonsterEncounters() {
@@ -76,6 +92,7 @@ export class RoomFactory{
             .withTraps(this.roomTraps)
             .withEncounters(this.roomEncounters)
             .withMonsters(this.roomMonsters)
+            .withArtworks(this.roomArtworks)
             .build();
     }
 }

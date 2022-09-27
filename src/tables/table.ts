@@ -116,7 +116,7 @@ export class Table {
                 }
             }
             catch(e){
-                throw Error(`${roleResult.fullText} role hast thrown this error: ${e}`);
+                return fullText;
             }
 
         }
