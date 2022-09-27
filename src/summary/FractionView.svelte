@@ -5,6 +5,7 @@
 </script>
 
 <h1>{fraction.getUniqueName()}</h1>
+<div>{fraction.alignment}</div>
 <div>{"Size: "+fraction.size}</div>
 <div>{"Wealth: "+fraction.wealth}</div>
 <div>{"Influence: "+fraction.influence}</div>

@@ -1,5 +1,13 @@
-let id = 0;
+import {writable} from "svelte/store";
+
+
+export let idStore = writable(0);
 export function getId(){
-    id++;
+    let id = 0;
+    idStore.update(idStore => {
+        id = idStore;
+        idStore++;
+        return idStore;
+    })
     return id;
 }

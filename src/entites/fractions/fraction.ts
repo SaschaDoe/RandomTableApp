@@ -9,6 +9,7 @@ import {Random} from "../../utils/randomUtils";
 import {TalentTable} from "../../tables/talentTables/talentTable";
 import {addNewSignToStore, addSignToStore} from "../signs/signStore";
 import type {Sign} from "../signs/sign";
+import {AlignmentTable} from "../../tables/charTables/alignmentTable";
 
 export class Fraction extends Entity{
     leader: Character;
@@ -20,10 +21,12 @@ export class Fraction extends Entity{
     quests: string[];
     associatedTalent: string;
     sign: Sign;
+    alignment: string;
 
     constructor() {
         let name = generateFractionName();
         super(name)
+        this.alignment = new AlignmentTable().roleWithCascade().text;
         this.sign = addNewSignToStore();
         this.leader = addNewNSCToCharacterStore();
         this.size = new SizeTable().roleWithCascade().text;
