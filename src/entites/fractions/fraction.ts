@@ -7,7 +7,7 @@ import {FractionWealthTable} from "../../tables/otherTables/fractionWealthTable"
 import {MotivationTable} from "../../tables/charTables/motivationTable";
 import {Random} from "../../utils/randomUtils";
 import {TalentTable} from "../../tables/talentTables/talentTable";
-import {addNewSignToStore, addSignToStore} from "../signs/signStore";
+import {addNewSignToStore} from "../signs/signStore";
 import type {Sign} from "../signs/sign";
 import {AlignmentTable} from "../../tables/charTables/alignmentTable";
 
@@ -36,10 +36,6 @@ export class Fraction extends Entity{
         this.associatedTalent = new TalentTable().roleWithCascade().text;
         this.quests = [];
         this.members = [];
-            let randomNumberOfMembers = new Random().intFromInterval(1,3);
-        for(let i = 0; i < randomNumberOfMembers; i++){
-            this.members.push(addNewNSCToCharacterStore());
-        }
     }
 
 }

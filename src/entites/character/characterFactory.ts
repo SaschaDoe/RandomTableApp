@@ -251,6 +251,11 @@ export class CharacterFactory extends Factory{
         return charFactory.create();
 
     }
+
+    withMembership(fraction: Fraction) {
+        this.characterFractions.push(fraction);
+        return this;
+    }
 }
 
 

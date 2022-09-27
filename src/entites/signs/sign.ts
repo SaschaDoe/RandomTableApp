@@ -105,7 +105,7 @@ export class Sign extends Entity{
             if(i > 0){
                 description += ` and on the`
             }
-            description += `${this.buildings[i][1]} is ${this.buildings[i][0]}`
+            description += ` ${this.buildings[i][1]} is ${this.buildings[i][0]}`
             if(i === this.buildings.length-1){
                 description += "."
             }
