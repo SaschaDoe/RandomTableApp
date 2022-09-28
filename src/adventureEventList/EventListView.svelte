@@ -4,19 +4,13 @@
     import {AdventurePhases} from "../tables/adventureTables/adventurePhases";
 
     let handleAddEvent = ()=>{
-       addEventToStore()
-    };
-    let handleReset = () => {
         resetEventList();
+        addEventToStore()
     };
 </script>
 
-{#if $currentAdventurePhase === AdventurePhases.End}
-    <button class="flying left not-allowed" >Add Event</button>
-{:else}
-    <button class="flying left" on:click={handleAddEvent}>Add Event</button>
-{/if}
-<button class="flying right" on:click={handleReset}>Reset List</button>
+<button class="flying left" on:click={handleAddEvent}>New Event List</button>
+
 <ul>
     {#each $eventList as event}
         <li>{event}</li>

@@ -7,6 +7,8 @@ import {AdventureClimaxTable} from "../tables/adventureTables/adventureClimaxTab
 import {NarrationTable} from "../tables/adventureTables/narrationTable";
 import {AdventureFinalTable} from "../tables/adventureTables/adventureFinalTable";
 import {EndingTropeTable} from "../tables/adventureTables/endingTropeTable";
+import {BeginningTropeTable} from "../tables/adventureTables/beginningTropeTable";
+import {addDungeonToStoreReturnUniqueName} from "../entites/dungeons/dungeonStore";
 
 export let adventurePhase = "Beginning";
 export let eventList = writable( [adventurePhase]);
@@ -14,13 +16,15 @@ export let currentAdventurePhase = writable(adventurePhase);
 
 export function addEventToStore(){
     eventList.update(events =>{
-        events.push(new AdventureEventTable().roleWithCascade().text);
+        while(adventurePhase !== AdventurePhases.End){
+            events.push(new AdventureEventTable().roleWithCascade().text);
+        }
         return events;
     })
 }
 let adventurePhaseIndex = 0;
 export function resetEventList(){
-    eventList.set([]);
+    eventList.set([AdventurePhases.Beginning]);
     currentAdventurePhase.set(AdventurePhases.Beginning);
     adventurePhase = AdventurePhases.Beginning;
     count = 0;
@@ -45,21 +49,25 @@ export let count = 0;
 export function getTrope(){
 
     if(adventurePhase.valueOf()  === AdventurePhases.Beginning){
-        if(count > 3){
+        if(count === 0){
+            count++
+            return addDungeonToStoreReturnUniqueName();
+        }
+        if(count > 4){
             return setNextAdventurePhase();
         }
-        if(probabilityCheck(30) && count > 0){
+        if(probabilityCheck(30) && count > 1){
             return setNextAdventurePhase()
         }
         count++
-        return new ConflictTropeTable().roleWithCascade().text;
+        return new BeginningTropeTable().roleWithCascade().text;
     }
 
     if(adventurePhase.valueOf()  === AdventurePhases.Exposition){
-        if(count > 6){
+        if(count > 7){
             return setNextAdventurePhase();
         }
-        if(probabilityCheck(30) && count > 4){
+        if(probabilityCheck(30) && count > 5){
             return setNextAdventurePhase()
         }
         count++
@@ -70,7 +78,7 @@ export function getTrope(){
         if(count > 10){
             return setNextAdventurePhase();
         }
-        if(probabilityCheck(30) && count > 7){
+        if(probabilityCheck(30) && count > 8){
             return setNextAdventurePhase()
         }
         count++
