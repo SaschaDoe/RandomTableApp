@@ -12,6 +12,6 @@ export function randomIntFromInterval(min : number, max : number) { // min and m
 
 export function probabilityCheck(probability : number) {
     let randomNumber = randomIntFromInterval(0, 100);
-    return randomNumber > 0 && randomNumber < probability;
+    return randomNumber > -1 && randomNumber <= probability;
 
 }

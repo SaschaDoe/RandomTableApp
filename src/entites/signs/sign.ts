@@ -70,6 +70,8 @@ export class Sign extends Entity{
             return description;
         }
 
+        description += ` It shows ${this.landscape}.`
+
         for(let i = 0; i < this.characters.length; i++){
             if(i === 0){
                 description += ` On the`

@@ -84,27 +84,34 @@ export class Table {
             let additionalText = entry[2];
             let isInProbability = probabilityCheck(probability);
             let castedString = "";
+            let newText = ""
+            let functionReturnsString
+            let whereWasI = "";
             try {
                 castedString= table.toString();
                 if(isInProbability){
-                    let newText = "";
+
                     if(castedString === "self"){
+                        whereWasI = "self"
                         newText = this.roleWithCascade(dice).text;
                         if(newText === "" || newText === " "){
                             new Error(`error in self with ${roleResult.fullText}`)
                         }
                     }else if (table instanceof Table) {
+                        whereWasI = "table"
                         newText = table.roleWithCascade(dice).text;
                         if(newText === "" || newText === " "){
                             new Error(`error in table with ${roleResult.fullText}`)
                         }
                     }else if(typeof table === 'string'){
+                        whereWasI = "string"
                         newText = table.toString();
                         if(newText === "" || newText === " "){
                             new Error(`error in string with ${roleResult.fullText}`)
                         }
                     } else{
-                        let functionReturnsString = table as (() => string);
+                        whereWasI = "funktion"
+                        functionReturnsString = table as (() => string);
                         newText = functionReturnsString();
                         if(newText === "" || newText === " "){
                             new Error(`error in functionstring with ${roleResult.fullText}`)
@@ -118,8 +125,8 @@ export class Table {
             catch(e){
                 return fullText;
             }
-
         }
+
         return fullText;
     }
 

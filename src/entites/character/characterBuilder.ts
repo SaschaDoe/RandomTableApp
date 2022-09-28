@@ -23,6 +23,7 @@ export class CharacterBuilder{
     charArtefacts: Artefact[];
     charMagicalTalents: string[];
     charMemberOfFraction: Fraction[];
+    charTrope: string | undefined;
 
 
 
@@ -124,6 +125,11 @@ export class CharacterBuilder{
     withFraction(fractions: Fraction[]){
         this.charMemberOfFraction = this.charMemberOfFraction.concat(fractions);
 
+        return this;
+    }
+
+    withTrope(trope: string){
+        this.charTrope = trope;
         return this;
     }
 }

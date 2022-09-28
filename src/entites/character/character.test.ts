@@ -29,7 +29,8 @@ describe("Character", () => {
             .withProfession("soldier")
             .withRace("human")
             .withContinent(continent)
-            .withIsHigherPower(false);
+            .withIsHigherPower(false)
+            .withTrope("superman");
 
         characterWithoutLists = characterBuilder.build();
 
@@ -72,6 +73,8 @@ describe("Character", () => {
         expect(characterWithoutLists.motivation).toBe("to protect the earth");
         expect(characterWithoutLists.profession).toBe("soldier");
         expect(characterWithoutLists.race).toBe("human");
+        expect(characterWithoutLists.trope).toBe("superman");
+
         expect(characterWithoutLists.isHigherPower).toBe(false);
         expect(characterWithoutLists.homeContinent).toBe(continent);
         expect(characterWithoutLists.curses.length).toBe(0);

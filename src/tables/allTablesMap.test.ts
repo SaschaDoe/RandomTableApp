@@ -42,6 +42,8 @@ import {FractionQuestTable} from "./otherTables/fractionQuestTable";
 import {CraftTable} from "./talentTables/craftTable";
 import {AthleticsTalentTable} from "./talentTables/athleticsTalentTable";
 import {ArtistTalentTable} from "./talentTables/artistTalentTable";
+import {AdventureEventTable} from "./adventureTables/adventureEventTable";
+import {CharacterAsDeviceTable} from "./charTables/characterAsDeviceTable";
 
 describe("AllTablesMap", () => {
 
@@ -116,5 +118,7 @@ function testInput(){
         [TableTitles.CraftTalent, CraftTable],
         [TableTitles.AthleticsTalent, AthleticsTalentTable],
         [TableTitles.ArtistTalent, ArtistTalentTable],
+        [TableTitles.AdventureEvent, AdventureEventTable],
+        [TableTitles.CharacterAsDevice, CharacterAsDeviceTable],
     ]
 }

@@ -17,6 +17,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     motivation: string;
     profession: string;
     race : string;
+    trope: string;
 
     memberOfFraction: Fraction[];
     readonly advantages: string[];
@@ -85,6 +86,11 @@ export class Character extends AttributeEntity implements Equatable<Character>{
             throw Error("Character isHigherPower must be set");
         }
         this.isHigherPower = characterBuilder.charHigherPower;
+
+        if(characterBuilder.charTrope === undefined){
+            throw Error("Character trope must be set");
+        }
+        this.trope = characterBuilder.charTrope;
 
         this.curses = characterBuilder.charCurses.slice();
         this.specialFeatures = characterBuilder.charSpecialFeatures.slice();

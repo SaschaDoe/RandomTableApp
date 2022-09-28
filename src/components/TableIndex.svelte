@@ -1,6 +1,7 @@
 <script>
     import Index from "./Index.svelte";
     import {
+        adventureTables,
         artefactsTables,
         charTables, dungeonTables,
         locationTables, monsterTables,
@@ -9,9 +10,9 @@
         talentTables, townTables
     } from "../tables/tableList";
 
-    export let headings = ["Character","Monster","Talent", "Location", "Dungeon", "Town", "Artefact", "Name", "Other"];
+    export let headings = ["Adventure","Character","Monster","Talent", "Location", "Dungeon", "Town", "Artefact", "Name", "Other"];
 
-    export let indexes = [charTables,monsterTables,talentTables,locationTables,dungeonTables,townTables,artefactsTables,nameTables, otherTables]
+    export let indexes = [adventureTables, charTables,monsterTables,talentTables,locationTables,dungeonTables,townTables,artefactsTables,nameTables, otherTables]
 
     let toggleShowIndex = () => {
         showIndex = !showIndex;

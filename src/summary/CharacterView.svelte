@@ -37,6 +37,10 @@
     <li class="inline bold no-list-style">Motivation: </li>
     <li class="inline no-list-style">{character.motivation}</li>
 </ul>
+<ul class="fix-list-left">
+    <li class="inline bold no-list-style">Trope: </li>
+    <li class="inline no-list-style">{character.trope}</li>
+</ul>
 <ul>
     <li>Courage: {character.courage}</li>
     <li>Charisma: {character.charisma}</li>

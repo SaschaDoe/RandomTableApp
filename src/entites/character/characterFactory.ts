@@ -50,6 +50,7 @@ export class CharacterFactory extends Factory{
     characterContinent: Continent|undefined;
     characterIsHigherPower = false;
     characterFractions: Fraction[] = [];
+    characterTrope = "";
 
     constructor(
         tableRoller = new TableRoller(),
@@ -109,6 +110,7 @@ export class CharacterFactory extends Factory{
             .withContinent(this.characterContinent)
             .withIsHigherPower(this.characterIsHigherPower)
             .withFraction(this.characterFractions)
+            .withTrope(this.characterTrope)
             .build()
 
         this.characterFractions.forEach(fraction => {
@@ -143,6 +145,7 @@ export class CharacterFactory extends Factory{
         this.characterMotivation = this.tableRoller.roleFor(TableTitles.Motivation).text;
         this.characterProfession = this.tableRoller.roleFor(TableTitles.Profession).text;
         this.characterNobility = this.tableRoller.roleFor(TableTitles.Nobility).text;
+        this.characterTrope = this.tableRoller.roleFor(TableTitles.CharacterAsDevice).text;
     }
 
     private setAllNonMandatory() {

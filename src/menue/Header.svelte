@@ -12,6 +12,7 @@
             <nav>
                 <button class="random-table-btn" on:click={() => $currentPage = Pages.RandomTablePage}>Random Tables</button>
                 <button class="summary-btn" on:click={() => {$currentPage = Pages.SummaryPage; updateIndex()}}>Summary</button>
+                <button class="eventList-btn" on:click={() => {$currentPage = Pages.AdventureEventList;}}>Event List</button>
             </nav>
         </div>
     </h1>
@@ -40,12 +41,17 @@
     }
     .random-table-btn{
         position: absolute;
-        left: 20%;
+        left: 10%;
         top: 10px;
     }
     .summary-btn{
         position: absolute;
-        left: 60%;
+        left: 45%;
+        top: 10px;
+    }
+    .eventList-btn{
+        position: absolute;
+        left: 70%;
         top: 10px;
     }
 </style>

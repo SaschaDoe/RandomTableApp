@@ -41,6 +41,8 @@ import {FractionQuestTable} from "./otherTables/fractionQuestTable";
 import {CraftTable} from "./talentTables/craftTable";
 import {AthleticsTalentTable} from "./talentTables/athleticsTalentTable";
 import {ArtistTalentTable} from "./talentTables/artistTalentTable";
+import {AdventureEventTable} from "./adventureTables/adventureEventTable";
+import {CharacterAsDeviceTable} from "./charTables/characterAsDeviceTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -102,6 +104,8 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.CraftTalent, new CraftTable());
         this.allTablesMap.set(TableTitles.AthleticsTalent, new AthleticsTalentTable());
         this.allTablesMap.set(TableTitles.ArtistTalent, new ArtistTalentTable());
+        this.allTablesMap.set(TableTitles.AdventureEvent, new AdventureEventTable());
+        this.allTablesMap.set(TableTitles.CharacterAsDevice, new CharacterAsDeviceTable());
     }
 }
 

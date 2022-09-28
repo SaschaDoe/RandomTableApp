@@ -22,6 +22,11 @@ export function addDungeonToStore(dungeonFactory = new DungeonFactory()){
     return dungeon;
 }
 
+export function addDungeonToStoreReturnUniqueName(){
+    let dungeon = addDungeonToStore();
+    return dungeon.getUniqueName();
+}
+
 export function addNewRoomTo(dungeon: Dungeon){
     let room = new RoomFactory().create();
     dungeon.rooms.push(room);

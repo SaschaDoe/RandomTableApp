@@ -88,10 +88,36 @@ import {CraftTable} from "./talentTables/craftTable";
 import {AthleticsTalentTable} from "./talentTables/athleticsTalentTable";
 import {ArtistTalentTable} from "./talentTables/artistTalentTable";
 import {ProfaneTalentTable} from "./talentTables/profaneTalentTable";
+import {AdventureEventTable} from "./adventureTables/adventureEventTable";
+import {BeginningTropeTable} from "./adventureTables/beginningTropeTable";
+import {CharacterAsDeviceTable} from "./charTables/characterAsDeviceTable";
+import {CharacterIntroductionTable} from "./adventureTables/characterIntroductionTable";
+import {ClimacticTropeTable} from "./adventureTables/climacticTrope";
+import {ConflictTropeTable} from "./adventureTables/conflictTropeTable";
+import {CharacterShadowArchetypeTable} from "./charTables/characterShadowArchetypeTable";
+import {EndingTropeTable} from "./adventureTables/endingTropeTable";
+import {PlotTropeTable} from "./adventureTables/plotTropeTable";
+import {NarrationTable} from "./adventureTables/narrationTable";
+import {AdventureBeginningTable} from "./adventureTables/adventureBeginningTable";
+import {AdventureFinalTable} from "./adventureTables/adventureFinalTable";
 
+export let adventureTables = [
+    new AdventureEventTable(),
+    new AdventureBeginningTable(),
+    new BeginningTropeTable(),
+    new PlotTropeTable(),
+    new CharacterIntroductionTable(),
+    new ClimacticTropeTable(),
+    new ConflictTropeTable(),
+    new NarrationTable(),
+    new EndingTropeTable(),
+    new AdventureFinalTable(),
+]
 export let charTables = [
     new RaceTable(),
     new GenderTable(),
+    new CharacterAsDeviceTable(),
+    new CharacterShadowArchetypeTable(),
     new AnimalTable(),
     new FantasyCreatureTable(),
     new NobilityTable(),
@@ -177,6 +203,7 @@ export let nameTables = [
     new GermanMaleNameTable(),
 ]
 export let otherTables = [
+
     new AttributeTable(),
     new SenseTable(),
     new SizeTable(),
@@ -198,12 +225,14 @@ export let otherTables = [
     new FractionQuestTable(),
 ]
 
-export let allTables = charTables
-    .concat(monsterTables)
-    .concat(talentTables)
-    .concat(locationTables)
-    .concat(dungeonTables)
-    .concat(townTables)
-    .concat(artefactsTables)
-    .concat(nameTables)
-    .concat(otherTables);
+export let allTables =
+    adventureTables
+        .concat(charTables)
+        .concat(monsterTables)
+        .concat(talentTables)
+        .concat(locationTables)
+        .concat(dungeonTables)
+        .concat(townTables)
+        .concat(artefactsTables)
+        .concat(nameTables)
+        .concat(otherTables);
