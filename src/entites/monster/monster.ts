@@ -60,7 +60,7 @@ export class Monster extends AttributeEntity{
         return property;
     }
 
-    getDescription(){
+    toString(){
         let description = `${this.name} a ${this.gender} ${this.description} `
         for(let i = 0; i < this.curses.length; i++){
             description += `${this.curses[i]} `;

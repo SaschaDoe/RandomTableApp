@@ -11,6 +11,11 @@ export function addNewContinentToStore(continentFactory = new ContinentFactory()
     return addContinentToStore(continent);
 }
 
+export function addNewContinentToStoreReturnDescription(continentFactory = new ContinentFactory()){
+    let continent = addNewContinentToStore();
+    return continent.toString();
+}
+
 export function addContinentToStore(continent: Continent){
     continentStore.update(continents => {
         if(!continents.includes(continent)){

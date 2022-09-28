@@ -22,3 +22,8 @@ export function addArtefactToStoreReturnUniqueName(){
     let artefact = addArtefactToStore(new ArtefactFactory().create());
     return artefact.getUniqueName();
 }
+
+export function addArtefactToStoreReturnDescription(){
+    let artefact = addArtefactToStore(new ArtefactFactory().create());
+    return artefact.toString();
+}

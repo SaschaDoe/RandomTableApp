@@ -38,4 +38,8 @@ export class Fraction extends Entity{
         this.members = [];
     }
 
+    toString(){
+        return `${this.getUniqueName()} a ${this.size} ${this.alignment} fraction which ${this.wealth} and ${this.influence} influence associated with ${this.associatedTalent} and motivation ${this.motivation}. The sign is ${this.sign.toString()} \n The leader is: ${this.leader.toString()}.`
+    }
+
 }

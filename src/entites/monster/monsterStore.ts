@@ -8,6 +8,10 @@ export function addNewMonsterToStoreReturnUniqueName(){
     return addNewMonsterToStore().getUniqueName();
 }
 
+export function addNewMonsterToStoreReturnDescription(){
+    return addNewMonsterToStore().toString();
+}
+
 export function addNewMonsterToStore(){
     let monster = new Monster();
     addMonsterInStore(monster);

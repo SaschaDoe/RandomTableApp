@@ -5,6 +5,7 @@ import {addNSCToCharacterStore} from "../character/charStore";
 import {RoomFactory} from "../rooms/roomFactory";
 import {addMonsterInStore} from "../monster/monsterStore";
 import {updateIndex} from "../../summary/updateSummaryIndex";
+import {randomIntFromInterval} from "../../utils/randomUtils";
 
 export let dungeonStore = writable([] as Dungeon[]);
 
@@ -32,4 +33,23 @@ export function addNewRoomTo(dungeon: Dungeon){
     dungeon.rooms.push(room);
     room.monsters.forEach(monster => addMonsterInStore(monster));
     return room;
+}
+
+export function addRoomsTo(dungeon: Dungeon, maxRooms: number){
+    let randomNumberOfRooms = randomIntFromInterval(2,maxRooms);
+    for(let i = 0; i < randomNumberOfRooms; i++){
+        addNewRoomTo(dungeon);
+    }
+    return dungeon;
+}
+
+export function addDungeonToStoreReturnDescription(){
+    let dungeon = addDungeonToStore();
+    return dungeon.toString();
+}
+
+export function addDungeonWithRoomsReturnDescription(){
+    let dungeon = addDungeonToStore();
+    addRoomsTo(dungeon, 12);
+    return dungeon.toString();
 }

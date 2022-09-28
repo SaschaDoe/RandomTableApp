@@ -36,3 +36,15 @@ export function createHigherPowerReturnUniqueName(){
     addNSCToCharacterStore(higherPower);
     return higherPower.getUniqueName();
 }
+
+export function createHigherPowerReturnDescription(){
+    let higherPower = new CharacterFactory().createHigherPower();
+    addNSCToCharacterStore(higherPower);
+    return higherPower.toString();
+}
+
+
+export function addNewNSCToCharacterStoreReturnDescription(characterFactory = new CharacterFactory()){
+    let char = addNewNSCToCharacterStore(characterFactory)
+    return char.toString();
+}

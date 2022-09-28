@@ -30,7 +30,15 @@ export class Dungeon extends Entity{
     }
 
     toString(){
-        return `${this.getUniqueName()} a ${this.entryBuilding} with ${this.structure}.`;
+        let description =  `${this.getUniqueName()} a ${this.entryBuilding} with ${this.structure}. `+"\n";
+
+        description += `it has ${this.rooms.length} rooms. ` +"\n"
+
+        for(let i = 0; i < this.rooms.length; i++){
+            description += this.rooms[i].toString() +"\n";
+        }
+
+        return description;
     }
 
 

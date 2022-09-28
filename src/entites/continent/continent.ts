@@ -24,6 +24,12 @@ export class Continent extends Entity{
     }
 
     toString(){
-        return `${this.getUniqueName()} a ${this.description} continent.`;
+        let description = `${this.getUniqueName()} a ${this.description} continent. \n`;
+
+        for(let i = 0; i < this.spheres.length; i++){
+            description += `with sphere ${this.spheres[i]} \n`;
+        }
+
+        return description;
     }
 }

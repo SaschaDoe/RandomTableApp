@@ -29,12 +29,7 @@
         left: 5px;
     }
 
-    .right{
-        top: 80px;
-        left: 5px;
-    }
-
-    .not-allowed{
-        cursor: not-allowed;
+    li{
+        white-space: pre-line
     }
 </style>

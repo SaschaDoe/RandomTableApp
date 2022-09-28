@@ -8,7 +8,15 @@ import {NarrationTable} from "../tables/adventureTables/narrationTable";
 import {AdventureFinalTable} from "../tables/adventureTables/adventureFinalTable";
 import {EndingTropeTable} from "../tables/adventureTables/endingTropeTable";
 import {BeginningTropeTable} from "../tables/adventureTables/beginningTropeTable";
-import {addDungeonToStoreReturnUniqueName} from "../entites/dungeons/dungeonStore";
+import {
+    addDungeonToStoreReturnDescription,
+    addDungeonToStoreReturnUniqueName,
+    addDungeonWithRoomsReturnDescription
+} from "../entites/dungeons/dungeonStore";
+import {addNewNSCToCharacterStoreReturnDescription} from "../entites/character/charStore";
+import {addNewFractionToStoreReturnDescription} from "../entites/fractions/fractionStore";
+import {addNewContinentToStore} from "../entites/continent/continentStore";
+import {AdventureRisingTable} from "../tables/adventureTables/adventureRisingTable";
 
 export let adventurePhase = "Beginning";
 export let eventList = writable( [adventurePhase]);
@@ -42,7 +50,7 @@ export function setNextAdventurePhase(probability = 100){
             }
         )
     }
-    return adventurePhase;
+    return "-----"+adventurePhase+"-----";
 }
 
 export let count = 0;
@@ -50,8 +58,8 @@ export function getTrope(){
 
     if(adventurePhase.valueOf()  === AdventurePhases.Beginning){
         if(count === 0){
-            count++
-            return addDungeonToStoreReturnUniqueName();
+            count++;
+            return addNewContinentToStore();
         }
         if(count > 4){
             return setNextAdventurePhase();
@@ -64,17 +72,18 @@ export function getTrope(){
     }
 
     if(adventurePhase.valueOf()  === AdventurePhases.Exposition){
-        if(count > 7){
-            return setNextAdventurePhase();
+        if(count === 5){
+            count++;
+            return "introducing character: "+addNewNSCToCharacterStoreReturnDescription();
         }
-        if(probabilityCheck(30) && count > 5){
-            return setNextAdventurePhase()
+        if(count === 6){
+            count++;
+            return "introducing fraction: "+addNewFractionToStoreReturnDescription();
         }
-        count++
-        return new ConflictTropeTable().roleWithCascade().text;
-    }
-
-    if(adventurePhase.valueOf()  === AdventurePhases.Rising){
+        if(count === 7){
+            count++
+            return "introducing dungeon: " + addDungeonWithRoomsReturnDescription();
+        }
         if(count > 10){
             return setNextAdventurePhase();
         }
@@ -82,43 +91,54 @@ export function getTrope(){
             return setNextAdventurePhase()
         }
         count++
-        return new ConflictTropeTable().roleWithCascade().text;
+        return new BeginningTropeTable().roleWithCascade().text;
     }
-    if(adventurePhase.valueOf()  === AdventurePhases.Climax){
+
+    if(adventurePhase.valueOf()  === AdventurePhases.Rising){
         if(count > 13){
             return setNextAdventurePhase();
         }
-        if(probabilityCheck(40) && count > 12){
+        if(probabilityCheck(30) && count > 11){
+            return setNextAdventurePhase()
+        }
+        count++
+        return new AdventureRisingTable().roleWithCascade().text;
+    }
+    if(adventurePhase.valueOf()  === AdventurePhases.Climax){
+        if(count > 16){
+            return setNextAdventurePhase();
+        }
+        if(probabilityCheck(40) && count > 15){
             return setNextAdventurePhase();
         }
         count++;
         return new AdventureClimaxTable().roleWithCascade().text;
     }
     if(adventurePhase.valueOf()  === AdventurePhases.Retarding){
-        if(count > 15){
+        if(count > 18){
             return setNextAdventurePhase();
         }
-        if(probabilityCheck(60) && count > 14){
+        if(probabilityCheck(60) && count > 17){
             return setNextAdventurePhase()
         }
         count++;
         return new NarrationTable().roleWithCascade().text;
     }
     if(adventurePhase.valueOf()  === AdventurePhases.Finale){
-        if(count > 18){
+        if(count > 21){
             return setNextAdventurePhase();
         }
-        if(probabilityCheck(30) && count > 17){
+        if(probabilityCheck(30) && count > 20){
             return setNextAdventurePhase()
         }
         count++;
         return new AdventureFinalTable().roleWithCascade().text;
     }
     if(adventurePhase.valueOf()  === AdventurePhases.Resolution){
-        if(count > 20){
+        if(count > 23){
             return setNextAdventurePhase();
         }
-        if(probabilityCheck(10) && count > 19){
+        if(probabilityCheck(10) && count > 22){
             return setNextAdventurePhase()
         }
         count++;

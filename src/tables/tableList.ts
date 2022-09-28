@@ -100,11 +100,13 @@ import {PlotTropeTable} from "./adventureTables/plotTropeTable";
 import {NarrationTable} from "./adventureTables/narrationTable";
 import {AdventureBeginningTable} from "./adventureTables/adventureBeginningTable";
 import {AdventureFinalTable} from "./adventureTables/adventureFinalTable";
+import {AdventureRisingTable} from "./adventureTables/adventureRisingTable";
 
 export let adventureTables = [
     new AdventureEventTable(),
     new AdventureBeginningTable(),
     new BeginningTropeTable(),
+    new AdventureRisingTable(),
     new PlotTropeTable(),
     new CharacterIntroductionTable(),
     new ClimacticTropeTable(),

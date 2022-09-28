@@ -5,7 +5,8 @@ import {TableType} from "../tableType";
 import {LandscapeTable} from "../locationTables/landscapeTable";
 import {HistoricalEventTable} from "../otherTables/historicalEventTable";
 import {
-    addNewNSCToCharacterStoreReturnUniqueName,
+    addNewNSCToCharacterStoreReturnDescription,
+    addNewNSCToCharacterStoreReturnUniqueName, createHigherPowerReturnDescription,
     createHigherPowerReturnUniqueName
 } from "../../entites/character/charStore";
 
@@ -21,7 +22,7 @@ export class BeginningTropeTable extends Table{
         entries.push(new TableEntry("evacuation"))
         entries.push(new TableEntry("business as unusual"))
         entries.push(new TableEntry("chilly reception")) //kung fu panda
-        entries.push(new TableEntry("hidden training scene"))
+        entries.push(new TableEntry("training scene"))
         entries.push(new TableEntry("exit game awakening"))
         entries.push(new TableEntry("distant prologue"))
         entries.push(new TableEntry("tragic beginning"))//batman
@@ -49,19 +50,20 @@ export class BeginningTropeTable extends Table{
         entries.push(new TableEntry("out of job into plot"))
         entries.push(new TableEntry("cheating"))
         entries.push(new TableEntry("post-adventure adventure"))
-        entries.push(new TableEntry("pre-meeting").withFunctionString(addNewNSCToCharacterStoreReturnUniqueName))
+        entries.push(new TableEntry("pre-meeting").withFunctionString(addNewNSCToCharacterStoreReturnDescription))
         entries.push(new TableEntry("pride before the fall"))
         entries.push(new TableEntry("chasing scene")) //winner is :cloverfield (21min beginning chasing scene)
         entries.push(new TableEntry("resurrected for the job"))
         entries.push(new TableEntry("start corpse"))
         entries.push(new TableEntry("story book beginning"))
         entries.push(new TableEntry("stumbled into the plot"))
-        entries.push(new TableEntry("villain scene").withFunctionString(addNewNSCToCharacterStoreReturnUniqueName))
+        entries.push(new TableEntry("villain scene").withFunctionString(addNewNSCToCharacterStoreReturnDescription))
         entries.push(new TableEntry("you all meet in a cell"))
         entries.push(new TableEntry("you all meet near of your death"))
         entries.push(new TableEntry("wake up on a beach"))
         entries.push(new TableEntry("death bed scene"))
-        entries.push(new TableEntry("eldar history lesson").withFunctionString(createHigherPowerReturnUniqueName))
+        entries.push(new TableEntry("eldar history lesson").withFunctionString(createHigherPowerReturnDescription))
+        entries.push(new TableEntry("eldar history lesson").withFunctionString(createHigherPowerReturnDescription))
         super(entries, TableTitles.BeginningTrope);
         this.tableType = TableType.Other;
     }

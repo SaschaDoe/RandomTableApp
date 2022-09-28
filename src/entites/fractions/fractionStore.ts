@@ -25,6 +25,11 @@ export function addNewFractionToStoreReturnUniqueName(){
     return fraction.getUniqueName();
 }
 
+export function addNewFractionToStoreReturnDescription(){
+    let fraction = addNewFractionToStore()
+    return fraction.toString();
+}
+
 export function chooseFractionFromStore(probability = 100){
     if(probabilityCheck(probability)){
         let fraction: Fraction|undefined;
