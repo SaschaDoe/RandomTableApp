@@ -28,8 +28,6 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     readonly magicalTalents: string[];
     readonly artefacts: Artefact[];
 
-    readonly homeContinent: Continent;
-
     readonly relationships: Relationship[];
     readonly isHigherPower: boolean;
 
@@ -77,11 +75,6 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         }
         this.race = characterBuilder.charRace;
 
-        if(characterBuilder.charContinent === undefined){
-            throw Error("Character home continent must be set");
-        }
-        this.homeContinent = characterBuilder.charContinent;
-
         if(characterBuilder.charHigherPower === undefined){
             throw Error("Character isHigherPower must be set");
         }
@@ -128,7 +121,6 @@ export class Character extends AttributeEntity implements Equatable<Character>{
             this.motivation === other.motivation &&
             this.profession === other.profession &&
             this.race === other.race &&
-            this.homeContinent === other.homeContinent &&
             stringArrayEquals(this.talents, other.talents) &&
             artefactArrayEquals(this.artefacts, other.artefacts) &&
             stringArrayEquals(this.specialFeatures, other.specialFeatures));
@@ -162,8 +154,6 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         }
 
         description += `\n ${adverb} motivation is ${this.motivation}.`
-
-        description += `\n ${pronoun} is from \"${this.homeContinent.toString()}\"`;
 
 
         for(let i = 0; i < this.advantages.length; i++){

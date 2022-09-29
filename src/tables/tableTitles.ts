@@ -107,4 +107,8 @@ export enum TableTitles{
     Narration = "Narration",
     AdventureFinal = "Adventure Final",
     AdventureRising = "Adventure Rising",
+    Resource = "Resource",
+    Meal = "Meal",
+    Culture = "Culture",
+    Quantifier = "Quantifier",
 }

@@ -19,13 +19,15 @@
     import {addDungeonToStore} from "../entites/dungeons/dungeonStore";
     import {addNewSignToStore} from "../entites/signs/signStore";
     import {dungeonStore} from "../entites/dungeons/dungeonStore.js";
-    import {continentStore} from "../entites/continent/continentStore.js";
+    import {addNewContinentToStore, continentStore} from "../entites/continent/continentStore.js";
     import {CharacterFactory} from "../entites/character/characterFactory";
     import {signStore} from "../entites/signs/signStore.js";
     import SignView from "./SignView.svelte";
     import {addNewFractionToStore} from "../entites/fractions/fractionStore";
     import {fractionStore} from "../entites/fractions/fractionStore.js";
     import FractionView from "./FractionView.svelte";
+    import {nationStore} from "../entites/nations/nationStore";
+    import NationView from "./NationView.svelte";
 
     let sizeOfParty = 1;
 
@@ -59,6 +61,10 @@
         addNewFractionToStore();
         updateIndex();
     };
+    let addContinent = () => {
+        addNewContinentToStore();
+        updateIndex();
+    };
 
 </script>
 
@@ -69,6 +75,7 @@
 <button on:click={addNSC}>Add NSC</button>
 <button on:click={addFraction}>Add Fraction</button>
 <button on:click={addArtefactForView}>Add Artefact</button>
+<button on:click={addContinent}>Add Continent</button>
 <button on:click={addDungeon}>Add Dungeon</button>
 <button on:click={addMonster}>Add Monster</button>
 <button on:click={addSign}>Add Sign</button>
@@ -98,6 +105,12 @@
 {#each $continentStore as continent}
     <div id={continent.getUniqueName()}>
         <SiteView continent={continent} />
+    </div>
+{/each}
+
+{#each $nationStore as nation}
+    <div id={nation.getUniqueName()}>
+        <NationView nation={nation} />
     </div>
 {/each}
 

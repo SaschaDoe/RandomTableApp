@@ -101,6 +101,9 @@ import {NarrationTable} from "./adventureTables/narrationTable";
 import {AdventureBeginningTable} from "./adventureTables/adventureBeginningTable";
 import {AdventureFinalTable} from "./adventureTables/adventureFinalTable";
 import {AdventureRisingTable} from "./adventureTables/adventureRisingTable";
+import {NationResourceTable} from "./otherTables/nationResourceTable";
+import {MealTable} from "./otherTables/mealTable";
+import {QuantifierTable} from "./otherTables/quantifierTable";
 
 export let adventureTables = [
     new AdventureEventTable(),
@@ -225,6 +228,9 @@ export let otherTables = [
     new FractionNameTable(),
     new FractionWealthTable(),
     new FractionQuestTable(),
+    new NationResourceTable(),
+    new MealTable(),
+    new QuantifierTable(),
 ]
 
 export let allTables =

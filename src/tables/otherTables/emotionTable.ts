@@ -23,7 +23,6 @@ export class EmotionTable extends Table{
         entries.push(new TableEntry("serene"))
         entries.push(new TableEntry("concerned"))
         entries.push(new TableEntry("attentive"))
-        entries.push(new TableEntry("attentive"))
         super(entries, TableTitles.Emotion);
         this.tableType = TableType.Other;
     }

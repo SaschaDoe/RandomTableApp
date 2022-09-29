@@ -1,5 +1,6 @@
 import {Continent} from "./continent";
 import type {Dungeon} from "../dungeons/dungeon";
+import type {Nation} from "../nations/nation";
 
 export class ContinentBuilder{
     continentName: string|undefined;
@@ -7,6 +8,7 @@ export class ContinentBuilder{
     continentDescription: string|undefined;
     continentDungeons: Dungeon[] = [];
     continentSpheres: string[] = [];
+    nations: Nation[] = [];
 
     build() {
         return new Continent(this);
@@ -34,6 +36,11 @@ export class ContinentBuilder{
 
     withSpheres(spheres: string[]){
         this.continentSpheres = this.continentSpheres.concat(spheres);
+        return this;
+    }
+
+    withNations(nations: Nation[]){
+        this.nations = this.nations.concat(nations);
         return this;
     }
 

@@ -32,7 +32,7 @@ export let magicalTalentHigherPowerMaxInterval = 7
 export let magicalTalentMaxInterval = 3;
 export let fractionMinInterval = -1;
 export let fractionMaxInterval = 0;
-export let oldContinentProbability = 80;
+export let oldContinentProbability = 100;
 
 export class CharacterFactory extends Factory{
     characterAlignment = "";
@@ -94,7 +94,6 @@ export class CharacterFactory extends Factory{
         this.characterDisadvantages = char.disadvantages.slice();
         this.charTalents = char.talents.slice();
         this.charMagicalTalents = char.magicalTalents.slice();
-        this.characterContinent = char.homeContinent;
         this.characterIsHigherPower = char.isHigherPower;
 
         this.courage = char.courage;
@@ -116,10 +115,6 @@ export class CharacterFactory extends Factory{
 
         this.ensureMagicalUserHasAtLeastOneMagicalTalent();
         this.ensureHigherPowerHasAtLeastThreeMagicalTalent();
-        if(this.characterContinent === undefined){
-            this.characterContinent = chooseAContinentFromStore(oldContinentProbability);
-        }
-
         let char = characterBuilder
             .withAlignment(this.characterAlignment)
             .withName(this.characterName)
@@ -134,7 +129,6 @@ export class CharacterFactory extends Factory{
             .withSpecialFeature((this.charSpecialFeatures))
             .withTalents((this.charTalents))
             .withMagicalTalents((this.charMagicalTalents))
-            .withContinent(this.characterContinent)
             .withIsHigherPower(this.characterIsHigherPower)
             .withFraction(this.characterFractions)
             .withTrope(this.characterTrope)

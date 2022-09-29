@@ -1,11 +1,13 @@
 import type {ContinentBuilder} from "./continentBuilder";
 import {Entity} from "../entity";
 import type {Dungeon} from "../dungeons/dungeon";
+import type {Nation} from "../nations/nation";
 
 export class Continent extends Entity{
     description: string;
     dungeons: Dungeon[]
     spheres: string[];
+    nations: Nation[];
 
     constructor(continentBuilder: ContinentBuilder) {
         if(continentBuilder.continentName === undefined){
@@ -21,6 +23,7 @@ export class Continent extends Entity{
         this.description = continentBuilder.continentDescription;
         this.spheres = continentBuilder.continentSpheres;
         this.dungeons = continentBuilder.continentDungeons;
+        this.nations = continentBuilder.nations;
     }
 
     toString(){
