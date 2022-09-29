@@ -66,7 +66,7 @@ export class Room extends Entity{
             if(i === 0){
                 description += "Monsters: \n"
             }
-            description += this.monsters[i].toString() + "\n";
+            description += this.monsters[i].toString() + " - "+ this.encounters[i] +"\n";
         }
 
         return description;

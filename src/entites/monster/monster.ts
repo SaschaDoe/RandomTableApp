@@ -61,7 +61,7 @@ export class Monster extends AttributeEntity{
     }
 
     toString(){
-        let description = `${this.name} a ${this.gender} ${this.description} `
+        let description = `${this.name} a ${this.adjective} ${this.gender} ${this.description} which eating habit is ${this.meal} and which reproduces ${this.reproduction}`
         for(let i = 0; i < this.curses.length; i++){
             description += `${this.curses[i]} `;
         }

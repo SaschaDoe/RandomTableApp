@@ -47,7 +47,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         }
         let name = characterBuilder.charName;
 
-        super(name);
+        super(name,characterBuilder.id);
 
         this.gender = gender;
         this.name = name;
@@ -100,7 +100,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         this.magicalTalents = characterBuilder.charMagicalTalents.slice();
         this.artefacts = characterBuilder.charArtefacts.slice();
         this.memberOfFraction = characterBuilder.charMemberOfFraction.slice();
-        this.relationships = [];
+        this.relationships = characterBuilder.relationships.slice();
 
         this.ensureMagicalUserHasMagicalTalent();
         this.ensureHigherPowerHasMinThreeMagicalTalent();
@@ -135,6 +135,16 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     }
 
     toString(){
+        let pronoun = 'it';
+        let adverb = 'its';
+        if(this.gender === "female"){
+            pronoun = "she";
+            adverb = "Her";
+        }
+        if(this.gender === "male"){
+            pronoun = "he";
+            adverb = "His";
+        }
         let description = `${this.getUniqueName()} a ${this.alignment} ${this.nobility} ${this.gender} ${this.race}`;
 
         for(let i = 0; i < this.curses.length; i++){
@@ -145,45 +155,47 @@ export class Character extends AttributeEntity implements Equatable<Character>{
 
         for(let i = 0; i < this.specialFeatures.length; i++){
             if(i === 0){
-                description += ` with ${this.specialFeatures[i]}`;
+                description += ` with ${this.specialFeatures[i]}.`;
             }else{
-                description += ` and ${this.specialFeatures[i]}`;
+                description += ` and ${this.specialFeatures[i]}.`;
             }
         }
 
-        description += `. She is from \"${this.homeContinent.getUniqueName()}\" and has the motivation ${this.motivation}`;
+        description += `\n ${adverb} motivation is ${this.motivation}.`
+
+        description += `\n ${pronoun} is from \"${this.homeContinent.toString()}\"`;
 
 
         for(let i = 0; i < this.advantages.length; i++){
             if(i === 0){
                 if(this.advantages.length === 1){
-                    description += `. Her advantage is that she is ${this.advantages[i]}`
+                    description += `.\n ${adverb} advantage is that ${pronoun} is ${this.advantages[i]}`
                 }else{
-                    description += `. Her advantages are that she is ${this.advantages[i]}`
+                    description += `.\n ${adverb} advantages are that ${pronoun} is ${this.advantages[i]}`
                 }
             }else{
-                description += ` and that she is ${this.advantages[i]}`
+                description += ` and that ${pronoun} is ${this.advantages[i]}`
             }
         }
 
         for(let i = 0; i < this.disadvantages.length; i++){
             if(i === 0){
                 if(this.disadvantages.length === 1){
-                    description += `. Her disadvantage is that she is ${this.disadvantages[i]}`
+                    description += `.\n ${adverb} disadvantage is that ${pronoun} is ${this.disadvantages[i]}`
                 }else{
-                    description += `. Her disadvantages are that she is ${this.disadvantages[i]}`
+                    description += `.\n ${adverb} disadvantages are that ${pronoun} is ${this.disadvantages[i]}`
                 }
             }else{
-                description += ` and that she is ${this.disadvantages[i]}`
+                description += ` and that ${pronoun} is ${this.disadvantages[i]}`
             }
         }
 
         for(let i = 0; i < this.talents.length; i++){
             if(i === 0){
                 if(this.talents.length === 1){
-                    description += `. Her talent is ${this.talents[i]}`
+                    description += `.\n ${adverb} talent is ${this.talents[i]}`
                 }else{
-                    description += `. Her talents are ${this.talents[i]}`
+                    description += `.\n ${adverb} talents are ${this.talents[i]}`
                 }
             }else{
                 description += ` and ${this.talents[i]}`
@@ -193,9 +205,9 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         for(let i = 0; i < this.magicalTalents.length; i++){
             if(i === 0){
                 if(this.magicalTalents.length === 1){
-                    description += `. Her magical talent is ${this.magicalTalents[i]}`
+                    description += `.\n ${adverb} magical talent is ${this.magicalTalents[i]}`
                 }else{
-                    description += `. Her magical talents are ${this.magicalTalents[i]}`
+                    description += `.\n ${adverb} magical talents are ${this.magicalTalents[i]}`
                 }
             }else{
                 description += ` and ${this.magicalTalents[i]}`
@@ -205,14 +217,14 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         for(let i = 0; i < this.artefacts.length; i++){
             if(i === 0){
                 if(this.artefacts.length === 1){
-                    description += `. She has the artefact \"${this.artefacts[i].getUniqueName()}\" with her.`
+                    description += `.\n ${pronoun} has the artefact \"${this.artefacts[i].toString()}\" with ${adverb}.`
                 }else{
-                    description += `. She has the artefacts \"${this.artefacts[i].getUniqueName()}\"`
+                    description += `.\n ${pronoun} has the artefacts \"${this.artefacts[i].toString()}\"`
                 }
             }else{
-                description += ` and \"${this.artefacts[i].getUniqueName()}\"`
+                description += ` and \"${this.artefacts[i].toString()}\"`
                 if(i === this.artefacts.length -1){
-                    description += ` with her.`
+                    description += ` with ${adverb}.`
                 }
             }
         }

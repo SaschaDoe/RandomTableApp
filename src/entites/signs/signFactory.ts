@@ -95,4 +95,8 @@ export class SignFactory{
     }
 
 
+    withType(type: string) {
+        this.signType = type;
+        return this;
+    }
 }

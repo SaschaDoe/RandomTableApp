@@ -16,3 +16,9 @@ export function addNewSignToStore(){
     addSignToStore(sign);
     return sign;
 }
+
+export function addPictureToStoreReturnsDescription(){
+    let sign = new SignFactory().withType("picture").create();
+    addSignToStore(sign);
+    return sign.toString();
+}

@@ -52,5 +52,5 @@ export function AddCharForPower(char: Character){
     newChar.relationships.push(relationship);
     char.relationships.push(relationship);
     addNSCToCharacterStore(newChar);
-    return newChar;
+    return char;
 }

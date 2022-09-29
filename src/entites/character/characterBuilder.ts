@@ -2,6 +2,7 @@ import {Character} from "./character";
 import type {Artefact} from "../artefacts/artefact";
 import type {Continent} from "../continent/continent";
 import type {Fraction} from "../fractions/fraction";
+import type {Relationship} from "./relationship";
 
 export class CharacterBuilder{
     //undefined because there is no default value
@@ -25,7 +26,16 @@ export class CharacterBuilder{
     charMemberOfFraction: Fraction[];
     charTrope: string | undefined;
 
-
+    courage = 0;
+    charisma = 0;
+    wisdom  = 0;
+    intuition  = 0
+    dexterity  = 0;
+    manualDexterity = 0;
+    constitution = 0;
+    strength = 0;
+    relationships: Relationship[] = [];
+    id = 0;
 
     constructor() {
         this.charCurses = [];
@@ -39,8 +49,59 @@ export class CharacterBuilder{
     }
 
     build() {
-        return new Character(this);
+        let character = new Character(this);
+        character.courage = this.courage;
+        character.charisma = this.charisma;
+        character.wisdom = this.wisdom;
+        character.intuition = this.intuition;
+        character.dexterity = this.dexterity;
+        character.manualDexterity = this.manualDexterity;
+        character.constitution = this.constitution;
+        character.strength = this.strength;
+        return character;
     }
+
+    withCourage(courage: number){
+        this.courage = courage;
+        return this;
+    }
+
+    withCharisma(charisma: number){
+        this.charisma = charisma;
+        return this;
+    }
+
+    withWisdom(wisdom: number){
+        this.wisdom = wisdom;
+        return this;
+    }
+
+    withIntuition(intuition: number){
+        this.intuition = intuition;
+        return this;
+    }
+
+    withDexterity(dexterity: number){
+        this.dexterity = dexterity;
+        return this;
+    }
+
+    withManualDexterity(manualDexterity: number){
+        this.manualDexterity = manualDexterity;
+        return this;
+    }
+
+    withConstitution(constitution: number){
+        this.constitution = constitution;
+        return this;
+    }
+
+    withStrength(strength: number){
+        this.strength = strength;
+        return this;
+    }
+
+
 
     withAlignment(alignment: string) {
         this.charAlignment = alignment;
@@ -130,6 +191,16 @@ export class CharacterBuilder{
 
     withTrope(trope: string){
         this.charTrope = trope;
+        return this;
+    }
+
+    withRelationships(relationships: Relationship[]) {
+        this.relationships = relationships;
+        return this;
+    }
+
+    withId(id: number) {
+        this.id = id;
         return this;
     }
 }

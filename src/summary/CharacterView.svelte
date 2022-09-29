@@ -5,6 +5,7 @@
     export let character: Character;
 
     let characterFactory = new CharacterFactory();
+    //TODO: known bug: when added char in factory functions than character will be reseted. solution is viewmodel structure
     let handleAddCurse = () =>{
         character = characterFactory.clone(character).addCurse().create();
     };

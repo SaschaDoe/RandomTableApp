@@ -79,7 +79,7 @@ export class Sign extends Entity{
             if(i > 0){
                 description += ` and on`
             }
-            description += ` ${this.characters[i][1]} is ${this.characters[i][0].race} ${this.characters[i][0].profession} ${this.characters[i][0].getUniqueName()}`;
+            description += ` ${this.characters[i][1]} is ${this.characters[i][0].nobility} ${this.characters[i][0].race} ${this.characters[i][0].profession} ${this.characters[i][0].getUniqueName()}`;
             if(i === this.characters.length-1){
                 description += "."
             }

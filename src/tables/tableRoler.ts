@@ -1,5 +1,6 @@
 import type {TableTitles} from "./tableTitles";
 import {AllTablesMap} from "./allTablesMap";
+import {Character} from "../entites/character/character";
 
 export class TableRoller{
     private allTableMap: AllTablesMap;

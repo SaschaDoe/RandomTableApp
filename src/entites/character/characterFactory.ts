@@ -12,6 +12,8 @@ import {Relationship} from "./relationship";
 import type {Fraction} from "../fractions/fraction";
 import {addNewFractionToStore} from "../fractions/fractionStore";
 import {chooseAContinentFromStore} from "../continent/continentStore";
+import type {Entity} from "../entity";
+import {addNewNSCToCharacterStore} from "./charStore";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -52,6 +54,19 @@ export class CharacterFactory extends Factory{
     characterFractions: Fraction[] = [];
     characterTrope = "";
 
+    courage = 0;
+    charisma = 0;
+    wisdom  = 0;
+    intuition  = 0
+    dexterity  = 0;
+    manualDexterity = 0;
+    constitution = 0;
+    strength = 0;
+
+    functions = [] as ((entity: Entity) => Entity)[];
+    relationships: Relationship[] = [];
+    id = -1;
+
     constructor(
         tableRoller = new TableRoller(),
         random = new Random()
@@ -59,9 +74,6 @@ export class CharacterFactory extends Factory{
         super(tableRoller,random);
         this.tableRoller = tableRoller
         this.random = random
-
-
-
         this.setAllMandatory();
         this.setAllNonMandatory()
     }
@@ -74,6 +86,7 @@ export class CharacterFactory extends Factory{
         this.characterMotivation = char.motivation;
         this.characterRace = char.race;
         this.characterProfession = char.profession;
+        this.characterTrope = char.trope
 
         this.characterAdvantages = char.advantages.slice();
         this.characterCurses = char.curses.slice();
@@ -83,6 +96,18 @@ export class CharacterFactory extends Factory{
         this.charMagicalTalents = char.magicalTalents.slice();
         this.characterContinent = char.homeContinent;
         this.characterIsHigherPower = char.isHigherPower;
+
+        this.courage = char.courage;
+        this.charisma = char.charisma;
+        this.wisdom = char.wisdom;
+        this.intuition = char.intuition;
+        this.dexterity = char.dexterity;
+        this.manualDexterity = char.manualDexterity;
+        this.constitution = char.constitution;
+        this.strength = char.strength;
+        this.id = char.id;
+        this.relationships = char.relationships;
+
         return this;
     }
 
@@ -91,7 +116,9 @@ export class CharacterFactory extends Factory{
 
         this.ensureMagicalUserHasAtLeastOneMagicalTalent();
         this.ensureHigherPowerHasAtLeastThreeMagicalTalent();
-        this.characterContinent = chooseAContinentFromStore(oldContinentProbability);
+        if(this.characterContinent === undefined){
+            this.characterContinent = chooseAContinentFromStore(oldContinentProbability);
+        }
 
         let char = characterBuilder
             .withAlignment(this.characterAlignment)
@@ -111,11 +138,28 @@ export class CharacterFactory extends Factory{
             .withIsHigherPower(this.characterIsHigherPower)
             .withFraction(this.characterFractions)
             .withTrope(this.characterTrope)
+            .withCourage(this.courage)
+            .withCharisma(this.charisma)
+            .withWisdom(this.wisdom)
+            .withIntuition(this.intuition)
+            .withDexterity(this.dexterity)
+            .withManualDexterity(this.manualDexterity)
+            .withConstitution(this.constitution)
+            .withStrength(this.strength)
+            .withRelationships(this.relationships)
+            .withId(this.id)
             .build()
 
         this.characterFractions.forEach(fraction => {
             fraction.members.push(char);
         })
+
+        this.functions.forEach(func => {
+            func(char);
+        })
+
+        this.functions = [];
+
         return char;
     }
 
@@ -149,8 +193,8 @@ export class CharacterFactory extends Factory{
     }
 
     private setAllNonMandatory() {
-        this.setNonMandatory(advantagesMinInterval, advantagesMaxInterval,this.characterAdvantages,TableTitles.Advantages)
-        this.setNonMandatory(disadvantagesMinInterval, disadvantagesMaxInterval,this.characterDisadvantages,TableTitles.Disadvantages)
+        this.functions.concat(this.setNonMandatory(advantagesMinInterval, advantagesMaxInterval,this.characterAdvantages,TableTitles.Advantages));
+        this.functions.concat(this.setNonMandatory(disadvantagesMinInterval, disadvantagesMaxInterval,this.characterDisadvantages,TableTitles.Disadvantages));
         this.setNonMandatory(curseMinInterval, curseMaxInterval,this.characterCurses,TableTitles.Curse)
         this.setNonMandatory(specialFeaturesMinInterval, specialFeaturesMaxInterval,this.charSpecialFeatures,TableTitles.SpecialFeatures)
         this.setNonMandatory(talentsMinInterval, talentsMaxInterval,this.charTalents,TableTitles.ProfaneTalent)
@@ -166,12 +210,16 @@ export class CharacterFactory extends Factory{
     }
 
     addAdvantage(){
-        this.characterAdvantages.push(this.tableRoller.roleFor(TableTitles.Advantages).text)
+        let result = this.tableRoller.roleFor(TableTitles.Advantages);
+        this.functions = this.functions.concat(result.functions);
+        this.characterAdvantages.push(result.text)
         return this;
     }
 
     addDisadvantage(){
-        this.characterDisadvantages.push(this.tableRoller.roleFor(TableTitles.Disadvantages).text)
+        let result = this.tableRoller.roleFor(TableTitles.Disadvantages);
+        this.functions = this.functions.concat(result.functions);
+        this.characterDisadvantages.push(result.text)
         return this;
     }
 
