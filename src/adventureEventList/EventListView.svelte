@@ -1,7 +1,5 @@
 <script>
     import {addEventToStore, eventList, resetEventList} from "./eventList";
-    import {currentAdventurePhase} from "./eventList";
-    import {AdventurePhases} from "../tables/adventureTables/adventurePhases";
 
     let handleAddEvent = ()=>{
         resetEventList();

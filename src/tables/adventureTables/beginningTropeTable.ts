@@ -6,8 +6,7 @@ import {LandscapeTable} from "../locationTables/landscapeTable";
 import {HistoricalEventTable} from "../otherTables/historicalEventTable";
 import {
     addNewNSCToCharacterStoreReturnDescription,
-    addNewNSCToCharacterStoreReturnUniqueName, createHigherPowerReturnDescription,
-    createHigherPowerReturnUniqueName
+    createHigherPowerReturnDescription,
 } from "../../entites/character/charStore";
 
 export class BeginningTropeTable extends Table{
@@ -62,7 +61,6 @@ export class BeginningTropeTable extends Table{
         entries.push(new TableEntry("you all meet near of your death"))
         entries.push(new TableEntry("wake up on a beach"))
         entries.push(new TableEntry("death bed scene"))
-        entries.push(new TableEntry("eldar history lesson").withFunctionString(createHigherPowerReturnDescription))
         entries.push(new TableEntry("eldar history lesson").withFunctionString(createHigherPowerReturnDescription))
         super(entries, TableTitles.BeginningTrope);
         this.tableType = TableType.Other;

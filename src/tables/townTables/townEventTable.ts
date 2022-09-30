@@ -4,7 +4,10 @@ import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {ProfessionTable} from "../charTables/professionTable";
 import {NaturalEvents} from "../otherTables/naturalEvents";
-import {addNewNSCToCharacterStoreReturnUniqueName} from "../../entites/character/charStore";
+import {
+    addNewNSCToCharacterStoreReturnDescription,
+    createHigherPowerReturnDescription
+} from "../../entites/character/charStore";
 
 export class TownEventTable extends Table{
     constructor(){
@@ -13,13 +16,13 @@ export class TownEventTable extends Table{
         entries.push(new TableEntry("race"))
         entries.push(new TableEntry("sports tournament"))
         entries.push(new TableEntry("election"))
-        entries.push(new TableEntry("coronation"))
+        entries.push(new TableEntry("coronation of").withFunctionString(addNewNSCToCharacterStoreReturnDescription))
         entries.push(new TableEntry("fair"))
-        entries.push(new TableEntry("religious festival"))
+        entries.push(new TableEntry("religious festival of").withFunctionString(createHigherPowerReturnDescription))
         entries.push(new TableEntry("bard contest"))
         entries.push(new TableEntry("science meeting"))
         entries.push(new TableEntry("wizard convent"))
-        entries.push(new TableEntry("exhibition"))
+        entries.push(new TableEntry("exhibition of").withFunctionString(addNewNSCToCharacterStoreReturnDescription))
         entries.push(new TableEntry("").withCascadingRole(new NaturalEvents()))
         entries.push(new TableEntry("harvest"))
         entries.push(new TableEntry("military exercise"))
@@ -28,7 +31,7 @@ export class TownEventTable extends Table{
         entries.push(new TableEntry("museum"))
         entries.push(new TableEntry("theater"))
         entries.push(new TableEntry("child of the king is born"))
-        entries.push(new TableEntry("execution of").withFunctionString(addNewNSCToCharacterStoreReturnUniqueName))
+        entries.push(new TableEntry("execution of").withFunctionString(addNewNSCToCharacterStoreReturnDescription))
         entries.push(new TableEntry("").withCascadingRole(new ProfessionTable()).with(" festival"))
         super(entries, TableTitles.TownEvent);
         this.tableType = TableType.Town;

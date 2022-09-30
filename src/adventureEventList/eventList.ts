@@ -2,21 +2,22 @@ import {writable} from "svelte/store";
 import {AdventureEventTable} from "../tables/adventureTables/adventureEventTable";
 import {AdventurePhases} from "../tables/adventureTables/adventurePhases";
 import {probabilityCheck} from "../utils/randomUtils";
-import {ConflictTropeTable} from "../tables/adventureTables/conflictTropeTable";
 import {AdventureClimaxTable} from "../tables/adventureTables/adventureClimaxTable";
 import {NarrationTable} from "../tables/adventureTables/narrationTable";
 import {AdventureFinalTable} from "../tables/adventureTables/adventureFinalTable";
 import {EndingTropeTable} from "../tables/adventureTables/endingTropeTable";
 import {BeginningTropeTable} from "../tables/adventureTables/beginningTropeTable";
 import {
-    addDungeonToStoreReturnDescription,
-    addDungeonToStoreReturnUniqueName,
     addDungeonWithRoomsReturnDescription
 } from "../entites/dungeons/dungeonStore";
 import {addNewNSCToCharacterStoreReturnDescription} from "../entites/character/charStore";
 import {addNewFractionToStoreReturnDescription} from "../entites/fractions/fractionStore";
 import {addNewContinentToStore} from "../entites/continent/continentStore";
 import {AdventureRisingTable} from "../tables/adventureTables/adventureRisingTable";
+import {SeasonTable} from "../tables/otherTables/seasonTable";
+import {WeatherTable} from "../tables/otherTables/weatherTable";
+import {PlanTable} from "../tables/adventureTables/planTable";
+import {addNewTownToStoreReturnDescription} from "../entites/towns/townStore";
 
 export let adventurePhase = "Beginning";
 export let eventList = writable( [adventurePhase]);
@@ -24,9 +25,17 @@ export let currentAdventurePhase = writable(adventurePhase);
 
 export function addEventToStore(){
     eventList.update(events =>{
+        events.push("season "+new SeasonTable().roleWithCascade().text + " with weather " + new WeatherTable().roleWithCascade().text)
+        events.push("town: "+addNewTownToStoreReturnDescription())
+        events.push("possible plan: "+new PlanTable().roleWithCascade().text)
+        events.push("possible villain: "+addNewNSCToCharacterStoreReturnDescription())
+        events.push("possible relationship char: "+addNewNSCToCharacterStoreReturnDescription())
+
+
         while(adventurePhase !== AdventurePhases.End){
             events.push(new AdventureEventTable().roleWithCascade().text);
         }
+
         return events;
     })
 }

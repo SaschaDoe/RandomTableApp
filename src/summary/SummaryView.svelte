@@ -26,6 +26,8 @@
     import {addNewFractionToStore} from "../entites/fractions/fractionStore";
     import {fractionStore} from "../entites/fractions/fractionStore.js";
     import FractionView from "./FractionView.svelte";
+    import {addNewTownToStore} from "../entites/towns/townStore";
+    import {townStore} from "../entites/towns/townStore.js";
 
     let sizeOfParty = 1;
 
@@ -59,6 +61,10 @@
         addNewFractionToStore();
         updateIndex();
     };
+    let addTownForView = () =>{
+        addNewTownToStore();
+        updateIndex();
+    };
 
 </script>
 
@@ -69,6 +75,7 @@
 <button on:click={addNSC}>Add NSC</button>
 <button on:click={addFraction}>Add Fraction</button>
 <button on:click={addArtefactForView}>Add Artefact</button>
+<button on:click={addTownForView}>Add Town</button>
 <button on:click={addDungeon}>Add Dungeon</button>
 <button on:click={addMonster}>Add Monster</button>
 <button on:click={addSign}>Add Sign</button>
@@ -98,6 +105,12 @@
 {#each $continentStore as continent}
     <div id={continent.getUniqueName()}>
         <SiteView continent={continent} />
+    </div>
+{/each}
+
+{#each $townStore as town}
+    <div id={town.getUniqueName()}>
+        <OtherView other={town} />
     </div>
 {/each}
 

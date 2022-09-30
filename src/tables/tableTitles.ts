@@ -107,4 +107,6 @@ export enum TableTitles{
     Narration = "Narration",
     AdventureFinal = "Adventure Final",
     AdventureRising = "Adventure Rising",
+    Plan = "Plan",
+    Season = "Season",
 }

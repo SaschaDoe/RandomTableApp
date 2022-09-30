@@ -18,6 +18,10 @@ export class AdventureRisingTable extends Table{
             .withFunctionString(addArtefactToStoreReturnDescription));
         entries.push(new TableEntry("introduce fraction:")
             .withFunctionString(addNewFractionToStoreReturnDescription));
+        entries.push(new TableEntry("cassandra truth"));
+        entries.push(new TableEntry("red herring"));
+        entries.push(new TableEntry("real information"));
+        entries.push(new TableEntry("random encounter information"));
         super(entries, TableTitles.AdventureRising);
         this.tableType = TableType.Other;
     }

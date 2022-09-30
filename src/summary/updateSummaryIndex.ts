@@ -13,6 +13,8 @@ import {dungeonStore} from "../entites/dungeons/dungeonStore";
 import {signStore} from "../entites/signs/signStore";
 import {fractionStore} from "../entites/fractions/fractionStore";
 import type {Fraction} from "../entites/fractions/fraction";
+import type {Town} from "../entites/towns/town";
+import {townStore} from "../entites/towns/townStore";
 
 export const updateIndex = () =>{
     let titles = [];
@@ -21,6 +23,7 @@ export const updateIndex = () =>{
     titles.push("Fractions")
     titles.push("Monsters")
     titles.push("Continents")
+    titles.push("Towns")
     titles.push("Dungeons")
     titles.push("Artefacts")
     titles.push("Signs")
@@ -76,6 +79,16 @@ export const updateIndex = () =>{
         continentIndexes.push(continent.getUniqueName());
     }
 
+    let towns = [] as Town[];
+    townStore.subscribe((cs) => {
+        towns = cs;
+    })
+    let townIndexes = [] as string[];
+    for(let i = 0; i < towns.length; i++){
+        let town = towns[i];
+        townIndexes.push(town.getUniqueName());
+    }
+
     let dungeons = [] as Dungeon[];
     dungeonStore.subscribe((cs) => {
         dungeons = cs;
@@ -110,6 +123,7 @@ export const updateIndex = () =>{
         fractionIndexes,
         monsterIndexes,
         continentIndexes,
+        townIndexes,
         dungeonIndexes,
         artefactIndexes,
         signIndexes]);
