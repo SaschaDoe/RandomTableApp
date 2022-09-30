@@ -15,7 +15,7 @@ export class TownFameTable extends Table{
         let entries = [] as TableEntry[];
         entries.push(new TableEntry("quality of product").withCascadingRole(new ArtefactTable()));
         entries.push(new TableEntry("home town of").withFunctionString(addNewNSCToCharacterStoreReturnDescription));
-        entries.push(new TableEntry("town event:").withCascadingRole(new TownEventTable()));
+        entries.push(new TableEntry("way back there happened").withCascadingRole(new TownEventTable()));
         entries.push(new TableEntry("unknown"));
         entries.push(new TableEntry("sleepy nest"));
         entries.push(new TableEntry("very clean"));
@@ -25,8 +25,8 @@ export class TownFameTable extends Table{
         entries.push(new TableEntry("fraction house of").withFunctionString(addNewFractionToStoreReturnDescription));
         entries.push(new TableEntry("bad inns"));
         entries.push(new TableEntry("way is dangerous because of ").withFunctionString(addNewFractionToStoreReturnDescription));
-        entries.push(new TableEntry("way is because of nature dangerous"));
-        entries.push(new TableEntry("famous building").withCascadingRole(new BuildingTable()));
+        entries.push(new TableEntry("way is dangerous because of nature"));
+        entries.push(new TableEntry("building").withCascadingRole(new BuildingTable()));
         super(entries, TableTitles.TownFame);
         this.tableType = TableType.Town;
     }

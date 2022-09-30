@@ -110,4 +110,8 @@ export enum TableTitles{
     Plan = "Plan",
     Season = "Season",
     VillainAdjective = "Villain Adjective",
+    NationAdjective = "Nation Adjective",
+    Technology = "Technology",
+    Nation = "Nation",
+    NationRelationship = "Nation Relationship",
 }

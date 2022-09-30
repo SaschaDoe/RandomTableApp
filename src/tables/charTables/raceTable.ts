@@ -11,17 +11,17 @@ export class RaceTable extends Table{
     constructor(){
         let entries = [] as TableEntry[];
         entries.push(new TableEntry("human")
-            .withRoleInterval(2,7));
+            .withRoleInterval(3,12));
         entries.push(new TableEntry("")
-            .withRoleInterval(8,9)
+            .withRoleInterval(13,14)
             .withCascadingRole(new FantasyCreatureTable()));
         entries.push(new TableEntry("half human half")
-            .withRoleInterval(10,11)
+            .withRoleInterval(15,17)
             .withCascadingRole(new AnimalTable()));
         entries.push(new TableEntry("")
-            .withRoleInterval(12,12)
+            .withRoleInterval(18,18)
             .withCascadingRole(new AnimalTable())
             .withCascadingRole(new AnimalTable()));
-        super(entries, TableTitles.Race,TableType.Character, new DiceRole().withNumberOfDice(2));
+        super(entries, TableTitles.Race,TableType.Character, new DiceRole().withNumberOfDice(3));
     }
 }

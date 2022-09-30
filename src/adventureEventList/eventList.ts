@@ -19,6 +19,7 @@ import {WeatherTable} from "../tables/otherTables/weatherTable";
 import {PlanTable} from "../tables/adventureTables/planTable";
 import {addNewTownToStoreReturnDescription} from "../entites/towns/townStore";
 import {VillainAdjectiveTable} from "../tables/adventureTables/villainAdjectiveTable";
+import {addNewNationReturnDescription} from "../entites/nations/nationStore";
 
 export let adventurePhase = "Beginning";
 export let eventList = writable( [adventurePhase]);
@@ -27,6 +28,8 @@ export let currentAdventurePhase = writable(adventurePhase);
 export function addEventToStore(){
     eventList.update(events =>{
         events.push("season "+new SeasonTable().roleWithCascade().text + " with weather " + new WeatherTable().roleWithCascade().text)
+        events.push(addNewNationReturnDescription().toString());
+        events.push(addNewNationReturnDescription().toString());
         events.push("town: "+addNewTownToStoreReturnDescription())
         events.push("possible plan: "+new PlanTable().roleWithCascade().text)
         events.push("villain is: "+new VillainAdjectiveTable().roleWithCascade().text)

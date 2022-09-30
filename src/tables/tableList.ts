@@ -104,6 +104,10 @@ import {AdventureRisingTable} from "./adventureTables/adventureRisingTable";
 import {PlanTable} from "./adventureTables/planTable";
 import {SeasonTable} from "./otherTables/seasonTable";
 import {VillainAdjectiveTable} from "./adventureTables/villainAdjectiveTable";
+import {NationAdjectiveTable} from "./nationTables/nationAdjectiveTable";
+import {TechnologyTable} from "./otherTables/technologyTable";
+import {NationTable} from "./nationTables/nationTable";
+import {NationRelationshipTable} from "./nationTables/nationRelationshipTable";
 
 export let adventureTables = [
     new AdventureEventTable(),
@@ -174,6 +178,7 @@ export let locationTables = [
     new BuildingTable(),
     new BuildingAdjectiveTable(),
     new LandscapeTable(),
+    new NationAdjectiveTable(),
 ]
 export let dungeonTables = [
     new FurnishingTable(),
@@ -230,6 +235,9 @@ export let otherTables = [
     new FractionWealthTable(),
     new FractionQuestTable(),
     new SeasonTable(),
+    new TechnologyTable(),
+    new NationTable(),
+    new NationRelationshipTable(),
 ]
 
 export let allTables =

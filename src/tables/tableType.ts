@@ -7,4 +7,5 @@ export enum TableType{
     Monster,
     Town,
     Fraction,
+    Nation,
 }
