@@ -103,11 +103,14 @@ import {AdventureFinalTable} from "./adventureTables/adventureFinalTable";
 import {AdventureRisingTable} from "./adventureTables/adventureRisingTable";
 import {PlanTable} from "./adventureTables/planTable";
 import {SeasonTable} from "./otherTables/seasonTable";
+import {VillainAdjectiveTable} from "./adventureTables/villainAdjectiveTable";
 
 export let adventureTables = [
     new AdventureEventTable(),
     new AdventureBeginningTable(),
     new BeginningTropeTable(),
+    new PlanTable(),
+    new VillainAdjectiveTable(),
     new AdventureRisingTable(),
     new PlotTropeTable(),
     new CharacterIntroductionTable(),
@@ -226,7 +229,6 @@ export let otherTables = [
     new FractionNameTable(),
     new FractionWealthTable(),
     new FractionQuestTable(),
-    new PlanTable(),
     new SeasonTable(),
 ]
 
