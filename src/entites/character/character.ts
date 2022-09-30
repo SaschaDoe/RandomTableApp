@@ -18,6 +18,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     profession: string;
     race : string;
     trope: string;
+    nickname: string;
 
     memberOfFraction: Fraction[];
     readonly advantages: string[];
@@ -27,9 +28,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     readonly talents: string[];
     readonly magicalTalents: string[];
     readonly artefacts: Artefact[];
-
     readonly homeContinent: Continent;
-
     readonly relationships: Relationship[];
     readonly isHigherPower: boolean;
 
@@ -92,6 +91,11 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         }
         this.trope = characterBuilder.charTrope;
 
+        if(characterBuilder.charNickname === undefined){
+            throw Error("Character nickname must be set");
+        }
+        this.nickname = characterBuilder.charNickname;
+
         this.curses = characterBuilder.charCurses.slice();
         this.specialFeatures = characterBuilder.charSpecialFeatures.slice();
         this.advantages = characterBuilder.charAdvantages.slice();
@@ -145,7 +149,9 @@ export class Character extends AttributeEntity implements Equatable<Character>{
             pronoun = "he";
             adverb = "His";
         }
-        let description = `${this.getUniqueName()} a ${this.alignment} ${this.nobility} ${this.gender} ${this.race}`;
+        let description = `${this.getUniqueName()} ${this.nickname} `
+
+        description += `a ${this.alignment} ${this.nobility} ${this.gender} ${this.race}`;
 
         for(let i = 0; i < this.curses.length; i++){
             description += ` ${this.curses[i]}`
@@ -161,9 +167,9 @@ export class Character extends AttributeEntity implements Equatable<Character>{
             }
         }
 
-        description += `\n ${adverb} motivation is ${this.motivation}.`
+        description += `.\n ${adverb} motivation is ${this.motivation}`
 
-        description += `\n ${pronoun} is from \"${this.homeContinent.toString()}\"`;
+        description += `.\n ${pronoun} is from \"${this.homeContinent.toString()}\"`;
 
 
         for(let i = 0; i < this.advantages.length; i++){

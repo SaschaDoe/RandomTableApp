@@ -108,6 +108,7 @@ import {NationAdjectiveTable} from "./nationTables/nationAdjectiveTable";
 import {TechnologyTable} from "./otherTables/technologyTable";
 import {NationTable} from "./nationTables/nationTable";
 import {NationRelationshipTable} from "./nationTables/nationRelationshipTable";
+import {RulerNicknamesTable} from "./nationTables/rulerNicknamesTable";
 
 export let adventureTables = [
     new AdventureEventTable(),
@@ -238,6 +239,7 @@ export let otherTables = [
     new TechnologyTable(),
     new NationTable(),
     new NationRelationshipTable(),
+    new RulerNicknamesTable(),
 ]
 
 export let allTables =

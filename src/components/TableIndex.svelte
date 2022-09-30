@@ -22,14 +22,14 @@
 {#if showIndex === false}
     <div class="smartphone-visible open-overlap-btn" on:click={toggleShowIndex}>-></div>
 {:else}
-    <div class="index smartphone-visible">
+    <div class="index smartphone-visible scrollable">
         {#each headings as heading, index}
             <Index title = {heading} indexes = {indexes[index]}></Index>
         {/each}
     </div>
     <div class="smartphone-visible close-overlap-btn" on:click={toggleShowIndex}>&lt;-</div>
 {/if}
-<div class="index widescreenVisible">
+<div class="index widescreenVisible scrollable">
     {#each headings as heading, index}
         <Index title = {heading} indexes = {indexes[index]}></Index>
     {/each}
@@ -50,6 +50,9 @@
         visibility: hidden;
     }
 
+    .scrollable{
+        overflow: auto;
+    }
     .open-overlap-btn{
         position: fixed;
         left: 0;

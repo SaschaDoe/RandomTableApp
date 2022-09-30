@@ -53,7 +53,6 @@ export class MotivationTable extends Table{
         entries.push(new TableEntry("legacy"));
         entries.push(new TableEntry("greed"));
         entries.push(new TableEntry("mc guffin chase"));
-        entries.push(new TableEntry("task"));
         entries.push(new TableEntry("fear"));
         entries.push(new TableEntry("fear of death (to be immortal)"));
         entries.push(new TableEntry("lust"));

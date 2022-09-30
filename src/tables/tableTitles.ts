@@ -114,4 +114,5 @@ export enum TableTitles{
     Technology = "Technology",
     Nation = "Nation",
     NationRelationship = "Nation Relationship",
+    RulerNicknames = "Ruler Nicknames",
 }

@@ -13,7 +13,7 @@ import type {Fraction} from "../fractions/fraction";
 import {addNewFractionToStore} from "../fractions/fractionStore";
 import {chooseAContinentFromStore} from "../continent/continentStore";
 import type {Entity} from "../entity";
-import {addNewNSCToCharacterStore} from "./charStore";
+import {RulerNicknamesTable} from "../../tables/nationTables/rulerNicknamesTable";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -66,6 +66,7 @@ export class CharacterFactory extends Factory{
     functions = [] as ((entity: Entity) => Entity)[];
     relationships: Relationship[] = [];
     id = -1;
+    characterNickname = "";
 
     constructor(
         tableRoller = new TableRoller(),
@@ -148,6 +149,7 @@ export class CharacterFactory extends Factory{
             .withStrength(this.strength)
             .withRelationships(this.relationships)
             .withId(this.id)
+            .withNickname(this.characterNickname)
             .build()
 
         this.characterFractions.forEach(fraction => {
@@ -220,6 +222,11 @@ export class CharacterFactory extends Factory{
         let result = this.tableRoller.roleFor(TableTitles.Disadvantages);
         this.functions = this.functions.concat(result.functions);
         this.characterDisadvantages.push(result.text)
+        return this;
+    }
+
+    withNickname(){
+        this.characterNickname = new RulerNicknamesTable().roleWithCascade().text;
         return this;
     }
 

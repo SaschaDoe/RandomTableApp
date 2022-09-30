@@ -11,7 +11,7 @@ export function addNewFractionToStore(){
     let randomNumberOfMembers = new Random().intFromInterval(1,3);
     for(let i = 0; i < randomNumberOfMembers; i++){
         let fractionFactory = new CharacterFactory().withMembership(fraction);
-        let f = addNewNSCToCharacterStore(fractionFactory);
+        addNewNSCToCharacterStore(fractionFactory);
     }
     fractionStore.update(fractions =>{
         fractions.push(fraction);
@@ -38,18 +38,26 @@ export function chooseFractionFromStore(probability = 100){
             fraction = fractions[randomFractionIndex];
         })
         if(fraction === undefined){
-
+            return addNewFractionToStore();
         }
         return fraction;
     }
     return addNewFractionToStore();
 }
 
-export function chooseFractionFromStoreWithUniqueName(){
+export function chooseFractionFromStoreReturnUniqueName(){
+    return chooseFractionFromStore().getUniqueName();
+}
+
+export function chooseFractionFromStoreReturnDescription(){
+    return chooseFractionFromStore().toString();
+}
+
+export function chooseTwoFractionFromStoreWithUniqueName(){
     let fractions = [];
     fractionStore.subscribe(fractionStore => fractions = fractionStore);
 
-    if(probabilityCheck(50) && fractions.length > 1){
+    if(probabilityCheck(80) && fractions.length > 1){
         let chosenFractions = [] as Fraction[];
         fractionStore.subscribe(fractions => {
             let randomFractionIndex1 = randomIntFromInterval(0,fractions.length-1);

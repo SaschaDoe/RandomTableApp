@@ -36,6 +36,7 @@ export class CharacterBuilder{
     strength = 0;
     relationships: Relationship[] = [];
     id = 0;
+    charNickname = ""
 
     constructor() {
         this.charCurses = [];
@@ -201,6 +202,11 @@ export class CharacterBuilder{
 
     withId(id: number) {
         this.id = id;
+        return this;
+    }
+
+    withNickname(nickname: string){
+        this.charNickname = nickname;
         return this;
     }
 }

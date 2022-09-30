@@ -1,6 +1,6 @@
 import {NationAdjectiveTable} from "../../tables/nationTables/nationAdjectiveTable";
 import {SizeTable} from "../../tables/otherTables/sizeTable";
-import {addNewNSCToCharacterStore, addNSCToCharacterStore} from "../character/charStore";
+import {addRulerToStore} from "../character/charStore";
 import {HistoricalEventTable} from "../../tables/otherTables/historicalEventTable";
 import {FractionWealthTable} from "../../tables/otherTables/fractionWealthTable";
 import {TechnologyTable} from "../../tables/otherTables/technologyTable";
@@ -12,17 +12,19 @@ import {NationTable} from "../../tables/nationTables/nationTable";
 export class Nation extends Entity{
     adjectives = [] as string[];
     size = new SizeTable().roleWithCascade().text;
-    ruler = addNewNSCToCharacterStore();
+    ruler = addRulerToStore();
     pastEvent = new HistoricalEventTable().roleWithCascade().text
     futureEvent = new HistoricalEventTable().roleWithCascade().text;
     wealth = new FractionWealthTable().roleWithCascade().text;
     technology = new TechnologyTable().roleWithCascade().text;
-    type = new NationTable().roleWithCascade().text;
+    type = "";
     relationships = [] as [Nation, string][]
 
     constructor() {
-        let name = generateContinentName();
+        let type = new NationTable().roleWithCascade().text;
+        let name = type + " " + generateContinentName();
         super(name);
+        this.type = type;
         let randomAdjectiveNumber = randomIntFromInterval(1,2);
         for(let i = 0; i < randomAdjectiveNumber; i++){
             this.adjectives.push(new NationAdjectiveTable().roleWithCascade().text);
@@ -30,7 +32,7 @@ export class Nation extends Entity{
     }
 
     toString(){
-        let description = `${this.getUniqueName()} a `;
+        let description = `a `;
         for(let i = 0; i < this.adjectives.length; i++){
             description += `${this.adjectives[i]} `
         }
