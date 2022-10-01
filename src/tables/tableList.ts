@@ -109,6 +109,25 @@ import {TechnologyTable} from "./otherTables/technologyTable";
 import {NationTable} from "./nationTables/nationTable";
 import {NationRelationshipTable} from "./nationTables/nationRelationshipTable";
 import {RulerNicknamesTable} from "./nationTables/rulerNicknamesTable";
+import {RealCultureTable} from "./cultureTables/realCultureTable";
+import {SouthAmericanFemaleNameTable} from "./nameTables/southAmericanFemaleNameTable";
+import {SouthAmericanMaleNameTable} from "./nameTables/southAmericanMaleNameTable";
+import {SouthAmericanLastNameTable} from "./nameTables/southAmericanLastNameTable";
+import {RussianFemaleNameTable} from "./nameTables/russianFemaleNameTable";
+import {RussianMaleNameTable} from "./nameTables/russianMaleNameTable";
+import {RussianLastNameTable} from "./nameTables/russianLastNameTable";
+import {GreekFemaleNameTable} from "./nameTables/greekFemaleNameTable";
+import {GreekMaleNameTable} from "./nameTables/greekMaleNameTable";
+import {GreekLastNameTable} from "./nameTables/greekLastNameTable";
+import {GreekPlaceName} from "./nameTables/greekPlaceName";
+import {AfricanNameTable} from "./nameTables/africanNameTable";
+import {BarbaricFemaleNameTable} from "./nameTables/barbaricFemaleNameTable";
+import {BarbaricMaleNameTable} from "./nameTables/barbaricMaleNameTable";
+import {BarbaricLastNameTable} from "./nameTables/barbaricLastNameTable";
+import {FrenchFemaleNameTable} from "./nameTables/frenchFemaleNameTable";
+import {FrenchMaleNameTable} from "./nameTables/frenchMaleNameTable";
+import {FrenchPlaceNameTable} from "./nameTables/frenchPlaceNameTable";
+import {FrenchLastNameTable} from "./nameTables/frenchLastNameTable";
 
 export let adventureTables = [
     new AdventureEventTable(),
@@ -214,6 +233,24 @@ export let nameTables = [
     new EpicSubstantiveTable(),
     new GermanFemaleNameTable(),
     new GermanMaleNameTable(),
+    new SouthAmericanFemaleNameTable(),
+    new SouthAmericanMaleNameTable(),
+    new SouthAmericanLastNameTable(),
+    new RussianFemaleNameTable(),
+    new RussianMaleNameTable(),
+    new RussianLastNameTable(),
+    new GreekFemaleNameTable(),
+    new GreekMaleNameTable(),
+    new GreekLastNameTable(),
+    new GreekPlaceName(),
+    new AfricanNameTable(),
+    new BarbaricFemaleNameTable(),
+    new BarbaricMaleNameTable(),
+    new BarbaricLastNameTable(),
+    new FrenchFemaleNameTable(),
+    new FrenchMaleNameTable(),
+    new FrenchLastNameTable(),
+    new FrenchPlaceNameTable(),
 ]
 export let otherTables = [
     new AttributeTable(),
@@ -240,6 +277,7 @@ export let otherTables = [
     new NationTable(),
     new NationRelationshipTable(),
     new RulerNicknamesTable(),
+    new RealCultureTable(),
 ]
 
 export let allTables =

@@ -2,6 +2,8 @@ import {randomIntFromInterval} from "../../utils/randomUtils";
 import {ConsonantTable} from "../otherTables/consonantTable";
 import {VocalTable} from "../otherTables/vocalTable";
 import {FractionNameTable} from "../otherTables/fractionNameTable";
+import {cultureAndNameDictionary} from "../cultureTables/cultureAndNameDictionary";
+import {Gender} from "../charTables/gender";
 
 function generateNameOfLength(numberOfSyllabus: number) {
     let name = "";
@@ -60,4 +62,58 @@ export function generateContinentName(){
     }
 
     return name;
+}
+
+export function getCultureName(culture: string, gender: string) {
+    let tables = cultureAndNameDictionary[culture];
+    if(tables === undefined){
+        tables = cultureAndNameDictionary.german;
+    }
+    let firstName = tables[0].roleWithCascade().text;
+    if (gender === Gender.Male) {
+        firstName = tables[1].roleWithCascade().text;
+    }
+    let lastName = tables[2].roleWithCascade().text;
+
+    firstName = changeFirstVocal(firstName);
+    lastName = changeFirstVocal(lastName)
+
+    return firstName + " " + lastName;
+}
+
+export function changeFirstVocal(name: string){
+    let vocals = ["a", "e", "i", "o", "u"];
+    name = name.toLocaleLowerCase();
+    let indexOfA = name.indexOf("a");
+    let indexOfE = name.indexOf("e");
+    let indexOfI = name.indexOf("i");
+    let indexOfO = name.indexOf("o");
+    let indexOfU = name.indexOf("u");
+
+    let randomVocalNumber = randomIntFromInterval(0,4);
+    let randomVocal = vocals[randomVocalNumber];
+
+    if(indexOfA !== -1 && indexOfA !== name.length-1){
+        name = replaceAt(name, indexOfA, randomVocal);
+
+    }else if(indexOfE !== -1 && indexOfE !== name.length-1){
+        name = replaceAt(name, indexOfE, randomVocal);
+
+    }else if(indexOfI !== -1 && indexOfI !== name.length-1){
+        name = replaceAt(name, indexOfI, randomVocal);
+
+    }else if(indexOfO !== -1 && indexOfO !== name.length-1){
+        name = replaceAt(name, indexOfO, randomVocal);
+
+    }else if(indexOfU !== -1 && indexOfU !== name.length-1){
+        name = replaceAt(name, indexOfU, randomVocal);
+    }
+
+    name = name[0].toUpperCase() + name.substring(1)
+
+    return name;
+}
+
+export function replaceAt(input: string, index: number, replacement: string){
+    return input.substring(0, index) + replacement + input.substring(index+1);
 }

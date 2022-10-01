@@ -14,6 +14,7 @@ import {addNewFractionToStore} from "../fractions/fractionStore";
 import {chooseAContinentFromStore} from "../continent/continentStore";
 import type {Entity} from "../entity";
 import {RulerNicknamesTable} from "../../tables/nationTables/rulerNicknamesTable";
+import {getCultureName} from "../../tables/nameTables/nameGenerator";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -53,6 +54,7 @@ export class CharacterFactory extends Factory{
     characterIsHigherPower = false;
     characterFractions: Fraction[] = [];
     characterTrope = "";
+    characterCulture = "";
 
     courage = 0;
     charisma = 0;
@@ -181,11 +183,16 @@ export class CharacterFactory extends Factory{
 
     private setAllMandatory() {
         this.characterGender = this.tableRoller.roleFor(TableTitles.Gender).text;
+        this.characterCulture = this.tableRoller.roleFor(TableTitles.RealCulture).text;
+        this.characterName = getCultureName(this.characterCulture, this.characterGender)
+        /*
         if(this.characterGender === "female"){
             this.characterName = this.tableRoller.roleFor(TableTitles.GermanFemaleNames).text;
         }else{
             this.characterName = this.tableRoller.roleFor(TableTitles.GermanMaleName).text;
         }
+        */
+
         this.characterAlignment = this.tableRoller.roleFor(TableTitles.Alignment).text;
         this.characterRace = this.tableRoller.roleFor(TableTitles.Race).text;
         this.characterMotivation = this.tableRoller.roleFor(TableTitles.Motivation).text;
