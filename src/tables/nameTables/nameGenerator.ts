@@ -81,7 +81,10 @@ export function getCultureName(culture: string, gender: string) {
     }
 
     firstName = changeFirstVocal(firstName);
-    lastName = changeFirstVocal(lastName)
+    if(culture !== "elfen"){
+        lastName = changeFirstVocal(lastName);
+    }
+
 
     return firstName + " " + lastName;
 }

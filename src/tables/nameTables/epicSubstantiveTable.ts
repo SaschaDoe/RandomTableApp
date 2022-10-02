@@ -21,6 +21,15 @@ export class EpicSubstantiveTable extends Table {
         entries.push(new TableEntry("sun"));
         entries.push(new TableEntry("universe"));
         entries.push(new TableEntry("afterlife"));
+        entries.push(new TableEntry("blood"));
+        entries.push(new TableEntry("flame"));
+        entries.push(new TableEntry("dawn"));
+        entries.push(new TableEntry("thunder"));
+        entries.push(new TableEntry("wind"));
+        entries.push(new TableEntry("spell"));
+        entries.push(new TableEntry("prayer"));
+        entries.push(new TableEntry("dream"));
+        entries.push(new TableEntry("star"));
         super(entries, TableTitles.EpicSubstantive);
     }
 }

@@ -27,6 +27,9 @@ import {ArabicMaleNameTable} from "../nameTables/arabicMaleNameTable";
 import {ArabicMaleLastNameTable} from "../nameTables/arabicMaleLastNameTable";
 import {NordicFemaleLastNameTable} from "../nameTables/nordicFemaleLastNameTable";
 import {ArabicFemaleLastNameTable} from "../nameTables/arabicFemaleLastNameTable";
+import {ElfenFemaleNameTable} from "../nameTables/elfenFemaleNameTable";
+import {ElfenMaleNameTable} from "../nameTables/elfenMaleNameTable";
+import {ElfenLastName} from "../nameTables/elfenLastName";
 
 export let cultureAndNameDictionary: {[culture: string]: [Table, Table, Table, Table]} = {};
 
@@ -99,3 +102,11 @@ cultureAndNameDictionary.arabic = [
     new ArabicMaleLastNameTable(),
     new ArabicFemaleLastNameTable(),
 ]
+
+cultureAndNameDictionary.elfen = [
+    new ElfenFemaleNameTable(),
+    new ElfenMaleNameTable(),
+    new ElfenLastName(),
+    new ElfenLastName(),
+]
+

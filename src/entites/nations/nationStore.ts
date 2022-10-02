@@ -7,8 +7,7 @@ import {probabilityCheck, randomIntFromInterval} from "../../utils/randomUtils";
 
 export let nationStore = writable([new FirstNation()]);
 
-export function addNewNation(){
-    let nation = new Nation();
+export function addNewNation(nation = new Nation()){
     nationStore.update(nations => {
 
         nations.forEach(localNation => {

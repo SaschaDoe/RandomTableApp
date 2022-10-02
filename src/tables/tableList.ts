@@ -140,6 +140,11 @@ import {NordicFemaleLastNameTable} from "./nameTables/nordicFemaleLastNameTable"
 import {ArabicFemaleLastNameTable} from "./nameTables/arabicFemaleLastNameTable";
 import {ArabicFemaleNameAdditionTable} from "./nameTables/arabicFemaleNameAdditionTable";
 import {ArabicMaleNameAdditionTable} from "./nameTables/arabicMaleNameAdditionTable";
+import {BarbaricNicknameTable} from "./nameTables/barbaricNicknameTable";
+import {ElfenFemaleNameTable} from "./nameTables/elfenFemaleNameTable";
+import {ElfenMaleNameTable} from "./nameTables/elfenMaleNameTable";
+import {ElfenLastName} from "./nameTables/elfenLastName";
+import {VerbTable} from "./nameTables/verbTable";
 
 export let adventureTables = [
     new AdventureEventTable(),
@@ -259,6 +264,7 @@ export let nameTables = [
     new BarbaricFemaleNameTable(),
     new BarbaricMaleNameTable(),
     new BarbaricLastNameTable(),
+    new BarbaricNicknameTable(),
     new FrenchFemaleNameTable(),
     new FrenchMaleNameTable(),
     new FrenchLastNameTable(),
@@ -275,6 +281,9 @@ export let nameTables = [
     new ArabicFemaleLastNameTable(),
     new ArabicFemaleNameAdditionTable(),
     new ArabicMaleNameAdditionTable(),
+    new ElfenFemaleNameTable(),
+    new ElfenMaleNameTable(),
+    new ElfenLastName(),
 ]
 export let otherTables = [
     new AttributeTable(),
@@ -302,6 +311,7 @@ export let otherTables = [
     new NationRelationshipTable(),
     new RulerNicknamesTable(),
     new RealCultureTable(),
+    new VerbTable(),
 ]
 
 export let allTables =

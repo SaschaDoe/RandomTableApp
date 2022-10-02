@@ -7,6 +7,7 @@ export class FantasyCreatureTable extends Table{
         let entries = [];
         entries.push(new TableEntry("orc"));
         entries.push(new TableEntry("goblin"));
+        entries.push(new TableEntry("dwarf"));
         entries.push(new TableEntry("elf"));
         entries.push(new TableEntry("fey"));
         entries.push(new TableEntry("high elf"));

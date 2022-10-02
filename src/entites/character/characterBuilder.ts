@@ -27,14 +27,14 @@ export class CharacterBuilder{
     charMemberOfFraction: Fraction[];
     charTrope: string | undefined;
 
-    courage = 0;
-    charisma = 0;
-    wisdom  = 0;
-    intuition  = 0
-    dexterity  = 0;
-    manualDexterity = 0;
-    constitution = 0;
-    strength = 0;
+    courage = -1;
+    charisma = -1;
+    wisdom  = -1;
+    intuition  = -1;
+    dexterity  = -1;
+    manualDexterity = -1;
+    constitution = -1;
+    strength = -1;
     relationships: Relationship[] = [];
     id = 0;
     charNickname = ""
@@ -53,14 +53,16 @@ export class CharacterBuilder{
 
     build() {
         let character = new Character(this);
-        character.courage = this.courage;
-        character.charisma = this.charisma;
-        character.wisdom = this.wisdom;
-        character.intuition = this.intuition;
-        character.dexterity = this.dexterity;
-        character.manualDexterity = this.manualDexterity;
-        character.constitution = this.constitution;
-        character.strength = this.strength;
+        if(this.courage !== -1 && this.courage !== 0){
+            character.courage = this.courage;
+            character.charisma = this.charisma;
+            character.wisdom = this.wisdom;
+            character.intuition = this.intuition;
+            character.dexterity = this.dexterity;
+            character.manualDexterity = this.manualDexterity;
+            character.constitution = this.constitution;
+            character.strength = this.strength;
+        }
         return character;
     }
 

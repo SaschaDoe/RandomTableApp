@@ -15,8 +15,8 @@ import {chooseAContinentFromStore} from "../continent/continentStore";
 import type {Entity} from "../entity";
 import {RulerNicknamesTable} from "../../tables/nationTables/rulerNicknamesTable";
 import {getCultureName} from "../../tables/nameTables/nameGenerator";
-import {chooseNationFromStore} from "../nations/nationStore";
-import type {Nation} from "../nations/nation";
+import {addNewNation, chooseNationFromStore} from "../nations/nationStore";
+import {Nation} from "../nations/nation";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -188,11 +188,20 @@ export class CharacterFactory extends Factory{
     }
 
     private setAllMandatory() {
+        this.characterRace = this.tableRoller.roleFor(TableTitles.Race).text;
         this.characterGender = this.tableRoller.roleFor(TableTitles.Gender).text;
-        this.characterNation = chooseNationFromStore(100);
+
+        if(this.characterRace === "elf"){
+            let nation = new Nation();
+            nation.culture = "elfen";
+            this.characterNation = nation
+        }else{
+            this.characterNation = chooseNationFromStore(100);
+        }
+
         this.characterName = getCultureName(this.characterNation.culture, this.characterGender)
         this.characterAlignment = this.tableRoller.roleFor(TableTitles.Alignment).text;
-        this.characterRace = this.tableRoller.roleFor(TableTitles.Race).text;
+
         this.characterMotivation = this.tableRoller.roleFor(TableTitles.Motivation).text;
         this.characterProfession = this.tableRoller.roleFor(TableTitles.Profession).text;
         this.characterNobility = this.tableRoller.roleFor(TableTitles.Nobility).text;

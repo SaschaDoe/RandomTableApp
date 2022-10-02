@@ -11,13 +11,13 @@ export class Nation extends FirstNation{
         if(this.ruler === undefined){
             rulerDescription = "there is no ruler";
         }else{
-            rulerDescription = this.ruler.toString();
+            rulerDescription = this.ruler.getUniqueName();
         }
-        let description = `a `;
+        let description = `${this.getUniqueName()} a `;
         for(let i = 0; i < this.adjectives.length; i++){
             description += `${this.adjectives[i]} `
         }
-        description += `${this.size} ${this.wealth} ${this.culture}-liken culture ${this.type} on the level of ${this.technology}. \n`;
+        description += `${this.size} ${this.wealth} ${this.culture}-like culture ${this.type} on the level of ${this.technology}. \n`;
         description += `Ruler is ${rulerDescription}. \n`;
         description += `Past event was ${this.pastEvent}. \n`;
         description += `Future event will be ${this.futureEvent}. \n`;

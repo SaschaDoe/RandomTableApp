@@ -174,7 +174,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
             }
         }
 
-        description += `.\n ${pronoun} is born in ${this.nation.toString()}`
+        description += `.\n ${pronoun} is born in ${this.nation.getUniqueName()} a ${this.nation.culture} on the level of ${this.nation.technology}`
 
         description += `.\n ${adverb} motivation is ${this.motivation}`
 

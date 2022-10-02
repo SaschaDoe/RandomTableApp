@@ -28,9 +28,8 @@ export let currentAdventurePhase = writable(adventurePhase);
 export function addEventToStore(){
     eventList.update(events =>{
         events.push("season "+new SeasonTable().roleWithCascade().text + " with weather " + new WeatherTable().roleWithCascade().text)
-        events.push(addNewNationReturnDescription().toString());
-        events.push(addNewNationReturnDescription().toString());
-        events.push("town: "+addNewTownToStoreReturnDescription())
+        events.push(addNewNationReturnDescription().toString()+"\n");
+        events.push("town: "+addNewTownToStoreReturnDescription()+"\n")
         events.push("possible plan: "+new PlanTable().roleWithCascade().text)
         events.push("villain is: "+new VillainAdjectiveTable().roleWithCascade().text)
         if(probabilityCheck(50)){
