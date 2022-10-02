@@ -35,7 +35,7 @@ export let magicalTalentHigherPowerMaxInterval = 7
 export let magicalTalentMaxInterval = 3;
 export let fractionMinInterval = -1;
 export let fractionMaxInterval = 0;
-export let oldContinentProbability = 80;
+export let oldContinentProbability = 95;
 
 export class CharacterFactory extends Factory{
     characterAlignment = "";
@@ -328,6 +328,7 @@ export class CharacterFactory extends Factory{
         this.characterFractions.push(fraction);
         return this;
     }
+
 }
 
 

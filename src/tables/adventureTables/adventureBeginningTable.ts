@@ -5,19 +5,15 @@ import {TableType} from "../tableType";
 import {BeginningTropeTable} from "./beginningTropeTable";
 import {
     addNewNSCToCharacterStoreReturnDescription,
-    addNewNSCToCharacterStoreReturnUniqueName
 } from "../../entites/character/charStore";
 import {
     addDungeonToStoreReturnDescription,
-    addDungeonToStoreReturnUniqueName
 } from "../../entites/dungeons/dungeonStore";
 import {
     addArtefactToStoreReturnDescription,
-    addArtefactToStoreReturnUniqueName
 } from "../../entites/artefacts/artefactStore";
 import {
     addNewFractionToStoreReturnDescription,
-    addNewFractionToStoreReturnUniqueName
 } from "../../entites/fractions/fractionStore";
 import {DiceRole} from "../diceRole";
 

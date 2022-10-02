@@ -3,7 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {
-    addNewNSCToCharacterStoreReturnUniqueName, chooseHigherPowerReturnDescription
+    addNewNSCToCharacterStoreReturnUniqueName, chooseHigherPowerReturnDescription, chooseNSCReturnUniqueName
 } from "../../entites/character/charStore";
 import {addNewFractionToStoreReturnUniqueName} from "../../entites/fractions/fractionStore";
 import {addArtefactToStoreReturnUniqueName} from "../../entites/artefacts/artefactStore";
@@ -40,7 +40,7 @@ export class PlotTropeTable extends Table{
         entries.push(new TableEntry("bad luck charm"));
         entries.push(new TableEntry("someone seems good but than bad"));
         entries.push(new TableEntry("the plot is just copied from:")); //todo add very famous plots like titanic, pokahontas, lord of rings, matrix,
-        entries.push(new TableEntry("competition with character: ").withFunctionString(addNewNSCToCharacterStoreReturnUniqueName));
+        entries.push(new TableEntry("competition with character: ").withFunctionString(chooseNSCReturnUniqueName));
         entries.push(new TableEntry("competition with fraction: ").withFunctionString(addNewFractionToStoreReturnUniqueName));
         entries.push(new TableEntry("macGuffin chase: ").withFunctionString(addArtefactToStoreReturnUniqueName));
         entries.push(new TableEntry("brainwashed"));

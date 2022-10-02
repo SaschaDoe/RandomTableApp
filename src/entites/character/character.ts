@@ -8,6 +8,7 @@ import {isMagicalProfession} from "../../tables/charTables/magicUserProfessions"
 import type {Continent} from "../continent/continent";
 import type {Fraction} from "../fractions/fraction";
 import type {Nation} from "../nations/nation";
+import {CharacterFactory} from "./characterFactory";
 
 
 export class Character extends AttributeEntity implements Equatable<Character>{
@@ -35,9 +36,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     readonly isHigherPower: boolean;
 
 
-    constructor(
-        characterBuilder: CharacterBuilder
-    ) {
+    constructor(characterBuilder: CharacterBuilder) {
         if(characterBuilder.charGender === undefined){
             throw Error("Character gender must be set");
         }
@@ -247,4 +246,3 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         return description
     }
 }
-

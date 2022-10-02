@@ -3,7 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {NaturalEvents} from "./naturalEvents";
-import {addNewNSCToCharacterStoreReturnUniqueName} from "../../entites/character/charStore";
+import {chooseNSCReturnUniqueName} from "../../entites/character/charStore";
 import {
     addNewFractionToStoreReturnUniqueName, chooseFractionFromStoreReturnUniqueName,
     chooseTwoFractionFromStoreWithUniqueName
@@ -14,7 +14,7 @@ export class HistoricalEventTable extends Table{
         let entries = [] as TableEntry[];
         entries.push(new TableEntry("battle between fractions").withFunctionString(chooseTwoFractionFromStoreWithUniqueName))
         entries.push(new TableEntry("contract between fractions").withFunctionString(chooseTwoFractionFromStoreWithUniqueName))
-        entries.push(new TableEntry("new ruler").withFunctionString(addNewNSCToCharacterStoreReturnUniqueName))
+        entries.push(new TableEntry("new ruler").withFunctionString(chooseNSCReturnUniqueName))
         entries.push(new TableEntry("").withCascadingRole(new NaturalEvents()))
         entries.push(new TableEntry("scientific discovery"))
         entries.push(new TableEntry("destruction town"))

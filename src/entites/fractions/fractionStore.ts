@@ -8,7 +8,7 @@ export let fractionStore = writable([] as Fraction[]);
 
 export function addNewFractionToStore(){
     let fraction = new Fraction();
-    let randomNumberOfMembers = new Random().intFromInterval(1,3);
+    let randomNumberOfMembers = new Random().intFromInterval(0,1);
     for(let i = 0; i < randomNumberOfMembers; i++){
         let fractionFactory = new CharacterFactory().withMembership(fraction);
         addNewNSCToCharacterStore(fractionFactory);
