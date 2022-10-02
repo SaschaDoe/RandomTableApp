@@ -69,11 +69,16 @@ export function getCultureName(culture: string, gender: string) {
     if(tables === undefined){
         tables = cultureAndNameDictionary.german;
     }
-    let firstName = tables[0].roleWithCascade().text;
+    let firstName: string;
+    let lastName: string;
+
     if (gender === Gender.Male) {
         firstName = tables[1].roleWithCascade().text;
+        lastName = tables[3].roleWithCascade().text;
+    }else{
+        firstName = tables[0].roleWithCascade().text;
+        lastName = tables[2].roleWithCascade().text;
     }
-    let lastName = tables[2].roleWithCascade().text;
 
     firstName = changeFirstVocal(firstName);
     lastName = changeFirstVocal(lastName)
@@ -108,12 +113,22 @@ export function changeFirstVocal(name: string){
     }else if(indexOfU !== -1 && indexOfU !== name.length-1){
         name = replaceAt(name, indexOfU, randomVocal);
     }
+    if(name === "" || name === undefined){
+        name = "a";
+    }
 
-    name = name[0].toUpperCase() + name.substring(1)
+    name = firstLetterToUppercase(name);
 
     return name;
 }
 
 export function replaceAt(input: string, index: number, replacement: string){
     return input.substring(0, index) + replacement + input.substring(index+1);
+}
+
+export function firstLetterToUppercase(input: string){
+    if(input === undefined || input.length < 1){
+        return "";
+    }
+    return input[0].toUpperCase() + input.substring(1)
 }

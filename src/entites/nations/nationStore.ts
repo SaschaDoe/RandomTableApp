@@ -2,8 +2,9 @@ import {writable} from "svelte/store";
 import {Nation} from "./nation";
 import {NationRelationshipTable} from "../../tables/nationTables/nationRelationshipTable";
 import {updateIndex} from "../../summary/updateSummaryIndex";
+import {FirstNation} from "./firstNation";
 
-export let nationStore = writable([] as Nation[]);
+export let nationStore = writable([new FirstNation()]);
 
 export function addNewNation(){
     let nation = new Nation();

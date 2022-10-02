@@ -140,4 +140,11 @@ export enum TableTitles{
     NordicMaleName = "Nordic Male Name",
     ArabicMaleName = "Arabic Male Name",
     ArabicFemaleName = "Arabic Female Name",
+    ArabicMaleLastName = "Arabic Male Last Name",
+    Blank = "Blank",
+    NordicMaleLastName = "Nordic Male Last Name",
+    ArabicMaleNameAddition = "Arabic Male Name Addition",
+    ArabicFemaleNameAddition = "Arabic Female Name Addition",
+    NordicFemaleLastName = "Nordic Female Last Name",
+    ArabicFemaleLastName = "Arabic Female Last Name",
 }

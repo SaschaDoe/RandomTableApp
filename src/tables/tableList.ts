@@ -128,6 +128,18 @@ import {FrenchFemaleNameTable} from "./nameTables/frenchFemaleNameTable";
 import {FrenchMaleNameTable} from "./nameTables/frenchMaleNameTable";
 import {FrenchPlaceNameTable} from "./nameTables/frenchPlaceNameTable";
 import {FrenchLastNameTable} from "./nameTables/frenchLastNameTable";
+import {IndianMaleNameTable} from "./nameTables/indianMaleNameTable";
+import {IndianFemaleNameTable} from "./nameTables/indianFemaleNameTable";
+import {NordicFemaleNameTable} from "./nameTables/nordicFemaleNameTable";
+import {NordicMaleNameTable} from "./nameTables/nordicMaleNameTable";
+import {ArabicMaleNameTable} from "./nameTables/arabicMaleNameTable";
+import {ArabicFemaleNameTable} from "./nameTables/arabicFemaleNameTable";
+import {ArabicMaleLastNameTable} from "./nameTables/arabicMaleLastNameTable";
+import {NordicMaleLastNameTable} from "./nameTables/nordicMaleLastNameTable";
+import {NordicFemaleLastNameTable} from "./nameTables/nordicFemaleLastNameTable";
+import {ArabicFemaleLastNameTable} from "./nameTables/arabicFemaleLastNameTable";
+import {ArabicFemaleNameAdditionTable} from "./nameTables/arabicFemaleNameAdditionTable";
+import {ArabicMaleNameAdditionTable} from "./nameTables/arabicMaleNameAdditionTable";
 
 export let adventureTables = [
     new AdventureEventTable(),
@@ -251,6 +263,18 @@ export let nameTables = [
     new FrenchMaleNameTable(),
     new FrenchLastNameTable(),
     new FrenchPlaceNameTable(),
+    new IndianMaleNameTable(),
+    new IndianFemaleNameTable(),
+    new NordicFemaleNameTable(),
+    new NordicMaleNameTable(),
+    new NordicMaleLastNameTable(),
+    new NordicFemaleLastNameTable(),
+    new ArabicMaleNameTable(),
+    new ArabicFemaleNameTable(),
+    new ArabicMaleLastNameTable(),
+    new ArabicFemaleLastNameTable(),
+    new ArabicFemaleNameAdditionTable(),
+    new ArabicMaleNameAdditionTable(),
 ]
 export let otherTables = [
     new AttributeTable(),
