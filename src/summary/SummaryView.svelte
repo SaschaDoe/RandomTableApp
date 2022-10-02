@@ -2,7 +2,7 @@
     import {
         addNewNSCToCharacterStoreReturnUniqueName,
         addNSCsToCharacterStore,
-        characters,
+        characters, createHigherPower,
         higherPowerBeingsStore
     } from "../entites/character/charStore.js";
     import CharacterView from "./CharacterView.svelte";
@@ -36,8 +36,7 @@
     const addPartyHandler = ()=>{
         addNSCsToCharacterStore(new CharacterFactory().createParty(sizeOfParty))
         updateIndex()
-    }
-
+    };
     let addNSC = () => {
         addNewNSCToCharacterStoreReturnUniqueName();
         updateIndex()
@@ -71,6 +70,10 @@
         addNewNation();
         updateIndex();
     };
+    let addHigherPower = () => {
+        createHigherPower();
+        updateIndex();
+    };
 
 </script>
 
@@ -79,6 +82,7 @@
 <button on:click={addPartyHandler}>Add party member</button>
 <input type="number" bind:value={sizeOfParty}/>
 <button on:click={addNSC}>Add NSC</button>
+<button on:click={addHigherPower}>Add Higher Power</button>
 <button on:click={addFraction}>Add Fraction</button>
 <button on:click={addArtefactForView}>Add Artefact</button>
 <button on:click={addNationToView}>Add Nation</button>

@@ -6,3 +6,9 @@
 
 <h1>{other.getUniqueName()}</h1>
 <p>{other.toString()}</p>
+
+<style>
+    p{
+        white-space: pre-line
+    }
+</style>

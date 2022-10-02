@@ -5,7 +5,7 @@
     export let character: Character;
 
     let characterFactory = new CharacterFactory();
-    //TODO: known bug: when added char in factory functions than character will be reseted. solution is viewmodel structure
+
     let handleAddCurse = () =>{
         character = characterFactory.clone(character).addCurse().create();
     };
@@ -25,9 +25,10 @@
 </script>
 <h1>{character.getUniqueName()}</h1>
 {#if character.isHigherPower}
-    <p>{character.alignment+ " " +character.race +" "+character.gender+" higher power being of "+ character.profession}</p>
+    <p>{character.alignment+ " " +character.race +" "+character.gender+" higher power being of "+ character.profession+" from a " + character.nation.culture+"-like "+ character.nation.technology+" culture"}</p>
     {:else}
-    <p>{character.alignment +" and "+ character.nobility+" "+character.race +" "+character.gender+" "+ character.profession}</p>
+    <p>{character.alignment +" and "+ character.nobility+" "+character.race +" "+character.gender+" "+ character.profession + " from a " + character.nation.culture+"-like " + character.nation.technology+ " culture"}</p>
+    <div>{"Born in "}<a href={"#"+character.nation.getUniqueName()}>{character.nation.getUniqueName()}</a></div>
     {/if}
 
 <div>

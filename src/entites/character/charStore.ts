@@ -59,11 +59,49 @@ export function createHigherPowerReturnUniqueName(){
     addNSCToCharacterStore(higherPower);
     return higherPower.getUniqueName();
 }
+export let higherPowerChooseProbability = 95;
+export function chooseHigherPower(probability = higherPowerChooseProbability){
+    if(probabilityCheck(probability)){
+        let character: Character|undefined;
+        higherPowerBeingsStore.subscribe(higherPowers => {
+            let randomIndex = randomIntFromInterval(0,higherPowers.length-1);
+            character = higherPowers[randomIndex];
+        })
+        if(character === undefined){
+            return createHigherPower();
+        }
+        return character;
+    }
+    return createHigherPower();
+}
+
+export function chooseHigherPowerReturnDescription(probability = higherPowerChooseProbability){
+    let higherPower = chooseHigherPower(probability)
+    return higherPower.toString();
+}
+
+export function chooseHigherPowerReturnUniqueName(probability = higherPowerChooseProbability){
+    let higherPower = chooseHigherPower(probability)
+    return higherPower.getUniqueName();
+}
 
 export function createHigherPowerReturnDescription(){
     let higherPower = new CharacterFactory().createHigherPower();
-    addNSCToCharacterStore(higherPower);
+    addHigherPowerToStore(higherPower);
     return higherPower.toString();
+}
+
+export function createHigherPower(){
+    let higherPower = new CharacterFactory().createHigherPower();
+    addHigherPowerToStore(higherPower);
+    return higherPower;
+}
+
+export function addHigherPowerToStore(higherPower: Character){
+    higherPowerBeingsStore.update(powers => {
+        powers.push(higherPower);
+        return powers;
+    })
 }
 
 

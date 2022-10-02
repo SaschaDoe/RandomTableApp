@@ -1,7 +1,7 @@
 import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
-import {createHigherPowerReturnUniqueName} from "../../entites/character/charStore";
+import {chooseHigherPowerReturnDescription, createHigherPowerReturnUniqueName} from "../../entites/character/charStore";
 import {CharacterShadowArchetypeTable} from "./characterShadowArchetypeTable";
 
 export class CharacterAsDeviceTable extends Table{
@@ -78,7 +78,7 @@ export class CharacterAsDeviceTable extends Table{
         entries.push(new TableEntry("proxy for human vs machine"))
         entries.push(new TableEntry("proxy for emotion vs stoicism"))
         entries.push(new TableEntry("proxy for nature vs industrialisation"))
-        entries.push(new TableEntry("willing channeler for").withFunctionString(createHigherPowerReturnUniqueName))
+        entries.push(new TableEntry("willing channeler for").withFunctionString(chooseHigherPowerReturnDescription))
         super(entries, TableTitles.CharacterAsDevice);
     }
 }

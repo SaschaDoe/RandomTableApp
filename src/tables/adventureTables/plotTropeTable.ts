@@ -3,8 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {
-    addNewNSCToCharacterStoreReturnUniqueName,
-    createHigherPowerReturnUniqueName
+    addNewNSCToCharacterStoreReturnUniqueName, chooseHigherPowerReturnDescription
 } from "../../entites/character/charStore";
 import {addNewFractionToStoreReturnUniqueName} from "../../entites/fractions/fractionStore";
 import {addArtefactToStoreReturnUniqueName} from "../../entites/artefacts/artefactStore";
@@ -84,7 +83,7 @@ export class PlotTropeTable extends Table{
         entries.push(new TableEntry("magic goes away"));
         entries.push(new TableEntry("the makeover"));
         entries.push(new TableEntry("mental story"));
-        entries.push(new TableEntry("mission from higher power:").withFunctionString(createHigherPowerReturnUniqueName));
+        entries.push(new TableEntry("mission from higher power:").withFunctionString(chooseHigherPowerReturnDescription));
         entries.push(new TableEntry("hero can't ordinary must"));
         entries.push(new TableEntry("moby dick whale chase"));
         entries.push(new TableEntry("you have to be worthy"));

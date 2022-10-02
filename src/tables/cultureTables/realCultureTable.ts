@@ -10,7 +10,6 @@ export class RealCultureTable extends Table{
         entries.push(new TableEntry("french"))
         entries.push(new TableEntry("nordic"))
         entries.push(new TableEntry("african"))
-        entries.push(new TableEntry("japan"))
         entries.push(new TableEntry("indian"))
         entries.push(new TableEntry("arabic"))
         entries.push(new TableEntry("barbaric"))

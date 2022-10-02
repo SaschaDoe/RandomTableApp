@@ -3,6 +3,7 @@ import type {Artefact} from "../artefacts/artefact";
 import type {Continent} from "../continent/continent";
 import type {Fraction} from "../fractions/fraction";
 import type {Relationship} from "./relationship";
+import type {Nation} from "../nations/nation";
 
 export class CharacterBuilder{
     //undefined because there is no default value
@@ -37,6 +38,7 @@ export class CharacterBuilder{
     relationships: Relationship[] = [];
     id = 0;
     charNickname = ""
+    charNation: Nation|undefined;
 
     constructor() {
         this.charCurses = [];
@@ -207,6 +209,11 @@ export class CharacterBuilder{
 
     withNickname(nickname: string){
         this.charNickname = nickname;
+        return this;
+    }
+
+    withNation(nation: Nation){
+        this.charNation = nation;
         return this;
     }
 }

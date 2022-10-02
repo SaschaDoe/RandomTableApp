@@ -74,10 +74,10 @@ export function getCultureName(culture: string, gender: string) {
 
     if (gender === Gender.Male) {
         firstName = tables[1].roleWithCascade().text;
-        lastName = tables[3].roleWithCascade().text;
+        lastName = tables[2].roleWithCascade().text;
     }else{
         firstName = tables[0].roleWithCascade().text;
-        lastName = tables[2].roleWithCascade().text;
+        lastName = tables[3].roleWithCascade().text;
     }
 
     firstName = changeFirstVocal(firstName);

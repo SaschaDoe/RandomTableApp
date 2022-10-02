@@ -15,6 +15,8 @@ import {chooseAContinentFromStore} from "../continent/continentStore";
 import type {Entity} from "../entity";
 import {RulerNicknamesTable} from "../../tables/nationTables/rulerNicknamesTable";
 import {getCultureName} from "../../tables/nameTables/nameGenerator";
+import {chooseNationFromStore} from "../nations/nationStore";
+import type {Nation} from "../nations/nation";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -54,7 +56,6 @@ export class CharacterFactory extends Factory{
     characterIsHigherPower = false;
     characterFractions: Fraction[] = [];
     characterTrope = "";
-    characterCulture = "";
 
     courage = 0;
     charisma = 0;
@@ -69,6 +70,7 @@ export class CharacterFactory extends Factory{
     relationships: Relationship[] = [];
     id = -1;
     characterNickname = "";
+    characterNation: Nation|undefined;
 
     constructor(
         tableRoller = new TableRoller(),
@@ -110,7 +112,7 @@ export class CharacterFactory extends Factory{
         this.strength = char.strength;
         this.id = char.id;
         this.relationships = char.relationships;
-
+        this.characterNation = char.nation;
         return this;
     }
 
@@ -121,6 +123,9 @@ export class CharacterFactory extends Factory{
         this.ensureHigherPowerHasAtLeastThreeMagicalTalent();
         if(this.characterContinent === undefined){
             this.characterContinent = chooseAContinentFromStore(oldContinentProbability);
+        }
+        if(this.characterNation === undefined){
+            throw Error("Nation is undefined");
         }
 
         let char = characterBuilder
@@ -152,6 +157,7 @@ export class CharacterFactory extends Factory{
             .withRelationships(this.relationships)
             .withId(this.id)
             .withNickname(this.characterNickname)
+            .withNation(this.characterNation)
             .build()
 
         this.characterFractions.forEach(fraction => {
@@ -183,16 +189,8 @@ export class CharacterFactory extends Factory{
 
     private setAllMandatory() {
         this.characterGender = this.tableRoller.roleFor(TableTitles.Gender).text;
-        this.characterCulture = this.tableRoller.roleFor(TableTitles.RealCulture).text;
-        this.characterName = getCultureName(this.characterCulture, this.characterGender)
-        /*
-        if(this.characterGender === "female"){
-            this.characterName = this.tableRoller.roleFor(TableTitles.GermanFemaleNames).text;
-        }else{
-            this.characterName = this.tableRoller.roleFor(TableTitles.GermanMaleName).text;
-        }
-        */
-
+        this.characterNation = chooseNationFromStore(100);
+        this.characterName = getCultureName(this.characterNation.culture, this.characterGender)
         this.characterAlignment = this.tableRoller.roleFor(TableTitles.Alignment).text;
         this.characterRace = this.tableRoller.roleFor(TableTitles.Race).text;
         this.characterMotivation = this.tableRoller.roleFor(TableTitles.Motivation).text;

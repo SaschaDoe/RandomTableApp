@@ -3,6 +3,7 @@ import {Nation} from "./nation";
 import {NationRelationshipTable} from "../../tables/nationTables/nationRelationshipTable";
 import {updateIndex} from "../../summary/updateSummaryIndex";
 import {FirstNation} from "./firstNation";
+import {probabilityCheck, randomIntFromInterval} from "../../utils/randomUtils";
 
 export let nationStore = writable([new FirstNation()]);
 
@@ -20,6 +21,33 @@ export function addNewNation(){
     })
     updateIndex();
     return nation;
+}
+
+export function chooseNationFromStore(probability = 100){
+    if(probabilityCheck(probability)){
+        let nation: Nation|undefined;
+        nationStore.subscribe(nations => {
+            let randomIndex = randomIntFromInterval(0,nations.length-1);
+            nation = nations[randomIndex];
+        })
+        if(nation === undefined){
+            return addNewNation();
+        }
+        return nation;
+    }
+    return addNewNation();
+}
+
+export function chooseNationReturnDescription(probability = 100){
+    let nation = chooseNationFromStore(probability);
+
+    return nation.toString();
+}
+
+export function chooseNationReturnUniqueName(probability = 100){
+    let nation = chooseNationFromStore(probability);
+
+    return nation.getUniqueName();
 }
 
 export function addNewNationReturnUniqueName(){

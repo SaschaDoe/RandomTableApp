@@ -2,9 +2,7 @@ import {Table} from "../table";
 import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
-import {
-    addNewNationReturnUniqueName
-} from "../../entites/nations/nationStore";
+import {chooseNationReturnUniqueName} from "../../entites/nations/nationStore";
 
 export class NationAdjectiveTable extends Table{
     constructor(){
@@ -20,7 +18,7 @@ export class NationAdjectiveTable extends Table{
         entries.push(new TableEntry("mystic"))
         entries.push(new TableEntry("old"))
         entries.push(new TableEntry("ancient"))
-        entries.push(new TableEntry("foreign ruled").withFunctionString(addNewNationReturnUniqueName))
+        entries.push(new TableEntry("foreign ruled").withFunctionString(chooseNationReturnUniqueName))
         super(entries, TableTitles.NationAdjective);
         this.tableType = TableType.Nation;
     }

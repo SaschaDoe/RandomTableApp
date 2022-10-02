@@ -5,7 +5,7 @@ import {TableType} from "../tableType";
 import {ProfessionTable} from "../charTables/professionTable";
 import {NaturalEvents} from "../otherTables/naturalEvents";
 import {
-    addNewNSCToCharacterStoreReturnDescription,
+    addNewNSCToCharacterStoreReturnDescription, chooseHigherPowerReturnDescription,
     createHigherPowerReturnDescription
 } from "../../entites/character/charStore";
 
@@ -18,7 +18,7 @@ export class TownEventTable extends Table{
         entries.push(new TableEntry("election"))
         entries.push(new TableEntry("coronation of").withFunctionString(addNewNSCToCharacterStoreReturnDescription))
         entries.push(new TableEntry("fair"))
-        entries.push(new TableEntry("religious festival of").withFunctionString(createHigherPowerReturnDescription))
+        entries.push(new TableEntry("religious festival of").withFunctionString(chooseHigherPowerReturnDescription))
         entries.push(new TableEntry("bard contest"))
         entries.push(new TableEntry("science meeting"))
         entries.push(new TableEntry("wizard convent"))

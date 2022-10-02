@@ -7,6 +7,7 @@ import type {Relationship} from "./relationship";
 import {isMagicalProfession} from "../../tables/charTables/magicUserProfessions";
 import type {Continent} from "../continent/continent";
 import type {Fraction} from "../fractions/fraction";
+import type {Nation} from "../nations/nation";
 
 
 export class Character extends AttributeEntity implements Equatable<Character>{
@@ -19,6 +20,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     race : string;
     trope: string;
     nickname: string;
+    nation: Nation;
 
     memberOfFraction: Fraction[];
     readonly advantages: string[];
@@ -96,6 +98,11 @@ export class Character extends AttributeEntity implements Equatable<Character>{
         }
         this.nickname = characterBuilder.charNickname;
 
+        if(characterBuilder.charNation === undefined){
+            throw Error("Character nation must be set");
+        }
+        this.nation = characterBuilder.charNation;
+
         this.curses = characterBuilder.charCurses.slice();
         this.specialFeatures = characterBuilder.charSpecialFeatures.slice();
         this.advantages = characterBuilder.charAdvantages.slice();
@@ -166,6 +173,8 @@ export class Character extends AttributeEntity implements Equatable<Character>{
                 description += ` and ${this.specialFeatures[i]}.`;
             }
         }
+
+        description += `.\n ${pronoun} is born in ${this.nation.toString()}`
 
         description += `.\n ${adverb} motivation is ${this.motivation}`
 
