@@ -10,7 +10,10 @@ import {BeginningTropeTable} from "../tables/adventureTables/beginningTropeTable
 import {
     addDungeonWithRoomsReturnDescription
 } from "../entites/dungeons/dungeonStore";
-import {addNewNSCToCharacterStoreReturnDescription} from "../entites/character/charStore";
+import {
+    addNewNSCToCharacterStoreReturnDescription,
+    createHigherPowerReturnDescription
+} from "../entites/character/charStore";
 import {addNewFractionToStoreReturnDescription} from "../entites/fractions/fractionStore";
 import {addNewContinentToStore} from "../entites/continent/continentStore";
 import {AdventureRisingTable} from "../tables/adventureTables/adventureRisingTable";
@@ -29,7 +32,9 @@ export function addEventToStore(){
     eventList.update(events =>{
         events.push("season "+new SeasonTable().roleWithCascade().text + " with weather " + new WeatherTable().roleWithCascade().text)
         events.push(addNewNationReturnDescription().toString()+"\n");
-        events.push("town: "+addNewTownToStoreReturnDescription()+"\n")
+        events.push(createHigherPowerReturnDescription()+"\n");
+        events.push(createHigherPowerReturnDescription()+"\n \n");
+        events.push("town: "+addNewTownToStoreReturnDescription()+"\n \n")
         events.push("possible plan: "+new PlanTable().roleWithCascade().text)
         events.push("villain is: "+new VillainAdjectiveTable().roleWithCascade().text)
         if(probabilityCheck(50)){

@@ -4,26 +4,31 @@
 
     export let character: Character;
 
-    let characterFactory = new CharacterFactory();
+
 
     let handleAddCurse = () =>{
+        let characterFactory = new CharacterFactory();
         character = characterFactory.clone(character).addCurse().create();
     };
     let handleAddAdvantage = ()=>{
+        let characterFactory = new CharacterFactory();
         character = characterFactory.clone(character).addAdvantage().create();
     };
     let handleAddDisadvantage = () =>{
+        let characterFactory = new CharacterFactory();
         character = characterFactory.clone(character).addDisadvantage().create();
     };
     let handleAddTalent = ()=>{
+        let characterFactory = new CharacterFactory();
         character = characterFactory.clone(character).addTalent().create();
     };
     let handleAddMagicalTalent = ()=>{
+        let characterFactory = new CharacterFactory();
         character = characterFactory.clone(character).addMagicalTalent().create();
     };
 
 </script>
-<h1>{character.getUniqueName()}</h1>
+<h1>{character.getUniqueName()+" "+character.nickname}</h1>
 {#if character.isHigherPower}
     <p>{character.alignment+ " " +character.race +" "+character.gender+" higher power being of "+ character.profession+" from a " + character.nation.culture+"-like "+ character.nation.technology+" culture"}</p>
     {:else}

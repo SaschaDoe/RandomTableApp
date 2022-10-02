@@ -64,7 +64,9 @@
 
     .close-overlap-btn{
         position: fixed;
-        left: 80px;
+        width: 30px;
+        height: 30px;
+        left: 30%;
         top: 50%;
     }
 

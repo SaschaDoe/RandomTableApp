@@ -163,6 +163,10 @@ export class Character extends AttributeEntity implements Equatable<Character>{
             description += ` ${this.curses[i]}`
         }
 
+        if(this.isHigherPower){
+            description += ` higher power being of `
+        }
+
         description += ` ${this.profession}`
 
         for(let i = 0; i < this.specialFeatures.length; i++){

@@ -35,27 +35,18 @@ export class FirstNation extends Entity{
             this.adjectives.push(new NationAdjectiveTable().roleWithCascade().text);
         }
         this.culture = culture;
+        this.size = new SizeTable().roleWithCascade().text;
+        this.wealth = new FractionWealthTable().roleWithCascade().text;
+        this.technology = new TechnologyTable().roleWithCascade().text;
     }
 
     initializeNation(){
         this.ruler = addRulerToStore();
         this.pastEvent = new HistoricalEventTable().roleWithCascade().text
         this.futureEvent = new HistoricalEventTable().roleWithCascade().text;
-        this.initializeNonChar();
-    }
-
-    initializeNonChar(){
-        this.adjectives = [] as string[];
-        this.size = new SizeTable().roleWithCascade().text;
-        this.wealth = new FractionWealthTable().roleWithCascade().text;
-        this.technology = new TechnologyTable().roleWithCascade().text;
-
     }
 
     toString(){
-        if(this.pastEvent === ""){
-            this.initializeNonChar();
-        }
         let rulerDescription = "";
         if(this.ruler === undefined){
             rulerDescription = "there is no ruler";

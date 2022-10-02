@@ -9,16 +9,12 @@ import {addArtefactToStoreReturnUniqueName} from "../../entites/artefacts/artefa
 export class FromAnotherHigherPowerTalent extends Table{
     constructor(){
         let entries = [] as TableEntry[];
-        entries.push(new TableEntry("pact with").withFunctionString(chooseHigherPowerReturnDescription))
-        entries.push(new TableEntry("ground of").withFunctionString(chooseHigherPowerReturnDescription))
-        entries.push(new TableEntry("summoning helpers of").withFunctionString(chooseHigherPowerReturnDescription))
-        entries.push(new TableEntry("summoning")
-            .withFunctionString(chooseHigherPowerReturnDescription)
-            .with(" of ")
-            .withFunctionString(chooseHigherPowerReturnDescription))
-        entries.push(new TableEntry("dialogue with").withFunctionString(chooseHigherPowerReturnDescription))
-        entries.push(new TableEntry("transport to domain of").withFunctionString(chooseHigherPowerReturnDescription))
-        entries.push(new TableEntry("protection against").withFunctionString(chooseHigherPowerReturnDescription))
+        entries.push(new TableEntry("pact with"))//.withFunctionString(chooseHigherPowerReturnDescription))
+        entries.push(new TableEntry("ground of"))//.withFunctionString(chooseHigherPowerReturnDescription))
+        entries.push(new TableEntry("summoning helpers of"))//.withFunctionString(chooseHigherPowerReturnDescription))
+        entries.push(new TableEntry("dialogue with"))//.withFunctionString(chooseHigherPowerReturnDescription))
+        entries.push(new TableEntry("transport to domain of"))//.withFunctionString(chooseHigherPowerReturnDescription))
+        entries.push(new TableEntry("protection against"))//.withFunctionString(chooseHigherPowerReturnDescription))
         super(entries, TableTitles.TalentFromHigherPower);
         this.tableType = TableType.Talent;
     }

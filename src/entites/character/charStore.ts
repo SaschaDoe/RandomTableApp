@@ -35,7 +35,7 @@ export function addRulerToStore(){
     return addNewNSCToCharacterStore(new CharacterFactory().withNickname());
 }
 
-export function chooseNSCFromStore(probability = 100){
+export function chooseNSCFromStore(probability = 90){
     if(probabilityCheck(probability)){
         let character: Character|undefined;
         characters.subscribe(characters => {
@@ -59,7 +59,7 @@ export function createHigherPowerReturnUniqueName(){
     addNSCToCharacterStore(higherPower);
     return higherPower.getUniqueName();
 }
-export let higherPowerChooseProbability = 95;
+export let higherPowerChooseProbability = 90;
 export function chooseHigherPower(probability = higherPowerChooseProbability){
     if(probabilityCheck(probability)){
         let character: Character|undefined;

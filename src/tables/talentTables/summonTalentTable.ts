@@ -12,7 +12,6 @@ export class SummonTalentTable extends Table{
         let entries = [] as TableEntry[];
         entries.push(new TableEntry("summon").withCascadingRole(new RaceTable()))
         entries.push(new TableEntry("summon").withCascadingRole(new WeatherTable()))
-        entries.push(new TableEntry("summon").withFunctionString(chooseHigherPowerReturnDescription))
         entries.push(new TableEntry("summon artefact").withFunctionString(addArtefactToStoreReturnUniqueName));
         super(entries, TableTitles.SummonTalent);
         this.tableType = TableType.Talent;

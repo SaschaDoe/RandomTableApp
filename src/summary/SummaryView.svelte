@@ -1,7 +1,7 @@
 <script lang="ts">
     import {
         addNewNSCToCharacterStoreReturnUniqueName,
-        addNSCsToCharacterStore,
+        addNSCsToCharacterStore, addRulerToStore,
         characters, createHigherPower,
         higherPowerBeingsStore
     } from "../entites/character/charStore.js";
@@ -74,6 +74,10 @@
         createHigherPower();
         updateIndex();
     };
+    let addRulerToView = () => {
+        addRulerToStore();
+        updateIndex();
+    };
 
 </script>
 
@@ -82,6 +86,7 @@
 <button on:click={addPartyHandler}>Add party member</button>
 <input type="number" bind:value={sizeOfParty}/>
 <button on:click={addNSC}>Add NSC</button>
+<button on:click={addRulerToView}>Add Ruler</button>
 <button on:click={addHigherPower}>Add Higher Power</button>
 <button on:click={addFraction}>Add Fraction</button>
 <button on:click={addArtefactForView}>Add Artefact</button>
