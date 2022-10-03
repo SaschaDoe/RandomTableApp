@@ -96,6 +96,7 @@ export class RoomFactory{
             .withEncounters(this.roomEncounters)
             .withMonsters(this.roomMonsters)
             .withArtworks(this.roomArtworks)
+            .withTransitions(this.roomTransitions)
             .build();
     }
 }
