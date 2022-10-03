@@ -44,6 +44,7 @@ import {ArtistTalentTable} from "./talentTables/artistTalentTable";
 import {AdventureEventTable} from "./adventureTables/adventureEventTable";
 import {CharacterAsDeviceTable} from "./charTables/characterAsDeviceTable";
 import {RealCultureTable} from "./cultureTables/realCultureTable";
+import {TransitionTable} from "./dungeonTables/transitionTable";
 
 export class AllTablesMap{
     private readonly allTablesMap: Map<TableTitles, Table>;
@@ -108,6 +109,7 @@ export class AllTablesMap{
         this.allTablesMap.set(TableTitles.AdventureEvent, new AdventureEventTable());
         this.allTablesMap.set(TableTitles.CharacterAsDevice, new CharacterAsDeviceTable());
         this.allTablesMap.set(TableTitles.RealCulture, new RealCultureTable());
+        this.allTablesMap.set(TableTitles.Transition, new TransitionTable());
     }
 }
 

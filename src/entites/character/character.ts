@@ -34,6 +34,7 @@ export class Character extends AttributeEntity implements Equatable<Character>{
     readonly homeContinent: Continent;
     readonly relationships: Relationship[];
     readonly isHigherPower: boolean;
+    nameOfRuledNation: string;
 
 
     constructor(characterBuilder: CharacterBuilder) {
@@ -101,6 +102,11 @@ export class Character extends AttributeEntity implements Equatable<Character>{
             throw Error("Character nation must be set");
         }
         this.nation = characterBuilder.charNation;
+
+        if(characterBuilder.charNameOfRuledNation === undefined){
+            throw Error("Character name of nation must be set");
+        }
+        this.nameOfRuledNation = characterBuilder.charNameOfRuledNation;
 
         this.curses = characterBuilder.charCurses.slice();
         this.specialFeatures = characterBuilder.charSpecialFeatures.slice();

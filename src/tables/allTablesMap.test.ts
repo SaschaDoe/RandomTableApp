@@ -45,6 +45,7 @@ import {ArtistTalentTable} from "./talentTables/artistTalentTable";
 import {AdventureEventTable} from "./adventureTables/adventureEventTable";
 import {CharacterAsDeviceTable} from "./charTables/characterAsDeviceTable";
 import {RealCultureTable} from "./cultureTables/realCultureTable";
+import {TransitionTable} from "./dungeonTables/transitionTable";
 
 describe("AllTablesMap", () => {
 
@@ -122,5 +123,6 @@ function testInput(){
         [TableTitles.AdventureEvent, AdventureEventTable],
         [TableTitles.CharacterAsDevice, CharacterAsDeviceTable],
         [TableTitles.RealCulture, RealCultureTable],
+        [TableTitles.Transition, TransitionTable],
     ]
 }

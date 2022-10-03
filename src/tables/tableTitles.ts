@@ -152,4 +152,6 @@ export enum TableTitles{
     ElfenMaleName = "Elfen Male Name",
     ElfenLastName = "Elfen Last Name",
     Verb = "Verb",
+    TransitionAdjective = "Transition Adjective",
+    Transition = "Transition",
 }

@@ -50,6 +50,6 @@ export function addDungeonToStoreReturnDescription(){
 
 export function addDungeonWithRoomsReturnDescription(){
     let dungeon = addDungeonToStore();
-    addRoomsTo(dungeon, 12);
+    addRoomsTo(dungeon, 5);
     return dungeon.toString();
 }

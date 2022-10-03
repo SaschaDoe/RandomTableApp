@@ -67,15 +67,12 @@
         updateIndex();
     };
     let addNationToView = () => {
-        addNewNation();
+        let nation = addNewNation();
+        addRulerToStore(nation);
         updateIndex();
     };
     let addHigherPower = () => {
         createHigherPower();
-        updateIndex();
-    };
-    let addRulerToView = () => {
-        addRulerToStore();
         updateIndex();
     };
 
@@ -86,7 +83,6 @@
 <button on:click={addPartyHandler}>Add party member</button>
 <input type="number" bind:value={sizeOfParty}/>
 <button on:click={addNSC}>Add NSC</button>
-<button on:click={addRulerToView}>Add Ruler</button>
 <button on:click={addHigherPower}>Add Higher Power</button>
 <button on:click={addFraction}>Add Fraction</button>
 <button on:click={addArtefactForView}>Add Artefact</button>

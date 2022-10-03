@@ -15,7 +15,6 @@ export class NaturalEvents extends Table{
         entries.push(new TableEntry("flowering"))
         entries.push(new TableEntry("mating season of").withCascadingRole(new AnimalTable()))
         entries.push(new TableEntry("mating season of").withCascadingRole(new MonsterTable()))
-
         super(entries, TableTitles.NaturalEvent);
         this.tableType = TableType.Other;
     }

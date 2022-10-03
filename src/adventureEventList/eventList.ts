@@ -40,9 +40,9 @@ export function addEventToStore(){
         if(probabilityCheck(50)){
             events.push("and "+new VillainAdjectiveTable().roleWithCascade().text)
         }
-        events.push("possible villain: "+addNewNSCToCharacterStoreReturnDescription())
-        events.push("possible relationship char: "+addNewNSCToCharacterStoreReturnDescription())
-
+        events.push("possible villain: "+addNewNSCToCharacterStoreReturnDescription()+"\n")
+        events.push("possible relationship char: "+addNewNSCToCharacterStoreReturnDescription()+"\n")
+        events.push("dungeon: "+addDungeonWithRoomsReturnDescription())
 
         while(adventurePhase !== AdventurePhases.End){
             events.push(new AdventureEventTable().roleWithCascade().text);

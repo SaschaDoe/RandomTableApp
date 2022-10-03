@@ -3,6 +3,7 @@ import {writable} from "svelte/store";
 import {CharacterFactory} from "./characterFactory";
 import {updateIndex} from "../../summary/updateSummaryIndex";
 import {probabilityCheck, randomIntFromInterval} from "../../utils/randomUtils";
+import type {Nation} from "../nations/nation";
 
 export let characters = writable([] as Character[]);
 export let higherPowerBeingsStore = writable([] as Character[]);
@@ -31,9 +32,16 @@ export function chooseNSCReturnUniqueName(){
     return chooseNSCFromStore().getUniqueName();
 }
 
-export function addRulerToStore(){
-    return addNewNSCToCharacterStore(new CharacterFactory().withNickname());
+export function addRulerToStore(nation: Nation, culture = "", ){
+    let charFactory = new CharacterFactory().withNickname();
+    if(culture === "elfen"){
+        charFactory.withRace("elf");
+        charFactory.withNation(nation);
+    }
+    return addNewNSCToCharacterStore(new CharacterFactory().withNickname().withNameOfRuledNation(nation.getUniqueName()));
 }
+
+
 
 export function chooseNSCFromStore(probability = 90){
     if(probabilityCheck(probability)){

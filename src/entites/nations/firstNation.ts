@@ -40,8 +40,14 @@ export class FirstNation extends Entity{
         this.technology = new TechnologyTable().roleWithCascade().text;
     }
 
+    updateCulture(culture: string){
+        this.culture = culture;
+        this.name = this.type + " " + getCultureName(culture,Gender.Male);
+        this.ruler = addRulerToStore(this, this.culture);
+    }
+
     initializeNation(){
-        this.ruler = addRulerToStore();
+        this.ruler = addRulerToStore(this, this.culture);
         this.pastEvent = new HistoricalEventTable().roleWithCascade().text
         this.futureEvent = new HistoricalEventTable().roleWithCascade().text;
     }

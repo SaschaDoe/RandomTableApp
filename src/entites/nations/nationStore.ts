@@ -22,10 +22,20 @@ export function addNewNation(nation = new Nation()){
     return nation;
 }
 
-export function chooseNationFromStore(probability = 100){
+export function chooseNationFromStore(probability = 100, culture = ""){
     if(probabilityCheck(probability)){
         let nation: Nation|undefined;
         nationStore.subscribe(nations => {
+            if(culture !== ""){
+                let filteredNations = nations.filter(n => n.culture == culture)
+                if(filteredNations.length === 0){
+                    let newNation = new Nation();
+                    newNation.updateCulture(culture)
+                    return addNewNation(newNation);
+                }
+                let randomIndex = randomIntFromInterval(0,filteredNations.length-1);
+                nation = filteredNations[randomIndex];
+            }
             let randomIndex = randomIntFromInterval(0,nations.length-1);
             nation = nations[randomIndex];
         })

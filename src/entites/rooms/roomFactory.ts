@@ -18,7 +18,8 @@ export const monsterMinInterval = -3;
 export const monsterMaxInterval = 2;
 export const artworkMinInterval = -3;
 export const artworkMaxInterval = 1;
-
+export const transitionMinInterval = 1;
+export const transitionMaxInterval = 3;
 export class RoomFactory{
     private tableRoller: TableRoller;
     private random: Random;
@@ -30,6 +31,7 @@ export class RoomFactory{
     roomEncounters: string[];
     roomMonsters: Monster[];
     roomArtworks: Sign[];
+    roomTransitions: string[];
 
     constructor(
         tableRoller = new TableRoller(),
@@ -44,7 +46,8 @@ export class RoomFactory{
         this.roomEncounters = [];
         this.roomMonsters = [];
         this.roomArtworks = [];
-
+        this.roomTransitions = [];
+        this.setNonMandatory(transitionMinInterval, transitionMaxInterval, this.roomTransitions, TableTitles.Transition)
         this.setNonMandatory(treasureMinInterval, treasureMaxInterval, this.roomTreasures, TableTitles.Treasure);
         this.setNonMandatory(furnishingMinInterval, furnishingMaxInterval, this.roomFurnishing, TableTitles.Furnishing);
         this.setNonMandatory(obstacleMinInterval, obstacleMaxInterval, this.roomObstacles, TableTitles.Obstacle);

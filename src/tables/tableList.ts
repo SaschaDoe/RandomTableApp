@@ -145,6 +145,8 @@ import {ElfenFemaleNameTable} from "./nameTables/elfenFemaleNameTable";
 import {ElfenMaleNameTable} from "./nameTables/elfenMaleNameTable";
 import {ElfenLastName} from "./nameTables/elfenLastName";
 import {VerbTable} from "./nameTables/verbTable";
+import {TransitionTable} from "./dungeonTables/transitionTable";
+import {TransitionAdjectiveTable} from "./dungeonTables/transitionAdjectiveTable";
 
 export let adventureTables = [
     new AdventureEventTable(),
@@ -226,6 +228,8 @@ export let dungeonTables = [
     new TrapTable(),
     new StructureTable(),
     new DungeonEntriesTable(),
+    new TransitionTable(),
+    new TransitionAdjectiveTable(),
 ]
 export let townTables = [
     new TownEventTable(),

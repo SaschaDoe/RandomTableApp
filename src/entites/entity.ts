@@ -2,7 +2,7 @@ import {getId} from "./idGetter";
 
 export class Entity{
     readonly id: number;
-    readonly name: string;
+    name: string;
 
     constructor(name: string, id = -1)
      {

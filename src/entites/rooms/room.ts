@@ -13,6 +13,7 @@ export class Room extends Entity{
     monsters: Monster[];
     characters: Character[];
     artworks: Sign[];
+    transitions: string[];
 
     constructor(roomBuilder: RoomBuilder) {
         super("Room");
@@ -24,6 +25,7 @@ export class Room extends Entity{
         this.monsters = roomBuilder.roomMonsters;
         this.characters = roomBuilder.roomCharacters;
         this.artworks = roomBuilder.roomArtworks;
+        this.transitions = roomBuilder.transitions;
     }
 
     toString(){
@@ -67,6 +69,13 @@ export class Room extends Entity{
                 description += "Monsters: \n"
             }
             description += this.monsters[i].toString() + " - "+ this.encounters[i] +"\n";
+        }
+
+        for(let i = 0; i < this.transitions.length; i++){
+            if(i === 0){
+                description += "Transitions: \n";
+            }
+            description += this.transitions[i]+"\n";
         }
 
         return description;

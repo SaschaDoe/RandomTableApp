@@ -15,8 +15,9 @@ import {chooseAContinentFromStore} from "../continent/continentStore";
 import type {Entity} from "../entity";
 import {RulerNicknamesTable} from "../../tables/nationTables/rulerNicknamesTable";
 import {getCultureName} from "../../tables/nameTables/nameGenerator";
-import {addNewNation, chooseNationFromStore} from "../nations/nationStore";
-import {Nation} from "../nations/nation";
+import {chooseNationFromStore} from "../nations/nationStore";
+import type {Nation} from "../nations/nation";
+import {MagicalTalentTable} from "../../tables/talentTables/magicalTalentTable";
 
 export let advantagesMinInterval = -10;
 export let advantagesMaxInterval = 3;
@@ -71,6 +72,7 @@ export class CharacterFactory extends Factory{
     id = -1;
     characterNickname = "";
     characterNation: Nation|undefined;
+    nameOfRuledNation = "";
 
     constructor(
         tableRoller = new TableRoller(),
@@ -113,6 +115,7 @@ export class CharacterFactory extends Factory{
         this.id = char.id;
         this.relationships = char.relationships;
         this.characterNation = char.nation;
+        this.nameOfRuledNation = char.nameOfRuledNation;
         return this;
     }
 
@@ -158,6 +161,7 @@ export class CharacterFactory extends Factory{
             .withId(this.id)
             .withNickname(this.characterNickname)
             .withNation(this.characterNation)
+            .withNameOfRuledNation(this.nameOfRuledNation)
             .build()
 
         this.characterFractions.forEach(fraction => {
@@ -192,20 +196,31 @@ export class CharacterFactory extends Factory{
         this.characterGender = this.tableRoller.roleFor(TableTitles.Gender).text;
 
         if(this.characterRace === "elf"){
-            let nation = new Nation();
-            nation.culture = "elfen";
-            this.characterNation = nation
+            this.characterNation = chooseNationFromStore(99, "elfen")
+            this.charMagicalTalents.push(new MagicalTalentTable().roleWithCascade().text);
         }else{
-            this.characterNation = chooseNationFromStore(100);
+            this.characterNation = chooseNationFromStore(99);
         }
 
-        this.characterName = getCultureName(this.characterNation.culture, this.characterGender)
+        this.setName();
+
         this.characterAlignment = this.tableRoller.roleFor(TableTitles.Alignment).text;
 
         this.characterMotivation = this.tableRoller.roleFor(TableTitles.Motivation).text;
         this.characterProfession = this.tableRoller.roleFor(TableTitles.Profession).text;
         this.characterNobility = this.tableRoller.roleFor(TableTitles.Nobility).text;
         this.characterTrope = this.tableRoller.roleFor(TableTitles.CharacterAsDevice).text;
+    }
+
+    private setName() {
+        let ruleName = "";
+        if (this.nameOfRuledNation !== "") {
+            ruleName = ` ruler of ${this.nameOfRuledNation}`
+        }
+        if(this.characterNation === undefined){
+            throw Error("Nation undefined")
+        }
+        this.characterName = getCultureName(this.characterNation.culture, this.characterGender) + ruleName;
     }
 
     private setAllNonMandatory() {
@@ -329,6 +344,21 @@ export class CharacterFactory extends Factory{
         return this;
     }
 
+    withRace(race: string) {
+        this.characterRace = race;
+        return this;
+    }
+
+    withNameOfRuledNation(nameOfRuledNation: string) {
+        this.nameOfRuledNation = nameOfRuledNation;
+        this.setName();
+        return this;
+    }
+
+    withNation(nation: Nation) {
+        this.characterNation = nation;
+        return this;
+    }
 }
 
 

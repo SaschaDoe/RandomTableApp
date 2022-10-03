@@ -12,6 +12,7 @@ export class RoomBuilder{
     roomMonsters: Monster[];
     roomCharacters: Character[];
     roomArtworks: Sign[];
+    transitions: string[];
 
     constructor() {
         this.roomTreasures = [];
@@ -22,6 +23,7 @@ export class RoomBuilder{
         this.roomMonsters = [];
         this.roomCharacters = [];
         this.roomArtworks = [];
+        this.transitions = [];
     }
 
     build(){
@@ -65,6 +67,11 @@ export class RoomBuilder{
 
     withArtworks(artworks: Sign[]){
         this.roomArtworks = this.roomArtworks.concat(artworks);
+        return this;
+    }
+
+    withTransitions(transitions: string[]){
+        this.transitions = transitions;
         return this;
     }
 }

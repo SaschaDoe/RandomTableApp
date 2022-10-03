@@ -1,4 +1,7 @@
 import {FirstNation} from "./firstNation";
+import {getCultureName} from "../../tables/nameTables/nameGenerator";
+import {Gender} from "../../tables/charTables/gender";
+import {addRulerToStore} from "../character/charStore";
 
 export class Nation extends FirstNation{
     constructor() {

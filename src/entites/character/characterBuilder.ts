@@ -39,6 +39,7 @@ export class CharacterBuilder{
     id = 0;
     charNickname = ""
     charNation: Nation|undefined;
+    charNameOfRuledNation = "";
 
     constructor() {
         this.charCurses = [];
@@ -216,6 +217,11 @@ export class CharacterBuilder{
 
     withNation(nation: Nation){
         this.charNation = nation;
+        return this;
+    }
+
+    withNameOfRuledNation(nameOfNation: string){
+        this.charNameOfRuledNation = nameOfNation;
         return this;
     }
 }

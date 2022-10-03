@@ -3,11 +3,7 @@ import {TableEntry} from "../tableEntry";
 import {TableTitles} from "../tableTitles";
 import {TableType} from "../tableType";
 import {NaturalEvents} from "./naturalEvents";
-import {chooseNSCReturnUniqueName} from "../../entites/character/charStore";
-import {
-    addNewFractionToStoreReturnUniqueName, chooseFractionFromStoreReturnUniqueName,
-    chooseTwoFractionFromStoreWithUniqueName
-} from "../../entites/fractions/fractionStore";
+import {chooseHigherPowerReturnUniqueName} from "../../entites/character/charStore";
 
 export class HistoricalEventTable extends Table{
     constructor(){
@@ -15,13 +11,13 @@ export class HistoricalEventTable extends Table{
         entries.push(new TableEntry("battle between fractions"))//.withFunctionString(chooseTwoFractionFromStoreWithUniqueName))
         entries.push(new TableEntry("contract between fractions"))//.withFunctionString(chooseTwoFractionFromStoreWithUniqueName))
         entries.push(new TableEntry("new ruler"))//.withFunctionString(chooseNSCReturnUniqueName))
-        entries.push(new TableEntry(""))//.withCascadingRole(new NaturalEvents()))
+        entries.push(new TableEntry("").withCascadingRole(new NaturalEvents()))
         entries.push(new TableEntry("scientific discovery"))
         entries.push(new TableEntry("destruction town"))
         entries.push(new TableEntry("destruction fraction"))//.withFunctionString(chooseFractionFromStoreReturnUniqueName))
         entries.push(new TableEntry("new fraction"))//.withFunctionString(addNewFractionToStoreReturnUniqueName))
         entries.push(new TableEntry("conquest of town"))
-        entries.push(new TableEntry("supernatural intervention"))
+        entries.push(new TableEntry("supernatural intervention").withFunctionString(chooseHigherPowerReturnUniqueName))
         entries.push(new TableEntry("illness"))
         super(entries, TableTitles.HistoricalEvent);
         this.tableType = TableType.Other;
